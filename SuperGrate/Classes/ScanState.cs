@@ -8,5 +8,9 @@ namespace SuperGrate.Classes
 {
     class ScanState
     {
+        // /ue:*\* /ui:belowaverage\dylan #Generate this on the fly
+        // /progress:SuperGrate.progress
+        // /l:SuperGrate.log
+        // /o #Overwrite
     }
 }

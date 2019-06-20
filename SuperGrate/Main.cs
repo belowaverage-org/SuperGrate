@@ -14,55 +14,85 @@ namespace SuperGrate
     {
         public static Form Form;
         public static RichTextBox LoggerBox;
+        public static ProgressBar Progress;
         public Main()
         {
             InitializeComponent();
             Form = this;
             LoggerBox = LogBox;
+            Progress = pbMain;
         }
-        //scanstate \\ad.belowaverage.org\Public\Share\USMT /config:Config_SettingsOnly.xml /i:MigUser.xml /l:scan.log /ue:*\* /ui:belowaverage\dylan /o
         private void Main_Load(object sender, EventArgs e)
         {
+            Config.LoadConfig();
             Logger.Success("Welcome to Super Grate!");
             Logger.Information("Enter some information to get started!");
         }
-
         private async void BtStart_Click(object sender, EventArgs e)
         {
-            Logger.Information("Checking that everything is online...");
-            if(await Misc.Ping(tbSourceComputer.Text))
-            {
-                Logger.Success("Everything is online!");
-            }
-            else
-            {
-                Logger.Error("Make sure the source, destination, or store is online and reachable.");
-            }
+            tblMainLayout.Enabled = false;
+            await CopyUSMT.Do(tbSourceComputer.Text);
+            tblMainLayout.Enabled = true;
         }
-
         private async void BtnListSource_Click(object sender, EventArgs e)
         {
+            tbSourceComputer.Enabled = true;
+            tblMainLayout.Enabled = false;
             lbxUsers.Items.Clear();
-            Logger.Information("Checking if source is online...");
-            if (await Misc.Ping(tbSourceComputer.Text))
+            lblUserList.Text = "Source Computer Users";
+            Dictionary<string, string> results = await Misc.GetUsersFromHost(tbSourceComputer.Text);
+            if (results != null)
             {
-                Logger.Success("Source is online!");
-                Logger.Information("Gathering list of users from source...");
-                Dictionary<string, string> remoteUsers = await Misc.GetUsersFromHost(tbSourceComputer.Text);
-                if (remoteUsers != null)
-                {
-                    lbxUsers.Items.AddRange(remoteUsers.Values.ToArray());
-                    Logger.Success("Done!");
-                }
-                else
-                {
-                    Logger.Error("An error has occured!");
-                }
-                
+                lbxUsers.Items.AddRange(results.Values.ToArray());
+                Logger.Success("Done!");
             }
             else
             {
-                Logger.Error("Make sure the source is online and reachable.");
+                Logger.Error("Failed to list users from the source computer.");
+            }
+            tblMainLayout.Enabled = true;
+        }
+        private async void BtnListStore_Click(object sender, EventArgs e)
+        {
+            tbSourceComputer.Enabled = false;
+            tblMainLayout.Enabled = false;
+            lbxUsers.Items.Clear();
+            lblUserList.Text = "Migration Store Users";
+            Dictionary<string, string> results = await Misc.GetUsersFromStore(tbMigrationStore.Text);
+            if(results != null)
+            {
+                lbxUsers.Items.AddRange(results.Values.ToArray());
+            }
+            else
+            {
+                Logger.Error("Failed to list users from the migration store.");
+            }
+            tblMainLayout.Enabled = true;
+        }
+        private void LogBox_DoubleClick(object sender, EventArgs e)
+        {
+            if(Logger.VerboseEnabled)
+            {
+                Logger.VerboseEnabled = false;
+                Logger.Information("Verbose mode disabled.");
+            }
+            else
+            {
+                Logger.VerboseEnabled = true;
+                Logger.Information("Verbose mode enabled.");
+            }
+        }
+        private void OnFormChange(object sender, EventArgs e)
+        {
+            if (
+                lbxUsers.SelectedIndices.Count == 0
+            )
+            {
+                btStartStop.Enabled = false;
+            }
+            else
+            {
+                btStartStop.Enabled = true;
             }
         }
     }

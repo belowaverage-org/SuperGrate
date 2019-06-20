@@ -9,6 +9,7 @@ namespace SuperGrate
 {
     class Logger
     {
+        public static bool VerboseEnabled = false;
         private static void WriteLog(string Text, Color Color)
         {
             Main.Form.Invoke(new Action(() => {
@@ -41,6 +42,20 @@ namespace SuperGrate
         public static void Error(string Text)
         {
             WriteLog(Text, Color.Red);
+        }
+        public static void Verbose(string Text)
+        {
+            if(VerboseEnabled)
+            {
+                WriteLog(Text, Color.Gray);
+            }
+        }
+        public static void UpdateProgress(int Value, int Max = 100)
+        {
+            int Percent = (int)Math.Round(((double)Value / (double)Max) * 100, 0);
+            Main.Form.Invoke(new Action(() => {
+                Main.Progress.Value = Percent;
+            }));
         }
     }
 }
