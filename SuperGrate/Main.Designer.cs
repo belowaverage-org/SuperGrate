@@ -244,7 +244,7 @@
             this.btStartStop.TabIndex = 9;
             this.btStartStop.Text = "Start";
             this.btStartStop.UseVisualStyleBackColor = true;
-            this.btStartStop.Click += new System.EventHandler(this.BtStart_Click);
+            this.btStartStop.Click += new System.EventHandler(this.BtStartStop_Click);
             // 
             // tableLayoutPanel3
             // 

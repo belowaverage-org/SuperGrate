@@ -110,5 +110,9 @@ namespace SuperGrate
                 }
             });
         }
+        static public string Generate()
+        {
+
+        }
     }
 }
