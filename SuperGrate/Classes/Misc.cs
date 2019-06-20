@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using System.Net.NetworkInformation;
+using System.DirectoryServices.AccountManagement;
 
 namespace SuperGrate
 {
@@ -36,19 +37,26 @@ namespace SuperGrate
                 return false;
             }
         }
-        static public Task<string[]> GetUsersFromHost(string Host)
+        static public Task<Dictionary<string, string>> GetUsersFromHost(string Host)
         {
             return Task.Run(() =>
             {
                 try
                 {
+                    Dictionary<string, string> remoteUsers = new Dictionary<string, string>();
                     RegistryKey remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
                     RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
-                    foreach (string profileKey in profileList.GetSubKeyNames())
+                    PrincipalContext domContext = new PrincipalContext(ContextType.Domain);
+                    foreach (string SID in profileList.GetSubKeyNames())
                     {
-                        Logger.Success(profileKey);
+                        UserPrincipal user = UserPrincipal.FindByIdentity(domContext, SID);
+                        if(user != null)
+                        {
+                            Logger.Success("Found: " + user.Name);
+                            remoteUsers.Add(SID, user.UserPrincipalName);
+                        }
                     }
-                    return new string[0];
+                    return remoteUsers;
                 }
                 catch(System.Security.SecurityException e)
                 {

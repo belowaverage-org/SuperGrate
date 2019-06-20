@@ -40,14 +40,18 @@
             this.tbSourceComputer = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.lbxUsers = new System.Windows.Forms.ListBox();
             this.btStart = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnListSource = new System.Windows.Forms.Button();
+            this.btnListStore = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // LogBox
@@ -116,17 +120,19 @@
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.tbSourceComputer, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBox2, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.textBox3, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.listBox1, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.btStart, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.lbxUsers, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.btStart, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 1, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowCount = 6;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -168,9 +174,9 @@
             // label5
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(3, 90);
+            this.label5.Location = new System.Drawing.Point(3, 120);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(114, 232);
+            this.label5.Size = new System.Drawing.Size(114, 202);
             this.label5.TabIndex = 4;
             this.label5.Text = "Users";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -184,7 +190,6 @@
             this.tbSourceComputer.Name = "tbSourceComputer";
             this.tbSourceComputer.Size = new System.Drawing.Size(261, 22);
             this.tbSourceComputer.TabIndex = 5;
-            this.tbSourceComputer.Leave += new System.EventHandler(this.TbSourceComputer_Leave);
             // 
             // textBox2
             // 
@@ -206,16 +211,16 @@
             this.textBox3.Size = new System.Drawing.Size(261, 22);
             this.textBox3.TabIndex = 7;
             // 
-            // listBox1
+            // lbxUsers
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.IntegralHeight = false;
-            this.listBox1.Location = new System.Drawing.Point(123, 94);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(261, 224);
-            this.listBox1.TabIndex = 8;
+            this.lbxUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbxUsers.FormattingEnabled = true;
+            this.lbxUsers.IntegralHeight = false;
+            this.lbxUsers.Location = new System.Drawing.Point(123, 124);
+            this.lbxUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbxUsers.Name = "lbxUsers";
+            this.lbxUsers.Size = new System.Drawing.Size(261, 194);
+            this.lbxUsers.TabIndex = 8;
             // 
             // btStart
             // 
@@ -230,10 +235,51 @@
             this.btStart.UseVisualStyleBackColor = true;
             this.btStart.Click += new System.EventHandler(this.BtStart_Click);
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.btnListSource, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnListStore, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(120, 90);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(267, 30);
+            this.tableLayoutPanel3.TabIndex = 10;
+            // 
+            // btnListSource
+            // 
+            this.btnListSource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnListSource.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnListSource.Location = new System.Drawing.Point(3, 3);
+            this.btnListSource.Name = "btnListSource";
+            this.btnListSource.Size = new System.Drawing.Size(127, 24);
+            this.btnListSource.TabIndex = 0;
+            this.btnListSource.Text = "List Source";
+            this.btnListSource.UseVisualStyleBackColor = true;
+            this.btnListSource.Click += new System.EventHandler(this.BtnListSource_Click);
+            // 
+            // btnListStore
+            // 
+            this.btnListStore.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnListStore.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnListStore.Location = new System.Drawing.Point(136, 3);
+            this.btnListStore.Name = "btnListStore";
+            this.btnListStore.Size = new System.Drawing.Size(128, 24);
+            this.btnListStore.TabIndex = 1;
+            this.btnListStore.Text = "List Store";
+            this.btnListStore.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(611, 362);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -248,6 +294,7 @@
             this.splitContainer1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -266,8 +313,11 @@
         private System.Windows.Forms.TextBox tbSourceComputer;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox lbxUsers;
         private System.Windows.Forms.Button btStart;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button btnListSource;
+        private System.Windows.Forms.Button btnListStore;
     }
 }
 

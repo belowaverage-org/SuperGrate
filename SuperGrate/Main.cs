@@ -40,14 +40,25 @@ namespace SuperGrate
             }
         }
 
-        private async void TbSourceComputer_Leave(object sender, EventArgs e)
+        private async void BtnListSource_Click(object sender, EventArgs e)
         {
+            lbxUsers.Items.Clear();
             Logger.Information("Checking if source is online...");
             if (await Misc.Ping(tbSourceComputer.Text))
             {
                 Logger.Success("Source is online!");
                 Logger.Information("Gathering list of users from source...");
-                await Misc.GetUsersFromHost(tbSourceComputer.Text);
+                Dictionary<string, string> remoteUsers = await Misc.GetUsersFromHost(tbSourceComputer.Text);
+                if (remoteUsers != null)
+                {
+                    lbxUsers.Items.AddRange(remoteUsers.Values.ToArray());
+                    Logger.Success("Done!");
+                }
+                else
+                {
+                    Logger.Error("An error has occured!");
+                }
+                
             }
             else
             {
