@@ -10,12 +10,15 @@ namespace SuperGrate
     class Logger
     {
         public static bool VerboseEnabled = false;
-        private static void WriteLog(string Text, Color Color)
+        private static void WriteLog(string Text, Color Color, bool Raw = false)
         {
             Main.Form.Invoke(new Action(() => {
                 Main.LoggerBox.SelectionColor = Color;
-                Text = DateTime.Now.ToShortTimeString() + "> " + Text;
-                Text = Text + "\n";
+                if (!Raw)
+                {
+                    Text = DateTime.Now.ToShortTimeString() + "> " + Text;
+                    Text = Text + "\n";
+                }
                 Main.LoggerBox.AppendText(Text);
                 try
                 {
@@ -27,27 +30,27 @@ namespace SuperGrate
                 }
             }));
         }
-        public static void Information(string Text)
+        public static void Information(string Text, bool Raw = false)
         {
-            WriteLog(Text, Color.White);
+            WriteLog(Text, Color.White, Raw);
         }
-        public static void Success(string Text)
+        public static void Success(string Text, bool Raw = false)
         {
-            WriteLog(Text, Color.Green);
+            WriteLog(Text, Color.Green, Raw);
         }
-        public static void Warning(string Text)
+        public static void Warning(string Text, bool Raw = false)
         {
-            WriteLog(Text, Color.Yellow);
+            WriteLog(Text, Color.Yellow, Raw);
         }
-        public static void Error(string Text)
+        public static void Error(string Text, bool Raw = false)
         {
-            WriteLog(Text, Color.Red);
+            WriteLog(Text, Color.Red, Raw);
         }
-        public static void Verbose(string Text)
+        public static void Verbose(string Text, bool Raw = false)
         {
             if(VerboseEnabled)
             {
-                WriteLog(Text, Color.Gray);
+                WriteLog(Text, Color.Gray, Raw);
             }
         }
         public static void UpdateProgress(int Value, int Max = 100)

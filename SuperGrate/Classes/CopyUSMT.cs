@@ -12,7 +12,7 @@ namespace SuperGrate
         public static Task<bool> Do()
         {
             return Task.Run(() => {
-                Copy(@".\USMT\", @"\\" + Main.SourceComputer + @"\C$\SuperGrate\");
+                Copy(@".\SuperGrate\USMT\", @"\\" + Main.SourceComputer + @"\C$\SuperGrate\");
                 return true;
             });
         }

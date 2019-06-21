@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Management;
 using System.IO;
+using System.Diagnostics;
 
 namespace SuperGrate
 {
     class USMT
     {
+        public static bool Running = false;
         public static Task<bool> Do(USMTMode Mode, string SID)
         {
             string exec = "";
@@ -28,8 +30,9 @@ namespace SuperGrate
                 target = Main.SourceComputer;
             }
             return Task.Run(async () => {
-                await RunRemoteProcess(target,
-                    @"C:\SuperGrate\" + exec + " " + 
+                Running = true;
+                await StartRemoteProcess(target,
+                    @"C:\SuperGrate\" + exec + " " +
                     @"C:\SuperGrate\ " +
                     @"/ue:*\* " +
                     "/ui:" + SID + " " +
@@ -37,18 +40,19 @@ namespace SuperGrate
                     "/progress:SuperGrate.progress " +
                     configParams
                 , @"C:\SuperGrate\");
-                await WatchLog(target);
+                StartWatchLog(target, "SuperGrate.log");
+                StartWatchLog(target, "SuperGrate.progress");
+                await WaitForUsmtExit(target, exec.Replace(".exe", ""));
                 return false;
             });
         }
         public static Task<bool> HaltUSMT()
         {
-            return Task.Run(() => {
-
+            return Task.Run(async () => {
                 return false;
             });
         }
-        static private Task<bool> RunRemoteProcess(string Target, string CLI, string CurrentDirectory)
+        static private Task<bool> StartRemoteProcess(string Target, string CLI, string CurrentDirectory)
         {
             return Task.Run(() => {
                 ConnectionOptions conOps = new ConnectionOptions();
@@ -59,52 +63,69 @@ namespace SuperGrate
                 ManagementPath mPath = new ManagementPath("Win32_Process");
                 ManagementClass mClass = new ManagementClass(mScope, mPath, null);
                 mClass.InvokeMethod("Create", new object[] { CLI, CurrentDirectory });
-                return false;
+                return true;
             });
         }
         static private Task<bool> KillRemoteProcess(string Target, string ImageName)
         {
-            return RunRemoteProcess(Target, "taskkill.exe /T /F /IM " + ImageName, null);
+            return StartRemoteProcess(Target, "taskkill.exe /T /F /IM " + ImageName, @"C:\");
         }
-        static private Task WatchLog(string Target)
+        private static Task WaitForUsmtExit(string Target, string ImageName)
         {
             return Task.Run(async () => {
-                bool done = false;
-                string logFilePath = @"\\" + Target + @"\C$\SuperGrate\SuperGrate.progress";
-                if (File.Exists(logFilePath))
+                Running = true;
+                while (Running)
                 {
-                    File.Delete(logFilePath);
-                }
-                FileStream logStream = File.Open(logFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
-                StreamReader logReader = new StreamReader(logStream);
-                long lastPosition = 0;
-                while(!done)
-                {
-                    logStream.Position = lastPosition;
-                    string log = await logReader.ReadToEndAsync();
-                    lastPosition = logStream.Length;
-                    if(log != "")
+                    if (Process.GetProcessesByName(ImageName, Target).Length == 0)
                     {
-                        string startsWith = "PercentageCompleted, ";
-                        if (log.Contains(startsWith))
-                        {
-                            int percent = 0;
-                            int start = log.LastIndexOf(startsWith) + startsWith.Length;
-                            int end = log.LastIndexOf("\r\n");
-                            if(int.TryParse(log.Substring(start, end - start), out percent))
-                            {
-                                Logger.UpdateProgress(percent);
-                            }
-                        }
-                        Logger.Verbose(log);
-                        if (log.Contains("errorCode"))
-                        {
-                            done = true;
-                        }
+                        Running = false;
                     }
-                    await Task.Delay(300);
+                    await Task.Delay(3000);
                 }
             });
+        }
+        private static async void StartWatchLog(string Target, string LogFile)
+        {
+            string logDirPath = @"\\" + Target + @"\C$\SuperGrate\";
+            string logFilePath = logDirPath + LogFile;
+            if (File.Exists(logFilePath))
+            {
+                File.Delete(logFilePath);
+            }
+            FileSystemWatcher logFileWatcher = new FileSystemWatcher(logDirPath, LogFile);
+            logFileWatcher.NotifyFilter = NotifyFilters.LastWrite;
+            logFileWatcher.EnableRaisingEvents = true;
+            FileStream logStream = File.Open(logFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
+            StreamReader logReader = new StreamReader(logStream);
+            long lastPosition = 0;
+            while(Running)
+            {
+                logStream.Position = lastPosition;
+                string log = await logReader.ReadToEndAsync();
+                lastPosition = logStream.Length;
+                if (log != "")
+                {
+                    string startsWith = "PercentageCompleted, ";
+                    if (log.Contains(startsWith))
+                    {
+                        int percent;
+                        int start = log.LastIndexOf(startsWith) + startsWith.Length;
+                        int end = log.LastIndexOf("\r\n");
+                        if (int.TryParse(log.Substring(start, end - start), out percent))
+                        {
+                            Logger.UpdateProgress(percent);
+                            Logger.Verbose(log, true);
+                        }
+                    }
+                    else
+                    {
+                        Logger.Information(log, true);
+                    }
+                }
+                logFileWatcher.WaitForChanged(WatcherChangeTypes.Changed, 5000);
+            }
+            logStream.Close();
+            logFileWatcher.Dispose();
         }
     }
     public enum USMTMode
