@@ -37,7 +37,7 @@ namespace SuperGrate
         private async void BtStartStop_Click(object sender, EventArgs e)
         {
             tblMainLayout.Enabled = false;
-            await CopyUSMT.Do();
+            await USMT.CopyUSMT();
             await USMT.Do(USMTMode.ScanState, SelectedSIDs[0]);
             tblMainLayout.Enabled = true;
         }

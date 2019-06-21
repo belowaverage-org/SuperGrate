@@ -17,15 +17,15 @@ namespace SuperGrate
                 new XComment("ScanState.exe & LoadState.exe CLI Parameters: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax"),
                 new XElement("ScanStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /o"),
                 new XElement("LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3")
-            )).Save(@".\SuperGrate\SuperGrate.xml");
+            )).Save(@".\SuperGrate.xml");
         }
         public static void LoadConfig()
         {
-            if(!File.Exists(@".\SuperGrate\SuperGrate.xml"))
+            if(!File.Exists(@".\SuperGrate.xml"))
             {
                 GenerateConfig();
             }
-            XDocument config = XDocument.Load(@".\SuperGrate\SuperGrate.xml");
+            XDocument config = XDocument.Load(@".\SuperGrate.xml");
             XElement root = config.Element("SuperGrate");
             MigrationStorePath = root.Element("MigrationStorePath").Value;
             ScanStateParameters = root.Element("ScanStateParameters").Value;

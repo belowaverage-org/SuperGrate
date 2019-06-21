@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Management;
 using System.IO;
 using System.Diagnostics;
@@ -12,7 +8,7 @@ namespace SuperGrate
     class USMT
     {
         public static bool Running = false;
-        public static Task<bool> Do(USMTMode Mode, string SID)
+        public static Task Do(USMTMode Mode, string SID)
         {
             string exec = "";
             string configParams = "";
@@ -43,7 +39,13 @@ namespace SuperGrate
                 StartWatchLog(target, "SuperGrate.log");
                 StartWatchLog(target, "SuperGrate.progress");
                 await WaitForUsmtExit(target, exec.Replace(".exe", ""));
-                return false;
+                await UploadToStore(SID);
+            });
+        }
+        public static Task CopyUSMT()
+        {
+            return Task.Run(() => {
+                Copy.CopyFolder(@".\USMT\", @"\\" + Main.SourceComputer + @"\C$\SuperGrate\");
             });
         }
         public static Task<bool> HaltUSMT()
@@ -52,7 +54,21 @@ namespace SuperGrate
                 return false;
             });
         }
-        static private Task<bool> StartRemoteProcess(string Target, string CLI, string CurrentDirectory)
+        public static Task<bool> CleanUSMT()
+        {
+            return Task.Run(async () => {
+                return false;
+            });
+        }
+        private static Task UploadToStore(string SID)
+        {
+            return Task.Run(() => {
+                string Destination = Config.MigrationStorePath + @"\" + SID + @"\";
+                Directory.CreateDirectory(Destination);
+                Copy.CopyFile(@"C:\SuperGrate\USMT\USMT.MIG", Destination + "USMT.MIG");
+            });
+        }
+        static private Task StartRemoteProcess(string Target, string CLI, string CurrentDirectory)
         {
             return Task.Run(() => {
                 ConnectionOptions conOps = new ConnectionOptions();
@@ -63,10 +79,9 @@ namespace SuperGrate
                 ManagementPath mPath = new ManagementPath("Win32_Process");
                 ManagementClass mClass = new ManagementClass(mScope, mPath, null);
                 mClass.InvokeMethod("Create", new object[] { CLI, CurrentDirectory });
-                return true;
             });
         }
-        static private Task<bool> KillRemoteProcess(string Target, string ImageName)
+        static private Task KillRemoteProcess(string Target, string ImageName)
         {
             return StartRemoteProcess(Target, "taskkill.exe /T /F /IM " + ImageName, @"C:\");
         }

@@ -56,7 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Config.cs" />
-    <Compile Include="Classes\CopyUSMT.cs" />
+    <Compile Include="Classes\Copy.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Misc.cs" />
     <Compile Include="Classes\USMT.cs" />
