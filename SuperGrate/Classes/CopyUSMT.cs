@@ -9,10 +9,10 @@ namespace SuperGrate
 {
     class CopyUSMT
     {
-        public static Task<bool> Do(string Target)
+        public static Task<bool> Do()
         {
             return Task.Run(() => {
-                Copy(@".\USMT\", @"\\" + Target + @"\C$\SuperGrate\");
+                Copy(@".\USMT\", @"\\" + Main.SourceComputer + @"\C$\SuperGrate\");
                 return true;
             });
         }

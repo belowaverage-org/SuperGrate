@@ -7,6 +7,7 @@ using Microsoft.Win32;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.DirectoryServices.AccountManagement;
+using System.Management;
 
 namespace SuperGrate
 {
@@ -75,12 +76,14 @@ namespace SuperGrate
                 catch (System.Security.SecurityException e)
                 {
                     Logger.Error(e.Message);
+                    Logger.Verbose(e.StackTrace);
                     Logger.Error("Failed to get a list of users, Please make sure the user \"" + Environment.UserDomainName + "\\" + Environment.UserName + "\" is an administrator on the host: " + Host);
                     return null;
                 }
                 catch (Exception e)
                 {
                     Logger.Error(e.Message);
+                    Logger.Verbose(e.StackTrace);
                     return null;
                 }
             });
@@ -97,8 +100,11 @@ namespace SuperGrate
                     {
                         DirectoryInfo info = new DirectoryInfo(directory);
                         UserPrincipal user = GetUserByIdentity(info.Name);
-                        Logger.Information("Found: " + user.Name);
-                        results.Add(info.Name, user.UserPrincipalName);
+                        if (user != null)
+                        {
+                            Logger.Information("Found: " + user.Name);
+                            results.Add(info.Name, user.UserPrincipalName);
+                        }
                     }
                     Logger.Success("Done!");
                     return results;
@@ -109,10 +115,6 @@ namespace SuperGrate
                     return null;
                 }
             });
-        }
-        static public string Generate()
-        {
-
         }
     }
 }

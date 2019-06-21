@@ -54,7 +54,10 @@ namespace SuperGrate
         {
             int Percent = (int)Math.Round(((double)Value / (double)Max) * 100, 0);
             Main.Form.Invoke(new Action(() => {
-                Main.Progress.Value = Percent;
+                if(Percent <= 100 && Percent >= 0)
+                {
+                    Main.Progress.Value = Percent;
+                }
             }));
         }
     }
