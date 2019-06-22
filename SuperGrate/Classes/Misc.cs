@@ -116,5 +116,11 @@ namespace SuperGrate
                 }
             });
         }
+        static public Task DeleteFromStore(string SID)
+        {
+            return Task.Run(() => {
+                Directory.Delete(Path.Combine(Config.MigrationStorePath, SID), true);
+            });
+        }
     }
 }

@@ -197,7 +197,7 @@
             this.tbDestinationComputer.Name = "tbDestinationComputer";
             this.tbDestinationComputer.Size = new System.Drawing.Size(204, 22);
             this.tbDestinationComputer.TabIndex = 7;
-            this.tbDestinationComputer.TextChanged += new System.EventHandler(this.UpdateFormRestrictions);
+            this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
             // 
             // lbxUsers
             // 
@@ -280,6 +280,7 @@
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // imgLoadLogo
             // 

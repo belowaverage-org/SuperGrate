@@ -27,6 +27,10 @@ namespace SuperGrate
             }
             return Task.Run(async () => {
                 Running = true;
+                if (Mode == USMTMode.LoadState)
+                {
+                    await DownloadFromStore(SID);
+                }
                 await StartRemoteProcess(target,
                     @"C:\SuperGrate\" + exec + " " +
                     @"C:\SuperGrate\ " +
@@ -39,13 +43,16 @@ namespace SuperGrate
                 StartWatchLog(target, "SuperGrate.log");
                 StartWatchLog(target, "SuperGrate.progress");
                 await WaitForUsmtExit(target, exec.Replace(".exe", ""));
-                await UploadToStore(SID);
+                if (Mode == USMTMode.ScanState)
+                {
+                    await UploadToStore(SID);
+                }
             });
         }
-        public static Task CopyUSMT()
+        public static Task CopyUSMT(string Target)
         {
             return Task.Run(() => {
-                Copy.CopyFolder(@".\USMT\", @"\\" + Main.SourceComputer + @"\C$\SuperGrate\");
+                Copy.CopyFolder(@".\USMT\", @"\\" + Target + @"\C$\SuperGrate\");
             });
         }
         public static Task<bool> HaltUSMT()
@@ -54,10 +61,33 @@ namespace SuperGrate
                 return false;
             });
         }
-        public static Task CleaupUSMT()
+        public static Task<bool> CleaupUSMT(string Target)
         {
-            return Task.Run(() => {
-                Directory.Delete(@"\\" + Main.SourceComputer + @"\C$\SuperGrate\", true);
+            return Task.Run(async () => {
+                int tries = 0;
+                bool deleted = false;
+                while(tries <= 30)
+                {
+                    try
+                    {
+                        Directory.Delete(@"\\" + Target + @"\C$\SuperGrate\", true);
+                        deleted = true;
+                        break;
+                    }
+                    catch (IOException)
+                    {
+                        tries++;
+                        await Task.Delay(1000);
+                    }
+                }
+                if(deleted)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             });
         }
         private static Task UploadToStore(string SID)
@@ -66,6 +96,14 @@ namespace SuperGrate
                 string Destination = Config.MigrationStorePath + @"\" + SID + @"\";
                 Directory.CreateDirectory(Destination);
                 Copy.CopyFile(@"\\" + Main.SourceComputer + @"\C$\SuperGrate\USMT\USMT.MIG", Destination + "USMT.MIG");
+            });
+        }
+        private static Task DownloadFromStore(string SID)
+        {
+            return Task.Run(() => {
+                string Destination = @"\\" + Main.DestinationComputer + @"\C$\SuperGrate\USMT\";
+                Directory.CreateDirectory(Destination);
+                Copy.CopyFile(Config.MigrationStorePath + @"\" + SID + @"\" + "USMT.MIG", Destination + "USMT.MIG");
             });
         }
         static private Task StartRemoteProcess(string Target, string CLI, string CurrentDirectory)

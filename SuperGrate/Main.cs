@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperGrate
@@ -38,21 +33,21 @@ namespace SuperGrate
             tblMainLayout.Enabled = false;
             if(CurrentListSource == ListSource.SourceComputer)
             {
-                await USMT.CopyUSMT();
+                await USMT.CopyUSMT(SourceComputer);
                 foreach (int index in lbxUsers.SelectedIndices)
                 {
                     await USMT.Do(USMTMode.ScanState, ((string[])lbxUsers.Tag)[index]);
                 }
-                await USMT.CleaupUSMT();
+                await USMT.CleaupUSMT(SourceComputer);
             }
             if(tbDestinationComputer.Text != "")
             {
-                await USMT.CopyUSMT();
+                await USMT.CopyUSMT(DestinationComputer);
                 foreach (int index in lbxUsers.SelectedIndices)
                 {
-                    await USMT.Do(USMTMode.ScanState, ((string[])lbxUsers.Tag)[index]);
+                    await USMT.Do(USMTMode.LoadState, ((string[])lbxUsers.Tag)[index]);
                 }
-                await USMT.CleaupUSMT();
+                await USMT.CleaupUSMT(DestinationComputer);
             }
             tblMainLayout.Enabled = true;
         }
@@ -141,6 +136,19 @@ namespace SuperGrate
         {
             SourceComputer = tbSourceComputer.Text;
             UpdateFormRestrictions();
+        }
+        private void TbDestinationComputer_TextChanged(object sender, EventArgs e)
+        {
+            DestinationComputer = tbDestinationComputer.Text;
+            UpdateFormRestrictions();
+        }
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            foreach (int index in lbxUsers.SelectedIndices)
+            {
+                Misc.DeleteFromStore(((string[])lbxUsers.Tag)[index]);
+            }
+            btnListStore.PerformClick();
         }
     }
     public enum ListSource
