@@ -169,7 +169,7 @@
             this.lblUserList.Name = "lblUserList";
             this.lblUserList.Size = new System.Drawing.Size(114, 286);
             this.lblUserList.TabIndex = 4;
-            this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tbSourceComputer
             // 

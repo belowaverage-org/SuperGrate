@@ -45,7 +45,7 @@ namespace SuperGrate
         {
             tblMainLayout.Enabled = false;
             lbxUsers.Items.Clear();
-            lblUserList.Text = "Source Computer Users";
+            lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> results = await Misc.GetUsersFromHost(tbSourceComputer.Text);
             if (results != null)
             {
@@ -65,7 +65,7 @@ namespace SuperGrate
         {
             tblMainLayout.Enabled = false;
             lbxUsers.Items.Clear();
-            lblUserList.Text = "Migration Store Users";
+            lblUserList.Text = "Users in Migration Store:";
             Dictionary<string, string> results = await Misc.GetUsersFromStore(Config.MigrationStorePath);
             if(results != null)
             {

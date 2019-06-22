@@ -65,7 +65,7 @@ namespace SuperGrate
             return Task.Run(() => {
                 string Destination = Config.MigrationStorePath + @"\" + SID + @"\";
                 Directory.CreateDirectory(Destination);
-                Copy.CopyFile(@"C:\SuperGrate\USMT\USMT.MIG", Destination + "USMT.MIG");
+                Copy.CopyFile(@"\\" + Main.SourceComputer + @"\C$\SuperGrate\USMT\USMT.MIG", Destination + "USMT.MIG");
             });
         }
         static private Task StartRemoteProcess(string Target, string CLI, string CurrentDirectory)
