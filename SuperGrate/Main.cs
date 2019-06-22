@@ -17,15 +17,14 @@ namespace SuperGrate
         public static ProgressBar Progress;
         public static string SourceComputer;
         public static string DestinationComputer;
-        public static string[] SelectedSIDs = new string[0];
         public static ListSource CurrentListSource = ListSource.Unknown;
-        private static string[] CurrentListSIDs = new string[0];
         public Main()
         {
             InitializeComponent();
             Form = this;
             LoggerBox = LogBox;
             Progress = pbMain;
+            lbxUsers.Tag = new string[0];
         }
         private void Main_Load(object sender, EventArgs e)
         {
@@ -37,8 +36,24 @@ namespace SuperGrate
         private async void BtStartStop_Click(object sender, EventArgs e)
         {
             tblMainLayout.Enabled = false;
-            await USMT.CopyUSMT();
-            await USMT.Do(USMTMode.ScanState, SelectedSIDs[0]);
+            if(CurrentListSource == ListSource.SourceComputer)
+            {
+                await USMT.CopyUSMT();
+                foreach (int index in lbxUsers.SelectedIndices)
+                {
+                    await USMT.Do(USMTMode.ScanState, ((string[])lbxUsers.Tag)[index]);
+                }
+                await USMT.CleaupUSMT();
+            }
+            if(tbDestinationComputer.Text != "")
+            {
+                await USMT.CopyUSMT();
+                foreach (int index in lbxUsers.SelectedIndices)
+                {
+                    await USMT.Do(USMTMode.ScanState, ((string[])lbxUsers.Tag)[index]);
+                }
+                await USMT.CleaupUSMT();
+            }
             tblMainLayout.Enabled = true;
         }
         private async void BtnListSource_Click(object sender, EventArgs e)
@@ -49,8 +64,8 @@ namespace SuperGrate
             Dictionary<string, string> results = await Misc.GetUsersFromHost(tbSourceComputer.Text);
             if (results != null)
             {
+                lbxUsers.Tag = results.Keys.ToArray();
                 lbxUsers.Items.AddRange(results.Values.ToArray());
-                CurrentListSIDs = results.Keys.ToArray();
                 CurrentListSource = ListSource.SourceComputer;
                 Logger.Success("Done!");
             }
@@ -69,8 +84,8 @@ namespace SuperGrate
             Dictionary<string, string> results = await Misc.GetUsersFromStore(Config.MigrationStorePath);
             if(results != null)
             {
+                lbxUsers.Tag = results.Keys.ToArray();
                 lbxUsers.Items.AddRange(results.Values.ToArray());
-                CurrentListSIDs = results.Keys.ToArray();
                 CurrentListSource = ListSource.MigrationStore;
             }
             else
@@ -121,16 +136,6 @@ namespace SuperGrate
             {
                 btnListSource.Enabled = true;
             }
-        }
-        private void LbxUsers_SelectedValueChanged(object sender, EventArgs e)
-        {
-            List<string> SIDs = new List<string>();
-            foreach(int index in lbxUsers.SelectedIndices)
-            {
-                SIDs.Add(CurrentListSIDs[index]);
-            }
-            SelectedSIDs = SIDs.ToArray();
-            UpdateFormRestrictions();
         }
         private void TbSourceComputer_TextChanged(object sender, EventArgs e)
         {

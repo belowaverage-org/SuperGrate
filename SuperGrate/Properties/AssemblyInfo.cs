@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Super Grate - Remote User Migration GUI - Dylan Bickerstaff")]
+[assembly: AssemblyTitle("Super Grate - Remote User Migration & Backup")]
 [assembly: AssemblyDescription("Super Grate - Dylan Bickerstaff")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Dylan Bickerstaff")]

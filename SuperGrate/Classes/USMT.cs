@@ -54,10 +54,10 @@ namespace SuperGrate
                 return false;
             });
         }
-        public static Task<bool> CleanUSMT()
+        public static Task CleaupUSMT()
         {
-            return Task.Run(async () => {
-                return false;
+            return Task.Run(() => {
+                Directory.Delete(@"\\" + Main.SourceComputer + @"\C$\SuperGrate\", true);
             });
         }
         private static Task UploadToStore(string SID)
@@ -103,22 +103,19 @@ namespace SuperGrate
         {
             string logDirPath = @"\\" + Target + @"\C$\SuperGrate\";
             string logFilePath = logDirPath + LogFile;
-            if (File.Exists(logFilePath))
-            {
-                File.Delete(logFilePath);
-            }
             FileSystemWatcher logFileWatcher = new FileSystemWatcher(logDirPath, LogFile);
             logFileWatcher.NotifyFilter = NotifyFilters.LastWrite;
             logFileWatcher.EnableRaisingEvents = true;
             FileStream logStream = File.Open(logFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
             StreamReader logReader = new StreamReader(logStream);
             long lastPosition = 0;
+            bool firstRead = true;
             while(Running)
             {
                 logStream.Position = lastPosition;
                 string log = await logReader.ReadToEndAsync();
                 lastPosition = logStream.Length;
-                if (log != "")
+                if (log != "" && !firstRead)
                 {
                     string startsWith = "PercentageCompleted, ";
                     if (log.Contains(startsWith))
@@ -134,10 +131,11 @@ namespace SuperGrate
                     }
                     else
                     {
-                        Logger.Information(log, true);
+                        Logger.Verbose(log, true);
                     }
                 }
-                logFileWatcher.WaitForChanged(WatcherChangeTypes.Changed, 5000);
+                firstRead = false;
+                logFileWatcher.WaitForChanged(WatcherChangeTypes.Changed, 3000);
             }
             logStream.Close();
             logFileWatcher.Dispose();

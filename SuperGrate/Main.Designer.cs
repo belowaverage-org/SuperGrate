@@ -44,6 +44,8 @@
             this.btnListSource = new System.Windows.Forms.Button();
             this.btnListStore = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.imgLoadLogo = new System.Windows.Forms.PictureBox();
+            this.pnlLogoBorder = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -51,6 +53,8 @@
             this.splitContainer1.SuspendLayout();
             this.tblMainLayout.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoadLogo)).BeginInit();
+            this.pnlLogoBorder.SuspendLayout();
             this.SuspendLayout();
             // 
             // LogBox
@@ -63,7 +67,7 @@
             this.LogBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
-            this.LogBox.Size = new System.Drawing.Size(314, 368);
+            this.LogBox.Size = new System.Drawing.Size(314, 363);
             this.LogBox.TabIndex = 0;
             this.LogBox.Text = "";
             this.LogBox.DoubleClick += new System.EventHandler(this.LogBox_DoubleClick);
@@ -72,7 +76,7 @@
             // 
             this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbMain.ForeColor = System.Drawing.Color.Blue;
-            this.pbMain.Location = new System.Drawing.Point(3, 380);
+            this.pbMain.Location = new System.Drawing.Point(3, 375);
             this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbMain.Name = "pbMain";
             this.pbMain.Size = new System.Drawing.Size(314, 22);
@@ -92,12 +96,13 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 406);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 401);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(5, 5);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.splitContainer1.Name = "splitContainer1";
@@ -111,7 +116,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tableLayoutPanel1);
             this.splitContainer1.Panel2MinSize = 300;
-            this.splitContainer1.Size = new System.Drawing.Size(654, 406);
+            this.splitContainer1.Size = new System.Drawing.Size(654, 401);
             this.splitContainer1.SplitterDistance = 330;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -125,21 +130,22 @@
             this.tblMainLayout.Controls.Add(this.lblUserList, 0, 3);
             this.tblMainLayout.Controls.Add(this.tbSourceComputer, 1, 0);
             this.tblMainLayout.Controls.Add(this.tbDestinationComputer, 1, 1);
-            this.tblMainLayout.Controls.Add(this.lbxUsers, 1, 3);
             this.tblMainLayout.Controls.Add(this.btStartStop, 0, 4);
             this.tblMainLayout.Controls.Add(this.tableLayoutPanel3, 1, 2);
+            this.tblMainLayout.Controls.Add(this.lbxUsers, 1, 3);
+            this.tblMainLayout.Controls.Add(this.pnlLogoBorder, 0, 4);
             this.tblMainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMainLayout.Location = new System.Drawing.Point(0, 0);
             this.tblMainLayout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tblMainLayout.Name = "tblMainLayout";
-            this.tblMainLayout.RowCount = 5;
+            this.tblMainLayout.RowCount = 2;
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblMainLayout.Size = new System.Drawing.Size(330, 406);
+            this.tblMainLayout.Size = new System.Drawing.Size(330, 401);
             this.tblMainLayout.TabIndex = 0;
             // 
             // label1
@@ -167,7 +173,7 @@
             this.lblUserList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblUserList.Location = new System.Drawing.Point(3, 90);
             this.lblUserList.Name = "lblUserList";
-            this.lblUserList.Size = new System.Drawing.Size(114, 286);
+            this.lblUserList.Size = new System.Drawing.Size(114, 171);
             this.lblUserList.TabIndex = 4;
             this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -201,10 +207,11 @@
             this.lbxUsers.Location = new System.Drawing.Point(123, 94);
             this.lbxUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxUsers.Name = "lbxUsers";
+            this.tblMainLayout.SetRowSpan(this.lbxUsers, 2);
             this.lbxUsers.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbxUsers.Size = new System.Drawing.Size(204, 278);
+            this.lbxUsers.Size = new System.Drawing.Size(204, 273);
             this.lbxUsers.TabIndex = 8;
-            this.lbxUsers.SelectedValueChanged += new System.EventHandler(this.LbxUsers_SelectedValueChanged);
+            this.lbxUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
             // 
             // btStartStop
             // 
@@ -212,7 +219,7 @@
             this.btStartStop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btStartStop.Enabled = false;
             this.btStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btStartStop.Location = new System.Drawing.Point(3, 379);
+            this.btStartStop.Location = new System.Drawing.Point(3, 374);
             this.btStartStop.Name = "btStartStop";
             this.btStartStop.Size = new System.Drawing.Size(324, 24);
             this.btStartStop.TabIndex = 9;
@@ -274,18 +281,42 @@
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
+            // imgLoadLogo
+            // 
+            this.imgLoadLogo.BackColor = System.Drawing.Color.White;
+            this.imgLoadLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgLoadLogo.Image = global::SuperGrate.Properties.Resources.working;
+            this.imgLoadLogo.Location = new System.Drawing.Point(1, 1);
+            this.imgLoadLogo.Margin = new System.Windows.Forms.Padding(0);
+            this.imgLoadLogo.Name = "imgLoadLogo";
+            this.imgLoadLogo.Size = new System.Drawing.Size(110, 104);
+            this.imgLoadLogo.TabIndex = 11;
+            this.imgLoadLogo.TabStop = false;
+            // 
+            // pnlLogoBorder
+            // 
+            this.pnlLogoBorder.BackColor = System.Drawing.Color.DarkGray;
+            this.pnlLogoBorder.Controls.Add(this.imgLoadLogo);
+            this.pnlLogoBorder.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLogoBorder.Location = new System.Drawing.Point(4, 261);
+            this.pnlLogoBorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
+            this.pnlLogoBorder.Name = "pnlLogoBorder";
+            this.pnlLogoBorder.Padding = new System.Windows.Forms.Padding(1);
+            this.pnlLogoBorder.Size = new System.Drawing.Size(112, 106);
+            this.pnlLogoBorder.TabIndex = 11;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(664, 416);
+            this.ClientSize = new System.Drawing.Size(664, 411);
             this.Controls.Add(this.splitContainer1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MinimumSize = new System.Drawing.Size(680, 300);
+            this.MinimumSize = new System.Drawing.Size(680, 320);
             this.Name = "Main";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.Text = "Super Grate";
+            this.Text = "Super Grate - Remote User Migration & Backup";
             this.Load += new System.EventHandler(this.Main_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -295,6 +326,8 @@
             this.tblMainLayout.ResumeLayout(false);
             this.tblMainLayout.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoadLogo)).EndInit();
+            this.pnlLogoBorder.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -317,6 +350,8 @@
         private System.Windows.Forms.Button btnListSource;
         private System.Windows.Forms.Button btnListStore;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.PictureBox imgLoadLogo;
+        private System.Windows.Forms.Panel pnlLogoBorder;
     }
 }
 
