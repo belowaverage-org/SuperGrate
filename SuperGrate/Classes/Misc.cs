@@ -57,12 +57,13 @@ namespace SuperGrate
                         Dictionary<string, string> results = new Dictionary<string, string>();
                         RegistryKey remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
                         RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
+                        Logger.Information("Getting list of users on: " + Host + "...");
                         foreach (string SID in profileList.GetSubKeyNames())
                         {
                             UserPrincipal user = GetUserByIdentity(SID);
                             if (user != null)
                             {
-                                Logger.Information("Found: " + user.Name);
+                                Logger.Verbose("Found: " + user.Name);
                                 results.Add(SID, user.UserPrincipalName);
                             }
                         }
@@ -112,6 +113,7 @@ namespace SuperGrate
                 catch (IOException e)
                 {
                     Logger.Error(e.Message);
+                    Logger.Verbose(e.StackTrace);
                     return null;
                 }
             });

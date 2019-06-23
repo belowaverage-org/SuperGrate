@@ -38,14 +38,14 @@
             this.lblUserList = new System.Windows.Forms.Label();
             this.tbSourceComputer = new System.Windows.Forms.TextBox();
             this.tbDestinationComputer = new System.Windows.Forms.TextBox();
-            this.lbxUsers = new System.Windows.Forms.ListBox();
             this.btStartStop = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnListSource = new System.Windows.Forms.Button();
             this.btnListStore = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.imgLoadLogo = new System.Windows.Forms.PictureBox();
+            this.lbxUsers = new System.Windows.Forms.ListBox();
             this.pnlLogoBorder = new System.Windows.Forms.Panel();
+            this.imgLoadLogo = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -53,8 +53,8 @@
             this.splitContainer1.SuspendLayout();
             this.tblMainLayout.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLoadLogo)).BeginInit();
             this.pnlLogoBorder.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoadLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // LogBox
@@ -75,7 +75,7 @@
             // pbMain
             // 
             this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMain.ForeColor = System.Drawing.Color.Blue;
+            this.pbMain.ForeColor = System.Drawing.Color.Black;
             this.pbMain.Location = new System.Drawing.Point(3, 375);
             this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbMain.Name = "pbMain";
@@ -199,20 +199,6 @@
             this.tbDestinationComputer.TabIndex = 7;
             this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
             // 
-            // lbxUsers
-            // 
-            this.lbxUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbxUsers.FormattingEnabled = true;
-            this.lbxUsers.IntegralHeight = false;
-            this.lbxUsers.Location = new System.Drawing.Point(123, 94);
-            this.lbxUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.lbxUsers.Name = "lbxUsers";
-            this.tblMainLayout.SetRowSpan(this.lbxUsers, 2);
-            this.lbxUsers.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.lbxUsers.Size = new System.Drawing.Size(204, 273);
-            this.lbxUsers.TabIndex = 8;
-            this.lbxUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
-            // 
             // btStartStop
             // 
             this.tblMainLayout.SetColumnSpan(this.btStartStop, 2);
@@ -282,17 +268,19 @@
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // imgLoadLogo
+            // lbxUsers
             // 
-            this.imgLoadLogo.BackColor = System.Drawing.Color.White;
-            this.imgLoadLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imgLoadLogo.Image = global::SuperGrate.Properties.Resources.working;
-            this.imgLoadLogo.Location = new System.Drawing.Point(1, 1);
-            this.imgLoadLogo.Margin = new System.Windows.Forms.Padding(0);
-            this.imgLoadLogo.Name = "imgLoadLogo";
-            this.imgLoadLogo.Size = new System.Drawing.Size(110, 104);
-            this.imgLoadLogo.TabIndex = 11;
-            this.imgLoadLogo.TabStop = false;
+            this.lbxUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbxUsers.FormattingEnabled = true;
+            this.lbxUsers.IntegralHeight = false;
+            this.lbxUsers.Location = new System.Drawing.Point(123, 94);
+            this.lbxUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbxUsers.Name = "lbxUsers";
+            this.tblMainLayout.SetRowSpan(this.lbxUsers, 2);
+            this.lbxUsers.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lbxUsers.Size = new System.Drawing.Size(204, 273);
+            this.lbxUsers.TabIndex = 8;
+            this.lbxUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
             // 
             // pnlLogoBorder
             // 
@@ -305,6 +293,19 @@
             this.pnlLogoBorder.Padding = new System.Windows.Forms.Padding(1);
             this.pnlLogoBorder.Size = new System.Drawing.Size(112, 106);
             this.pnlLogoBorder.TabIndex = 11;
+            // 
+            // imgLoadLogo
+            // 
+            this.imgLoadLogo.BackColor = System.Drawing.Color.White;
+            this.imgLoadLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgLoadLogo.Enabled = false;
+            this.imgLoadLogo.Image = global::SuperGrate.Properties.Resources.working;
+            this.imgLoadLogo.Location = new System.Drawing.Point(1, 1);
+            this.imgLoadLogo.Margin = new System.Windows.Forms.Padding(0);
+            this.imgLoadLogo.Name = "imgLoadLogo";
+            this.imgLoadLogo.Size = new System.Drawing.Size(110, 104);
+            this.imgLoadLogo.TabIndex = 11;
+            this.imgLoadLogo.TabStop = false;
             // 
             // Main
             // 
@@ -327,8 +328,8 @@
             this.tblMainLayout.ResumeLayout(false);
             this.tblMainLayout.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.imgLoadLogo)).EndInit();
             this.pnlLogoBorder.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoadLogo)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -13,6 +13,7 @@ namespace SuperGrate
         public static string SourceComputer;
         public static string DestinationComputer;
         public static ListSource CurrentListSource = ListSource.Unknown;
+        private static bool isRunning = false;
         public Main()
         {
             InitializeComponent();
@@ -28,32 +29,68 @@ namespace SuperGrate
             Logger.Information("Enter some information to get started!");
             UpdateFormRestrictions();
         }
+        private bool Running {
+            get {
+                return isRunning;
+            }
+            set {
+                if(value)
+                {
+                    imgLoadLogo.Enabled = true;
+                    tbSourceComputer.Enabled =
+                    tbDestinationComputer.Enabled =
+                    btnListSource.Enabled =
+                    btnListStore.Enabled =
+                    btnDelete.Enabled =
+                    lbxUsers.Enabled =
+                    false;
+                }
+                else
+                {
+                    imgLoadLogo.Enabled = false;
+                    tbSourceComputer.Enabled =
+                    tbDestinationComputer.Enabled =
+                    btnListSource.Enabled =
+                    btnListStore.Enabled =
+                    btnDelete.Enabled =
+                    lbxUsers.Enabled =
+                    true;
+                    UpdateFormRestrictions();
+                }
+                isRunning = value;
+            }
+        }
         private async void BtStartStop_Click(object sender, EventArgs e)
         {
-            tblMainLayout.Enabled = false;
-            if(CurrentListSource == ListSource.SourceComputer)
+            if (Running)
             {
-                await USMT.CopyUSMT(SourceComputer);
+                USMT.Cancel();
+            }
+            else
+            {
+                Running = true;
+                btStartStop.Text = "Stop";
+                int count = 0;
+                string[] SIDs = new string[lbxUsers.SelectedIndices.Count];
                 foreach (int index in lbxUsers.SelectedIndices)
                 {
-                    await USMT.Do(USMTMode.ScanState, ((string[])lbxUsers.Tag)[index]);
+                    SIDs[count++] = ((string[])lbxUsers.Tag)[index];
                 }
-                await USMT.CleaupUSMT(SourceComputer);
-            }
-            if(tbDestinationComputer.Text != "")
-            {
-                await USMT.CopyUSMT(DestinationComputer);
-                foreach (int index in lbxUsers.SelectedIndices)
+                if (CurrentListSource == ListSource.SourceComputer)
                 {
-                    await USMT.Do(USMTMode.LoadState, ((string[])lbxUsers.Tag)[index]);
+                    await USMT.Do(USMTMode.ScanState, SIDs);
                 }
-                await USMT.CleaupUSMT(DestinationComputer);
+                if (tbDestinationComputer.Text != "" && Running)
+                {
+                    await USMT.Do(USMTMode.LoadState, SIDs);
+                }
+                btStartStop.Text = "Start";
+                Running = false;
             }
-            tblMainLayout.Enabled = true;
         }
         private async void BtnListSource_Click(object sender, EventArgs e)
         {
-            tblMainLayout.Enabled = false;
+            Running = true;
             lbxUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> results = await Misc.GetUsersFromHost(tbSourceComputer.Text);
@@ -68,12 +105,11 @@ namespace SuperGrate
             {
                 Logger.Error("Failed to list users from the source computer.");
             }
-            tblMainLayout.Enabled = true;
-            UpdateFormRestrictions();
+            Running = false;
         }
         private async void BtnListStore_Click(object sender, EventArgs e)
         {
-            tblMainLayout.Enabled = false;
+            Running = true;
             lbxUsers.Items.Clear();
             lblUserList.Text = "Users in Migration Store:";
             Dictionary<string, string> results = await Misc.GetUsersFromStore(Config.MigrationStorePath);
@@ -87,8 +123,7 @@ namespace SuperGrate
             {
                 Logger.Error("Failed to list users from the migration store.");
             }
-            tblMainLayout.Enabled = true;
-            UpdateFormRestrictions();
+            Running = false;
         }
         private void LogBox_DoubleClick(object sender, EventArgs e)
         {
@@ -142,13 +177,15 @@ namespace SuperGrate
             DestinationComputer = tbDestinationComputer.Text;
             UpdateFormRestrictions();
         }
-        private void BtnDelete_Click(object sender, EventArgs e)
+        private async void BtnDelete_Click(object sender, EventArgs e)
         {
+            Running = true;
             foreach (int index in lbxUsers.SelectedIndices)
             {
-                Misc.DeleteFromStore(((string[])lbxUsers.Tag)[index]);
+                await Misc.DeleteFromStore(((string[])lbxUsers.Tag)[index]);
             }
             btnListStore.PerformClick();
+            Running = false;
         }
     }
     public enum ListSource
