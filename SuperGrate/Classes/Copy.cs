@@ -36,7 +36,6 @@ namespace SuperGrate
         }
         public static void CopyFolder(string Source, string Destination)
         {
-            Logger.Information("Copying (" + Source + ") to (" + Destination + ").");
             DirectoryInfo source = new DirectoryInfo(Source);
             FileInfo[] sourceFiles = source.GetFiles("*", SearchOption.AllDirectories);
             string lastStrippedPath = null;
@@ -44,6 +43,7 @@ namespace SuperGrate
             int progress = 0;
             foreach (FileInfo file in sourceFiles)
             {
+                if (USMT.Canceled) break;
                 string strippedFullPath = file.FullName.Replace(source.FullName, "");
                 string strippedPath = strippedFullPath.Replace(file.Name, "");
                 if (strippedPath != lastStrippedPath)
@@ -60,7 +60,6 @@ namespace SuperGrate
                 Logger.Verbose("Copied.");
                 Logger.UpdateProgress(progress++, sourceFiles.Length);
             }
-            Logger.Success("Copied.");
         }
     }
 }

@@ -8,8 +8,8 @@ namespace SuperGrate
 {
     class USMT
     {
+        public static bool Canceled = false;
         private static bool Running = false;
-        private static bool Canceled = false;
         private static string CurrentTarget = "";
         public static Task<bool> Do(USMTMode Mode, string[] SIDs)
         {
@@ -29,16 +29,22 @@ namespace SuperGrate
                 CurrentTarget = Main.SourceComputer;
             }
             return Task.Run(async () => {
-                await CopyUSMT();
+                Canceled = !await Misc.Ping(CurrentTarget);
+                Canceled = !await CopyUSMT();
                 foreach (string SID in SIDs)
                 {
                     if(Canceled) break;
                     if (Mode == USMTMode.LoadState)
                     {
-                        await DownloadFromStore(SID);
+                        Logger.Information("Importing user data for '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
+                        Canceled = !await DownloadFromStore(SID);
+                        if (Canceled) break;
                     }
-                    if (Canceled) break;
-                    await StartRemoteProcess(
+                    else
+                    {
+                        Logger.Information("Exporting user data: '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
+                    }
+                    Canceled = !await StartRemoteProcess(
                         @"C:\SuperGrate\" + exec + " " +
                         @"C:\SuperGrate\ " +
                         @"/ue:*\* " +
@@ -50,7 +56,7 @@ namespace SuperGrate
                     Running = true;
                     StartWatchLog("SuperGrate.log");
                     StartWatchLog("SuperGrate.progress");
-                    await WaitForUsmtExit(exec.Replace(".exe", ""));
+                    Canceled = !await WaitForUsmtExit(exec.Replace(".exe", ""));
                     if (Canceled) break;
                     if (Mode == USMTMode.ScanState)
                     {
@@ -64,16 +70,16 @@ namespace SuperGrate
         public static Task<bool> CopyUSMT()
         {
             return Task.Run(() => {
+                Logger.Information("Downloading USMT on: " + CurrentTarget);
                 try
                 {
-                    Logger.Information("Downloading USMT on: " + CurrentTarget);
                     if (Directory.Exists(@".\USMT\"))
                     {
                         Copy.CopyFolder(
                             @".\USMT\",
                             Path.Combine(@"\\", CurrentTarget, @"C$\SuperGrate\")
                         );
-                        Logger.Success("Done!");
+                        Logger.Success("USMT downloaded successfully.");
                         return true;
                     }
                     else
@@ -84,9 +90,7 @@ namespace SuperGrate
                 }
                 catch(Exception e)
                 {
-                    Logger.Error("Error copying USMT to: " + CurrentTarget);
-                    Logger.Error(e.Message);
-                    Logger.Verbose(e.StackTrace);
+                    Logger.Exception(e, "Error copying USMT to: " + CurrentTarget);
                     return false;
                 }
             });
@@ -94,9 +98,17 @@ namespace SuperGrate
         public static async void Cancel()
         {
             Canceled = true;
+            Logger.Information("Sending KILL command to USMT...");
             await KillRemoteProcess("loadstate.exe");
             await KillRemoteProcess("scanstate.exe");
-            await KillRemoteProcess("mighost.exe");
+            if(await KillRemoteProcess("mighost.exe"))
+            {
+                Logger.Success("KILL command sent.");
+            }
+            else
+            {
+                Logger.Error("Failed to send KILL command.");
+            }
         }
         public static Task<bool> CleaupUSMT()
         {
@@ -125,109 +137,158 @@ namespace SuperGrate
                 }
                 if(deleted)
                 {
-                    Logger.Success("Done!");
+                    Logger.Success("USMT removed successfully.");
                     return true;
                 }
                 else
                 {
-                    Logger.Error("Could not delete USMT from: " + CurrentTarget + "!");
+                    Logger.Error("Could not delete USMT from: " + CurrentTarget + ".");
                     return false;
                 }
             });
         }
-        private static Task UploadToStore(string SID)
+        private static Task<bool> UploadToStore(string SID)
         {
             return Task.Run(() => {
+                Logger.Information("Uploading user data to the Store...");
                 string Destination = Path.Combine(Config.MigrationStorePath, SID);
-                Directory.CreateDirectory(Destination);
-                Copy.CopyFile(
-                    Path.Combine(@"\\", Main.SourceComputer, @"C$\SuperGrate\USMT\USMT.MIG"),
-                    Path.Combine(Destination, "USMT.MIG")
-                );
+                try
+                {
+                    Directory.CreateDirectory(Destination);
+                    Copy.CopyFile(
+                        Path.Combine(@"\\", Main.SourceComputer, @"C$\SuperGrate\USMT\USMT.MIG"),
+                        Path.Combine(Destination, "USMT.MIG")
+                    );
+                    Logger.Success("User data successfully uploaded.");
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to upload user data to the Store.");
+                    return false;
+                }
             });
         }
-        private static Task DownloadFromStore(string SID)
+        private static Task<bool> DownloadFromStore(string SID)
         {
             return Task.Run(() => {
+                Logger.Information("Downloading user data to: " + Main.DestinationComputer + "...");
                 string Destination = Path.Combine(@"\\", Main.DestinationComputer, @"C$\SuperGrate\USMT\");
-                Directory.CreateDirectory(Destination);
-                Copy.CopyFile(
-                    Path.Combine(Config.MigrationStorePath, SID, "USMT.MIG"),
-                    Path.Combine(Destination, "USMT.MIG")
-                );
+                try
+                {
+                    Directory.CreateDirectory(Destination);
+                    Copy.CopyFile(
+                        Path.Combine(Config.MigrationStorePath, SID, "USMT.MIG"),
+                        Path.Combine(Destination, "USMT.MIG")
+                    );
+                    Logger.Success("User data successfully transferred.");
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to download user data to: " + Main.DestinationComputer + ".");
+                    return false;
+                }
             });
         }
-        static private Task StartRemoteProcess(string CLI, string CurrentDirectory)
+        static private Task<bool> StartRemoteProcess(string CLI, string CurrentDirectory)
         {
             return Task.Run(() => {
-                ConnectionOptions conOps = new ConnectionOptions();
-                conOps.Impersonation = ImpersonationLevel.Impersonate;
-                conOps.Authentication = AuthenticationLevel.Default;
-                conOps.EnablePrivileges = true;
-                ManagementScope mScope = new ManagementScope(@"\\" + CurrentTarget + @"\root\cimv2", conOps);
-                ManagementPath mPath = new ManagementPath("Win32_Process");
-                ManagementClass mClass = new ManagementClass(mScope, mPath, null);
-                mClass.InvokeMethod("Create", new object[] { CLI, CurrentDirectory });
+                try
+                {
+                    ConnectionOptions conOps = new ConnectionOptions();
+                    conOps.Impersonation = ImpersonationLevel.Impersonate;
+                    conOps.Authentication = AuthenticationLevel.Default;
+                    conOps.EnablePrivileges = true;
+                    ManagementScope mScope = new ManagementScope(@"\\" + CurrentTarget + @"\root\cimv2", conOps);
+                    ManagementPath mPath = new ManagementPath("Win32_Process");
+                    ManagementClass mClass = new ManagementClass(mScope, mPath, null);
+                    mClass.InvokeMethod("Create", new object[] { CLI, CurrentDirectory });
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to run a command on " + CurrentTarget + ".");
+                    return false;
+                }
             });
         }
-        static private Task KillRemoteProcess(string ImageName)
+        static private Task<bool> KillRemoteProcess(string ImageName)
         {
             return StartRemoteProcess("taskkill.exe /T /F /IM " + ImageName, @"C:\");
         }
-        private static Task WaitForUsmtExit(string ImageName)
+        private static Task<bool> WaitForUsmtExit(string ImageName)
         {
             return Task.Run(async () => {
                 Running = true;
-                while (Running)
+                Logger.Information("Waiting for USMT to finish...");
+                try
                 {
-                    if (Process.GetProcessesByName(ImageName, CurrentTarget).Length == 0)
+                    while (Running)
                     {
-                        Running = false;
+                        if (Process.GetProcessesByName(ImageName, CurrentTarget).Length == 0)
+                        {
+                            Running = false;
+                        }
+                        await Task.Delay(3000);
                     }
-                    await Task.Delay(3000);
+                    Logger.Success("USMT Finished.");
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to check if USMT is still running.");
+                    return false;
                 }
             });
         }
         private static async void StartWatchLog(string LogFile)
         {
-            string logDirPath = Path.Combine(@"\\", CurrentTarget, @"C$\SuperGrate\");
-            string logFilePath = Path.Combine(logDirPath, LogFile);
-            FileSystemWatcher logFileWatcher = new FileSystemWatcher(logDirPath, LogFile);
-            logFileWatcher.NotifyFilter = NotifyFilters.LastWrite;
-            logFileWatcher.EnableRaisingEvents = true;
-            FileStream logStream = File.Open(logFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
-            StreamReader logReader = new StreamReader(logStream);
-            long lastPosition = 0;
-            bool firstRead = true;
-            while(Running)
+            try
             {
-                logStream.Position = lastPosition;
-                string log = await logReader.ReadToEndAsync();
-                lastPosition = logStream.Length;
-                if (log != "" && !firstRead)
+                string logDirPath = Path.Combine(@"\\", CurrentTarget, @"C$\SuperGrate\");
+                string logFilePath = Path.Combine(logDirPath, LogFile);
+                FileSystemWatcher logFileWatcher = new FileSystemWatcher(logDirPath, LogFile);
+                logFileWatcher.NotifyFilter = NotifyFilters.LastWrite;
+                logFileWatcher.EnableRaisingEvents = true;
+                FileStream logStream = File.Open(logFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
+                StreamReader logReader = new StreamReader(logStream);
+                long lastPosition = 0;
+                bool firstRead = true;
+                while (Running)
                 {
-                    string startsWith = "PercentageCompleted, ";
-                    if (log.Contains(startsWith))
+                    logStream.Position = lastPosition;
+                    string log = await logReader.ReadToEndAsync();
+                    lastPosition = logStream.Length;
+                    if (log != "" && !firstRead)
                     {
-                        int percent;
-                        int start = log.LastIndexOf(startsWith) + startsWith.Length;
-                        int end = log.LastIndexOf("\r\n");
-                        if (int.TryParse(log.Substring(start, end - start), out percent))
+                        string startsWith = "PercentageCompleted, ";
+                        if (log.Contains(startsWith))
                         {
-                            Logger.UpdateProgress(percent);
+                            int percent;
+                            int start = log.LastIndexOf(startsWith) + startsWith.Length;
+                            int end = log.LastIndexOf("\r\n");
+                            if (int.TryParse(log.Substring(start, end - start), out percent))
+                            {
+                                Logger.UpdateProgress(percent);
+                                Logger.Verbose(log, true);
+                            }
+                        }
+                        else
+                        {
                             Logger.Verbose(log, true);
                         }
                     }
-                    else
-                    {
-                        Logger.Verbose(log, true);
-                    }
+                    firstRead = false;
+                    logFileWatcher.WaitForChanged(WatcherChangeTypes.Changed, 3000);
                 }
-                firstRead = false;
-                logFileWatcher.WaitForChanged(WatcherChangeTypes.Changed, 3000);
+                logStream.Close();
+                logFileWatcher.Dispose();
             }
-            logStream.Close();
-            logFileWatcher.Dispose();
+            catch(Exception e)
+            {
+                Logger.Exception(e, "Failed to hook to the log file: " + LogFile + ".");
+            }
         }
     }
     public enum USMTMode

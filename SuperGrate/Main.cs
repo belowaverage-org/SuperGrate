@@ -34,7 +34,8 @@ namespace SuperGrate
                 return isRunning;
             }
             set {
-                if(value)
+                Progress.Value = 0;
+                if (value)
                 {
                     imgLoadLogo.Enabled = true;
                     tbSourceComputer.Enabled =
@@ -86,6 +87,7 @@ namespace SuperGrate
                 }
                 btStartStop.Text = "Start";
                 Running = false;
+                Logger.Information("Done.");
             }
         }
         private async void BtnListSource_Click(object sender, EventArgs e)
@@ -184,8 +186,8 @@ namespace SuperGrate
             {
                 await Misc.DeleteFromStore(((string[])lbxUsers.Tag)[index]);
             }
-            btnListStore.PerformClick();
             Running = false;
+            btnListStore.PerformClick();
         }
     }
     public enum ListSource

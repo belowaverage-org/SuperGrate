@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using System.IO;
 using System.Net.NetworkInformation;
 using System.DirectoryServices.AccountManagement;
-using System.Management;
 
 namespace SuperGrate
 {
@@ -40,11 +37,19 @@ namespace SuperGrate
                 return false;
             }
         }
-        static private UserPrincipal GetUserByIdentity(string Identity)
+        public static UserPrincipal GetUserByIdentity(string Identity)
         {
-            return UserPrincipal.FindByIdentity(DomContext, Identity);
+            try
+            {
+                return UserPrincipal.FindByIdentity(DomContext, Identity);
+            }
+            catch(Exception e)
+            {
+                Logger.Exception(e, "Failed to lookup: " + Identity + ".");
+                return null;
+            }
         }
-        static public Task<Dictionary<string, string>> GetUsersFromHost(string Host)
+        public static Task<Dictionary<string, string>> GetUsersFromHost(string Host)
         {
             return Task.Run(async () =>
             {
@@ -67,6 +72,7 @@ namespace SuperGrate
                                 results.Add(SID, user.UserPrincipalName);
                             }
                         }
+                        Logger.Success("Users listed successfully.");
                         return results;
                     }
                     else
@@ -76,15 +82,12 @@ namespace SuperGrate
                 }
                 catch (System.Security.SecurityException e)
                 {
-                    Logger.Error(e.Message);
-                    Logger.Verbose(e.StackTrace);
-                    Logger.Error("Failed to get a list of users, Please make sure the user \"" + Environment.UserDomainName + "\\" + Environment.UserName + "\" is an administrator on the host: " + Host);
+                    Logger.Exception(e, "Failed to get a list of users, Please make sure the user \"" + Environment.UserDomainName + "\\" + Environment.UserName + "\" is an administrator on the host: " + Host);
                     return null;
                 }
                 catch (Exception e)
                 {
-                    Logger.Error(e.Message);
-                    Logger.Verbose(e.StackTrace);
+                    Logger.Exception(e, "Failed to get a list of users.");
                     return null;
                 }
             });
@@ -95,7 +98,7 @@ namespace SuperGrate
             {
                 try
                 {
-                    Logger.Information("Listing users from store: " + StorePath);
+                    Logger.Information("Listing users from store: " + StorePath + "...");
                     Dictionary<string, string> results = new Dictionary<string, string>();
                     foreach (string directory in Directory.EnumerateDirectories(StorePath))
                     {
@@ -103,17 +106,16 @@ namespace SuperGrate
                         UserPrincipal user = GetUserByIdentity(info.Name);
                         if (user != null)
                         {
-                            Logger.Information("Found: " + user.Name);
+                            Logger.Verbose("Found: " + user.Name);
                             results.Add(info.Name, user.UserPrincipalName);
                         }
                     }
-                    Logger.Success("Done!");
+                    Logger.Success("Users listed successfully.");
                     return results;
                 }
                 catch (IOException e)
                 {
-                    Logger.Error(e.Message);
-                    Logger.Verbose(e.StackTrace);
+                    Logger.Exception(e, "Failed to list users from store.");
                     return null;
                 }
             });
@@ -121,7 +123,17 @@ namespace SuperGrate
         static public Task DeleteFromStore(string SID)
         {
             return Task.Run(() => {
-                Directory.Delete(Path.Combine(Config.MigrationStorePath, SID), true);
+                string name = GetUserByIdentity(SID).Name;
+                Logger.Information("Deleting '" + name + "' from the Store...");
+                try
+                {
+                    Directory.Delete(Path.Combine(Config.MigrationStorePath, SID), true);
+                    Logger.Information("'" + name + "' successfully deleted from the Store.");
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to delete '" + name + "' from the store.");
+                }
             });
         }
     }

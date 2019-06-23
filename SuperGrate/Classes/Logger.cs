@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace SuperGrate
@@ -48,10 +44,21 @@ namespace SuperGrate
         }
         public static void Verbose(string Text, bool Raw = false)
         {
-            if(VerboseEnabled)
+            if (VerboseEnabled)
             {
                 WriteLog(Text, Color.Gray, Raw);
             }
+        }
+        public static void Exception(Exception Exception, string Text)
+        {
+            Error(Exception.Message);
+            Verbose("ERROR\r" + Exception.StackTrace);
+            if(Exception.InnerException != null)
+            {
+                Error(Exception.InnerException.Message);
+                Verbose("ERROR\r" + Exception.InnerException.StackTrace);
+            }
+            Error(Text);
         }
         public static void UpdateProgress(int Value, int Max = 100)
         {

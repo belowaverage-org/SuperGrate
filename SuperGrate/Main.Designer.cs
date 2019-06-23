@@ -81,7 +81,6 @@
             this.pbMain.Name = "pbMain";
             this.pbMain.Size = new System.Drawing.Size(314, 22);
             this.pbMain.TabIndex = 1;
-            this.pbMain.Value = 100;
             // 
             // tableLayoutPanel1
             // 
