@@ -12,7 +12,7 @@ namespace SuperGrate
         public static ProgressBar Progress;
         public static string SourceComputer;
         public static string DestinationComputer;
-        public static ListSource CurrentListSource = ListSource.Unknown;
+        public static ListSources CurrentListSource = ListSources.Unknown;
         private static bool isRunning = false;
         public Main()
         {
@@ -77,7 +77,7 @@ namespace SuperGrate
                 {
                     SIDs[count++] = ((string[])lbxUsers.Tag)[index];
                 }
-                if (CurrentListSource == ListSource.SourceComputer)
+                if (CurrentListSource == ListSources.SourceComputer)
                 {
                     await USMT.Do(USMTMode.ScanState, SIDs);
                 }
@@ -100,7 +100,7 @@ namespace SuperGrate
             {
                 lbxUsers.Tag = results.Keys.ToArray();
                 lbxUsers.Items.AddRange(results.Values.ToArray());
-                CurrentListSource = ListSource.SourceComputer;
+                CurrentListSource = ListSources.SourceComputer;
                 Logger.Success("Done!");
             }
             else
@@ -119,7 +119,7 @@ namespace SuperGrate
             {
                 lbxUsers.Tag = results.Keys.ToArray();
                 lbxUsers.Items.AddRange(results.Values.ToArray());
-                CurrentListSource = ListSource.MigrationStore;
+                CurrentListSource = ListSources.MigrationStore;
             }
             else
             {
@@ -142,7 +142,7 @@ namespace SuperGrate
         }
         private void UpdateFormRestrictions(object sender = null, EventArgs e = null)
         {
-            if (lbxUsers.SelectedIndices.Count == 0 || (tbDestinationComputer.Text == "" && CurrentListSource == ListSource.MigrationStore))
+            if (lbxUsers.SelectedIndices.Count == 0 || (tbDestinationComputer.Text == "" && CurrentListSource == ListSources.MigrationStore))
             {
                 btStartStop.Enabled = false;
             }
@@ -150,7 +150,7 @@ namespace SuperGrate
             {
                 btStartStop.Enabled = true;
             }
-            if (lbxUsers.SelectedIndices.Count != 0 && CurrentListSource == ListSource.MigrationStore)
+            if (lbxUsers.SelectedIndices.Count != 0 && CurrentListSource == ListSources.MigrationStore)
             {
                 tbSourceComputer.Enabled = false;
                 btnDelete.Enabled = true;
@@ -172,6 +172,10 @@ namespace SuperGrate
         private void TbSourceComputer_TextChanged(object sender, EventArgs e)
         {
             SourceComputer = tbSourceComputer.Text;
+            if(CurrentListSource == ListSources.SourceComputer)
+            {
+                lbxUsers.Items.Clear();
+            }
             UpdateFormRestrictions();
         }
         private void TbDestinationComputer_TextChanged(object sender, EventArgs e)
@@ -190,7 +194,7 @@ namespace SuperGrate
             btnListStore.PerformClick();
         }
     }
-    public enum ListSource
+    public enum ListSources
     {
         Unknown = -1,
         SourceComputer = 1,

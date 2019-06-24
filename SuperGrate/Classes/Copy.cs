@@ -34,7 +34,7 @@ namespace SuperGrate
                 writer?.Wait();
             }
         }
-        public static void CopyFolder(string Source, string Destination)
+        public static bool CopyFolder(string Source, string Destination)
         {
             DirectoryInfo source = new DirectoryInfo(Source);
             FileInfo[] sourceFiles = source.GetFiles("*", SearchOption.AllDirectories);
@@ -60,6 +60,7 @@ namespace SuperGrate
                 Logger.Verbose("Copied.");
                 Logger.UpdateProgress(progress++, sourceFiles.Length);
             }
+            return !USMT.Canceled;
         }
     }
 }

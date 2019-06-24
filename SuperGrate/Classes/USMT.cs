@@ -9,11 +9,13 @@ namespace SuperGrate
     class USMT
     {
         public static bool Canceled = false;
+        private static bool Failed = false;
         private static bool Running = false;
         private static string CurrentTarget = "";
         public static Task<bool> Do(USMTMode Mode, string[] SIDs)
         {
             Canceled = false;
+            Failed = false;
             string exec = "";
             string configParams = "";
             if(Mode == USMTMode.LoadState)
@@ -29,22 +31,23 @@ namespace SuperGrate
                 CurrentTarget = Main.SourceComputer;
             }
             return Task.Run(async () => {
-                Canceled = !await Misc.Ping(CurrentTarget);
-                Canceled = !await CopyUSMT();
+                Failed = !await Misc.Ping(CurrentTarget);
+                if (Canceled || Failed) return false;
+                Failed = !await CopyUSMT();
                 foreach (string SID in SIDs)
                 {
-                    if(Canceled) break;
+                    if(Canceled || Failed) break;
                     if (Mode == USMTMode.LoadState)
                     {
                         Logger.Information("Importing user data for '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
-                        Canceled = !await DownloadFromStore(SID);
-                        if (Canceled) break;
+                        Failed = !await DownloadFromStore(SID);
+                        if (Canceled || Failed) break;
                     }
                     else
                     {
                         Logger.Information("Exporting user data: '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
                     }
-                    Canceled = !await StartRemoteProcess(
+                    Failed = !await StartRemoteProcess(
                         @"C:\SuperGrate\" + exec + " " +
                         @"C:\SuperGrate\ " +
                         @"/ue:*\* " +
@@ -53,18 +56,27 @@ namespace SuperGrate
                         "/progress:SuperGrate.progress " +
                         configParams
                     , @"C:\SuperGrate\");
+                    if (Canceled || Failed) break;
                     Running = true;
                     StartWatchLog("SuperGrate.log");
                     StartWatchLog("SuperGrate.progress");
-                    Canceled = !await WaitForUsmtExit(exec.Replace(".exe", ""));
-                    if (Canceled) break;
+                    Failed = !await WaitForUsmtExit(exec.Replace(".exe", ""));
+                    if (Canceled || Failed) break;
                     if (Mode == USMTMode.ScanState)
                     {
-                        await UploadToStore(SID);
+                        Failed = !await UploadToStore(SID);
+                        if (Canceled || Failed) break;
                     }
                 }
-                await CleaupUSMT();
-                return !Canceled;
+                Failed = !await CleaupUSMT();
+                if(Canceled || Failed)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             });
         }
         public static Task<bool> CopyUSMT()
@@ -75,12 +87,19 @@ namespace SuperGrate
                 {
                     if (Directory.Exists(@".\USMT\"))
                     {
-                        Copy.CopyFolder(
+                        if (Copy.CopyFolder(
                             @".\USMT\",
                             Path.Combine(@"\\", CurrentTarget, @"C$\SuperGrate\")
-                        );
-                        Logger.Success("USMT downloaded successfully.");
-                        return true;
+                        ))
+                        {
+                            Logger.Success("USMT downloaded successfully.");
+                            return true;
+                        }
+                        else
+                        {
+                            Logger.Warning("USMT download canceled.");
+                            return false;
+                        }
                     }
                     else
                     {
