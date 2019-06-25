@@ -120,7 +120,7 @@ namespace SuperGrate
                 }
             });
         }
-        static public Task DeleteFromStore(string SID)
+        public static Task DeleteFromStore(string SID)
         {
             return Task.Run(() => {
                 string name = GetUserByIdentity(SID).Name;
