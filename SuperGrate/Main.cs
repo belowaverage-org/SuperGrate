@@ -21,6 +21,7 @@ namespace SuperGrate
             LoggerBox = LogBox;
             Progress = pbMain;
             lbxUsers.Tag = new string[0];
+            Icon = Properties.Resources.supergrate;
         }
         private void Main_Load(object sender, EventArgs e)
         {
