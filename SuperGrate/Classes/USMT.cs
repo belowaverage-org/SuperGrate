@@ -39,13 +39,13 @@ namespace SuperGrate
                     if(Canceled || Failed) break;
                     if (Mode == USMTMode.LoadState)
                     {
-                        Logger.Information("Importing user data for '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
+                        Logger.Information("Applying user state: '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
                         Failed = !await DownloadFromStore(SID);
                         if (Canceled || Failed) break;
                     }
                     else
                     {
-                        Logger.Information("Exporting user data: '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
+                        Logger.Information("Capturing user state: '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
                     }
                     Failed = !await StartRemoteProcess(
                         @"C:\SuperGrate\" + exec + " " +
@@ -147,10 +147,11 @@ namespace SuperGrate
                     {
                         Logger.Verbose(e.Message);
                         Logger.Verbose(e.StackTrace);
-                        if (tries++ % 5 == 0)
+                        if (tries % 5 == 0)
                         {
                             Logger.Warning("Could not delete, USMT might still be running. Attempt " + tries + "/30.");
                         }
+                        tries++;
                         await Task.Delay(1000);
                     }
                 }
@@ -169,7 +170,7 @@ namespace SuperGrate
         private static Task<bool> UploadToStore(string SID)
         {
             return Task.Run(() => {
-                Logger.Information("Uploading user data to the Store...");
+                Logger.Information("Uploading user state to the Store...");
                 string Destination = Path.Combine(Config.MigrationStorePath, SID);
                 try
                 {
@@ -178,12 +179,12 @@ namespace SuperGrate
                         Path.Combine(@"\\", Main.SourceComputer, @"C$\SuperGrate\USMT\USMT.MIG"),
                         Path.Combine(Destination, "USMT.MIG")
                     );
-                    Logger.Success("User data successfully uploaded.");
+                    Logger.Success("User state successfully uploaded.");
                     return true;
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, "Failed to upload user data to the Store.");
+                    Logger.Exception(e, "Failed to upload user state to the Store.");
                     return false;
                 }
             });
@@ -191,7 +192,7 @@ namespace SuperGrate
         private static Task<bool> DownloadFromStore(string SID)
         {
             return Task.Run(() => {
-                Logger.Information("Downloading user data to: " + Main.DestinationComputer + "...");
+                Logger.Information("Downloading user state to: " + Main.DestinationComputer + "...");
                 string Destination = Path.Combine(@"\\", Main.DestinationComputer, @"C$\SuperGrate\USMT\");
                 try
                 {
@@ -200,12 +201,12 @@ namespace SuperGrate
                         Path.Combine(Config.MigrationStorePath, SID, "USMT.MIG"),
                         Path.Combine(Destination, "USMT.MIG")
                     );
-                    Logger.Success("User data successfully transferred.");
+                    Logger.Success("User state successfully transferred.");
                     return true;
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, "Failed to download user data to: " + Main.DestinationComputer + ".");
+                    Logger.Exception(e, "Failed to download state data to: " + Main.DestinationComputer + ".");
                     return false;
                 }
             });
@@ -240,7 +241,7 @@ namespace SuperGrate
         {
             return Task.Run(async () => {
                 Running = true;
-                Logger.Information("Waiting for USMT to finish...");
+                Logger.Verbose("Waiting for USMT to finish...");
                 try
                 {
                     while (Running)

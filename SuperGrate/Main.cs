@@ -104,10 +104,6 @@ namespace SuperGrate
                 CurrentListSource = ListSources.SourceComputer;
                 Logger.Success("Done!");
             }
-            else
-            {
-                Logger.Error("Failed to list users from the source computer.");
-            }
             Running = false;
         }
         private async void BtnListStore_Click(object sender, EventArgs e)
@@ -121,10 +117,6 @@ namespace SuperGrate
                 lbxUsers.Tag = results.Keys.ToArray();
                 lbxUsers.Items.AddRange(results.Values.ToArray());
                 CurrentListSource = ListSources.MigrationStore;
-            }
-            else
-            {
-                Logger.Error("Failed to list users from the migration store.");
             }
             Running = false;
         }

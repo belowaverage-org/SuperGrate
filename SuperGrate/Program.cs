@@ -15,6 +15,8 @@ namespace SuperGrate
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Application_ThreadException;
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.Run(new Main());

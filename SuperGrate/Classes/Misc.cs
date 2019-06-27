@@ -15,25 +15,23 @@ namespace SuperGrate
         {
             try
             {
+                Logger.Information("Pinging: " + Host + "...");
                 Ping ping = new Ping();
                 PingReply reply = await ping.SendPingAsync(Host, 1000);
                 if (reply.Status == IPStatus.Success)
                 {
+                    Logger.Success(Host + ": Online.");
                     return true;
                 }
                 else
                 {
+                    Logger.Error(Host + ": Offline.");
                     return false;
                 }
             }
-            catch (PingException e)
-            {
-                Logger.Error(e.InnerException.Message);
-                return false;
-            }
             catch (Exception e)
             {
-                Logger.Error(e.Message);
+                Logger.Exception(e, "Could not contact: " + Host);
                 return false;
             }
         }
@@ -55,10 +53,8 @@ namespace SuperGrate
             {
                 try
                 {
-                    Logger.Information("Pinging: " + Host + "...");
                     if (await Ping(Host))
                     {
-                        Logger.Success("Host Online!");
                         Dictionary<string, string> results = new Dictionary<string, string>();
                         RegistryKey remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
                         RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
