@@ -111,7 +111,7 @@ namespace SuperGrate
             Running = true;
             lbxUsers.Items.Clear();
             lblUserList.Text = "Users in Migration Store:";
-            Dictionary<string, string> results = await Misc.GetUsersFromStore(Config.MigrationStorePath);
+            Dictionary<string, string> results = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
             if(results != null)
             {
                 lbxUsers.Tag = results.Keys.ToArray();

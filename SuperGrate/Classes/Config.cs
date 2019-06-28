@@ -7,26 +7,29 @@ namespace SuperGrate
 {
     class Config
     {
-        public static string MigrationStorePath = null;
-        public static string ScanStateParameters = null;
-        public static string LoadStateParameters = null;
-
-        public static Dictionary<string, string> Data = new Dictionary<string, string>() { //Make config more automagic
-            "MigrationStorePath",
-            "ScanStateParameters",
-            "LoadStateParameters"
+        public static Dictionary<string, string> Settings = new Dictionary<string, string>() {
+            {"XComment1", @"The UNC or Direct path to the USMT Migration Store E.g: \\ba-share\s$ or .\STORE."},
+            {"MigrationStorePath", @".\STORE"},
+            {"XComment2", "ScanState.exe & LoadState.exe CLI Parameters: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax "},
+            {"ScanStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /o"},
+            {"LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3"}
         };
-
         public static void GenerateConfig()
         {
             Logger.Warning("Generating new SuperGrate.xml config.");
-            new XDocument(new XElement("SuperGrate",
-                new XComment(@"The UNC or Direct path to the USMT Migration Store E.g: \\ba-share\s$ or .\STORE."),
-                new XElement("MigrationStorePath", @".\STORE"),
-                new XComment("ScanState.exe & LoadState.exe CLI Parameters: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax "),
-                new XElement("ScanStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /o"),
-                new XElement("LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3")
-            )).Save(@".\SuperGrate.xml");
+            XElement root = new XElement("SuperGrate");
+            foreach(KeyValuePair<string, string> setting in Settings)
+            {
+                if(setting.Key.StartsWith("XComment"))
+                {
+                    root.Add(new XComment(setting.Value));
+                }
+                else
+                {
+                    root.Add(new XElement(setting.Key, setting.Value));
+                }
+            }
+            new XDocument(root).Save(@".\SuperGrate.xml");
         }
         public static void LoadConfig()
         {
@@ -38,42 +41,33 @@ namespace SuperGrate
             {
                 XDocument config = XDocument.Load(@".\SuperGrate.xml");
                 XElement root = config.Element("SuperGrate");
-                
-
-                new Dictionary<string, string> schema = new Dictionary<string, string>([
-                    "",
-                    ""
-                ]);
-
-
-                XElement XMigrationStorePath = root.Element("MigrationStorePath");
-                XElement XScanStateParameters = root.Element("ScanStateParameters");
-                XElement XLoadStateParameters = root.Element("LoadStateParameters");
-                if (XMigrationStorePath == null)
+                bool success = true;
+                Dictionary<string, string> xmlSettings = new Dictionary<string, string>();
+                foreach(KeyValuePair<string, string> setting in Settings)
                 {
-                    
+                    if (!setting.Key.StartsWith("XComment"))
+                    {
+                        XElement element = root.Element(setting.Key);
+                        if (element == null)
+                        {
+                            success = false;
+                            Logger.Warning("SuperGrate.xml is missing: " + setting.Key + "!");
+                        }
+                        else
+                        {
+                            xmlSettings[setting.Key] = element.Value;
+                        }
+                    }
+                }
+                Settings = xmlSettings;
+                if(success)
+                {
+                    Logger.Success("Config loaded!");
                 }
                 else
                 {
-                    MigrationStorePath = XMigrationStorePath.Value;
+                    Logger.Warning("Config loaded, but is using default values for the missing elements.");
                 }
-                if (XScanStateParameters == null)
-                {
-                    
-                }
-                else
-                {
-                    ScanStateParameters = XScanStateParameters.Value;
-                }
-                if (XLoadStateParameters == null)
-                {
-                    
-                }
-                else
-                {
-                    LoadStateParameters = XLoadStateParameters.Value;
-                }
-                Logger.Success("Config loaded!");
             }
             catch(Exception e)
             {

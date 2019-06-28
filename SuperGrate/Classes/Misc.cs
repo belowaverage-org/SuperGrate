@@ -123,7 +123,7 @@ namespace SuperGrate
                 Logger.Information("Deleting '" + name + "' from the Store...");
                 try
                 {
-                    Directory.Delete(Path.Combine(Config.MigrationStorePath, SID), true);
+                    Directory.Delete(Path.Combine(Config.Settings["MigrationStorePath"], SID), true);
                     Logger.Information("'" + name + "' successfully deleted from the Store.");
                 }
                 catch(Exception e)

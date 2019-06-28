@@ -21,13 +21,13 @@ namespace SuperGrate
             if(Mode == USMTMode.LoadState)
             {
                 exec = "loadstate.exe";
-                configParams = Config.LoadStateParameters;
+                configParams = Config.Settings["LoadStateParameters"];
                 CurrentTarget = Main.DestinationComputer;
             }
             if(Mode == USMTMode.ScanState)
             {
                 exec = "scanstate.exe";
-                configParams = Config.ScanStateParameters;
+                configParams = Config.Settings["ScanStateParameters"];
                 CurrentTarget = Main.SourceComputer;
             }
             return Task.Run(async () => {
@@ -171,7 +171,7 @@ namespace SuperGrate
         {
             return Task.Run(() => {
                 Logger.Information("Uploading user state to the Store...");
-                string Destination = Path.Combine(Config.MigrationStorePath, SID);
+                string Destination = Path.Combine(Config.Settings["MigrationStorePath"], SID);
                 try
                 {
                     Directory.CreateDirectory(Destination);
@@ -194,11 +194,11 @@ namespace SuperGrate
             return Task.Run(() => {
                 Logger.Information("Downloading user state to: " + Main.DestinationComputer + "...");
                 string Destination = Path.Combine(@"\\", Main.DestinationComputer, @"C$\SuperGrate\USMT\");
-                try
-                {
-                    Directory.CreateDirectory(Destination);
-                    Copy.CopyFile(
-                        Path.Combine(Config.MigrationStorePath, SID, "USMT.MIG"),
+            try
+            {
+                Directory.CreateDirectory(Destination);
+                Copy.CopyFile(
+                    Path.Combine(Config.Settings["MigrationStorePath"], SID, "USMT.MIG"),
                         Path.Combine(Destination, "USMT.MIG")
                     );
                     Logger.Success("User state successfully transferred.");
