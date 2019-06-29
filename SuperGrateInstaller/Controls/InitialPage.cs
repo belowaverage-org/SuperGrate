@@ -15,6 +15,13 @@ namespace SuperGrateInstaller.Controls
         public InitialPage()
         {
             InitializeComponent();
+            Main.Next.Click += Next_Click;
+        }
+
+        private void Next_Click(object sender, EventArgs e)
+        {
+            Main.ChangePage(new NetworkPage());
+            Console.WriteLine("asdf");
         }
 
         private void RbSolNetworkShare_CheckedChanged(object sender, EventArgs e)

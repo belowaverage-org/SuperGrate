@@ -12,9 +12,15 @@ namespace SuperGrateInstaller
 {
     public partial class Main : Form
     {
+        public static Button Next;
+        public static Button Previous;
+        private static Panel Panel;
         public Main()
         {
             InitializeComponent();
+            Panel = panelPage;
+            Next = btnNextFinish;
+            Previous = btnPrevious;
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -23,12 +29,17 @@ namespace SuperGrateInstaller
             pbLogo.Image = new Icon(Properties.Resources.Icon, 80, 80).ToBitmap();
             ChangePage(new Controls.InitialPage());
         }
-        private void ChangePage(Control Control)
+        public static void ChangePage(Control Control)
         {
-            panelPage.Controls.Clear();
+            Panel.Controls.Clear();
             Control.Dock = DockStyle.Fill;
-            panelPage.Controls.Add(Control);
+            Panel.Controls.Add(Control);
             Control.Show();
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
