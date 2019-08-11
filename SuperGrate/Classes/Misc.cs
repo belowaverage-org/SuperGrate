@@ -109,7 +109,7 @@ namespace SuperGrate
                     Logger.Success("Users listed successfully.");
                     return results;
                 }
-                catch (IOException e)
+                catch (Exception e)
                 {
                     Logger.Exception(e, "Failed to list users from store.");
                     return null;
