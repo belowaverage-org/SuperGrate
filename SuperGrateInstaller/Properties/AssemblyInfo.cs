@@ -1,17 +1,16 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SuperGrateInstaller")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Super Grate Installer - Remote User Migration & Backup")]
+[assembly: AssemblyDescription("Super Grate Installer - Dylan Bickerstaff")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SuperGrateInstaller")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("Dylan Bickerstaff")]
+[assembly: AssemblyProduct("Super Grate Installer - Dylan Bickerstaff")]
+[assembly: AssemblyCopyright("Copyright ©  2019 - Dylan Bickerstaff")]
+[assembly: AssemblyTrademark("Dylan Bickerstaff")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible

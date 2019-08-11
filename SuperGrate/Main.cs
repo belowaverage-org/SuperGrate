@@ -186,6 +186,13 @@ namespace SuperGrate
             Running = false;
             btnListStore.PerformClick();
         }
+        private void TbSourceComputer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnListSource.PerformClick();
+            }
+        }
     }
     public enum ListSources
     {

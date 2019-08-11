@@ -68,7 +68,7 @@
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
             this.LogBox.Size = new System.Drawing.Size(311, 272);
-            this.LogBox.TabIndex = 0;
+            this.LogBox.TabIndex = 100;
             this.LogBox.Text = "";
             this.LogBox.DoubleClick += new System.EventHandler(this.LogBox_DoubleClick);
             // 
@@ -81,7 +81,7 @@
             this.pbMain.Name = "pbMain";
             this.pbMain.Size = new System.Drawing.Size(311, 22);
             this.pbMain.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.pbMain.TabIndex = 1;
+            this.pbMain.TabIndex = 100;
             // 
             // logTable
             // 
@@ -97,7 +97,7 @@
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.logTable.Size = new System.Drawing.Size(317, 310);
-            this.logTable.TabIndex = 2;
+            this.logTable.TabIndex = 100;
             // 
             // spltContainer
             // 
@@ -118,7 +118,7 @@
             this.spltContainer.Panel2MinSize = 300;
             this.spltContainer.Size = new System.Drawing.Size(670, 310);
             this.spltContainer.SplitterDistance = 349;
-            this.spltContainer.TabIndex = 3;
+            this.spltContainer.TabIndex = 100;
             // 
             // tblMainLayout
             // 
@@ -146,7 +146,7 @@
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tblMainLayout.Size = new System.Drawing.Size(349, 310);
-            this.tblMainLayout.TabIndex = 0;
+            this.tblMainLayout.TabIndex = 100;
             // 
             // lblSourceComputer
             // 
@@ -154,7 +154,7 @@
             this.lblSourceComputer.Location = new System.Drawing.Point(3, 0);
             this.lblSourceComputer.Name = "lblSourceComputer";
             this.lblSourceComputer.Size = new System.Drawing.Size(124, 30);
-            this.lblSourceComputer.TabIndex = 0;
+            this.lblSourceComputer.TabIndex = 100;
             this.lblSourceComputer.Text = "Source Computer";
             this.lblSourceComputer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -164,7 +164,7 @@
             this.lblDestinationComputer.Location = new System.Drawing.Point(3, 30);
             this.lblDestinationComputer.Name = "lblDestinationComputer";
             this.lblDestinationComputer.Size = new System.Drawing.Size(124, 30);
-            this.lblDestinationComputer.TabIndex = 1;
+            this.lblDestinationComputer.TabIndex = 100;
             this.lblDestinationComputer.Text = "Destination Computer";
             this.lblDestinationComputer.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -174,7 +174,7 @@
             this.lblUserList.Location = new System.Drawing.Point(3, 90);
             this.lblUserList.Name = "lblUserList";
             this.lblUserList.Size = new System.Drawing.Size(124, 80);
-            this.lblUserList.TabIndex = 4;
+            this.lblUserList.TabIndex = 100;
             this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tbSourceComputer
@@ -184,8 +184,9 @@
             this.tbSourceComputer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbSourceComputer.Name = "tbSourceComputer";
             this.tbSourceComputer.Size = new System.Drawing.Size(213, 22);
-            this.tbSourceComputer.TabIndex = 5;
+            this.tbSourceComputer.TabIndex = 100;
             this.tbSourceComputer.TextChanged += new System.EventHandler(this.TbSourceComputer_TextChanged);
+            this.tbSourceComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbSourceComputer_KeyDown);
             // 
             // tbDestinationComputer
             // 
@@ -194,7 +195,7 @@
             this.tbDestinationComputer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbDestinationComputer.Name = "tbDestinationComputer";
             this.tbDestinationComputer.Size = new System.Drawing.Size(213, 22);
-            this.tbDestinationComputer.TabIndex = 7;
+            this.tbDestinationComputer.TabIndex = 100;
             this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
             // 
             // btStartStop
@@ -207,7 +208,7 @@
             this.btStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btStartStop.Name = "btStartStop";
             this.btStartStop.Size = new System.Drawing.Size(344, 24);
-            this.btStartStop.TabIndex = 9;
+            this.btStartStop.TabIndex = 100;
             this.btStartStop.Text = "Start";
             this.btStartStop.UseVisualStyleBackColor = true;
             this.btStartStop.Click += new System.EventHandler(this.BtStartStop_Click);
@@ -228,7 +229,7 @@
             this.tbleListUsersButtons.RowCount = 1;
             this.tbleListUsersButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tbleListUsersButtons.Size = new System.Drawing.Size(219, 30);
-            this.tbleListUsersButtons.TabIndex = 10;
+            this.tbleListUsersButtons.TabIndex = 100;
             // 
             // btnListSource
             // 
@@ -238,7 +239,7 @@
             this.btnListSource.Margin = new System.Windows.Forms.Padding(2, 3, 3, 3);
             this.btnListSource.Name = "btnListSource";
             this.btnListSource.Size = new System.Drawing.Size(68, 25);
-            this.btnListSource.TabIndex = 0;
+            this.btnListSource.TabIndex = 100;
             this.btnListSource.Text = "List Source";
             this.btnListSource.UseVisualStyleBackColor = true;
             this.btnListSource.Click += new System.EventHandler(this.BtnListSource_Click);
@@ -250,7 +251,7 @@
             this.btnListStore.Location = new System.Drawing.Point(76, 3);
             this.btnListStore.Name = "btnListStore";
             this.btnListStore.Size = new System.Drawing.Size(67, 25);
-            this.btnListStore.TabIndex = 1;
+            this.btnListStore.TabIndex = 100;
             this.btnListStore.Text = "List Store";
             this.btnListStore.UseVisualStyleBackColor = true;
             this.btnListStore.Click += new System.EventHandler(this.BtnListStore_Click);
@@ -264,7 +265,7 @@
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(68, 25);
-            this.btnDelete.TabIndex = 2;
+            this.btnDelete.TabIndex = 100;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
@@ -280,7 +281,7 @@
             this.tblMainLayout.SetRowSpan(this.lbxUsers, 2);
             this.lbxUsers.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbxUsers.Size = new System.Drawing.Size(213, 182);
-            this.lbxUsers.TabIndex = 8;
+            this.lbxUsers.TabIndex = 100;
             this.lbxUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
             // 
             // pnlLogoBorder
@@ -293,7 +294,7 @@
             this.pnlLogoBorder.Name = "pnlLogoBorder";
             this.pnlLogoBorder.Padding = new System.Windows.Forms.Padding(1);
             this.pnlLogoBorder.Size = new System.Drawing.Size(122, 106);
-            this.pnlLogoBorder.TabIndex = 11;
+            this.pnlLogoBorder.TabIndex = 100;
             // 
             // imgLoadLogo
             // 
@@ -306,7 +307,7 @@
             this.imgLoadLogo.Name = "imgLoadLogo";
             this.imgLoadLogo.Size = new System.Drawing.Size(120, 104);
             this.imgLoadLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.imgLoadLogo.TabIndex = 11;
+            this.imgLoadLogo.TabIndex = 100;
             this.imgLoadLogo.TabStop = false;
             // 
             // Main
