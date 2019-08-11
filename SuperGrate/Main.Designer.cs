@@ -102,7 +102,6 @@
             // spltContainer
             // 
             this.spltContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spltContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.spltContainer.Location = new System.Drawing.Point(5, 5);
             this.spltContainer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.spltContainer.Name = "spltContainer";
