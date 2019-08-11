@@ -14,8 +14,10 @@ namespace SuperGrate
         public static string DestinationComputer;
         public static ListSources CurrentListSource = ListSources.Unknown;
         private static bool isRunning = false;
-        public Main()
+        private string[] MainParameters = null;
+        public Main(string[] parameters)
         {
+            MainParameters = parameters;
             InitializeComponent();
             Form = this;
             LoggerBox = LogBox;
@@ -25,7 +27,7 @@ namespace SuperGrate
         }
         private void Main_Load(object sender, EventArgs e)
         {
-            Config.LoadConfig();
+            Config.LoadConfig(MainParameters);
             Logger.Success("Welcome to Super Grate!");
             Logger.Information("Enter some information to get started!");
             UpdateFormRestrictions();

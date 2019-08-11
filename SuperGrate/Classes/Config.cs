@@ -31,7 +31,7 @@ namespace SuperGrate
             }
             new XDocument(root).Save(@".\SuperGrate.xml");
         }
-        public static void LoadConfig()
+        public static void LoadConfig(string[] parameters = null)
         {
             if(!File.Exists(@".\SuperGrate.xml"))
             {
@@ -43,6 +43,10 @@ namespace SuperGrate
                 XElement root = config.Element("SuperGrate");
                 bool success = true;
                 Dictionary<string, string> xmlSettings = new Dictionary<string, string>();
+                foreach(KeyValuePair<string, string> setting in Settings)
+                {
+                    xmlSettings.Add(setting.Key, setting.Value);
+                }
                 foreach(KeyValuePair<string, string> setting in Settings)
                 {
                     if (!setting.Key.StartsWith("XComment"))
@@ -72,6 +76,20 @@ namespace SuperGrate
             catch(Exception e)
             {
                 Logger.Exception(e, "Error when loading the Super Grate config file! SuperGrate.xml");
+            }
+            if (parameters != null && parameters.Length > 0)
+            {
+                foreach (string parameter in parameters)
+                {
+                    if (parameter.StartsWith("/") || parameter.StartsWith("-") && parameter.Contains(":"))
+                    {
+                        string[] param_parts = parameter.Substring(1).Split(':');
+                        if (Settings.ContainsKey(param_parts[0]))
+                        {
+                            Settings[param_parts[0]] = param_parts[1];
+                        }
+                    }
+                }
             }
         }
     }
