@@ -34,6 +34,7 @@ namespace SuperGrate
                 Failed = !await Misc.Ping(CurrentTarget);
                 if (Canceled || Failed) return false;
                 Failed = !await CopyUSMT();
+                if (Canceled || Failed) return false;
                 foreach (string SID in SIDs)
                 {
                     if(Canceled || Failed) break;
