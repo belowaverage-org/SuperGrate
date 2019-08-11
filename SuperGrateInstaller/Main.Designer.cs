@@ -47,6 +47,7 @@
             this.btnPrevious.TabIndex = 1;
             this.btnPrevious.Text = "Previous";
             this.btnPrevious.UseVisualStyleBackColor = true;
+            this.btnPrevious.Click += new System.EventHandler(this.BtnPrevious_Click);
             // 
             // btnNextFinish
             // 
@@ -58,6 +59,7 @@
             this.btnNextFinish.TabIndex = 0;
             this.btnNextFinish.Text = "Next";
             this.btnNextFinish.UseVisualStyleBackColor = true;
+            this.btnNextFinish.Click += new System.EventHandler(this.BtnNextFinish_Click);
             // 
             // pbLogo
             // 

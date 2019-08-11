@@ -1,4 +1,4 @@
-﻿namespace SuperGrateInstaller.Controls
+﻿namespace SuperGrateInstaller.Pages
 {
     partial class InitialPage
     {
@@ -30,7 +30,7 @@
         {
             this.lblGreet = new System.Windows.Forms.Label();
             this.gbSolution = new System.Windows.Forms.GroupBox();
-            this.rbSolUpgrade = new System.Windows.Forms.RadioButton();
+            this.rbSolMyAccount = new System.Windows.Forms.RadioButton();
             this.rbSolLocalComputer = new System.Windows.Forms.RadioButton();
             this.rbSolNetworkShare = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -50,7 +50,7 @@
             // 
             // gbSolution
             // 
-            this.gbSolution.Controls.Add(this.rbSolUpgrade);
+            this.gbSolution.Controls.Add(this.rbSolMyAccount);
             this.gbSolution.Controls.Add(this.rbSolLocalComputer);
             this.gbSolution.Controls.Add(this.rbSolNetworkShare);
             this.gbSolution.Location = new System.Drawing.Point(22, 70);
@@ -60,29 +60,31 @@
             this.gbSolution.TabStop = false;
             this.gbSolution.Text = "Install Solution";
             // 
-            // rbSolUpgrade
+            // rbSolMyAccount
             // 
-            this.rbSolUpgrade.AutoSize = true;
-            this.rbSolUpgrade.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.rbSolUpgrade.Location = new System.Drawing.Point(428, 35);
-            this.rbSolUpgrade.Name = "rbSolUpgrade";
-            this.rbSolUpgrade.Size = new System.Drawing.Size(76, 20);
-            this.rbSolUpgrade.TabIndex = 2;
-            this.rbSolUpgrade.TabStop = true;
-            this.rbSolUpgrade.Text = "Upgrade";
-            this.rbSolUpgrade.UseVisualStyleBackColor = true;
+            this.rbSolMyAccount.AutoSize = true;
+            this.rbSolMyAccount.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.rbSolMyAccount.Location = new System.Drawing.Point(419, 35);
+            this.rbSolMyAccount.Name = "rbSolMyAccount";
+            this.rbSolMyAccount.Size = new System.Drawing.Size(114, 20);
+            this.rbSolMyAccount.TabIndex = 2;
+            this.rbSolMyAccount.TabStop = true;
+            this.rbSolMyAccount.Text = "Just my account";
+            this.rbSolMyAccount.UseVisualStyleBackColor = true;
+            this.rbSolMyAccount.Click += new System.EventHandler(this.RbSolJustMe_Click);
             // 
             // rbSolLocalComputer
             // 
             this.rbSolLocalComputer.AutoSize = true;
             this.rbSolLocalComputer.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.rbSolLocalComputer.Location = new System.Drawing.Point(224, 35);
+            this.rbSolLocalComputer.Location = new System.Drawing.Point(211, 35);
             this.rbSolLocalComputer.Name = "rbSolLocalComputer";
-            this.rbSolLocalComputer.Size = new System.Drawing.Size(113, 20);
+            this.rbSolLocalComputer.Size = new System.Drawing.Size(135, 20);
             this.rbSolLocalComputer.TabIndex = 1;
             this.rbSolLocalComputer.TabStop = true;
-            this.rbSolLocalComputer.Text = "Local Computer";
+            this.rbSolLocalComputer.Text = "Everyone on this PC";
             this.rbSolLocalComputer.UseVisualStyleBackColor = true;
+            this.rbSolLocalComputer.Click += new System.EventHandler(this.RbSolLocalComputer_Click);
             // 
             // rbSolNetworkShare
             // 
@@ -95,7 +97,7 @@
             this.rbSolNetworkShare.TabStop = true;
             this.rbSolNetworkShare.Text = "Network Share";
             this.rbSolNetworkShare.UseVisualStyleBackColor = true;
-            this.rbSolNetworkShare.CheckedChanged += new System.EventHandler(this.RbSolNetworkShare_CheckedChanged);
+            this.rbSolNetworkShare.Click += new System.EventHandler(this.RbSolNetworkShare_Click);
             // 
             // groupBox1
             // 
@@ -128,6 +130,7 @@
             this.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "InitialPage";
             this.Size = new System.Drawing.Size(600, 250);
+            this.OnNext += new System.EventHandler(this.InitialPage_OnNext);
             this.gbSolution.ResumeLayout(false);
             this.gbSolution.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -139,7 +142,7 @@
 
         private System.Windows.Forms.Label lblGreet;
         private System.Windows.Forms.GroupBox gbSolution;
-        private System.Windows.Forms.RadioButton rbSolUpgrade;
+        private System.Windows.Forms.RadioButton rbSolMyAccount;
         private System.Windows.Forms.RadioButton rbSolLocalComputer;
         private System.Windows.Forms.RadioButton rbSolNetworkShare;
         private System.Windows.Forms.GroupBox groupBox1;

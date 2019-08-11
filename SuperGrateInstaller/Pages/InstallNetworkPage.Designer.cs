@@ -1,6 +1,6 @@
-﻿namespace SuperGrateInstaller.Controls
+﻿namespace SuperGrateInstaller.Pages
 {
-    partial class NetworkPage
+    partial class InstallNetworkPage
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,37 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.fileDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.tbNetworkPath = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
+            this.lblDescript = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // fileDialog
+            // 
+            this.fileDialog.RootFolder = System.Environment.SpecialFolder.CommonProgramFiles;
             // 
             // tbNetworkPath
             // 
-            this.tbNetworkPath.Location = new System.Drawing.Point(42, 47);
+            this.tbNetworkPath.Location = new System.Drawing.Point(42, 125);
             this.tbNetworkPath.Name = "tbNetworkPath";
             this.tbNetworkPath.Size = new System.Drawing.Size(418, 23);
             this.tbNetworkPath.TabIndex = 0;
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(483, 47);
+            this.btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnBrowse.Location = new System.Drawing.Point(475, 124);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(75, 23);
+            this.btnBrowse.Size = new System.Drawing.Size(75, 25);
             this.btnBrowse.TabIndex = 1;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
+            this.btnBrowse.Click += new System.EventHandler(this.BtnBrowse_Click);
             // 
-            // NetworkPage
+            // lblDescript
+            // 
+            this.lblDescript.AutoSize = true;
+            this.lblDescript.Location = new System.Drawing.Point(39, 61);
+            this.lblDescript.Name = "lblDescript";
+            this.lblDescript.Size = new System.Drawing.Size(349, 15);
+            this.lblDescript.TabIndex = 2;
+            this.lblDescript.Text = "Select a network share path where you want to install Super Grate.";
+            // 
+            // InstallNetworkPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.lblDescript);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.tbNetworkPath);
             this.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "NetworkPage";
+            this.Name = "InstallNetworkPage";
             this.Size = new System.Drawing.Size(600, 250);
+            this.OnPrevious += new System.EventHandler(this.NetworkPage_OnPrevious);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -66,8 +84,9 @@
 
         #endregion
 
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.FolderBrowserDialog fileDialog;
         private System.Windows.Forms.TextBox tbNetworkPath;
         private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.Label lblDescript;
     }
 }

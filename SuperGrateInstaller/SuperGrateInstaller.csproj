@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -46,16 +48,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\NetworkPage.cs">
+    <Compile Include="Classes\InstallPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\NetworkPage.Designer.cs">
-      <DependentUpon>NetworkPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\InitialPage.cs">
+    <Compile Include="Pages\ElevatePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\InitialPage.Designer.cs">
+    <Compile Include="Pages\ElevatePage.Designer.cs">
+      <DependentUpon>ElevatePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InstallNetworkPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\InstallNetworkPage.Designer.cs">
+      <DependentUpon>InstallNetworkPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InstallLocalPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\InstallLocalPage.Designer.cs">
+      <DependentUpon>InstallLocalPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InitialPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\InitialPage.Designer.cs">
       <DependentUpon>InitialPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
@@ -66,10 +83,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Controls\NetworkPage.resx">
-      <DependentUpon>NetworkPage.cs</DependentUpon>
+    <EmbeddedResource Include="Pages\ElevatePage.resx">
+      <DependentUpon>ElevatePage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\InitialPage.resx">
+    <EmbeddedResource Include="Pages\InstallNetworkPage.resx">
+      <DependentUpon>InstallNetworkPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\InstallLocalPage.resx">
+      <DependentUpon>InstallLocalPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\InitialPage.resx">
       <DependentUpon>InitialPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
