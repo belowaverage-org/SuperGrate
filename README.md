@@ -18,6 +18,7 @@
     <li>Works remotely over a network</li>
   </ul>
   <h2>Configuration</h2>
+  
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <SuperGrate>
@@ -28,4 +29,5 @@
   <LoadStateParameters>/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3</LoadStateParameters>
 </SuperGrate>
 ```
+
 </p>
