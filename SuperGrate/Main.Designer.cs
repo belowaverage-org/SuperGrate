@@ -33,11 +33,12 @@
             this.logTable = new System.Windows.Forms.TableLayoutPanel();
             this.spltContainer = new System.Windows.Forms.SplitContainer();
             this.tblMainLayout = new System.Windows.Forms.TableLayoutPanel();
+            this.sourCompTabl = new System.Windows.Forms.TableLayoutPanel();
+            this.tbSourceComputer = new System.Windows.Forms.TextBox();
+            this.btnAFillSrc = new System.Windows.Forms.Button();
             this.lblSourceComputer = new System.Windows.Forms.Label();
             this.lblDestinationComputer = new System.Windows.Forms.Label();
             this.lblUserList = new System.Windows.Forms.Label();
-            this.tbSourceComputer = new System.Windows.Forms.TextBox();
-            this.tbDestinationComputer = new System.Windows.Forms.TextBox();
             this.btStartStop = new System.Windows.Forms.Button();
             this.tbleListUsersButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnListSource = new System.Windows.Forms.Button();
@@ -46,15 +47,20 @@
             this.lbxUsers = new System.Windows.Forms.ListBox();
             this.pnlLogoBorder = new System.Windows.Forms.Panel();
             this.imgLoadLogo = new System.Windows.Forms.PictureBox();
+            this.destCompTabl = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAFillDest = new System.Windows.Forms.Button();
+            this.tbDestinationComputer = new System.Windows.Forms.TextBox();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
             this.spltContainer.Panel2.SuspendLayout();
             this.spltContainer.SuspendLayout();
             this.tblMainLayout.SuspendLayout();
+            this.sourCompTabl.SuspendLayout();
             this.tbleListUsersButtons.SuspendLayout();
             this.pnlLogoBorder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLoadLogo)).BeginInit();
+            this.destCompTabl.SuspendLayout();
             this.SuspendLayout();
             // 
             // LogBox
@@ -124,15 +130,15 @@
             this.tblMainLayout.ColumnCount = 2;
             this.tblMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 130F));
             this.tblMainLayout.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblMainLayout.Controls.Add(this.sourCompTabl, 1, 0);
             this.tblMainLayout.Controls.Add(this.lblSourceComputer, 0, 0);
             this.tblMainLayout.Controls.Add(this.lblDestinationComputer, 0, 1);
             this.tblMainLayout.Controls.Add(this.lblUserList, 0, 3);
-            this.tblMainLayout.Controls.Add(this.tbSourceComputer, 1, 0);
-            this.tblMainLayout.Controls.Add(this.tbDestinationComputer, 1, 1);
-            this.tblMainLayout.Controls.Add(this.btStartStop, 0, 4);
+            this.tblMainLayout.Controls.Add(this.btStartStop, 0, 5);
             this.tblMainLayout.Controls.Add(this.tbleListUsersButtons, 1, 2);
             this.tblMainLayout.Controls.Add(this.lbxUsers, 1, 3);
             this.tblMainLayout.Controls.Add(this.pnlLogoBorder, 0, 4);
+            this.tblMainLayout.Controls.Add(this.destCompTabl, 1, 1);
             this.tblMainLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMainLayout.Location = new System.Drawing.Point(0, 0);
             this.tblMainLayout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -144,8 +150,49 @@
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblMainLayout.Size = new System.Drawing.Size(349, 310);
             this.tblMainLayout.TabIndex = 100;
+            // 
+            // sourCompTabl
+            // 
+            this.sourCompTabl.ColumnCount = 2;
+            this.sourCompTabl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.sourCompTabl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.sourCompTabl.Controls.Add(this.tbSourceComputer, 0, 0);
+            this.sourCompTabl.Controls.Add(this.btnAFillSrc, 1, 0);
+            this.sourCompTabl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.sourCompTabl.Location = new System.Drawing.Point(130, 0);
+            this.sourCompTabl.Margin = new System.Windows.Forms.Padding(0);
+            this.sourCompTabl.Name = "sourCompTabl";
+            this.sourCompTabl.RowCount = 1;
+            this.sourCompTabl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.sourCompTabl.Size = new System.Drawing.Size(219, 30);
+            this.sourCompTabl.TabIndex = 101;
+            // 
+            // tbSourceComputer
+            // 
+            this.tbSourceComputer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbSourceComputer.Location = new System.Drawing.Point(3, 4);
+            this.tbSourceComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
+            this.tbSourceComputer.Name = "tbSourceComputer";
+            this.tbSourceComputer.Size = new System.Drawing.Size(185, 22);
+            this.tbSourceComputer.TabIndex = 101;
+            this.tbSourceComputer.TextChanged += new System.EventHandler(this.TbSourceComputer_TextChanged);
+            // 
+            // btnAFillSrc
+            // 
+            this.btnAFillSrc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAFillSrc.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnAFillSrc.Location = new System.Drawing.Point(194, 3);
+            this.btnAFillSrc.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
+            this.btnAFillSrc.Name = "btnAFillSrc";
+            this.btnAFillSrc.Size = new System.Drawing.Size(23, 24);
+            this.btnAFillSrc.TabIndex = 102;
+            this.btnAFillSrc.Text = "<";
+            this.btnAFillSrc.UseVisualStyleBackColor = true;
+            this.btnAFillSrc.Click += new System.EventHandler(this.BtnAFillSrc_Click);
             // 
             // lblSourceComputer
             // 
@@ -175,27 +222,6 @@
             this.lblUserList.Size = new System.Drawing.Size(124, 80);
             this.lblUserList.TabIndex = 100;
             this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tbSourceComputer
-            // 
-            this.tbSourceComputer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbSourceComputer.Location = new System.Drawing.Point(133, 4);
-            this.tbSourceComputer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbSourceComputer.Name = "tbSourceComputer";
-            this.tbSourceComputer.Size = new System.Drawing.Size(213, 22);
-            this.tbSourceComputer.TabIndex = 100;
-            this.tbSourceComputer.TextChanged += new System.EventHandler(this.TbSourceComputer_TextChanged);
-            this.tbSourceComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbSourceComputer_KeyDown);
-            // 
-            // tbDestinationComputer
-            // 
-            this.tbDestinationComputer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDestinationComputer.Location = new System.Drawing.Point(133, 34);
-            this.tbDestinationComputer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbDestinationComputer.Name = "tbDestinationComputer";
-            this.tbDestinationComputer.Size = new System.Drawing.Size(213, 22);
-            this.tbDestinationComputer.TabIndex = 100;
-            this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
             // 
             // btStartStop
             // 
@@ -309,6 +335,45 @@
             this.imgLoadLogo.TabIndex = 100;
             this.imgLoadLogo.TabStop = false;
             // 
+            // destCompTabl
+            // 
+            this.destCompTabl.ColumnCount = 2;
+            this.destCompTabl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.destCompTabl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.destCompTabl.Controls.Add(this.btnAFillDest, 0, 0);
+            this.destCompTabl.Controls.Add(this.tbDestinationComputer, 0, 0);
+            this.destCompTabl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.destCompTabl.Location = new System.Drawing.Point(130, 30);
+            this.destCompTabl.Margin = new System.Windows.Forms.Padding(0);
+            this.destCompTabl.Name = "destCompTabl";
+            this.destCompTabl.RowCount = 1;
+            this.destCompTabl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.destCompTabl.Size = new System.Drawing.Size(219, 30);
+            this.destCompTabl.TabIndex = 102;
+            // 
+            // btnAFillDest
+            // 
+            this.btnAFillDest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAFillDest.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnAFillDest.Location = new System.Drawing.Point(194, 3);
+            this.btnAFillDest.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
+            this.btnAFillDest.Name = "btnAFillDest";
+            this.btnAFillDest.Size = new System.Drawing.Size(23, 24);
+            this.btnAFillDest.TabIndex = 103;
+            this.btnAFillDest.Text = "<";
+            this.btnAFillDest.UseVisualStyleBackColor = true;
+            this.btnAFillDest.Click += new System.EventHandler(this.BtnAFillDest_Click);
+            // 
+            // tbDestinationComputer
+            // 
+            this.tbDestinationComputer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbDestinationComputer.Location = new System.Drawing.Point(3, 4);
+            this.tbDestinationComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
+            this.tbDestinationComputer.Name = "tbDestinationComputer";
+            this.tbDestinationComputer.Size = new System.Drawing.Size(185, 22);
+            this.tbDestinationComputer.TabIndex = 102;
+            this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -331,10 +396,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).EndInit();
             this.spltContainer.ResumeLayout(false);
             this.tblMainLayout.ResumeLayout(false);
-            this.tblMainLayout.PerformLayout();
+            this.sourCompTabl.ResumeLayout(false);
+            this.sourCompTabl.PerformLayout();
             this.tbleListUsersButtons.ResumeLayout(false);
             this.pnlLogoBorder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLoadLogo)).EndInit();
+            this.destCompTabl.ResumeLayout(false);
+            this.destCompTabl.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -349,16 +417,20 @@
         private System.Windows.Forms.Label lblSourceComputer;
         private System.Windows.Forms.Label lblDestinationComputer;
         private System.Windows.Forms.Label lblUserList;
-        private System.Windows.Forms.TextBox tbSourceComputer;
-        private System.Windows.Forms.TextBox tbDestinationComputer;
         private System.Windows.Forms.ListBox lbxUsers;
         private System.Windows.Forms.Button btStartStop;
         private System.Windows.Forms.Button btnListSource;
         private System.Windows.Forms.Button btnListStore;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.PictureBox imgLoadLogo;
         private System.Windows.Forms.Panel pnlLogoBorder;
         private System.Windows.Forms.TableLayoutPanel tbleListUsersButtons;
+        private System.Windows.Forms.TableLayoutPanel sourCompTabl;
+        private System.Windows.Forms.TextBox tbSourceComputer;
+        private System.Windows.Forms.Button btnAFillSrc;
+        private System.Windows.Forms.TableLayoutPanel destCompTabl;
+        private System.Windows.Forms.Button btnAFillDest;
+        private System.Windows.Forms.TextBox tbDestinationComputer;
+        private System.Windows.Forms.PictureBox imgLoadLogo;
     }
 }
 

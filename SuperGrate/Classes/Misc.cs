@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 using Microsoft.Win32;
 using System.IO;
 using System.Net.NetworkInformation;
-using System.DirectoryServices.AccountManagement;
+using System.Security.Principal;
+using System.Management;
 
 namespace SuperGrate
 {
     class Misc
     {
-        static private PrincipalContext DomContext = new PrincipalContext(ContextType.Domain);
+        static public Dictionary<string, string> LocalSIDToUser = new Dictionary<string, string>();
         static public async Task<bool> Ping(string Host)
         {
             try
@@ -35,16 +36,50 @@ namespace SuperGrate
                 return false;
             }
         }
-        public static UserPrincipal GetUserByIdentity(string Identity)
+        public static void GetLocalUsersSIDsFromHost(string Host)
         {
+            LocalSIDToUser.Clear();
             try
             {
-                return UserPrincipal.FindByIdentity(DomContext, Identity);
+                ManagementScope scope = new ManagementScope(@"\\" + Host + @"\root\cimv2");
+                scope.Connect();
+                ObjectQuery query = new ObjectQuery("SELECT SID, Caption FROM Win32_UserAccount WHERE LocalAccount=TRUE");
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
+                ManagementObjectCollection collection = searcher.Get();
+                foreach (ManagementObject manObj in collection)
+                {
+                    LocalSIDToUser.Add((string)manObj["SID"], (string)manObj["Caption"]);
+                }
             }
             catch(Exception e)
             {
-                Logger.Exception(e, "Failed to lookup: " + Identity + ".");
-                return null;
+                Logger.Exception(e, "Failed to get a list of Local Users' SIDs from host: " + Host + ".");
+            }
+        }
+        public static string GetUserByIdentity(string Identity)
+        {
+            try
+            {
+                return new SecurityIdentifier(Identity).Translate(typeof(NTAccount)).ToString();
+            }
+            catch(Exception e)
+            {
+                if(LocalSIDToUser.ContainsKey(Identity) && LocalSIDToUser[Identity] != "")
+                {
+                    return LocalSIDToUser[Identity];
+                }
+                string fNTAccount = Path.Combine(Config.Settings["MigrationStorePath"], Identity, "ntaccount");
+                if (File.Exists(fNTAccount))
+                {
+                    string NTAccount = File.ReadAllText(fNTAccount);
+                    if(NTAccount != "")
+                    {
+                        return NTAccount;
+                    }
+                }
+                Logger.Verbose(e.Message);
+                Logger.Warning("Failed to lookup: " + Identity + ".");
+                return Identity;
             }
         }
         public static Task<Dictionary<string, string>> GetUsersFromHost(string Host)
@@ -59,14 +94,12 @@ namespace SuperGrate
                         RegistryKey remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
                         RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
                         Logger.Information("Getting list of users on: " + Host + "...");
+                        GetLocalUsersSIDsFromHost(Host);
                         foreach (string SID in profileList.GetSubKeyNames())
                         {
-                            UserPrincipal user = GetUserByIdentity(SID);
-                            if (user != null)
-                            {
-                                Logger.Verbose("Found: " + user.Name);
-                                results.Add(SID, user.UserPrincipalName);
-                            }
+                            string user = GetUserByIdentity(SID);
+                            Logger.Verbose("Found: " + user);
+                            results.Add(SID, user);
                         }
                         Logger.Success("Users listed successfully.");
                         return results;
@@ -99,12 +132,9 @@ namespace SuperGrate
                     foreach (string directory in Directory.EnumerateDirectories(StorePath))
                     {
                         DirectoryInfo info = new DirectoryInfo(directory);
-                        UserPrincipal user = GetUserByIdentity(info.Name);
-                        if (user != null)
-                        {
-                            Logger.Verbose("Found: " + user.Name);
-                            results.Add(info.Name, user.UserPrincipalName);
-                        }
+                        string user = GetUserByIdentity(info.Name);
+                        Logger.Verbose("Found: " + user);
+                        results.Add(info.Name, user);
                     }
                     Logger.Success("Users listed successfully.");
                     return results;
@@ -119,7 +149,7 @@ namespace SuperGrate
         public static Task DeleteFromStore(string SID)
         {
             return Task.Run(() => {
-                string name = GetUserByIdentity(SID).Name;
+                string name = GetUserByIdentity(SID);
                 Logger.Information("Deleting '" + name + "' from the Store...");
                 try
                 {

@@ -40,13 +40,13 @@ namespace SuperGrate
                     if(Canceled || Failed) break;
                     if (Mode == USMTMode.LoadState)
                     {
-                        Logger.Information("Applying user state: '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
+                        Logger.Information("Applying user state: '" + Misc.GetUserByIdentity(SID) + "' on '" + CurrentTarget + "'...");
                         Failed = !await DownloadFromStore(SID);
                         if (Canceled || Failed) break;
                     }
                     else
                     {
-                        Logger.Information("Capturing user state: '" + Misc.GetUserByIdentity(SID).Name + "' on '" + CurrentTarget + "'...");
+                        Logger.Information("Capturing user state: '" + Misc.GetUserByIdentity(SID) + "' on '" + CurrentTarget + "'...");
                     }
                     Failed = !await StartRemoteProcess(
                         @"C:\SuperGrate\" + exec + " " +
@@ -176,6 +176,9 @@ namespace SuperGrate
                 try
                 {
                     Directory.CreateDirectory(Destination);
+                    StreamWriter fs = File.CreateText(Path.Combine(Destination, "ntaccount"));
+                    fs.Write(Misc.GetUserByIdentity(SID));
+                    fs.Close();
                     Copy.CopyFile(
                         Path.Combine(@"\\", Main.SourceComputer, @"C$\SuperGrate\USMT\USMT.MIG"),
                         Path.Combine(Destination, "USMT.MIG")
@@ -185,6 +188,10 @@ namespace SuperGrate
                 }
                 catch(Exception e)
                 {
+                    if (Directory.Exists(Destination))
+                    {
+                        Directory.Delete(Destination, true);
+                    }
                     Logger.Exception(e, "Failed to upload user state to the Store.");
                     return false;
                 }
@@ -224,7 +231,9 @@ namespace SuperGrate
                     ManagementScope mScope = new ManagementScope(@"\\" + CurrentTarget + @"\root\cimv2", conOps);
                     ManagementPath mPath = new ManagementPath("Win32_Process");
                     ManagementClass mClass = new ManagementClass(mScope, mPath, null);
-                    mClass.InvokeMethod("Create", new object[] { CLI, CurrentDirectory });
+                    ManagementClass startup = new ManagementClass("WIN32_ProcessStartup");
+                    startup["ShowWindow"] = 0;
+                    mClass.InvokeMethod("Create", new object[] { CLI, CurrentDirectory, startup });
                     return true;
                 }
                 catch(Exception e)

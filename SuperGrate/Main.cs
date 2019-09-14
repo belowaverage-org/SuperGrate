@@ -43,6 +43,8 @@ namespace SuperGrate
                     imgLoadLogo.Enabled = true;
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
+                    btnAFillSrc.Enabled =
+                    btnAFillDest.Enabled =
                     btnListSource.Enabled =
                     btnListStore.Enabled =
                     btnDelete.Enabled =
@@ -54,6 +56,8 @@ namespace SuperGrate
                     imgLoadLogo.Enabled = false;
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
+                    btnAFillSrc.Enabled =
+                    btnAFillDest.Enabled =
                     btnListSource.Enabled =
                     btnListStore.Enabled =
                     btnDelete.Enabled =
@@ -147,12 +151,12 @@ namespace SuperGrate
             }
             if (lbxUsers.SelectedIndices.Count != 0 && CurrentListSource == ListSources.MigrationStore)
             {
-                tbSourceComputer.Enabled = false;
+                tbSourceComputer.Enabled = btnAFillSrc.Enabled = false;
                 btnDelete.Enabled = true;
             }
             else
             {
-                tbSourceComputer.Enabled = true;
+                tbSourceComputer.Enabled = btnAFillSrc.Enabled = true;
                 btnDelete.Enabled = false;
             }
             if(tbSourceComputer.Text == "")
@@ -194,6 +198,14 @@ namespace SuperGrate
             {
                 btnListSource.PerformClick();
             }
+        }
+        private void BtnAFillSrc_Click(object sender, EventArgs e)
+        {
+            tbSourceComputer.Text = Environment.MachineName;
+        }
+        private void BtnAFillDest_Click(object sender, EventArgs e)
+        {
+            tbDestinationComputer.Text = Environment.MachineName;
         }
     }
     public enum ListSources
