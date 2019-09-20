@@ -10,18 +10,27 @@ namespace SuperGrateInstaller
         public static Button Previous;
         private static Panel Panel;
         private static InstallPage CurrentPage;
-        public Main()
+        private static string[] Arguments;
+        public Main(string[] args)
         {
             InitializeComponent();
             Panel = panelPage;
             Next = btnNextFinish;
             Previous = btnPrevious;
+            Arguments = args;
         }
         private void Main_Load(object sender, EventArgs e)
         {
             Icon = Properties.Resources.Icon;
             pbLogo.Image = new Icon(Properties.Resources.Icon, 80, 80).ToBitmap();
-            ChangePage(new Pages.ElevatePage());
+            if(Arguments.Length == 1 && Arguments[0] == "3759")
+            {
+                ChangePage(new Pages.InstallLocalPage());
+            }
+            else
+            {
+                ChangePage(new Pages.InitialPage());
+            }
         }
         /// <summary>
         /// Changes the currently displayed "install page".

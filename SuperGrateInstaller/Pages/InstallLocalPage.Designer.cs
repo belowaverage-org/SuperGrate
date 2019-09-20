@@ -79,7 +79,6 @@
             this.Name = "InstallLocalPage";
             this.Size = new System.Drawing.Size(600, 250);
             this.OnPrevious += new System.EventHandler(this.NetworkPage_OnPrevious);
-            this.Load += new System.EventHandler(this.InstallLocalPage_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

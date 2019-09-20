@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Security.Principal;
 
 namespace SuperGrateInstaller.Pages
 {
@@ -21,14 +20,6 @@ namespace SuperGrateInstaller.Pages
             fileDialog.SelectedPath = tbNetworkPath.Text.Replace(@"\Super Grate", "");
             fileDialog.ShowDialog();
             tbNetworkPath.Text = Path.Combine(fileDialog.SelectedPath, "Super Grate");
-        }
-        private void InstallLocalPage_Load(object sender, EventArgs e)
-        {
-            WindowsIdentity ID = WindowsIdentity.GetCurrent();
-            if (ID.User == ID.Owner)
-            {
-                Main.ChangePage(new ElevatePage());
-            }
         }
     }
 }

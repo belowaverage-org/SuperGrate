@@ -51,12 +51,6 @@
     <Compile Include="Classes\InstallPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Pages\ElevatePage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\ElevatePage.Designer.cs">
-      <DependentUpon>ElevatePage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pages\InstallNetworkPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -83,9 +77,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Pages\ElevatePage.resx">
-      <DependentUpon>ElevatePage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\InstallNetworkPage.resx">
       <DependentUpon>InstallNetworkPage.cs</DependentUpon>
     </EmbeddedResource>
