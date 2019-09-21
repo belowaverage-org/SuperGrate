@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Super Grate - Remote User Migration & Backup")]
-[assembly: AssemblyDescription("Super Grate - Dylan Bickerstaff")]
+[assembly: AssemblyDescription("Super Grate is a tool part of the Super Suite that can perform remote execution of Microsoft's USMT (User State Migration Tool) on any domain joined PC, or local execution on any non-joined PC.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Dylan Bickerstaff")]
-[assembly: AssemblyProduct("Super Grate - Dylan Bickerstaff")]
-[assembly: AssemblyCopyright("Copyright ©  2019 - Dylan Bickerstaff")]
+[assembly: AssemblyProduct("Super Grate")]
+[assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("Dylan Bickerstaff")]
 [assembly: AssemblyCulture("")]
 

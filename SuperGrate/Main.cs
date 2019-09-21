@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace SuperGrate
 {
@@ -15,6 +16,7 @@ namespace SuperGrate
         public static ListSources CurrentListSource = ListSources.Unknown;
         private static bool isRunning = false;
         private string[] MainParameters = null;
+        private bool CloseRequested = false;
         public Main(string[] parameters)
         {
             MainParameters = parameters;
@@ -28,7 +30,7 @@ namespace SuperGrate
         private void Main_Load(object sender, EventArgs e)
         {
             Config.LoadConfig(MainParameters);
-            Logger.Success("Welcome to Super Grate!");
+            Logger.Success("Welcome to Super Grate! v" + Application.ProductVersion);
             Logger.Information("Enter some information to get started!");
             UpdateFormRestrictions();
         }
@@ -40,6 +42,7 @@ namespace SuperGrate
                 Progress.Value = 0;
                 if (value)
                 {
+                    isRunning = true;
                     imgLoadLogo.Enabled = true;
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
@@ -53,6 +56,7 @@ namespace SuperGrate
                 }
                 else
                 {
+                    isRunning = false;
                     imgLoadLogo.Enabled = false;
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
@@ -64,8 +68,8 @@ namespace SuperGrate
                     lbxUsers.Enabled =
                     true;
                     UpdateFormRestrictions();
+                    if (CloseRequested) Close();
                 }
-                isRunning = value;
             }
         }
         private async void BtStartStop_Click(object sender, EventArgs e)
@@ -206,6 +210,37 @@ namespace SuperGrate
         private void BtnAFillDest_Click(object sender, EventArgs e)
         {
             tbDestinationComputer.Text = Environment.MachineName;
+        }
+        private void MiExitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        private async void MiSaveLog_Click(object sender, EventArgs e)
+        {
+            dialogSaveLog.FileName = "SuperGrate_" + DateTime.Now.ToShortDateString().Replace('/', '-') + "_" + DateTime.Now.ToLongTimeString().Replace(':', '-');
+            dialogSaveLog.ShowDialog();
+            await Logger.WriteLogToFile(dialogSaveLog.OpenFile());
+        }
+        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (Running)
+            {
+                e.Cancel = true;
+                CloseRequested = true;
+                USMT.Cancel();
+            }
+        }
+        private void MiAboutSG_Click(object sender, EventArgs e)
+        {
+            new Controls.About().ShowDialog();
+        }
+        private void MiDocumentation_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/belowaverage-org/SuperGrate/wiki");
+        }
+        private void MiIssues_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/belowaverage-org/SuperGrate/issues");
         }
     }
     public enum ListSources

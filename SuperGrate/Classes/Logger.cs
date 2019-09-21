@@ -1,46 +1,65 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace SuperGrate
 {
     class Logger
     {
         public static bool VerboseEnabled = false;
+        public static List<string> Log = new List<string>();
         private static void WriteLog(string Text, Color Color, bool Raw = false)
         {
-            Main.Form.Invoke(new Action(() => {
-                Main.LoggerBox.SelectionColor = Color;
-                if (!Raw)
+            if (!Raw)
+            {
+                Text = DateTime.Now.ToLongTimeString() + "> " + Text;
+                Text = Text + "\n";
+            }
+            try
+            {
+                Main.Form.Invoke(new Action(() =>
                 {
-                    Text = DateTime.Now.ToShortTimeString() + "> " + Text;
-                    Text = Text + "\n";
-                }
-                Main.LoggerBox.AppendText(Text);
-                try
-                {
-                    Main.LoggerBox.ScrollToCaret();
-                }
-                catch(Exception)
-                {
-                    Console.WriteLine("Ignoring an error when user clicks off of an input into the Log Box.");
-                }
-            }));
+                    Main.LoggerBox.SelectionColor = Color;
+                    Main.LoggerBox.AppendText(Text);
+                    try
+                    {
+                        Main.LoggerBox.ScrollToCaret();
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Ignoring an error when user clicks off of an input into the Log Box.");
+                    }
+                }));
+            }
+            catch (Exception) {
+                Console.WriteLine(Text);
+            }
+        }
+        private static void WriteMemoryLog(string Text, string Type)
+        {
+            Log.Add("[" + Type + "]<" + DateTime.Now.ToLongTimeString() + "> " + Text);
         }
         public static void Information(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.White, Raw);
+            WriteMemoryLog(Text, "INFO");
         }
         public static void Success(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.Green, Raw);
+            WriteMemoryLog(Text, "SUCCESS");
         }
         public static void Warning(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.Yellow, Raw);
+            WriteMemoryLog(Text, "WARNING");
         }
         public static void Error(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.Red, Raw);
+            WriteMemoryLog(Text, "ERROR");
         }
         public static void Verbose(string Text, bool Raw = false)
         {
@@ -48,6 +67,7 @@ namespace SuperGrate
             {
                 WriteLog(Text, Color.Gray, Raw);
             }
+            WriteMemoryLog(Text, "VERBOSE");
         }
         public static void Exception(Exception Exception, string Text)
         {
@@ -69,6 +89,18 @@ namespace SuperGrate
                     Main.Progress.Value = Percent;
                 }
             }));
+        }
+        public static Task WriteLogToFile(Stream fs)
+        {
+            return Task.Run(() => {
+                StreamWriter sw = new StreamWriter(fs);
+                foreach(string line in Log)
+                {
+                    sw.WriteLine(line);
+                }
+                sw.Flush();
+                sw.Close();
+            });
         }
     }
 }

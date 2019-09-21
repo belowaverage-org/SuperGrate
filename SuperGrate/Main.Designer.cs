@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LogBox = new System.Windows.Forms.RichTextBox();
             this.pbMain = new System.Windows.Forms.ProgressBar();
             this.logTable = new System.Windows.Forms.TableLayoutPanel();
@@ -50,6 +51,24 @@
             this.destCompTabl = new System.Windows.Forms.TableLayoutPanel();
             this.btnAFillDest = new System.Windows.Forms.Button();
             this.tbDestinationComputer = new System.Windows.Forms.TextBox();
+            this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.miSaveLog = new System.Windows.Forms.MenuItem();
+            this.menuItem4 = new System.Windows.Forms.MenuItem();
+            this.miExitButton = new System.Windows.Forms.MenuItem();
+            this.menuItem5 = new System.Windows.Forms.MenuItem();
+            this.menuItem6 = new System.Windows.Forms.MenuItem();
+            this.menuItem7 = new System.Windows.Forms.MenuItem();
+            this.menuItem8 = new System.Windows.Forms.MenuItem();
+            this.menuItem9 = new System.Windows.Forms.MenuItem();
+            this.menuItem10 = new System.Windows.Forms.MenuItem();
+            this.menuItem11 = new System.Windows.Forms.MenuItem();
+            this.menuItem12 = new System.Windows.Forms.MenuItem();
+            this.miDocumentation = new System.Windows.Forms.MenuItem();
+            this.miIssues = new System.Windows.Forms.MenuItem();
+            this.menuItem13 = new System.Windows.Forms.MenuItem();
+            this.miAboutSG = new System.Windows.Forms.MenuItem();
+            this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -374,6 +393,124 @@
             this.tbDestinationComputer.TabIndex = 102;
             this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
             // 
+            // MainMenu
+            // 
+            this.MainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1,
+            this.menuItem5,
+            this.menuItem12});
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 0;
+            this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.miSaveLog,
+            this.menuItem4,
+            this.miExitButton});
+            this.menuItem1.Text = "File";
+            // 
+            // miSaveLog
+            // 
+            this.miSaveLog.Index = 0;
+            this.miSaveLog.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
+            this.miSaveLog.Text = "Save Log...";
+            this.miSaveLog.Click += new System.EventHandler(this.MiSaveLog_Click);
+            // 
+            // menuItem4
+            // 
+            this.menuItem4.Index = 1;
+            this.menuItem4.Text = "-";
+            // 
+            // miExitButton
+            // 
+            this.miExitButton.Index = 2;
+            this.miExitButton.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
+            this.miExitButton.Text = "Exit";
+            this.miExitButton.Click += new System.EventHandler(this.MiExitButton_Click);
+            // 
+            // menuItem5
+            // 
+            this.menuItem5.Index = 1;
+            this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem6,
+            this.menuItem11});
+            this.menuItem5.Text = "Setup";
+            // 
+            // menuItem6
+            // 
+            this.menuItem6.Index = 0;
+            this.menuItem6.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem7,
+            this.menuItem8});
+            this.menuItem6.Text = "Edit Configuration";
+            // 
+            // menuItem7
+            // 
+            this.menuItem7.Index = 0;
+            this.menuItem7.Text = "Super Grate...";
+            // 
+            // menuItem8
+            // 
+            this.menuItem8.Index = 1;
+            this.menuItem8.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem9,
+            this.menuItem10});
+            this.menuItem8.Text = "USMT";
+            // 
+            // menuItem9
+            // 
+            this.menuItem9.Index = 0;
+            this.menuItem9.Text = "x86...";
+            // 
+            // menuItem10
+            // 
+            this.menuItem10.Index = 1;
+            this.menuItem10.Text = "x64...";
+            // 
+            // menuItem11
+            // 
+            this.menuItem11.Index = 1;
+            this.menuItem11.Text = "Settings...";
+            // 
+            // menuItem12
+            // 
+            this.menuItem12.Index = 2;
+            this.menuItem12.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.miDocumentation,
+            this.miIssues,
+            this.menuItem13,
+            this.miAboutSG});
+            this.menuItem12.Text = "Help";
+            // 
+            // miDocumentation
+            // 
+            this.miDocumentation.Index = 0;
+            this.miDocumentation.Text = "Documentation";
+            this.miDocumentation.Click += new System.EventHandler(this.MiDocumentation_Click);
+            // 
+            // miIssues
+            // 
+            this.miIssues.Index = 1;
+            this.miIssues.Text = "Issues";
+            this.miIssues.Click += new System.EventHandler(this.MiIssues_Click);
+            // 
+            // menuItem13
+            // 
+            this.menuItem13.Index = 2;
+            this.menuItem13.Text = "-";
+            // 
+            // miAboutSG
+            // 
+            this.miAboutSG.Index = 3;
+            this.miAboutSG.Text = "About Super Grate";
+            this.miAboutSG.Click += new System.EventHandler(this.MiAboutSG_Click);
+            // 
+            // dialogSaveLog
+            // 
+            this.dialogSaveLog.Filter = "Text File|*.txt|Log File|*.log";
+            this.dialogSaveLog.FilterIndex = 2;
+            this.dialogSaveLog.Title = "Save Super Grate Log...";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -384,11 +521,13 @@
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Menu = this.MainMenu;
             this.MinimumSize = new System.Drawing.Size(680, 320);
             this.Name = "Main";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Super Grate - Remote User Migration & Backup";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.logTable.ResumeLayout(false);
             this.spltContainer.Panel1.ResumeLayout(false);
@@ -431,6 +570,24 @@
         private System.Windows.Forms.Button btnAFillDest;
         private System.Windows.Forms.TextBox tbDestinationComputer;
         private System.Windows.Forms.PictureBox imgLoadLogo;
+        private System.Windows.Forms.MainMenu MainMenu;
+        private System.Windows.Forms.MenuItem menuItem1;
+        private System.Windows.Forms.MenuItem miExitButton;
+        private System.Windows.Forms.MenuItem miSaveLog;
+        private System.Windows.Forms.MenuItem menuItem4;
+        private System.Windows.Forms.MenuItem menuItem5;
+        private System.Windows.Forms.MenuItem menuItem6;
+        private System.Windows.Forms.MenuItem menuItem7;
+        private System.Windows.Forms.MenuItem menuItem8;
+        private System.Windows.Forms.MenuItem menuItem9;
+        private System.Windows.Forms.MenuItem menuItem10;
+        private System.Windows.Forms.MenuItem menuItem11;
+        private System.Windows.Forms.MenuItem menuItem12;
+        private System.Windows.Forms.MenuItem miDocumentation;
+        private System.Windows.Forms.MenuItem miIssues;
+        private System.Windows.Forms.MenuItem menuItem13;
+        private System.Windows.Forms.MenuItem miAboutSG;
+        private System.Windows.Forms.SaveFileDialog dialogSaveLog;
     }
 }
 
