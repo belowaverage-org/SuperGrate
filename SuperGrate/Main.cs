@@ -104,9 +104,6 @@ namespace SuperGrate
         private async void BtnListSource_Click(object sender, EventArgs e)
         {
             Running = true;
-
-            await Misc.GetRemoteArch(tbSourceComputer.Text);
-
             lbxUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> results = await Misc.GetUsersFromHost(tbSourceComputer.Text);
