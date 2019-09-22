@@ -162,5 +162,30 @@ namespace SuperGrate
                 }
             });
         }
+        public static Task<string> GetRemoteArch(string Host)
+        {
+            Logger.Information("Reading OS Architecture...");
+            return Task.Run(() => {
+                try
+                {
+                    ManagementScope scope = new ManagementScope(@"\\" + Host + @"\root\cimv2");
+                    scope.Connect();
+                    ObjectQuery query = new ObjectQuery("SELECT OSArchitecture FROM Win32_OperatingSystem");
+                    ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
+                    ManagementObjectCollection collection = searcher.Get();
+                    foreach (ManagementObject manObj in collection)
+                    {
+                        string arch = (string)manObj["OSArchitecture"];
+                        Logger.Information("OS Architecture is: " + arch + ".");
+                        return arch;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logger.Exception(e, "Failed to read the OS Architecture from host: " + Host + ".");
+                }
+                return null;
+            });
+        }
     }
 }

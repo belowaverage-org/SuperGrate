@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Drawing;
 
 namespace SuperGrate.Controls
 {
@@ -16,6 +17,7 @@ namespace SuperGrate.Controls
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
+            pbLogo.Image = new Icon(Properties.Resources.supergrate, 100, 100).ToBitmap();
         }
 
         #region Assembly Attribute Accessors

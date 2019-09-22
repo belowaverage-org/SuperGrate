@@ -407,7 +407,7 @@
             this.miSaveLog,
             this.menuItem4,
             this.miExitButton});
-            this.menuItem1.Text = "File";
+            this.menuItem1.Text = "&File";
             // 
             // miSaveLog
             // 
@@ -434,7 +434,7 @@
             this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem6,
             this.menuItem11});
-            this.menuItem5.Text = "Setup";
+            this.menuItem5.Text = "&Setup";
             // 
             // menuItem6
             // 
@@ -480,7 +480,7 @@
             this.miIssues,
             this.menuItem13,
             this.miAboutSG});
-            this.menuItem12.Text = "Help";
+            this.menuItem12.Text = "&Help";
             // 
             // miDocumentation
             // 
