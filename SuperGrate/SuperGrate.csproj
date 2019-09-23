@@ -81,9 +81,6 @@
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Net.Http">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System.Windows.Forms">
       <Private>False</Private>
     </Reference>
@@ -97,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\Copy.cs" />
+    <Compile Include="Classes\Download.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Misc.cs" />
     <Compile Include="Classes\USMT.cs" />

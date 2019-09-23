@@ -27,12 +27,17 @@ namespace SuperGrate
             lbxUsers.Tag = new string[0];
             Icon = Properties.Resources.supergrate;
         }
-        private void Main_Load(object sender, EventArgs e)
+        private async void Main_Load(object sender, EventArgs e)
         {
             Config.LoadConfig(MainParameters);
             Logger.Success("Welcome to Super Grate! v" + Application.ProductVersion);
             Logger.Information("Enter some information to get started!");
             UpdateFormRestrictions();
+
+            Logger.Information("Downloading...");
+            await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", @".\asdf.zip").Start();
+            Logger.Success("Done!");
+
         }
         private bool Running {
             get {
