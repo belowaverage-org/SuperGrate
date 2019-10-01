@@ -223,8 +223,10 @@ namespace SuperGrate
         private async void MiSaveLog_Click(object sender, EventArgs e)
         {
             dialogSaveLog.FileName = "SuperGrate_" + DateTime.Now.ToShortDateString().Replace('/', '-') + "_" + DateTime.Now.ToLongTimeString().Replace(':', '-');
-            dialogSaveLog.ShowDialog();
-            await Logger.WriteLogToFile(dialogSaveLog.OpenFile());
+            if (dialogSaveLog.ShowDialog() == DialogResult.OK)
+            {
+                await Logger.WriteLogToFile(dialogSaveLog.OpenFile());
+            }
         }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
