@@ -103,6 +103,14 @@ namespace SuperGrate
                 if (tbDestinationComputer.Text != "" && Running)
                 {
                     await USMT.Do(USMTMode.LoadState, SIDs);
+                    bool setting;
+                    if (bool.TryParse(Config.Settings["AutoDeleteFromStore"], out setting) && setting)
+                    {
+                        foreach (string sid in SIDs)
+                        {
+                            await Misc.DeleteFromStore(sid);
+                        }
+                    }
                 }
                 btStartStop.Text = "Start";
                 Running = false;
