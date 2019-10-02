@@ -159,8 +159,9 @@
   <ItemGroup>
     <None Include="Images\banner.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="Utilities\SuperGrateProfileDelete.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
