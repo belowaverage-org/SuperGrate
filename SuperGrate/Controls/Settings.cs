@@ -39,12 +39,14 @@ namespace SuperGrate.Controls
         }
         private async void BtnCancel_Click(object sender, EventArgs e)
         {
+            btnRevert.Enabled = false;
             Config.LoadConfig();
             RefreshSettings();
             string text = btnRevert.Text;
             btnRevert.Text = "Loaded!";
             await Task.Delay(1000);
             btnRevert.Text = text;
+            btnRevert.Enabled = true;
         }
         private void SettingsList_DoubleClick(object sender, EventArgs e)
         {
@@ -52,15 +54,18 @@ namespace SuperGrate.Controls
             {
                 new ChangeSetting(settingsList.SelectedItems[0].Text).ShowDialog();
                 RefreshSettings();
+                btnApply.Focus();
             }
         }
         private async void BtnSave_Click(object sender, EventArgs e)
         {
+            btnSave.Enabled = false;
             Config.SaveConfig();
             string text = btnSave.Text;
             btnSave.Text = "Saved!";
             await Task.Delay(1000);
             btnSave.Text = text;
+            btnSave.Enabled = true;
         }
         private void BtnApply_Click(object sender, EventArgs e)
         {
