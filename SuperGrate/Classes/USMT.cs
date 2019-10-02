@@ -12,6 +12,17 @@ namespace SuperGrate
         private static bool Failed = false;
         private static bool Running = false;
         private static string CurrentTarget = "";
+        private static string PayloadPathLocal
+        {
+            get {
+                return Config.Settings["SuperGratePayloadPath"];
+            }
+        }
+        private static string PayloadPathRemote {
+            get {
+                return PayloadPathLocal.Replace(':', '$');
+            }
+        }
         public static Task<bool> Do(USMTMode Mode, string[] SIDs)
         {
             Canceled = false;
@@ -49,14 +60,14 @@ namespace SuperGrate
                         Logger.Information("Capturing user state: '" + Misc.GetUserByIdentity(SID) + "' on '" + CurrentTarget + "'...");
                     }
                     Failed = !await StartRemoteProcess(
-                        @"C:\SuperGrate\" + exec + " " +
-                        @"C:\SuperGrate\ " +
+                        Path.Combine(PayloadPathLocal, exec) + " " +
+                        PayloadPathLocal + " " +
                         @"/ue:*\* " +
                         "/ui:" + SID + " " +
                         "/l:SuperGrate.log " +
                         "/progress:SuperGrate.progress " +
                         configParams
-                    , @"C:\SuperGrate\");
+                    , PayloadPathLocal);
                     if (Canceled || Failed) break;
                     Running = true;
                     StartWatchLog("SuperGrate.log");
@@ -90,7 +101,7 @@ namespace SuperGrate
                     {
                         if (Copy.CopyFolder(
                             @".\USMT\",
-                            Path.Combine(@"\\", CurrentTarget, @"C$\SuperGrate\")
+                            Path.Combine(@"\\", CurrentTarget, PayloadPathRemote)
                         ))
                         {
                             Logger.Success("USMT downloaded successfully.");
@@ -140,7 +151,7 @@ namespace SuperGrate
                 {
                     try
                     {
-                        Directory.Delete(Path.Combine(@"\\", CurrentTarget, @"C$\SuperGrate\"), true);
+                        Directory.Delete(Path.Combine(@"\\", CurrentTarget, PayloadPathRemote), true);
                         deleted = true;
                         break;
                     }
@@ -180,7 +191,7 @@ namespace SuperGrate
                     fs.Write(Misc.GetUserByIdentity(SID));
                     fs.Close();
                     Copy.CopyFile(
-                        Path.Combine(@"\\", Main.SourceComputer, @"C$\SuperGrate\USMT\USMT.MIG"),
+                        Path.Combine(@"\\", Main.SourceComputer, Path.Combine(PayloadPathRemote, @"USMT\USMT.MIG")),
                         Path.Combine(Destination, "USMT.MIG")
                     );
                     Logger.Success("User state successfully uploaded.");
@@ -201,7 +212,7 @@ namespace SuperGrate
         {
             return Task.Run(() => {
                 Logger.Information("Downloading user state to: " + Main.DestinationComputer + "...");
-                string Destination = Path.Combine(@"\\", Main.DestinationComputer, @"C$\SuperGrate\USMT\");
+                string Destination = Path.Combine(@"\\", Main.DestinationComputer, Path.Combine(PayloadPathRemote, "USMT"));
             try
             {
                 Directory.CreateDirectory(Destination);
@@ -276,7 +287,7 @@ namespace SuperGrate
         {
             try
             {
-                string logDirPath = Path.Combine(@"\\", CurrentTarget, @"C$\SuperGrate\");
+                string logDirPath = Path.Combine(@"\\", CurrentTarget, PayloadPathRemote);
                 string logFilePath = Path.Combine(logDirPath, LogFile);
                 FileSystemWatcher logFileWatcher = new FileSystemWatcher(logDirPath, LogFile);
                 logFileWatcher.NotifyFilter = NotifyFilters.LastWrite;
