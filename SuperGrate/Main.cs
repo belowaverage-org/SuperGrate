@@ -34,9 +34,12 @@ namespace SuperGrate
             Logger.Information("Enter some information to get started!");
             UpdateFormRestrictions();
 
+
+
+            /*
             Logger.Information("Downloading...");
             await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", @".\asdf.zip").Start();
-            Logger.Success("Done!");
+            Logger.Success("Done!");*/
 
         }
         private bool Running {
@@ -248,6 +251,10 @@ namespace SuperGrate
         private void MiIssues_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/belowaverage-org/SuperGrate/issues");
+        }
+        private void MiSettings_Click(object sender, EventArgs e)
+        {
+            new Controls.Settings().ShowDialog();
         }
     }
     public enum ListSources

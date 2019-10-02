@@ -12,7 +12,9 @@ namespace SuperGrate
             {"MigrationStorePath", @".\STORE"},
             {"XComment2", "ScanState.exe & LoadState.exe CLI Parameters: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax "},
             {"ScanStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /o"},
-            {"LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3"}
+            {"LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3"},
+            {"XComment3", "Delete the user from the migration store after a full transfer (source to destination)?"},
+            {"AutoDeleteFromStore", "false"}
         };
         public static void GenerateConfig()
         {

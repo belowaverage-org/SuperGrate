@@ -62,7 +62,7 @@
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.menuItem9 = new System.Windows.Forms.MenuItem();
             this.menuItem10 = new System.Windows.Forms.MenuItem();
-            this.menuItem11 = new System.Windows.Forms.MenuItem();
+            this.miSettings = new System.Windows.Forms.MenuItem();
             this.menuItem12 = new System.Windows.Forms.MenuItem();
             this.miDocumentation = new System.Windows.Forms.MenuItem();
             this.miIssues = new System.Windows.Forms.MenuItem();
@@ -433,7 +433,7 @@
             this.menuItem5.Index = 1;
             this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuItem6,
-            this.menuItem11});
+            this.miSettings});
             this.menuItem5.Text = "&Setup";
             // 
             // menuItem6
@@ -467,10 +467,11 @@
             this.menuItem10.Index = 1;
             this.menuItem10.Text = "x64...";
             // 
-            // menuItem11
+            // miSettings
             // 
-            this.menuItem11.Index = 1;
-            this.menuItem11.Text = "Settings...";
+            this.miSettings.Index = 1;
+            this.miSettings.Text = "Settings...";
+            this.miSettings.Click += new System.EventHandler(this.MiSettings_Click);
             // 
             // menuItem12
             // 
@@ -581,7 +582,7 @@
         private System.Windows.Forms.MenuItem menuItem8;
         private System.Windows.Forms.MenuItem menuItem9;
         private System.Windows.Forms.MenuItem menuItem10;
-        private System.Windows.Forms.MenuItem menuItem11;
+        private System.Windows.Forms.MenuItem miSettings;
         private System.Windows.Forms.MenuItem menuItem12;
         private System.Windows.Forms.MenuItem miDocumentation;
         private System.Windows.Forms.MenuItem miIssues;
