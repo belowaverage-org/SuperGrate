@@ -8,13 +8,19 @@ namespace SuperGrate
     class Config
     {
         public static Dictionary<string, string> Settings = new Dictionary<string, string>() {
-            {"XComment1", @"The UNC or Direct path to the USMT Migration Store E.g: \\ba-share\s$ or .\STORE."},
+            {"XComment5", @"Local path where Super Grate will deliver it's payload. (E.g: C:\SuperGrate\)"},
+            {"SuperGratePayloadPath", @"C:\SuperGrate\"},
+            {"XComment1", @"The UNC or Direct path to the USMT Migration Store (E.g: \\ba-share\s$ or .\STORE)"},
             {"MigrationStorePath", @".\STORE"},
-            {"XComment2", "ScanState.exe & LoadState.exe CLI Parameters: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax "},
+            {"XComment2", "ScanState.exe & LoadState.exe CLI Parameters. See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax "},
             {"ScanStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /o"},
             {"LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3"},
-            {"XComment3", "Delete the user from the migration store after a full transfer (source to destination)?"},
-            {"AutoDeleteFromStore", "false"}
+            {"XComment3", "Delete the user from the migration store after a full transfer? (source to destination)"},
+            {"AutoDeleteFromStore", "false"},
+            {"XComment4", "Prevent NT AUTHORITY & NT SERVICE accounts from being listed?"},
+            {"HideBuiltInAccounts", "true"},
+            {"XComment6", @"Write log to disk on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)"},
+            {"DumpLogHereOnExit", ""}
         };
         public static void SaveConfig()
         {
