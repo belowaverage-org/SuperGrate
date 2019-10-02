@@ -19,6 +19,8 @@ namespace SuperGrate
             {"AutoDeleteFromStore", "false"},
             {"XComment4", "Prevent NT AUTHORITY & NT SERVICE accounts from being listed?"},
             {"HideBuiltInAccounts", "true"},
+            {"XComment7", "Prevent unknown accounts from being listed?"},
+            {"HideUnknownSIDs", "false"},
             {"XComment6", @"Write log to disk on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)"},
             {"DumpLogHereOnExit", ""}
         };

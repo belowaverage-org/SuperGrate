@@ -114,11 +114,27 @@ namespace SuperGrate
             Running = true;
             lbxUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
-            Dictionary<string, string> results = await Misc.GetUsersFromHost(tbSourceComputer.Text);
-            if (results != null)
+            Dictionary<string, string> users = await Misc.GetUsersFromHost(tbSourceComputer.Text);
+            List<string> tags = new List<string>();
+            if (users != null)
             {
-                lbxUsers.Tag = results.Keys.ToArray();
-                lbxUsers.Items.AddRange(results.Values.ToArray());
+                bool setting;
+                foreach (KeyValuePair<string, string> user in users)
+                {
+                    if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out setting) && setting && (user.Value.Contains("NT AUTHORITY") || user.Value.Contains("NT SERVICE")))
+                    {
+                        Logger.Verbose("Skipped: " + user.Key + ": " + user.Value + ".");
+                        continue;
+                    }
+                    if (bool.TryParse(Config.Settings["HideUnknownSIDs"], out setting) && setting && user.Key == user.Value)
+                    {
+                        Logger.Verbose("Skipped unknown SID: " + user.Key + ".");
+                        continue;
+                    }
+                    lbxUsers.Items.Add(user.Value);
+                    tags.Add(user.Key);
+                }
+                lbxUsers.Tag = tags.ToArray();
                 CurrentListSource = ListSources.SourceComputer;
                 Logger.Success("Done!");
             }
