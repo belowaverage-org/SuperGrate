@@ -32,6 +32,9 @@
             this.Setting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSave = new System.Windows.Forms.Button();
+            this.lblHint = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnApply = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // settingsList
@@ -49,10 +52,11 @@
             this.settingsList.Location = new System.Drawing.Point(0, 0);
             this.settingsList.MultiSelect = false;
             this.settingsList.Name = "settingsList";
-            this.settingsList.Size = new System.Drawing.Size(550, 207);
+            this.settingsList.Size = new System.Drawing.Size(707, 320);
             this.settingsList.TabIndex = 0;
             this.settingsList.UseCompatibleStateImageBehavior = false;
             this.settingsList.View = System.Windows.Forms.View.Details;
+            this.settingsList.DoubleClick += new System.EventHandler(this.SettingsList_DoubleClick);
             // 
             // Setting
             // 
@@ -68,25 +72,65 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSave.Location = new System.Drawing.Point(446, 216);
+            this.btnSave.Location = new System.Drawing.Point(505, 329);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(95, 29);
             this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "&Save";
+            this.btnSave.Text = "&Save to Disk";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // lblHint
+            // 
+            this.lblHint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblHint.AutoEllipsis = true;
+            this.lblHint.Location = new System.Drawing.Point(10, 337);
+            this.lblHint.Name = "lblHint";
+            this.lblHint.Size = new System.Drawing.Size(388, 13);
+            this.lblHint.TabIndex = 2;
+            this.lblHint.Text = "Double Click a setting to change its value.";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnCancel.Location = new System.Drawing.Point(404, 329);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(95, 29);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Text = "&Load from Disk";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            // 
+            // btnApply
+            // 
+            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnApply.Location = new System.Drawing.Point(606, 329);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(95, 29);
+            this.btnApply.TabIndex = 4;
+            this.btnApply.Text = "&Close";
+            this.btnApply.UseVisualStyleBackColor = false;
+            this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(550, 253);
+            this.ClientSize = new System.Drawing.Size(707, 366);
+            this.Controls.Add(this.btnApply);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.lblHint);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.settingsList);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(227, 177);
             this.Name = "Settings";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -102,5 +146,8 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ColumnHeader Setting;
         private System.Windows.Forms.ColumnHeader Value;
+        private System.Windows.Forms.Label lblHint;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnApply;
     }
 }

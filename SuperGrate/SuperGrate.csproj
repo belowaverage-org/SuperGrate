@@ -104,6 +104,12 @@
     <Compile Include="Controls\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ChangeSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ChangeSetting.Designer.cs">
+      <DependentUpon>ChangeSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ChangeSetting.resx">
+      <DependentUpon>ChangeSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>

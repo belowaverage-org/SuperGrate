@@ -16,7 +16,7 @@ namespace SuperGrate
             {"XComment3", "Delete the user from the migration store after a full transfer (source to destination)?"},
             {"AutoDeleteFromStore", "false"}
         };
-        public static void GenerateConfig()
+        public static void SaveConfig()
         {
             Logger.Warning("Generating new SuperGrate.xml config.");
             XElement root = new XElement("SuperGrate");
@@ -37,7 +37,7 @@ namespace SuperGrate
         {
             if(!File.Exists(@".\SuperGrate.xml"))
             {
-                GenerateConfig();
+                SaveConfig();
             }
             try
             {
