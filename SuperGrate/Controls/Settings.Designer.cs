@@ -33,7 +33,7 @@
             this.Value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSave = new System.Windows.Forms.Button();
             this.lblHint = new System.Windows.Forms.Label();
-            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnRevert = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -93,15 +93,15 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCancel.Location = new System.Drawing.Point(404, 329);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(95, 29);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "&Load from Disk";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.btnRevert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRevert.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnRevert.Location = new System.Drawing.Point(404, 329);
+            this.btnRevert.Name = "btnCancel";
+            this.btnRevert.Size = new System.Drawing.Size(95, 29);
+            this.btnRevert.TabIndex = 3;
+            this.btnRevert.Text = "&Load from Disk";
+            this.btnRevert.UseVisualStyleBackColor = false;
+            this.btnRevert.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnApply
             // 
@@ -122,7 +122,7 @@
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(707, 366);
             this.Controls.Add(this.btnApply);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnRevert);
             this.Controls.Add(this.lblHint);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.settingsList);
@@ -147,7 +147,7 @@
         private System.Windows.Forms.ColumnHeader Setting;
         private System.Windows.Forms.ColumnHeader Value;
         private System.Windows.Forms.Label lblHint;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnRevert;
         private System.Windows.Forms.Button btnApply;
     }
 }

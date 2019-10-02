@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperGrate.Controls
@@ -36,10 +37,14 @@ namespace SuperGrate.Controls
             }
             settingsList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
-        private void BtnCancel_Click(object sender, EventArgs e)
+        private async void BtnCancel_Click(object sender, EventArgs e)
         {
             Config.LoadConfig();
             RefreshSettings();
+            string text = btnRevert.Text;
+            btnRevert.Text = "Loaded!";
+            await Task.Delay(1000);
+            btnRevert.Text = text;
         }
         private void SettingsList_DoubleClick(object sender, EventArgs e)
         {
@@ -49,10 +54,13 @@ namespace SuperGrate.Controls
                 RefreshSettings();
             }
         }
-        private void BtnSave_Click(object sender, EventArgs e)
+        private async void BtnSave_Click(object sender, EventArgs e)
         {
             Config.SaveConfig();
-            Close();
+            string text = btnSave.Text;
+            btnSave.Text = "Saved!";
+            await Task.Delay(1000);
+            btnSave.Text = text;
         }
         private void BtnApply_Click(object sender, EventArgs e)
         {

@@ -8,7 +8,7 @@ namespace SuperGrate
     class Config
     {
         public static Dictionary<string, string> Settings = new Dictionary<string, string>() {
-            {"XComment5", @"Local path where Super Grate will deliver it's payload. (E.g: C:\SuperGrate\)"},
+            {"XComment5", @"Local path on source computer where Super Grate will run USMT from. (E.g: C:\SuperGrate\)"},
             {"SuperGratePayloadPath", @"C:\SuperGrate\"},
             {"XComment1", @"The UNC or Direct path to the USMT Migration Store (E.g: \\ba-share\s$ or .\STORE)"},
             {"MigrationStorePath", @".\STORE"},
