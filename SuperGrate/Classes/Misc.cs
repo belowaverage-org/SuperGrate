@@ -11,7 +11,8 @@ namespace SuperGrate
 {
     class Misc
     {
-        static public Dictionary<string, string> LocalSIDToUser = new Dictionary<string, string>();
+        public static Dictionary<string, string> LocalSIDToUser = new Dictionary<string, string>();
+        private static bool ShouldCancelRemoteProfileDelete = false;
         static public async Task<bool> Ping(string Host)
         {
             try
@@ -168,16 +169,54 @@ namespace SuperGrate
         }
         public static Task DeleteFromTarget(string Target, string[] SIDs)
         {
-            return Task.Run(() =>
+            ShouldCancelRemoteProfileDelete = false;
+            return Task.Run(async () =>
             {
-                //Copy To Target
-                foreach (string SID in SIDs)
+                try
                 {
-                    string name = GetUserByIdentity(SID);
-                    Logger.Information("Deleting '" + name + "' from " + Target + "...");
-                    //Remote Run On Target
+                    Logger.Information("Sending Profile Delete Daemon...");
+                    string exePath = Path.Combine(@"\\" + Target, @"C$\ProgramData\SuperGratePD.exe");
+                    FileStream SuperGratePD = File.OpenWrite(exePath);
+                    SuperGratePD.Write(
+                        Properties.Resources.SuperGrateProfileDelete,
+                        0,
+                        Properties.Resources.SuperGrateProfileDelete.Length
+                    );
+                    SuperGratePD.Close();
+                    foreach (string SID in SIDs)
+                    {
+                        if (ShouldCancelRemoteProfileDelete) break;
+                        string name = GetUserByIdentity(SID);
+                        Logger.Information("Deleting '" + name + "' from " + Target + "...");
+                        await Remote.StartProcess(
+                            Target,
+                            @"C:\ProgramData\SuperGratePD.exe " + SID,
+                            @"C:\ProgramData\"
+                        );
+                        await Remote.WaitForProcessExit(Target, "SuperGratePD");
+                    }
+                    Logger.Information("Removing Daemon...");
+                    File.Delete(exePath);
+                    Logger.Success("Done.");
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to delete user(s) from target: " + Target + ".");
                 }
             });
+        }
+        public static async void CancelRemoteProfileDelete(string Target)
+        {
+            ShouldCancelRemoteProfileDelete = true;
+            Logger.Information("Sending KILL command to remote target...");
+            if (await Remote.KillProcess(Target, "SuperGratePD.exe"))
+            {
+                Logger.Success("KILL command sent.");
+            }
+            else
+            {
+                Logger.Error("Failed to send KILL command.");
+            }
         }
         public static Task<string> GetRemoteArch(string Host)
         {

@@ -14,7 +14,7 @@ namespace SuperGrate
         public static string SourceComputer;
         public static string DestinationComputer;
         public static ListSources CurrentListSource = ListSources.Unknown;
-        private static bool isRunning = false;
+        private static RunningTask storeRunningTask = RunningTask.None;
         private string[] MainParameters = null;
         private bool CloseRequested = false;
         public Main(string[] parameters)
@@ -27,7 +27,7 @@ namespace SuperGrate
             lbxUsers.Tag = new string[0];
             Icon = Properties.Resources.supergrate;
         }
-        private async void Main_Load(object sender, EventArgs e)
+        private void Main_Load(object sender, EventArgs e)
         {
             Config.LoadConfig(MainParameters);
             Logger.Success("Welcome to Super Grate! v" + Application.ProductVersion);
@@ -39,18 +39,20 @@ namespace SuperGrate
             /*
             Logger.Information("Downloading...");
             await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", @".\asdf.zip").Start();
-            Logger.Success("Done!");*/
+            Logger.Success("Done!");
+            */
 
         }
-        private bool Running {
+        private RunningTask Running {
             get {
-                return isRunning;
+                return storeRunningTask;
             }
             set {
                 Progress.Value = 0;
-                if (value)
+                if (value != RunningTask.None)
                 {
-                    isRunning = true;
+                    btStartStop.Text = "Stop";
+                    storeRunningTask = value;
                     imgLoadLogo.Enabled = true;
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
@@ -64,7 +66,8 @@ namespace SuperGrate
                 }
                 else
                 {
-                    isRunning = false;
+                    btStartStop.Text = "Start";
+                    storeRunningTask = value;
                     imgLoadLogo.Enabled = false;
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
@@ -82,14 +85,17 @@ namespace SuperGrate
         }
         private async void BtStartStop_Click(object sender, EventArgs e)
         {
-            if (Running)
+            if (Running == RunningTask.USMT)
             {
                 USMT.Cancel();
             }
-            else
+            else if(Running == RunningTask.RemoteProfileDelete)
             {
-                Running = true;
-                btStartStop.Text = "Stop";
+                Misc.CancelRemoteProfileDelete(SourceComputer);
+            }
+            else if(Running == RunningTask.None)
+            {
+                Running = RunningTask.USMT;
                 int count = 0;
                 string[] SIDs = new string[lbxUsers.SelectedIndices.Count];
                 foreach (int index in lbxUsers.SelectedIndices)
@@ -100,7 +106,7 @@ namespace SuperGrate
                 {
                     await USMT.Do(USMTMode.ScanState, SIDs);
                 }
-                if (tbDestinationComputer.Text != "" && Running)
+                if (tbDestinationComputer.Text != "" && Running == RunningTask.USMT)
                 {
                     await USMT.Do(USMTMode.LoadState, SIDs);
                     bool setting;
@@ -109,14 +115,13 @@ namespace SuperGrate
                         await Misc.DeleteFromStore(SIDs);
                     }
                 }
-                btStartStop.Text = "Start";
-                Running = false;
+                Running = RunningTask.None;
                 Logger.Information("Done.");
             }
         }
         private async void BtnListSource_Click(object sender, EventArgs e)
         {
-            Running = true;
+            Running = RunningTask.Unknown;
             lbxUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> users = await Misc.GetUsersFromHost(tbSourceComputer.Text);
@@ -143,11 +148,11 @@ namespace SuperGrate
                 CurrentListSource = ListSources.SourceComputer;
                 Logger.Success("Done!");
             }
-            Running = false;
+            Running = RunningTask.None;
         }
         private async void BtnListStore_Click(object sender, EventArgs e)
         {
-            Running = true;
+            Running = RunningTask.Unknown;
             lbxUsers.Items.Clear();
             lblUserList.Text = "Users in Migration Store:";
             Dictionary<string, string> results = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
@@ -157,7 +162,7 @@ namespace SuperGrate
                 lbxUsers.Items.AddRange(results.Values.ToArray());
                 CurrentListSource = ListSources.MigrationStore;
             }
-            Running = false;
+            Running = RunningTask.None;
         }
         private void LogBox_DoubleClick(object sender, EventArgs e)
         {
@@ -182,7 +187,7 @@ namespace SuperGrate
             {
                 btStartStop.Enabled = true;
             }
-            if (lbxUsers.SelectedIndices.Count != 0 && CurrentListSource == ListSources.MigrationStore)
+            if (lbxUsers.SelectedIndices.Count != 0)
             {
                 tbSourceComputer.Enabled = btnAFillSrc.Enabled = false;
                 btnDelete.Enabled = true;
@@ -217,15 +222,27 @@ namespace SuperGrate
         }
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
-            Running = true;
+            Running = RunningTask.RemoteProfileDelete;
             List<string> SIDs = new List<string>();
             foreach (int index in lbxUsers.SelectedIndices)
             {
                 SIDs.Add(((string[])lbxUsers.Tag)[index]);
             }
-            await Misc.DeleteFromStore(SIDs.ToArray());
-            Running = false;
-            btnListStore.PerformClick();
+            if(CurrentListSource == ListSources.MigrationStore)
+            {
+                btStartStop.Enabled = false;
+                await Misc.DeleteFromStore(SIDs.ToArray());
+                btStartStop.Enabled = true;
+                Running = RunningTask.None;
+                btnListStore.PerformClick();
+            }
+            else if(CurrentListSource == ListSources.SourceComputer)
+            {
+                await Misc.DeleteFromTarget(SourceComputer, SIDs.ToArray());
+                Running = RunningTask.None;
+                btnListSource.PerformClick();
+            }
+            Running = RunningTask.None;
         }
         private void TbSourceComputer_KeyDown(object sender, KeyEventArgs e)
         {
@@ -256,11 +273,11 @@ namespace SuperGrate
         }
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (Running)
+            if (Running != RunningTask.None)
             {
                 e.Cancel = true;
                 CloseRequested = true;
-                USMT.Cancel();
+                BtStartStop_Click(null, null);
             }
         }
         private void MiAboutSG_Click(object sender, EventArgs e)
@@ -285,5 +302,12 @@ namespace SuperGrate
         Unknown = -1,
         SourceComputer = 1,
         MigrationStore = 2
+    }
+    public enum RunningTask
+    {
+        Unknown = -2,
+        None = -1,
+        USMT = 1,
+        RemoteProfileDelete = 2
     }
 }
