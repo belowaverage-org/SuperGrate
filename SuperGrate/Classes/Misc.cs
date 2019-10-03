@@ -146,19 +146,36 @@ namespace SuperGrate
                 }
             });
         }
-        public static Task DeleteFromStore(string SID)
+        public static Task DeleteFromStore(string[] SIDs)
         {
-            return Task.Run(() => {
-                string name = GetUserByIdentity(SID);
-                Logger.Information("Deleting '" + name + "' from the Store...");
-                try
+            return Task.Run(() =>
+            {
+                foreach (string SID in SIDs)
                 {
-                    Directory.Delete(Path.Combine(Config.Settings["MigrationStorePath"], SID), true);
-                    Logger.Success("'" + name + "' successfully deleted from the Store.");
+                    string name = GetUserByIdentity(SID);
+                    Logger.Information("Deleting '" + name + "' from the Store...");
+                    try
+                    {
+                        Directory.Delete(Path.Combine(Config.Settings["MigrationStorePath"], SID), true);
+                        Logger.Success("'" + name + "' successfully deleted from the Store.");
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Exception(e, "Failed to delete '" + name + "' from the store.");
+                    }
                 }
-                catch(Exception e)
+            });
+        }
+        public static Task DeleteFromTarget(string Target, string[] SIDs)
+        {
+            return Task.Run(() =>
+            {
+                //Copy To Target
+                foreach (string SID in SIDs)
                 {
-                    Logger.Exception(e, "Failed to delete '" + name + "' from the store.");
+                    string name = GetUserByIdentity(SID);
+                    Logger.Information("Deleting '" + name + "' from " + Target + "...");
+                    //Remote Run On Target
                 }
             });
         }

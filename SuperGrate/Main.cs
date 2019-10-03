@@ -106,10 +106,7 @@ namespace SuperGrate
                     bool setting;
                     if (bool.TryParse(Config.Settings["AutoDeleteFromStore"], out setting) && setting)
                     {
-                        foreach (string sid in SIDs)
-                        {
-                            await Misc.DeleteFromStore(sid);
-                        }
+                        await Misc.DeleteFromStore(SIDs);
                     }
                 }
                 btStartStop.Text = "Start";
@@ -221,10 +218,12 @@ namespace SuperGrate
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
             Running = true;
+            List<string> SIDs = new List<string>();
             foreach (int index in lbxUsers.SelectedIndices)
             {
-                await Misc.DeleteFromStore(((string[])lbxUsers.Tag)[index]);
+                SIDs.Add(((string[])lbxUsers.Tag)[index]);
             }
+            await Misc.DeleteFromStore(SIDs.ToArray());
             Running = false;
             btnListStore.PerformClick();
         }
