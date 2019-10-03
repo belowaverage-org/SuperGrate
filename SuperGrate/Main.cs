@@ -33,15 +33,11 @@ namespace SuperGrate
             Logger.Success("Welcome to Super Grate! v" + Application.ProductVersion);
             Logger.Information("Enter some information to get started!");
             UpdateFormRestrictions();
-
-
-
             /*
             Logger.Information("Downloading...");
             await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", @".\asdf.zip").Start();
             Logger.Success("Done!");
             */
-
         }
         private RunningTask Running {
             get {
@@ -102,15 +98,20 @@ namespace SuperGrate
                 {
                     SIDs[count++] = ((string[])lbxUsers.Tag)[index];
                 }
+                bool setting;
+                bool success;
                 if (CurrentListSource == ListSources.SourceComputer)
                 {
-                    await USMT.Do(USMTMode.ScanState, SIDs);
+                    success = await USMT.Do(USMTMode.ScanState, SIDs);
+                    if (bool.TryParse(Config.Settings["AutoDeleteFromSource"], out setting) && setting && success)
+                    {
+                        await Misc.DeleteFromSource(SourceComputer, SIDs);
+                    }
                 }
                 if (tbDestinationComputer.Text != "" && Running == RunningTask.USMT)
                 {
-                    await USMT.Do(USMTMode.LoadState, SIDs);
-                    bool setting;
-                    if (bool.TryParse(Config.Settings["AutoDeleteFromStore"], out setting) && setting)
+                    success = await USMT.Do(USMTMode.LoadState, SIDs);
+                    if (bool.TryParse(Config.Settings["AutoDeleteFromStore"], out setting) && setting && success)
                     {
                         await Misc.DeleteFromStore(SIDs);
                     }
@@ -238,7 +239,7 @@ namespace SuperGrate
             }
             else if(CurrentListSource == ListSources.SourceComputer)
             {
-                await Misc.DeleteFromTarget(SourceComputer, SIDs.ToArray());
+                await Misc.DeleteFromSource(SourceComputer, SIDs.ToArray());
                 Running = RunningTask.None;
                 btnListSource.PerformClick();
             }

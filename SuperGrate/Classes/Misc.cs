@@ -167,7 +167,7 @@ namespace SuperGrate
                 }
             });
         }
-        public static Task DeleteFromTarget(string Target, string[] SIDs)
+        public static Task DeleteFromSource(string Target, string[] SIDs)
         {
             ShouldCancelRemoteProfileDelete = false;
             return Task.Run(async () =>
@@ -183,6 +183,7 @@ namespace SuperGrate
                         Properties.Resources.SuperGrateProfileDelete.Length
                     );
                     SuperGratePD.Close();
+                    int count = 0;
                     foreach (string SID in SIDs)
                     {
                         if (ShouldCancelRemoteProfileDelete) break;
@@ -193,6 +194,9 @@ namespace SuperGrate
                             @"C:\ProgramData\SuperGratePD.exe " + SID,
                             @"C:\ProgramData\"
                         );
+                        Main.Progress.Invoke(new Action(() => {
+                            Main.Progress.Value = (int)((++count - 0.5) / SIDs.Length * 100);
+                        }));
                         await Remote.WaitForProcessExit(Target, "SuperGratePD");
                     }
                     Logger.Information("Removing Daemon...");
