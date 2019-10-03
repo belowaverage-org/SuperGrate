@@ -59,7 +59,7 @@ namespace SuperGrate
                     {
                         Logger.Information("Capturing user state: '" + Misc.GetUserByIdentity(SID) + "' on '" + CurrentTarget + "'...");
                     }
-                    Failed = !await StartRemoteProcess(
+                    Failed = !await Remote.StartProcess(CurrentTarget,
                         Path.Combine(PayloadPathLocal, exec) + " " +
                         PayloadPathLocal + " " +
                         @"/ue:*\* " +
@@ -130,9 +130,9 @@ namespace SuperGrate
         {
             Canceled = true;
             Logger.Information("Sending KILL command to USMT...");
-            await KillRemoteProcess("loadstate.exe");
-            await KillRemoteProcess("scanstate.exe");
-            if(await KillRemoteProcess("mighost.exe"))
+            await Remote.KillProcess(CurrentTarget, "loadstate.exe");
+            await Remote.KillProcess(CurrentTarget, "scanstate.exe");
+            if(await Remote.KillProcess(CurrentTarget, "mighost.exe"))
             {
                 Logger.Success("KILL command sent.");
             }
@@ -230,58 +230,17 @@ namespace SuperGrate
                 }
             });
         }
-        static private Task<bool> StartRemoteProcess(string CLI, string CurrentDirectory)
+        private static async Task<bool> WaitForUsmtExit(string ImageName)
         {
-            return Task.Run(() => {
-                try
-                {
-                    ConnectionOptions conOps = new ConnectionOptions();
-                    conOps.Impersonation = ImpersonationLevel.Impersonate;
-                    conOps.Authentication = AuthenticationLevel.Default;
-                    conOps.EnablePrivileges = true;
-                    ManagementScope mScope = new ManagementScope(@"\\" + CurrentTarget + @"\root\cimv2", conOps);
-                    ManagementPath mPath = new ManagementPath("Win32_Process");
-                    ManagementClass mClass = new ManagementClass(mScope, mPath, null);
-                    ManagementClass startup = new ManagementClass("WIN32_ProcessStartup");
-                    startup["ShowWindow"] = 0;
-                    mClass.InvokeMethod("Create", new object[] { CLI, CurrentDirectory, startup });
-                    return true;
-                }
-                catch(Exception e)
-                {
-                    Logger.Exception(e, "Failed to run a command on " + CurrentTarget + ".");
-                    return false;
-                }
-            });
-        }
-        static private Task<bool> KillRemoteProcess(string ImageName)
-        {
-            return StartRemoteProcess("taskkill.exe /T /F /IM " + ImageName, @"C:\");
-        }
-        private static Task<bool> WaitForUsmtExit(string ImageName)
-        {
-            return Task.Run(async () => {
-                Running = true;
-                Logger.Verbose("Waiting for USMT to finish...");
-                try
-                {
-                    while (Running)
-                    {
-                        if (Process.GetProcessesByName(ImageName, CurrentTarget).Length == 0)
-                        {
-                            Running = false;
-                        }
-                        await Task.Delay(3000);
-                    }
-                    Logger.Success("USMT Finished.");
-                    return true;
-                }
-                catch(Exception e)
-                {
-                    Logger.Exception(e, "Failed to check if USMT is still running.");
-                    return false;
-                }
-            });
+            Running = true;
+            bool result = await Remote.WaitForProcessExit(CurrentTarget, ImageName);
+            Running = false;
+            if (result)
+            {
+                Logger.Success("USMT Finished.");
+            }
+            await Task.Delay(3000);
+            return result;
         }
         private static async void StartWatchLog(string LogFile)
         {

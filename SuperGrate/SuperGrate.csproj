@@ -97,6 +97,7 @@
     <Compile Include="Classes\Download.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Misc.cs" />
+    <Compile Include="Classes\Remote.cs" />
     <Compile Include="Classes\USMT.cs" />
     <Compile Include="Controls\About.cs">
       <SubType>Form</SubType>
