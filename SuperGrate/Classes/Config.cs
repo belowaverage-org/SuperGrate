@@ -8,8 +8,11 @@ namespace SuperGrate
     class Config
     {
         public static Dictionary<string, string> Settings = new Dictionary<string, string>() {
-            {"XComment5", @"Local path on source computer where Super Grate will run USMT from. (E.g: C:\SuperGrate\)"},
-            {"SuperGratePayloadPath", @"C:\SuperGrate\"},
+            {"XComment9", @"The UNC or Direct path to the USMT directory. (E.g: .\USMT\X64)"},
+            {"USMTPathX64", @".\USMT\X64"},
+            {"USMTPathX86", @".\USMT\X86"},
+            {"XComment5", @"Local path on source computer where Super Grate will run USMT from. (E.g: C:\SuperGrate)"},
+            {"SuperGratePayloadPath", @"C:\SuperGrate"},
             {"XComment1", @"The UNC or Direct path to the USMT Migration Store (E.g: \\ba-share\s$ or .\STORE)"},
             {"MigrationStorePath", @".\STORE"},
             {"XComment2", "ScanState.exe & LoadState.exe CLI Parameters. See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax "},

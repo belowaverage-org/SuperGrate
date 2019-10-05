@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
 
 namespace SuperGrate
 {
@@ -17,6 +18,7 @@ namespace SuperGrate
         private static RunningTask storeRunningTask = RunningTask.None;
         private string[] MainParameters = null;
         private bool CloseRequested = false;
+        private int CloseAttempts = 0;
         public Main(string[] parameters)
         {
             MainParameters = parameters;
@@ -266,20 +268,47 @@ namespace SuperGrate
         }
         private async void MiSaveLog_Click(object sender, EventArgs e)
         {
-            dialogSaveLog.FileName = "SuperGrate_" + DateTime.Now.ToShortDateString().Replace('/', '-') + "_" + DateTime.Now.ToLongTimeString().Replace(':', '-');
+            dialogSaveLog.FileName = 
+            "SuperGrate_" +
+            DateTime.Now.ToShortDateString().Replace('/', '-') + "_" +
+            DateTime.Now.ToLongTimeString().Replace(':', '-');
             if (dialogSaveLog.ShowDialog() == DialogResult.OK)
             {
                 await Logger.WriteLogToFile(dialogSaveLog.OpenFile());
             }
         }
-        private void Main_FormClosing(object sender, FormClosingEventArgs e)
+        private async void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if(++CloseAttempts >= 3) return;
             if (Running != RunningTask.None)
             {
                 e.Cancel = true;
                 CloseRequested = true;
                 BtStartStop_Click(null, null);
             }
+            else if(Config.Settings["DumpLogHereOnExit"] != "")
+            {
+                string fileName =
+                "SuperGrate_" +
+                Environment.UserName + "_" +
+                new Random().Next(11111, 99999) + "_" +
+                DateTime.Now.ToShortDateString().Replace('/', '-') + "_" +
+                DateTime.Now.ToLongTimeString().Replace(':', '-') + ".log";
+                try
+                {
+                    if (!Directory.Exists(Config.Settings["DumpLogHereOnExit"]))
+                    {
+                        Directory.CreateDirectory(Config.Settings["DumpLogHereOnExit"]);
+                    }
+                    await Logger.WriteLogToFile(File.OpenWrite(Path.Combine(Config.Settings["DumpLogHereOnExit"], fileName)));
+                }
+                catch(Exception exc)
+                {
+                    e.Cancel = true;
+                    Logger.Exception(exc, "Failed to write log file to disk.");
+                }
+            }
+            Logger.Warning("Close attempt " + CloseAttempts + "/3.");
         }
         private void MiAboutSG_Click(object sender, EventArgs e)
         {
