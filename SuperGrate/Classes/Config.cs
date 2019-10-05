@@ -28,7 +28,7 @@ namespace SuperGrate
         };
         public static void SaveConfig()
         {
-            Logger.Warning("Generating new SuperGrate.xml config.");
+            Logger.Information("Generating SuperGrate.xml...");
             XElement root = new XElement("SuperGrate");
             foreach(KeyValuePair<string, string> setting in Settings)
             {
@@ -44,6 +44,7 @@ namespace SuperGrate
             try
             {
                 new XDocument(root).Save(@".\SuperGrate.xml");
+                Logger.Success("Saved.");
             }
             catch(Exception e)
             {
