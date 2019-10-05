@@ -83,6 +83,7 @@ namespace SuperGrate
         }
         public static void UpdateProgress(int Value, int Max = 100)
         {
+            if (Main.Form.IsDisposed) return;
             int Percent = (int)Math.Round(((double)Value / (double)Max) * 100, 0);
             Main.Form.Invoke(new Action(() => {
                 if(Percent <= 100 && Percent >= 0)

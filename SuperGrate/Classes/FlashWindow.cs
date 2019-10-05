@@ -45,15 +45,23 @@ namespace SuperGrate
             /// </summary>
             FLASHW_TIMERNOFG = 12
         }
-        public static void Start(IntPtr Handle, FlashWindowStyle Flags, UInt32 Count = UInt32.MaxValue, UInt32 Timeout = 0)
+        public static bool Start(IntPtr Handle, FlashWindowStyle Flags, UInt32 Count = UInt32.MaxValue, UInt32 Timeout = 0)
         {
-            FLASHWINFO info = new FLASHWINFO();
-            info.cbSize = Convert.ToUInt32(Marshal.SizeOf(info));
-            info.hwnd = Handle;
-            info.dwFlags = (uint)Flags;
-            info.uCount = Count;
-            info.dwTimeout = Timeout;
-            FlashWindowEx(ref info);
+            try
+            {
+                FLASHWINFO info = new FLASHWINFO();
+                info.cbSize = Convert.ToUInt32(Marshal.SizeOf(info));
+                info.hwnd = Handle;
+                info.dwFlags = (uint)Flags;
+                info.uCount = Count;
+                info.dwTimeout = Timeout;
+                FlashWindowEx(ref info);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

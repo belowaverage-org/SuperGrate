@@ -78,7 +78,7 @@ namespace SuperGrate
                     true;
                     UpdateFormRestrictions();
                     if (CloseRequested) Close();
-                    if (!ContainsFocus) FlashWindow.Start(Handle, FlashWindow.FlashWindowStyle.FLASHW_ALL | FlashWindow.FlashWindowStyle.FLASHW_TIMERNOFG);
+                    if (!ContainsFocus && !IsDisposed) FlashWindow.Start(Handle, FlashWindow.FlashWindowStyle.FLASHW_ALL | FlashWindow.FlashWindowStyle.FLASHW_TIMERNOFG);
                 }
             }
         }
@@ -309,7 +309,7 @@ namespace SuperGrate
                     Logger.Exception(exc, "Failed to write log file to disk.");
                 }
             }
-            Logger.Warning("Close attempt " + CloseAttempts + "/3.");
+            Logger.Warning("Super Grate is exiting. Attempt: " + CloseAttempts + "/3.");
         }
         private void MiAboutSG_Click(object sender, EventArgs e)
         {
