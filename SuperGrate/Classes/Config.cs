@@ -41,7 +41,14 @@ namespace SuperGrate
                     root.Add(new XElement(setting.Key, setting.Value));
                 }
             }
-            new XDocument(root).Save(@".\SuperGrate.xml");
+            try
+            {
+                new XDocument(root).Save(@".\SuperGrate.xml");
+            }
+            catch(Exception e)
+            {
+                Logger.Exception(e, "Failed to save the configuration!");
+            }
         }
         public static void LoadConfig(string[] parameters = null)
         {
