@@ -46,7 +46,7 @@ namespace SuperGrate
                 return storeRunningTask;
             }
             set {
-                Progress.Value = 0;
+                Logger.UpdateProgress(0);
                 if (value != RunningTask.None)
                 {
                     btStartStop.Text = "Stop";
@@ -78,6 +78,7 @@ namespace SuperGrate
                     true;
                     UpdateFormRestrictions();
                     if (CloseRequested) Close();
+                    if (!ContainsFocus) FlashWindow.Start(Handle, FlashWindow.FlashWindowStyle.FLASHW_ALL | FlashWindow.FlashWindowStyle.FLASHW_TIMERNOFG);
                 }
             }
         }

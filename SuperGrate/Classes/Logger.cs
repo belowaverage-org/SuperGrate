@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
+using Microsoft.WindowsAPICodePack.Taskbar;
 
 namespace SuperGrate
 {
@@ -86,6 +87,7 @@ namespace SuperGrate
             Main.Form.Invoke(new Action(() => {
                 if(Percent <= 100 && Percent >= 0)
                 {
+                    TaskbarManager.Instance.SetProgressValue(Percent, 100);
                     Main.Progress.Value = Percent;
                 }
             }));

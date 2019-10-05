@@ -23,7 +23,7 @@ namespace SuperGrate
         }
         private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            Main.Progress.Value = e.ProgressPercentage;
+            Logger.UpdateProgress(e.ProgressPercentage);
         }
         public Task Start()
         {

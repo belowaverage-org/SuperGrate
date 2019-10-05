@@ -194,9 +194,7 @@ namespace SuperGrate
                             @"C:\ProgramData\SuperGratePD.exe " + SID,
                             @"C:\ProgramData\"
                         );
-                        Main.Progress.Invoke(new Action(() => {
-                            Main.Progress.Value = (int)((++count - 0.5) / SIDs.Length * 100);
-                        }));
+                        Logger.UpdateProgress((int)((++count - 0.5) / SIDs.Length * 100));
                         await Remote.WaitForProcessExit(Target, "SuperGratePD");
                     }
                     Logger.Information("Removing Daemon...");
