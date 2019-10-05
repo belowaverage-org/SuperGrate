@@ -45,7 +45,7 @@ namespace SuperGrate
             /// </summary>
             FLASHW_TIMERNOFG = 12
         }
-        public static bool Start(IntPtr Handle, FlashWindowStyle Flags, UInt32 Count = UInt32.MaxValue, UInt32 Timeout = 0)
+        public static bool Start(IntPtr Handle, FlashWindowStyle Flags, UInt32 Count = UInt32.MaxValue, UInt32 FlashRate = 500)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace SuperGrate
                 info.hwnd = Handle;
                 info.dwFlags = (uint)Flags;
                 info.uCount = Count;
-                info.dwTimeout = Timeout;
+                info.dwTimeout = FlashRate;
                 FlashWindowEx(ref info);
                 return true;
             }
