@@ -318,7 +318,7 @@ namespace SuperGrate
         {
             Process.Start("https://github.com/belowaverage-org/SuperGrate/issues");
         }
-        private void MiSettings_Click(object sender, EventArgs e)
+        private void MiSetup_Click(object sender, EventArgs e)
         {
             new Controls.Settings().ShowDialog();
         }
