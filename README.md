@@ -26,10 +26,25 @@
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <SuperGrate>
-  <!--The UNC or Direct path to the USMT Migration Store E.g: \\ba-share\s$ or .\STORE.-->
+  <!--The UNC or Direct path to the USMT directory. (E.g: .\USMT\X64)-->
+  <USMTPathX64>.\USMT\X64</USMTPathX64>
+  <USMTPathX86>.\USMT\X86</USMTPathX86>
+  <!--Local path on source computer where Super Grate will run USMT from. (E.g: C:\SuperGrate)-->
+  <SuperGratePayloadPath>C:\SuperGrate</SuperGratePayloadPath>
+  <!--The UNC or Direct path to the USMT Migration Store (E.g: \\ba-share\s$ or .\STORE)-->
   <MigrationStorePath>.\STORE</MigrationStorePath>
-  <!--ScanState.exe & LoadState.exe CLI Parameters: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax -->
+  <!--ScanState.exe & LoadState.exe CLI Parameters. See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax -->
   <ScanStateParameters>/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /o</ScanStateParameters>
   <LoadStateParameters>/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3</LoadStateParameters>
+  <!--Delete the user from the migration store after a restore? (store to destination)-->
+  <AutoDeleteFromStore>false</AutoDeleteFromStore>
+  <!--Delete the user from the source computer after a backup? (source to store)-->
+  <AutoDeleteFromSource>false</AutoDeleteFromSource>
+  <!--Prevent NT AUTHORITY & NT SERVICE accounts from being listed?-->
+  <HideBuiltInAccounts>true</HideBuiltInAccounts>
+  <!--Prevent unknown accounts from being listed?-->
+  <HideUnknownSIDs>false</HideUnknownSIDs>
+  <!--Write log to disk on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)-->
+  <DumpLogHereOnExit></DumpLogHereOnExit>
 </SuperGrate>
 ```
