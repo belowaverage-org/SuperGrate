@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.IO;
+using System.IO.Compression;
 using System;
 
 namespace SuperGrate
@@ -10,6 +11,7 @@ namespace SuperGrate
         private static bool Failed = false;
         private static bool Running = false;
         private static string CurrentTarget = "";
+        private static string DetectedArch = null;
         private static string PayloadPathLocal
         {
             get {
@@ -19,6 +21,21 @@ namespace SuperGrate
         private static string PayloadPathRemote {
             get {
                 return PayloadPathLocal.Replace(':', '$');
+            }
+        }
+        private static string USMTPath
+        {
+            get
+            {
+                if(DetectedArch == "64-bit")
+                {
+                    return Config.Settings["USMTPathX64"];
+                }
+                if(DetectedArch == "32-bit")
+                {
+                    return Config.Settings["USMTPathX86"];
+                }
+                return null;
             }
         }
         public static Task<bool> Do(USMTMode Mode, string[] SIDs)
@@ -42,6 +59,8 @@ namespace SuperGrate
             return Task.Run(async () => {
                 Failed = !await Misc.Ping(CurrentTarget);
                 if (Canceled || Failed) return false;
+                DetectedArch = await Misc.GetRemoteArch(CurrentTarget);
+                if (Canceled || DetectedArch == null) return false;
                 Failed = !await CopyUSMT();
                 if (Canceled || Failed) return false;
                 foreach (string SID in SIDs)
@@ -91,35 +110,34 @@ namespace SuperGrate
         }
         public static Task<bool> CopyUSMT()
         {
-            return Task.Run(() => {
-                Logger.Information("Downloading USMT on: " + CurrentTarget);
+            return Task.Run(async () => {
+                Logger.Information("Uploading USMT to: " + CurrentTarget);
                 try
                 {
-                    if (Directory.Exists(@".\USMT\"))
+                    if (!Directory.Exists(USMTPath))
                     {
-                        if (Copy.CopyFolder(
-                            @".\USMT\",
-                            Path.Combine(@"\\", CurrentTarget, PayloadPathRemote)
-                        ))
+                        Logger.Warning("Could not find the USMT folder at: " + USMTPath + ".");
+                        if(!await DownloadUSMTFromWeb())
                         {
-                            Logger.Success("USMT downloaded successfully.");
-                            return true;
-                        }
-                        else
-                        {
-                            Logger.Warning("USMT download canceled.");
                             return false;
                         }
                     }
+                    if (Copy.CopyFolder(
+                        USMTPath,
+                        Path.Combine(@"\\", CurrentTarget, PayloadPathRemote)
+                    )) {
+                        Logger.Success("USMT uploaded successfully.");
+                        return true;
+                    }
                     else
                     {
-                        Logger.Error("Could not find the USMT folder at: " + Path.Combine(Environment.CurrentDirectory, "USMT") + ". Please download a copy of USMT and place it in a directory named 'USMT'");
+                        Logger.Warning("USMT upload canceled.");
                         return false;
                     }
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, "Error copying USMT to: " + CurrentTarget);
+                    Logger.Exception(e, "Error uploading USMT to: " + CurrentTarget);
                     return false;
                 }
             });
@@ -224,6 +242,42 @@ namespace SuperGrate
                 catch(Exception e)
                 {
                     Logger.Exception(e, "Failed to download state data to: " + Main.DestinationComputer + ".");
+                    return false;
+                }
+            });
+        }
+        private static Task<bool> DownloadUSMTFromWeb()
+        {
+            return Task.Run(async () => {
+                try
+                {
+                    Logger.Information("Downloading USMT (" + DetectedArch + ") from the web...");
+                    if (!Directory.Exists(USMTPath))
+                    {
+                        Directory.CreateDirectory(USMTPath);
+                    }
+                    string dlPath = Path.Combine(USMTPath, "USMT.zip");
+                    if (DetectedArch == "64-bit")
+                    {
+                        await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", dlPath).Start();
+                    }
+                    else if (DetectedArch == "32-bit")
+                    {
+                        await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x86.zip", dlPath).Start();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    Logger.Information("Decompressing USMT...");
+                    ZipFile.ExtractToDirectory(dlPath, USMTPath);
+                    Logger.Information("Cleaning up...");
+                    File.Delete(dlPath);
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to automatically download USMT from the web. Please download USMT and update the SuperGrate.xml accordingly.");
                     return false;
                 }
             });

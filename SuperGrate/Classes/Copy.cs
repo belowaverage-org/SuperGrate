@@ -44,7 +44,7 @@ namespace SuperGrate
             foreach (FileInfo file in sourceFiles)
             {
                 if (USMT.Canceled) break;
-                string strippedFullPath = file.FullName.Replace(source.FullName, "");
+                string strippedFullPath = file.FullName.Replace(source.FullName, "").Replace(@"\", "");
                 string strippedPath = strippedFullPath.Replace(file.Name, "");
                 if (strippedPath != lastStrippedPath)
                 {
@@ -55,9 +55,9 @@ namespace SuperGrate
                     }
                     lastStrippedPath = strippedPath;
                 }
-                Logger.Verbose("Copying: " + strippedFullPath);
-                file.CopyTo(Path.Combine(Destination, strippedFullPath), true);
-                Logger.Verbose("Copied.");
+                string DestinationPath = Path.Combine(Destination, strippedFullPath);
+                Logger.Verbose(file.FullName + " => " + DestinationPath);
+                file.CopyTo(DestinationPath, true);
                 Logger.UpdateProgress(progress++, sourceFiles.Length);
             }
             return !USMT.Canceled;

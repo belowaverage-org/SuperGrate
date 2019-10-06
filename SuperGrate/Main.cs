@@ -35,11 +35,6 @@ namespace SuperGrate
             Logger.Success("Welcome to Super Grate! v" + Application.ProductVersion);
             Logger.Information("Enter some information to get started!");
             UpdateFormRestrictions();
-            /*
-            Logger.Information("Downloading...");
-            await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", @".\asdf.zip").Start();
-            Logger.Success("Done!");
-            */
         }
         private RunningTask Running {
             get {
