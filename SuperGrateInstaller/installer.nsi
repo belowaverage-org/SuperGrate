@@ -23,7 +23,8 @@ OutFile ".\bin\SuperGrateInstaller.exe"
 
 Section "Install ${NAME}"
 
-File "..\SuperGrate\bin\Release\SuperGrate.exe"
+File "/oname=SuperGrateX86.exe" "..\SuperGrate\bin\Release\SuperGrate.exe"
+File "/oname=SuperGrateX64.exe" "..\SuperGrate\bin\Release_64\SuperGrate.exe"
 
 SectionEnd
 
