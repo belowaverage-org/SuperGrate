@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperGrate", "SuperGrate\SuperGrate.csproj", "{2F05C2FB-1F11-4D53-9D9D-C8CEC72AB64E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperGrateInstaller", "SuperGrateInstaller\SuperGrateInstaller.csproj", "{CF5AACC9-BE7C-4199-94A4-70803D63618B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperGrateProfileDelete", "SuperGrateProfileDelete\SuperGrateProfileDelete.csproj", "{600B0D09-F639-4603-A9A9-EA4132CCECA5}"
 EndProject
 Global
@@ -22,11 +20,6 @@ Global
 		{2F05C2FB-1F11-4D53-9D9D-C8CEC72AB64E}.Release_64|Any CPU.Build.0 = Release_64|Any CPU
 		{2F05C2FB-1F11-4D53-9D9D-C8CEC72AB64E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F05C2FB-1F11-4D53-9D9D-C8CEC72AB64E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CF5AACC9-BE7C-4199-94A4-70803D63618B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF5AACC9-BE7C-4199-94A4-70803D63618B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CF5AACC9-BE7C-4199-94A4-70803D63618B}.Release_64|Any CPU.ActiveCfg = Release|Any CPU
-		{CF5AACC9-BE7C-4199-94A4-70803D63618B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CF5AACC9-BE7C-4199-94A4-70803D63618B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{600B0D09-F639-4603-A9A9-EA4132CCECA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{600B0D09-F639-4603-A9A9-EA4132CCECA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{600B0D09-F639-4603-A9A9-EA4132CCECA5}.Release_64|Any CPU.ActiveCfg = Release|Any CPU
