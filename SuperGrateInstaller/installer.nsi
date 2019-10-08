@@ -13,6 +13,7 @@ VIAddVersionKey "FileVersion" "${VERSION}"
 VIProductVersion "${VERSION}"
 
 !define MUI_ICON "..\SuperGrate\Images\supergrate.ico"
+!define MUI_UNICON "..\SuperGrate\Images\supergrate.ico"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP ".\header.bmp"
 !define MUI_WELCOMEFINISHPAGE_BITMAP ".\welcome.bmp"
@@ -21,6 +22,9 @@ VIProductVersion "${VERSION}"
 !define MUI_WELCOMEPAGE_TEXT "${NAME} setup will guide you through the installation process.$\r$\n$\r$\n$\r$\nPress Next to continue."
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
+!define MUI_FINISHPAGE_RUN "$INSTDIR\SuperGrate.exe"
+!define MUI_FINISHPAGE_LINK "Super Grate - GitHub"
+!define MUI_FINISHPAGE_LINK_LOCATION "https://github.com/belowaverage-org/SuperGrate"
 
 InstallDir "$PROGRAMFILES64\Super Suite\Super Grate"
 
@@ -35,12 +39,12 @@ InstallDir "$PROGRAMFILES64\Super Suite\Super Grate"
 
 !insertmacro MUI_LANGUAGE "English"
 
-Section "!${NAME}"
+Section "!${NAME}" SuperGrate
 
 SetShellVarContext all
 
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayName" "${NAME}"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "UninstallString" "$INSTDIR\Uninstall.exe"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "UninstallString" "$INSTDIR\uninstall.exe"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "Publisher" "Dylan Bickerstaff"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayVersion" "${VERSION}"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayIcon" "$INSTDIR\SuperGrate.exe"
@@ -54,7 +58,7 @@ ${Else}
     File "..\SuperGrate\bin\Release\SuperGrate.exe"
 ${EndIf}  
 
-WriteUninstaller "$INSTDIR\Uninstall.exe"
+WriteUninstaller "$INSTDIR\uninstall.exe"
 
 CreateDirectory "$SMPROGRAMS\Super Suite"
 CreateShortcut "$SMPROGRAMS\Super Suite\Super Grate.lnk" "$INSTDIR\SuperGrate.exe"
@@ -63,7 +67,7 @@ SectionEnd
 
 
 
-Section "USMT 64-Bit"
+Section "USMT 64-Bit" USMT64
 
 SetOutPath "$INSTDIR\USMT\X64"
 File /r ".\bin\scratch\x64\usmt\*.*"
@@ -72,7 +76,7 @@ SectionEnd
 
 
 
-Section "USMT 32-Bit"
+Section "USMT 32-Bit" USMT32
 
 SetOutPath "$INSTDIR\USMT\X86"
 File /r ".\bin\scratch\x86\usmt\*.*"
@@ -89,10 +93,18 @@ RMDir /r "$INSTDIR\USMT"
 RMDir /r "$INSTDIR\STORE"
 Delete "$INSTDIR\SuperGrate.xml"
 Delete "$INSTDIR\SuperGrate.exe"
-Delete "$INSTDIR\Uninstall.exe"
+Delete "$INSTDIR\uninstall.exe"
 Delete "$SMPROGRAMS\Super Suite\Super Grate.lnk"
 RMDir "$SMPROGRAMS\Super Suite" 
 RMDir "$INSTDIR"
 DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}"
 
 SectionEnd
+
+
+
+!insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
+  !insertmacro MUI_DESCRIPTION_TEXT ${SuperGrate} "This item installs the Super Grate program."
+  !insertmacro MUI_DESCRIPTION_TEXT ${USMT64} "This item installs the 64-Bit version of USMT."
+  !insertmacro MUI_DESCRIPTION_TEXT ${USMT32} "This item installs the 32-Bit version of USMT."
+!insertmacro MUI_FUNCTION_DESCRIPTION_END
