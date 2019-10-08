@@ -2,6 +2,10 @@
   <img height="25" src="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrate/Images/supergrate.ico">
   Super Grate
 </h1>
+<h3 align="center">
+  <a href="https://github.com/belowaverage-org/SuperGrate/releases">Download</a> | <a href="https://github.com/belowaverage-org/SuperGrate/wiki">Documentation</a> | <a href="https://github.com/belowaverage-org/SuperGrate/issues">Issues</a>
+</h3>
+<h1></h1>
 <p align="center">
   <br>
   <img height="74" src="https://raw.githubusercontent.com/krisdb2009/documentation/master/images/supersweet.png">
