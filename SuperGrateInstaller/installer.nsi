@@ -22,7 +22,6 @@ VIProductVersion "${VERSION}"
 !define MUI_WELCOMEPAGE_TEXT "${NAME} setup will guide you through the installation process.$\r$\n$\r$\n$\r$\nPress Next to continue."
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
-!define MUI_FINISHPAGE_RUN "$INSTDIR\SuperGrate.exe"
 !define MUI_FINISHPAGE_LINK "Super Grate - GitHub"
 !define MUI_FINISHPAGE_LINK_LOCATION "https://github.com/belowaverage-org/SuperGrate"
 
@@ -84,6 +83,7 @@ SectionEnd
 
 Section "Shortcut - Start Menu" SMSC
 
+SetOutPath "$INSTDIR"
 CreateDirectory "$SMPROGRAMS\Super Suite"
 CreateShortcut "$SMPROGRAMS\Super Suite\Super Grate.lnk" "$INSTDIR\SuperGrate.exe"
 
@@ -93,6 +93,7 @@ SectionEnd
 
 Section /o "Shortcut - Desktop" DTSC
 
+SetOutPath "$INSTDIR"
 CreateShortcut "$DESKTOP\Super Grate.lnk" "$INSTDIR\SuperGrate.exe"
 
 SectionEnd
