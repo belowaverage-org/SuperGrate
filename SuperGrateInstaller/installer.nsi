@@ -60,9 +60,6 @@ ${EndIf}
 
 WriteUninstaller "$INSTDIR\uninstall.exe"
 
-CreateDirectory "$SMPROGRAMS\Super Suite"
-CreateShortcut "$SMPROGRAMS\Super Suite\Super Grate.lnk" "$INSTDIR\SuperGrate.exe"
-
 SectionEnd
 
 
@@ -85,6 +82,23 @@ SectionEnd
 
 
 
+Section "Shortcut - Start Menu" SMSC
+
+CreateDirectory "$SMPROGRAMS\Super Suite"
+CreateShortcut "$SMPROGRAMS\Super Suite\Super Grate.lnk" "$INSTDIR\SuperGrate.exe"
+
+SectionEnd
+
+
+
+Section /o "Shortcut - Desktop" DTSC
+
+CreateShortcut "$DESKTOP\Super Grate.lnk" "$INSTDIR\SuperGrate.exe"
+
+SectionEnd
+
+
+
 Section "Uninstall"
 
 SetShellVarContext all
@@ -95,6 +109,7 @@ Delete "$INSTDIR\SuperGrate.xml"
 Delete "$INSTDIR\SuperGrate.exe"
 Delete "$INSTDIR\uninstall.exe"
 Delete "$SMPROGRAMS\Super Suite\Super Grate.lnk"
+Delete "$DESKTOP\Super Grate.lnk"
 RMDir "$SMPROGRAMS\Super Suite" 
 RMDir "$INSTDIR"
 DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}"
@@ -107,4 +122,6 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${SuperGrate} "This item installs the Super Grate program."
   !insertmacro MUI_DESCRIPTION_TEXT ${USMT64} "This item installs the 64-Bit version of USMT."
   !insertmacro MUI_DESCRIPTION_TEXT ${USMT32} "This item installs the 32-Bit version of USMT."
+  !insertmacro MUI_DESCRIPTION_TEXT ${SMSC} "This item places a shortcut in the start menu."
+  !insertmacro MUI_DESCRIPTION_TEXT ${DTSC} "This item places a shortcut on the desktop."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
