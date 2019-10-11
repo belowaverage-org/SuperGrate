@@ -28,6 +28,7 @@ VIProductVersion "${VERSION}"
 InstallDir "$PROGRAMFILES64\Super Suite\Super Grate"
 
 !insertmacro MUI_PAGE_WELCOME
+!insertmacro MUI_PAGE_LICENSE "..\license"
 !insertmacro MUI_PAGE_COMPONENTS
 !insertmacro MUI_PAGE_DIRECTORY
 !insertmacro MUI_UNPAGE_CONFIRM
@@ -40,14 +41,9 @@ InstallDir "$PROGRAMFILES64\Super Suite\Super Grate"
 
 Section "!${NAME}" SuperGrate
 
-SetShellVarContext all
+SectionIn RO
 
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayName" "${NAME}"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "UninstallString" "$INSTDIR\uninstall.exe"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "Publisher" "Dylan Bickerstaff"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayVersion" "${VERSION}"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayIcon" "$INSTDIR\SuperGrate.exe"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "Comments" "Super Grate"
+SetShellVarContext all
 
 SetOutPath "$INSTDIR"
 
@@ -57,7 +53,7 @@ ${Else}
     File "..\SuperGrate\bin\Release\SuperGrate.exe"
 ${EndIf}  
 
-WriteUninstaller "$INSTDIR\uninstall.exe"
+
 
 SectionEnd
 
@@ -100,6 +96,25 @@ SectionEnd
 
 
 
+Section "Uninstaller" Uninst
+
+SetShellVarContext all
+
+SetOutPath "$INSTDIR"
+
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayName" "${NAME}"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "UninstallString" "$INSTDIR\uninstall.exe"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "Publisher" "Dylan Bickerstaff"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayVersion" "${VERSION}"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayIcon" "$INSTDIR\SuperGrate.exe"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "Comments" "Super Grate"
+
+WriteUninstaller "$INSTDIR\uninstall.exe"
+
+SectionEnd
+
+
+
 Section "Uninstall"
 
 SetShellVarContext all
@@ -125,4 +140,5 @@ SectionEnd
   !insertmacro MUI_DESCRIPTION_TEXT ${USMT32} "This item installs the 32-Bit version of USMT."
   !insertmacro MUI_DESCRIPTION_TEXT ${SMSC} "This item places a shortcut in the start menu."
   !insertmacro MUI_DESCRIPTION_TEXT ${DTSC} "This item places a shortcut on the desktop."
+  !insertmacro MUI_DESCRIPTION_TEXT ${Uninst} "This item installs an Uninstaller so that Super Grate can be removed in the future."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
