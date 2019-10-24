@@ -1,3 +1,4 @@
+<img src="https://api.belowaverage.org/v3/piwik/matomo.php?idsite=3&amp;rec=1&amp;action_name=Main+Page" style="border:0" alt="" />
 <h1 align="center">
   <img height="25" src="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrate/Images/supergrate.ico">
   Super Grate
