@@ -17,7 +17,7 @@ namespace SuperGrate
             {"MigrationStorePath", @".\STORE"},
             {"XComment2", "ScanState.exe & LoadState.exe CLI Parameters. See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax "},
             {"ScanStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /o"},
-            {"LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3"},
+            {"LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /lac /lae"},
             {"XComment3", "Delete the user from the migration store after a restore? (store to destination)"},
             {"AutoDeleteFromStore", "false"},
             {"XComment8", "Delete the user from the source computer after a backup? (source to store)"},
