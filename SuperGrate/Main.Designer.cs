@@ -418,7 +418,7 @@
             // miExitButton
             // 
             this.miExitButton.Index = 2;
-            this.miExitButton.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
+            this.miExitButton.Shortcut = System.Windows.Forms.Shortcut.AltF4;
             this.miExitButton.Text = "Exit";
             this.miExitButton.Click += new System.EventHandler(this.MiExitButton_Click);
             // 
