@@ -17,6 +17,9 @@
   <p>
     <b>Super Grate</b> is a tool part of the Super Suite that can perform remote execution of Microsoft's USMT (User State Migration Tool) on any domain joined PC, or local execution on any non-joined PC.
   </p>
+  <h2>Getting Started</h2>
+  <p>Getting started with Super Grate is super easy! Simply <a href="https://github.com/belowaverage-org/SuperGrate/releases">download</a> the installer, run the setup wizard, and begin migrating user profiles! </p>
+  <p>There are no prerequisites, Super Grate will automatically download any nessesary components from this repository.</p>
   <h2>Features</h2>
   <ul>
     <li>Simple GUI</li>
