@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
+using System.Drawing;
 
 namespace SuperGrate
 {
@@ -35,6 +36,27 @@ namespace SuperGrate
             Logger.Success("Welcome to Super Grate! v" + Application.ProductVersion);
             Logger.Information("Enter some information to get started!");
             UpdateFormRestrictions();
+            BindHelp(this);
+        }
+        private void BindHelp(Control control)
+        {
+            foreach (Control childControl in control.Controls)
+            {
+                childControl.MouseEnter += Control_Click;
+                if(childControl.HasChildren)
+                {
+                    BindHelp(childControl);
+                }
+            }
+        }
+        private void Control_Click(object sender, EventArgs e)
+        {
+            if (Cursor == Cursors.Help)
+            {
+                Point mouse = MousePosition;
+                mouse.Offset(50, 50);
+                Help.ShowPopup(this, helpProvider.GetHelpString((Control)sender), mouse);
+            }
         }
         private RunningTask Running {
             get {
@@ -338,6 +360,19 @@ namespace SuperGrate
             if (e.KeyCode == Keys.Enter)
             {
                 btStartStop.PerformClick();
+            }
+        }
+        private void miHelpButton_Click(object sender, EventArgs e)
+        {
+            if (Cursor == Cursors.Help)
+            {
+                miHelpButton.Checked = false;
+                Cursor = Cursors.Default;
+            }
+            else
+            {
+                miHelpButton.Checked = true;
+                Cursor = Cursors.Help;
             }
         }
     }

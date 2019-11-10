@@ -61,10 +61,12 @@
             this.miHelp = new System.Windows.Forms.MenuItem();
             this.miDocumentation = new System.Windows.Forms.MenuItem();
             this.miIssues = new System.Windows.Forms.MenuItem();
-            this.miSpacer1 = new System.Windows.Forms.MenuItem();
             this.miAboutSG = new System.Windows.Forms.MenuItem();
             this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
+            this.miSpacer1 = new System.Windows.Forms.MenuItem();
+            this.miHelpButton = new System.Windows.Forms.MenuItem();
+            this.miSpacer2 = new System.Windows.Forms.MenuItem();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -84,10 +86,13 @@
             this.LogBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LogBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LogBox.ForeColor = System.Drawing.Color.White;
+            this.helpProvider.SetHelpString(this.LogBox, "This console is updated live with information regarding the progress of Super Gra" +
+        "te. (Double click the console to toggle verbose mode)");
             this.LogBox.Location = new System.Drawing.Point(3, 4);
             this.LogBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
+            this.helpProvider.SetShowHelp(this.LogBox, true);
             this.LogBox.Size = new System.Drawing.Size(311, 272);
             this.LogBox.TabIndex = 100;
             this.LogBox.Text = "";
@@ -239,8 +244,11 @@
             // lblUserList
             // 
             this.lblUserList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider.SetHelpString(this.lblUserList, "This label displays where the list of user profiles to the right originated from." +
+        "");
             this.lblUserList.Location = new System.Drawing.Point(3, 90);
             this.lblUserList.Name = "lblUserList";
+            this.helpProvider.SetShowHelp(this.lblUserList, true);
             this.lblUserList.Size = new System.Drawing.Size(124, 80);
             this.lblUserList.TabIndex = 100;
             this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -362,11 +370,13 @@
             this.imgLoadLogo.BackColor = System.Drawing.Color.White;
             this.imgLoadLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imgLoadLogo.Enabled = false;
-            this.helpProvider.SetHelpString(this.imgLoadLogo, "");
+            this.helpProvider.SetHelpString(this.imgLoadLogo, "This picture illustrates the inner workings of Super Grate. Presented here is an " +
+        "acturate representation of the currently running Super Grate processes.");
             this.imgLoadLogo.Image = global::SuperGrate.Properties.Resources.working;
             this.imgLoadLogo.Location = new System.Drawing.Point(1, 1);
             this.imgLoadLogo.Margin = new System.Windows.Forms.Padding(0);
             this.imgLoadLogo.Name = "imgLoadLogo";
+            this.helpProvider.SetShowHelp(this.imgLoadLogo, true);
             this.imgLoadLogo.Size = new System.Drawing.Size(120, 104);
             this.imgLoadLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.imgLoadLogo.TabIndex = 100;
@@ -466,29 +476,26 @@
             this.miDocumentation,
             this.miIssues,
             this.miSpacer1,
+            this.miHelpButton,
+            this.miSpacer2,
             this.miAboutSG});
             this.miHelp.Text = "&Help";
             // 
             // miDocumentation
             // 
             this.miDocumentation.Index = 0;
-            this.miDocumentation.Text = "Documentation";
+            this.miDocumentation.Text = "Online Documentation";
             this.miDocumentation.Click += new System.EventHandler(this.MiDocumentation_Click);
             // 
             // miIssues
             // 
             this.miIssues.Index = 1;
-            this.miIssues.Text = "Issues";
+            this.miIssues.Text = "Online Issues";
             this.miIssues.Click += new System.EventHandler(this.MiIssues_Click);
-            // 
-            // miSpacer1
-            // 
-            this.miSpacer1.Index = 2;
-            this.miSpacer1.Text = "-";
             // 
             // miAboutSG
             // 
-            this.miAboutSG.Index = 3;
+            this.miAboutSG.Index = 5;
             this.miAboutSG.Text = "About Super Grate";
             this.miAboutSG.Click += new System.EventHandler(this.MiAboutSG_Click);
             // 
@@ -497,6 +504,22 @@
             this.dialogSaveLog.Filter = "Text File|*.txt|Log File|*.log";
             this.dialogSaveLog.FilterIndex = 2;
             this.dialogSaveLog.Title = "Save Super Grate Log...";
+            // 
+            // miSpacer1
+            // 
+            this.miSpacer1.Index = 2;
+            this.miSpacer1.Text = "-";
+            // 
+            // miHelpButton
+            // 
+            this.miHelpButton.Index = 3;
+            this.miHelpButton.Text = "Help";
+            this.miHelpButton.Click += new System.EventHandler(this.miHelpButton_Click);
+            // 
+            // miSpacer2
+            // 
+            this.miSpacer2.Index = 4;
+            this.miSpacer2.Text = "-";
             // 
             // Main
             // 
@@ -507,7 +530,6 @@
             this.Controls.Add(this.spltContainer);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HelpButton = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Menu = this.MainMenu;
             this.MinimumSize = new System.Drawing.Size(680, 320);
@@ -568,10 +590,12 @@
         private System.Windows.Forms.MenuItem miHelp;
         private System.Windows.Forms.MenuItem miDocumentation;
         private System.Windows.Forms.MenuItem miIssues;
-        private System.Windows.Forms.MenuItem miSpacer1;
         private System.Windows.Forms.MenuItem miAboutSG;
         private System.Windows.Forms.SaveFileDialog dialogSaveLog;
         private System.Windows.Forms.HelpProvider helpProvider;
+        private System.Windows.Forms.MenuItem miSpacer1;
+        private System.Windows.Forms.MenuItem miHelpButton;
+        private System.Windows.Forms.MenuItem miSpacer2;
     }
 }
 
