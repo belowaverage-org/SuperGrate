@@ -20,7 +20,6 @@ namespace SuperGrate
             Application.ThreadException += Application_ThreadException;
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.Run(new Main(parameters));
-
         }
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {

@@ -61,12 +61,12 @@
             this.miHelp = new System.Windows.Forms.MenuItem();
             this.miDocumentation = new System.Windows.Forms.MenuItem();
             this.miIssues = new System.Windows.Forms.MenuItem();
-            this.miAboutSG = new System.Windows.Forms.MenuItem();
-            this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
-            this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.miSpacer1 = new System.Windows.Forms.MenuItem();
             this.miHelpButton = new System.Windows.Forms.MenuItem();
             this.miSpacer2 = new System.Windows.Forms.MenuItem();
+            this.miAboutSG = new System.Windows.Forms.MenuItem();
+            this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
+            this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -198,7 +198,6 @@
         "d / backed up will come from.");
             this.tbSourceComputer.Location = new System.Drawing.Point(3, 4);
             this.tbSourceComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
-            this.tbSourceComputer.Multiline = true;
             this.tbSourceComputer.Name = "tbSourceComputer";
             this.helpProvider.SetShowHelp(this.tbSourceComputer, true);
             this.tbSourceComputer.Size = new System.Drawing.Size(185, 22);
@@ -420,7 +419,6 @@
         "ted / restored to.");
             this.tbDestinationComputer.Location = new System.Drawing.Point(3, 4);
             this.tbDestinationComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
-            this.tbDestinationComputer.Multiline = true;
             this.tbDestinationComputer.Name = "tbDestinationComputer";
             this.helpProvider.SetShowHelp(this.tbDestinationComputer, true);
             this.tbDestinationComputer.Size = new System.Drawing.Size(185, 22);
@@ -493,18 +491,6 @@
             this.miIssues.Text = "Online Issues";
             this.miIssues.Click += new System.EventHandler(this.MiIssues_Click);
             // 
-            // miAboutSG
-            // 
-            this.miAboutSG.Index = 5;
-            this.miAboutSG.Text = "About Super Grate";
-            this.miAboutSG.Click += new System.EventHandler(this.MiAboutSG_Click);
-            // 
-            // dialogSaveLog
-            // 
-            this.dialogSaveLog.Filter = "Text File|*.txt|Log File|*.log";
-            this.dialogSaveLog.FilterIndex = 2;
-            this.dialogSaveLog.Title = "Save Super Grate Log...";
-            // 
             // miSpacer1
             // 
             this.miSpacer1.Index = 2;
@@ -521,10 +507,21 @@
             this.miSpacer2.Index = 4;
             this.miSpacer2.Text = "-";
             // 
+            // miAboutSG
+            // 
+            this.miAboutSG.Index = 5;
+            this.miAboutSG.Text = "About Super Grate";
+            this.miAboutSG.Click += new System.EventHandler(this.MiAboutSG_Click);
+            // 
+            // dialogSaveLog
+            // 
+            this.dialogSaveLog.Filter = "Text File|*.txt|Log File|*.log";
+            this.dialogSaveLog.FilterIndex = 2;
+            this.dialogSaveLog.Title = "Save Super Grate Log...";
+            // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(680, 320);
             this.Controls.Add(this.spltContainer);

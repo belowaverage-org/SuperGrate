@@ -52,7 +52,7 @@
             this.settingsList.Location = new System.Drawing.Point(0, 0);
             this.settingsList.MultiSelect = false;
             this.settingsList.Name = "settingsList";
-            this.settingsList.Size = new System.Drawing.Size(693, 351);
+            this.settingsList.Size = new System.Drawing.Size(694, 311);
             this.settingsList.TabIndex = 0;
             this.settingsList.UseCompatibleStateImageBehavior = false;
             this.settingsList.View = System.Windows.Forms.View.Details;
@@ -72,7 +72,7 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSave.Location = new System.Drawing.Point(491, 360);
+            this.btnSave.Location = new System.Drawing.Point(492, 320);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(95, 29);
             this.btnSave.TabIndex = 1;
@@ -85,9 +85,10 @@
             this.lblHint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHint.AutoEllipsis = true;
-            this.lblHint.Location = new System.Drawing.Point(10, 368);
+            this.lblHint.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.lblHint.Location = new System.Drawing.Point(10, 328);
             this.lblHint.Name = "lblHint";
-            this.lblHint.Size = new System.Drawing.Size(374, 13);
+            this.lblHint.Size = new System.Drawing.Size(375, 20);
             this.lblHint.TabIndex = 2;
             this.lblHint.Text = "Double Click a setting to change its value.";
             // 
@@ -95,7 +96,7 @@
             // 
             this.btnRevert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRevert.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnRevert.Location = new System.Drawing.Point(390, 360);
+            this.btnRevert.Location = new System.Drawing.Point(391, 320);
             this.btnRevert.Name = "btnRevert";
             this.btnRevert.Size = new System.Drawing.Size(95, 29);
             this.btnRevert.TabIndex = 3;
@@ -107,7 +108,7 @@
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnApply.Location = new System.Drawing.Point(592, 360);
+            this.btnApply.Location = new System.Drawing.Point(593, 320);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(95, 29);
             this.btnApply.TabIndex = 4;
@@ -120,7 +121,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(693, 397);
+            this.ClientSize = new System.Drawing.Size(694, 357);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnRevert);
             this.Controls.Add(this.lblHint);
@@ -130,7 +131,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(325, 257);
+            this.MinimumSize = new System.Drawing.Size(553, 257);
             this.Name = "Settings";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

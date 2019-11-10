@@ -73,6 +73,7 @@
             // 
             // labelProductName
             // 
+            this.labelProductName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelProductName.Location = new System.Drawing.Point(176, 8);
             this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 8, 3, 0);
             this.labelProductName.MaximumSize = new System.Drawing.Size(131, 17);
@@ -96,6 +97,7 @@
             // 
             // labelVersion
             // 
+            this.labelVersion.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelVersion.Location = new System.Drawing.Point(176, 40);
             this.labelVersion.Margin = new System.Windows.Forms.Padding(6, 8, 3, 0);
             this.labelVersion.MaximumSize = new System.Drawing.Size(131, 17);
@@ -107,6 +109,7 @@
             // 
             // labelCopyright
             // 
+            this.labelCopyright.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelCopyright.Location = new System.Drawing.Point(176, 72);
             this.labelCopyright.Margin = new System.Windows.Forms.Padding(6, 8, 3, 0);
             this.labelCopyright.MaximumSize = new System.Drawing.Size(131, 17);
@@ -118,6 +121,7 @@
             // 
             // labelCompanyName
             // 
+            this.labelCompanyName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.labelCompanyName.Location = new System.Drawing.Point(176, 104);
             this.labelCompanyName.Margin = new System.Windows.Forms.Padding(6, 8, 3, 0);
             this.labelCompanyName.MaximumSize = new System.Drawing.Size(131, 17);
@@ -194,8 +198,7 @@
             // About
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(465, 330);
             this.Controls.Add(this.tableLayoutPanel);
