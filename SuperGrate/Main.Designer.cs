@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.LogBox = new System.Windows.Forms.RichTextBox();
             this.pbMain = new System.Windows.Forms.ProgressBar();
             this.logTable = new System.Windows.Forms.TableLayoutPanel();
@@ -63,6 +64,7 @@
             this.miSpacer1 = new System.Windows.Forms.MenuItem();
             this.miAboutSG = new System.Windows.Forms.MenuItem();
             this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
+            this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -187,20 +189,27 @@
             // tbSourceComputer
             // 
             this.tbSourceComputer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider.SetHelpString(this.tbSourceComputer, "Enter the source computer hostname. This is where the user profiles to be migrate" +
+        "d / backed up will come from.");
             this.tbSourceComputer.Location = new System.Drawing.Point(3, 4);
             this.tbSourceComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
+            this.tbSourceComputer.Multiline = true;
             this.tbSourceComputer.Name = "tbSourceComputer";
+            this.helpProvider.SetShowHelp(this.tbSourceComputer, true);
             this.tbSourceComputer.Size = new System.Drawing.Size(185, 22);
             this.tbSourceComputer.TabIndex = 101;
             this.tbSourceComputer.TextChanged += new System.EventHandler(this.TbSourceComputer_TextChanged);
+            this.tbSourceComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSourceDestComputer_KeyDown);
             // 
             // btnAFillSrc
             // 
             this.btnAFillSrc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAFillSrc.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnAFillSrc, "Auto fill Current Computer Hostname.");
             this.btnAFillSrc.Location = new System.Drawing.Point(194, 3);
             this.btnAFillSrc.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
             this.btnAFillSrc.Name = "btnAFillSrc";
+            this.helpProvider.SetShowHelp(this.btnAFillSrc, true);
             this.btnAFillSrc.Size = new System.Drawing.Size(23, 24);
             this.btnAFillSrc.TabIndex = 102;
             this.btnAFillSrc.Text = "<";
@@ -242,9 +251,12 @@
             this.btStartStop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btStartStop.Enabled = false;
             this.btStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btStartStop, "This button will start a migration, backup, or restoration and stop any other Sup" +
+        "er Grate process.");
             this.btStartStop.Location = new System.Drawing.Point(3, 283);
             this.btStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btStartStop.Name = "btStartStop";
+            this.helpProvider.SetShowHelp(this.btStartStop, true);
             this.btStartStop.Size = new System.Drawing.Size(344, 24);
             this.btStartStop.TabIndex = 100;
             this.btStartStop.Text = "Start";
@@ -273,9 +285,11 @@
             // 
             this.btnListSource.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnListSource.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnListSource, "This button will retrieve the list of user profiles from the source computer.");
             this.btnListSource.Location = new System.Drawing.Point(2, 3);
             this.btnListSource.Margin = new System.Windows.Forms.Padding(2, 3, 3, 3);
             this.btnListSource.Name = "btnListSource";
+            this.helpProvider.SetShowHelp(this.btnListSource, true);
             this.btnListSource.Size = new System.Drawing.Size(68, 25);
             this.btnListSource.TabIndex = 100;
             this.btnListSource.Text = "List Source";
@@ -286,8 +300,11 @@
             // 
             this.btnListStore.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnListStore.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnListStore, "This button will list the user profiles that have already been backed up to the s" +
+        "tore.");
             this.btnListStore.Location = new System.Drawing.Point(76, 3);
             this.btnListStore.Name = "btnListStore";
+            this.helpProvider.SetShowHelp(this.btnListStore, true);
             this.btnListStore.Size = new System.Drawing.Size(67, 25);
             this.btnListStore.TabIndex = 100;
             this.btnListStore.Text = "List Store";
@@ -299,9 +316,12 @@
             this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnDelete.Enabled = false;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnDelete, "This button will delete user profiles from either the source computer or the stor" +
+        "e.");
             this.btnDelete.Location = new System.Drawing.Point(149, 3);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btnDelete.Name = "btnDelete";
+            this.helpProvider.SetShowHelp(this.btnDelete, true);
             this.btnDelete.Size = new System.Drawing.Size(68, 25);
             this.btnDelete.TabIndex = 100;
             this.btnDelete.Text = "Delete";
@@ -312,15 +332,18 @@
             // 
             this.lbxUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbxUsers.FormattingEnabled = true;
+            this.helpProvider.SetHelpString(this.lbxUsers, resources.GetString("lbxUsers.HelpString"));
             this.lbxUsers.IntegralHeight = false;
             this.lbxUsers.Location = new System.Drawing.Point(133, 94);
             this.lbxUsers.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbxUsers.Name = "lbxUsers";
             this.tblMainLayout.SetRowSpan(this.lbxUsers, 2);
             this.lbxUsers.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.helpProvider.SetShowHelp(this.lbxUsers, true);
             this.lbxUsers.Size = new System.Drawing.Size(213, 182);
             this.lbxUsers.TabIndex = 100;
             this.lbxUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
+            this.lbxUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxUsers_KeyDown);
             // 
             // pnlLogoBorder
             // 
@@ -339,6 +362,7 @@
             this.imgLoadLogo.BackColor = System.Drawing.Color.White;
             this.imgLoadLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imgLoadLogo.Enabled = false;
+            this.helpProvider.SetHelpString(this.imgLoadLogo, "");
             this.imgLoadLogo.Image = global::SuperGrate.Properties.Resources.working;
             this.imgLoadLogo.Location = new System.Drawing.Point(1, 1);
             this.imgLoadLogo.Margin = new System.Windows.Forms.Padding(0);
@@ -368,9 +392,11 @@
             // 
             this.btnAFillDest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAFillDest.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnAFillDest, "Auto fill Current Computer Hostname.");
             this.btnAFillDest.Location = new System.Drawing.Point(194, 3);
             this.btnAFillDest.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
             this.btnAFillDest.Name = "btnAFillDest";
+            this.helpProvider.SetShowHelp(this.btnAFillDest, true);
             this.btnAFillDest.Size = new System.Drawing.Size(23, 24);
             this.btnAFillDest.TabIndex = 103;
             this.btnAFillDest.Text = "<";
@@ -380,12 +406,17 @@
             // tbDestinationComputer
             // 
             this.tbDestinationComputer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider.SetHelpString(this.tbDestinationComputer, "Enter the source computer hostname. This is where the user profiles will be migra" +
+        "ted / restored to.");
             this.tbDestinationComputer.Location = new System.Drawing.Point(3, 4);
             this.tbDestinationComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
+            this.tbDestinationComputer.Multiline = true;
             this.tbDestinationComputer.Name = "tbDestinationComputer";
+            this.helpProvider.SetShowHelp(this.tbDestinationComputer, true);
             this.tbDestinationComputer.Size = new System.Drawing.Size(185, 22);
             this.tbDestinationComputer.TabIndex = 102;
             this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
+            this.tbDestinationComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSourceDestComputer_KeyDown);
             // 
             // MainMenu
             // 
@@ -476,11 +507,13 @@
             this.Controls.Add(this.spltContainer);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HelpButton = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Menu = this.MainMenu;
             this.MinimumSize = new System.Drawing.Size(680, 320);
             this.Name = "Main";
             this.Padding = new System.Windows.Forms.Padding(5);
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Super Grate - Remote User Migration & Backup";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
@@ -538,6 +571,7 @@
         private System.Windows.Forms.MenuItem miSpacer1;
         private System.Windows.Forms.MenuItem miAboutSG;
         private System.Windows.Forms.SaveFileDialog dialogSaveLog;
+        private System.Windows.Forms.HelpProvider helpProvider;
     }
 }
 

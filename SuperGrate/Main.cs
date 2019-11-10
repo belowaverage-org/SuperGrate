@@ -322,6 +322,24 @@ namespace SuperGrate
         {
             new Controls.Settings().ShowDialog();
         }
+        private void tbSourceDestComputer_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (sender == tbSourceComputer)
+                {
+                    btnListSource.PerformClick();
+                }
+            }
+        }
+        private void lbxUsers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btStartStop.PerformClick();
+            }
+        }
     }
     public enum ListSources
     {

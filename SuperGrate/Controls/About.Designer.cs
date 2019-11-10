@@ -28,8 +28,8 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.labelProductName = new System.Windows.Forms.Label();
+            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.labelVersion = new System.Windows.Forms.Label();
             this.labelCopyright = new System.Windows.Forms.Label();
             this.labelCompanyName = new System.Windows.Forms.Label();
@@ -71,6 +71,17 @@
             this.tableLayoutPanel.Size = new System.Drawing.Size(455, 320);
             this.tableLayoutPanel.TabIndex = 0;
             // 
+            // labelProductName
+            // 
+            this.labelProductName.Location = new System.Drawing.Point(176, 8);
+            this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 8, 3, 0);
+            this.labelProductName.MaximumSize = new System.Drawing.Size(131, 17);
+            this.labelProductName.Name = "labelProductName";
+            this.labelProductName.Size = new System.Drawing.Size(131, 17);
+            this.labelProductName.TabIndex = 19;
+            this.labelProductName.Text = "Product Name";
+            this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // logoPictureBox
             // 
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -82,17 +93,6 @@
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
-            // 
-            // labelProductName
-            // 
-            this.labelProductName.Location = new System.Drawing.Point(176, 8);
-            this.labelProductName.Margin = new System.Windows.Forms.Padding(6, 8, 3, 0);
-            this.labelProductName.MaximumSize = new System.Drawing.Size(131, 17);
-            this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(131, 17);
-            this.labelProductName.TabIndex = 19;
-            this.labelProductName.Text = "Product Name";
-            this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelVersion
             // 
@@ -194,8 +194,8 @@
             // About
             // 
             this.AcceptButton = this.okButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(465, 330);
             this.Controls.Add(this.tableLayoutPanel);
