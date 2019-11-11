@@ -209,7 +209,7 @@
             // 
             this.btnAFillSrc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAFillSrc.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnAFillSrc, "Auto fill Current Computer Hostname.");
+            this.helpProvider.SetHelpString(this.btnAFillSrc, "This button will auto-fill the current computer\'s hostname.");
             this.btnAFillSrc.Location = new System.Drawing.Point(194, 3);
             this.btnAFillSrc.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
             this.btnAFillSrc.Name = "btnAFillSrc";
@@ -401,7 +401,7 @@
             // 
             this.btnAFillDest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAFillDest.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnAFillDest, "Auto fill Current Computer Hostname.");
+            this.helpProvider.SetHelpString(this.btnAFillDest, "This button will auto-fill the current computer\'s hostname.");
             this.btnAFillDest.Location = new System.Drawing.Point(194, 3);
             this.btnAFillDest.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
             this.btnAFillDest.Name = "btnAFillDest";

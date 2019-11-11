@@ -35,6 +35,7 @@
             this.lblHint = new System.Windows.Forms.Label();
             this.btnRevert = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
+            this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.SuspendLayout();
             // 
             // settingsList
@@ -48,10 +49,13 @@
             this.Value});
             this.settingsList.FullRowSelect = true;
             this.settingsList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.helpProvider.SetHelpString(this.settingsList, "List of settings / parameters for Super Grate. Double click any setting to change" +
+        " its value.");
             this.settingsList.HideSelection = false;
             this.settingsList.Location = new System.Drawing.Point(0, 0);
             this.settingsList.MultiSelect = false;
             this.settingsList.Name = "settingsList";
+            this.helpProvider.SetShowHelp(this.settingsList, true);
             this.settingsList.Size = new System.Drawing.Size(694, 311);
             this.settingsList.TabIndex = 0;
             this.settingsList.UseCompatibleStateImageBehavior = false;
@@ -72,8 +76,10 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnSave, "Saves the configuration to disk.");
             this.btnSave.Location = new System.Drawing.Point(492, 320);
             this.btnSave.Name = "btnSave";
+            this.helpProvider.SetShowHelp(this.btnSave, true);
             this.btnSave.Size = new System.Drawing.Size(95, 29);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "&Save to Disk";
@@ -96,8 +102,10 @@
             // 
             this.btnRevert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRevert.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnRevert, "Re-load the configuration from disk.");
             this.btnRevert.Location = new System.Drawing.Point(391, 320);
             this.btnRevert.Name = "btnRevert";
+            this.helpProvider.SetShowHelp(this.btnRevert, true);
             this.btnRevert.Size = new System.Drawing.Size(95, 29);
             this.btnRevert.TabIndex = 3;
             this.btnRevert.Text = "&Load from Disk";
@@ -108,8 +116,10 @@
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnApply, "Closes this window.");
             this.btnApply.Location = new System.Drawing.Point(593, 320);
             this.btnApply.Name = "btnApply";
+            this.helpProvider.SetShowHelp(this.btnApply, true);
             this.btnApply.Size = new System.Drawing.Size(95, 29);
             this.btnApply.TabIndex = 4;
             this.btnApply.Text = "&Close";
@@ -129,6 +139,7 @@
             this.Controls.Add(this.settingsList);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(553, 257);
@@ -150,5 +161,6 @@
         private System.Windows.Forms.Label lblHint;
         private System.Windows.Forms.Button btnRevert;
         private System.Windows.Forms.Button btnApply;
+        private System.Windows.Forms.HelpProvider helpProvider;
     }
 }
