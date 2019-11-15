@@ -251,6 +251,7 @@ namespace SuperGrate
             return Task.Run(async () => {
                 try
                 {
+                    bool success = true;
                     Logger.Information("Downloading USMT (" + DetectedArch + ") from the web...");
                     if (!Directory.Exists(USMTPath))
                     {
@@ -259,15 +260,17 @@ namespace SuperGrate
                     string dlPath = Path.Combine(USMTPath, "USMT.zip");
                     if (DetectedArch == "64-bit")
                     {
-                        await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", dlPath).Start();
+                        success = await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", dlPath).Start();
+                        if (!success) throw new Exception("Download failure.");
                     }
                     else if (DetectedArch == "32-bit")
                     {
-                        await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x86.zip", dlPath).Start();
+                        success = await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x86.zip", dlPath).Start();
+                        if (!success) throw new Exception("Download failure.");
                     }
                     else
                     {
-                        return false;
+                        throw new Exception("Could not determine target architecture.");
                     }
                     Logger.Information("Decompressing USMT...");
                     ZipFile.ExtractToDirectory(dlPath, USMTPath);
@@ -277,6 +280,8 @@ namespace SuperGrate
                 }
                 catch(Exception e)
                 {
+                    Logger.Warning("Removing USMT folder due to failure...");
+                    Directory.Delete(USMTPath, true);
                     Logger.Exception(e, "Failed to automatically download USMT from the web. Please download USMT and update the SuperGrate.xml accordingly.");
                     return false;
                 }

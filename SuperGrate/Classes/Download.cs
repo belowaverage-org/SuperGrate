@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace SuperGrate
@@ -9,7 +10,7 @@ namespace SuperGrate
         private WebClient Client = new WebClient();
         private string URL;
         private string DESTINATION;
-        private bool Downloaded = false;
+        private AsyncCompletedEventArgs Done = null;
         public Download(string Url, string Destination)
         {
             URL = Url;
@@ -17,19 +18,28 @@ namespace SuperGrate
             Client.DownloadProgressChanged += Client_DownloadProgressChanged;
             Client.DownloadFileCompleted += Client_DownloadFileCompleted;
         }
-        private void Client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        private void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            Downloaded = true;
+            Done = e;
         }
         private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             Logger.UpdateProgress(e.ProgressPercentage);
         }
-        public Task Start()
+        public Task<bool> Start()
         {
             Client.DownloadFileAsync(new Uri(URL), DESTINATION);
             return Task.Run(async () => {
-                while (!Downloaded) { await Task.Delay(100); }
+                while (Done == null) { await Task.Delay(100); }
+                if(Done.Error == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    Logger.Exception(Done.Error, "Error downloading: " + URL + ".");
+                    return false;
+                }
             });
         }
     }
