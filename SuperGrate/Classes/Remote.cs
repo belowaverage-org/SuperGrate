@@ -24,6 +24,18 @@ namespace SuperGrate
                     mClass.InvokeMethod("Create", new object[] { CLI, CurrentDirectory, startup });
                     return true;
                 }
+                catch(ManagementException e)
+                {
+                    if(e.ErrorCode == ManagementStatus.InvalidNamespace)
+                    {
+                        Logger.Exception(e, "It appears that the target computer (" + Target + ") has a corrupt WMI installation. Run the command \"winmgmt.exe /resetrepository\" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt");
+                    }
+                    else
+                    {
+                        Logger.Exception(e, "Failed to run a command on " + Target + ".");
+                    }
+                    return false;
+                }
                 catch (Exception e)
                 {
                     Logger.Exception(e, "Failed to run a command on " + Target + ".");
