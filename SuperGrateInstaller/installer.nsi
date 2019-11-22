@@ -1,9 +1,11 @@
 !define NAME "Super Grate"
-!define VERSION "1.2.0.0"
+!define NAME2 "SuperGrate"
+!define VERSION "1.2.1.0"
 !include x64.nsh
 !include "MUI2.nsh"
 Name "${NAME}"
-OutFile ".\bin\SuperGrateInstaller.exe"
+OutFile ".\bin\${NAME2}Installer.exe"
+BrandingText "Dylan Bickerstaff (C) 2019 - Super Suite - ${NAME} - v${VERSION}"
 
 VIAddVersionKey "ProductName" "${NAME}"
 VIAddVersionKey "LegalTrademarks" "Super Suite"
@@ -12,20 +14,21 @@ VIAddVersionKey "FileDescription" "${NAME} - Installer"
 VIAddVersionKey "FileVersion" "${VERSION}"
 VIProductVersion "${VERSION}"
 
-!define MUI_ICON "..\SuperGrate\Images\supergrate.ico"
-!define MUI_UNICON "..\SuperGrate\Images\supergrate.ico"
+!define MUI_ICON "..\${NAME2}\Images\supergrate.ico"
+!define MUI_UNICON "..\${NAME2}\Images\supergrate.ico"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_BITMAP ".\header.bmp"
 !define MUI_WELCOMEFINISHPAGE_BITMAP ".\welcome.bmp"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP ".\welcome.bmp"
+!define MUI_COMPONENTSPAGE_CHECKBITMAP ".\checks.bmp"
 !define MUI_WELCOMEPAGE_TITLE_3LINES
 !define MUI_WELCOMEPAGE_TEXT "${NAME} setup will guide you through the installation process.$\r$\n$\r$\n$\r$\nPress Next to continue."
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
-!define MUI_FINISHPAGE_LINK "Super Grate - GitHub"
-!define MUI_FINISHPAGE_LINK_LOCATION "https://github.com/belowaverage-org/SuperGrate"
+!define MUI_FINISHPAGE_LINK "${NAME} - GitHub"
+!define MUI_FINISHPAGE_LINK_LOCATION "https://github.com/belowaverage-org/${NAME2}"
 
-InstallDir "$PROGRAMFILES64\Super Suite\Super Grate"
+InstallDir "$PROGRAMFILES64\Super Suite\${NAME}"
 
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_LICENSE "..\license"
@@ -48,9 +51,9 @@ SetShellVarContext all
 SetOutPath "$INSTDIR"
 
 ${If} ${RunningX64}
-	File "..\SuperGrate\bin\Release_64\SuperGrate.exe"
+	File "..\${NAME2}\bin\Release_64\${NAME2}.exe"
 ${Else}
-    File "..\SuperGrate\bin\Release\SuperGrate.exe"
+    File "..\${NAME2}\bin\Release\${NAME2}.exe"
 ${EndIf}  
 
 
@@ -81,7 +84,7 @@ Section "Shortcut - Start Menu" SMSC
 
 SetOutPath "$INSTDIR"
 CreateDirectory "$SMPROGRAMS\Super Suite"
-CreateShortcut "$SMPROGRAMS\Super Suite\Super Grate.lnk" "$INSTDIR\SuperGrate.exe"
+CreateShortcut "$SMPROGRAMS\Super Suite\${NAME}.lnk" "$INSTDIR\${NAME2}.exe"
 
 SectionEnd
 
@@ -90,7 +93,7 @@ SectionEnd
 Section /o "Shortcut - Desktop" DTSC
 
 SetOutPath "$INSTDIR"
-CreateShortcut "$DESKTOP\Super Grate.lnk" "$INSTDIR\SuperGrate.exe"
+CreateShortcut "$DESKTOP\${NAME}.lnk" "$INSTDIR\${NAME2}.exe"
 
 SectionEnd
 
@@ -106,8 +109,8 @@ WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "UninstallString" "$INSTDIR\uninstall.exe"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "Publisher" "Dylan Bickerstaff"
 WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayVersion" "${VERSION}"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayIcon" "$INSTDIR\SuperGrate.exe"
-WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "Comments" "Super Grate"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "DisplayIcon" "$INSTDIR\${NAME2}.exe"
+WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}" "Comments" "${NAME}"
 
 WriteUninstaller "$INSTDIR\uninstall.exe"
 
@@ -119,15 +122,12 @@ Section "Uninstall"
 
 SetShellVarContext all
 
-RMDir /r "$INSTDIR\USMT"
-RMDir /r "$INSTDIR\STORE"
-Delete "$INSTDIR\SuperGrate.xml"
-Delete "$INSTDIR\SuperGrate.exe"
-Delete "$INSTDIR\uninstall.exe"
-Delete "$SMPROGRAMS\Super Suite\Super Grate.lnk"
-Delete "$DESKTOP\Super Grate.lnk"
-RMDir "$SMPROGRAMS\Super Suite" 
+RMDir /r "$INSTDIR"
+Delete "$SMPROGRAMS\Super Suite\${NAME}.lnk"
+Delete "$DESKTOP\${NAME}.lnk"
+RMDir "$SMPROGRAMS\Super Suite"
 RMDir "$INSTDIR"
+RMDir "$INSTDIR\..\"
 DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${NAME}"
 
 SectionEnd
@@ -135,10 +135,10 @@ SectionEnd
 
 
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
-  !insertmacro MUI_DESCRIPTION_TEXT ${SuperGrate} "This item installs the Super Grate program."
+  !insertmacro MUI_DESCRIPTION_TEXT ${Application} "This item installs the ${NAME} program."
   !insertmacro MUI_DESCRIPTION_TEXT ${USMT64} "This item installs the 64-Bit version of USMT."
   !insertmacro MUI_DESCRIPTION_TEXT ${USMT32} "This item installs the 32-Bit version of USMT."
   !insertmacro MUI_DESCRIPTION_TEXT ${SMSC} "This item places a shortcut in the start menu."
   !insertmacro MUI_DESCRIPTION_TEXT ${DTSC} "This item places a shortcut on the desktop."
-  !insertmacro MUI_DESCRIPTION_TEXT ${Uninst} "This item installs an Uninstaller so that Super Grate can be removed in the future."
+  !insertmacro MUI_DESCRIPTION_TEXT ${Uninst} "This item installs an Uninstaller so that ${NAME} can be removed in the future."
 !insertmacro MUI_FUNCTION_DESCRIPTION_END
