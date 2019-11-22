@@ -176,9 +176,23 @@
   <ItemGroup>
     <None Include="Images\banner.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\delete.ico" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Utilities\SuperGrateProfileDelete.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\go.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\usercheck.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />

@@ -54,8 +54,10 @@
             this.tbDestinationComputer = new System.Windows.Forms.TextBox();
             this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
             this.miFile = new System.Windows.Forms.MenuItem();
-            this.miSaveLog = new System.Windows.Forms.MenuItem();
+            this.miNewInstance = new System.Windows.Forms.MenuItem();
             this.miSpacer0 = new System.Windows.Forms.MenuItem();
+            this.miSaveLog = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.miExitButton = new System.Windows.Forms.MenuItem();
             this.miSetup = new System.Windows.Forms.MenuItem();
             this.miHelp = new System.Windows.Forms.MenuItem();
@@ -437,26 +439,39 @@
             // 
             this.miFile.Index = 0;
             this.miFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miSaveLog,
+            this.miNewInstance,
             this.miSpacer0,
+            this.miSaveLog,
+            this.menuItem2,
             this.miExitButton});
             this.miFile.Text = "&File";
             // 
-            // miSaveLog
+            // miNewInstance
             // 
-            this.miSaveLog.Index = 0;
-            this.miSaveLog.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
-            this.miSaveLog.Text = "Save Log...";
-            this.miSaveLog.Click += new System.EventHandler(this.MiSaveLog_Click);
+            this.miNewInstance.Index = 0;
+            this.miNewInstance.Text = "New Instance";
+            this.miNewInstance.Click += new System.EventHandler(this.miNewInstance_Click);
             // 
             // miSpacer0
             // 
             this.miSpacer0.Index = 1;
             this.miSpacer0.Text = "-";
             // 
+            // miSaveLog
+            // 
+            this.miSaveLog.Index = 2;
+            this.miSaveLog.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
+            this.miSaveLog.Text = "Save Log...";
+            this.miSaveLog.Click += new System.EventHandler(this.MiSaveLog_Click);
+            // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 3;
+            this.menuItem2.Text = "-";
+            // 
             // miExitButton
             // 
-            this.miExitButton.Index = 2;
+            this.miExitButton.Index = 4;
             this.miExitButton.Shortcut = System.Windows.Forms.Shortcut.AltF4;
             this.miExitButton.Text = "Exit";
             this.miExitButton.Click += new System.EventHandler(this.MiExitButton_Click);
@@ -593,6 +608,8 @@
         private System.Windows.Forms.MenuItem miSpacer1;
         private System.Windows.Forms.MenuItem miHelpButton;
         private System.Windows.Forms.MenuItem miSpacer2;
+        private System.Windows.Forms.MenuItem miNewInstance;
+        private System.Windows.Forms.MenuItem menuItem2;
     }
 }
 

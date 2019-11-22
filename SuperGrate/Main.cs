@@ -375,6 +375,10 @@ namespace SuperGrate
                 Cursor = Cursors.Help;
             }
         }
+        private void miNewInstance_Click(object sender, EventArgs e)
+        {
+            Process.Start(Application.ExecutablePath);
+        }
     }
     public enum ListSources
     {
