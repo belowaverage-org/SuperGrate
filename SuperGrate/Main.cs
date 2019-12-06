@@ -27,8 +27,9 @@ namespace SuperGrate
             Form = this;
             LoggerBox = LogBox;
             Progress = pbMain;
-            lbxUsers.Tag = new string[0];
+            listUsers.Tag = new string[0];
             Icon = Properties.Resources.supergrate;
+
         }
         private void Main_Load(object sender, EventArgs e)
         {
@@ -76,7 +77,7 @@ namespace SuperGrate
                     btnListSource.Enabled =
                     btnListStore.Enabled =
                     btnDelete.Enabled =
-                    lbxUsers.Enabled =
+                    listUsers.Enabled =
                     false;
                 }
                 else
@@ -91,7 +92,7 @@ namespace SuperGrate
                     btnListSource.Enabled =
                     btnListStore.Enabled =
                     btnDelete.Enabled =
-                    lbxUsers.Enabled =
+                    listUsers.Enabled =
                     true;
                     UpdateFormRestrictions();
                     if (CloseRequested) Close();
@@ -113,10 +114,10 @@ namespace SuperGrate
             {
                 Running = RunningTask.USMT;
                 int count = 0;
-                string[] SIDs = new string[lbxUsers.SelectedIndices.Count];
-                foreach (int index in lbxUsers.SelectedIndices)
+                string[] SIDs = new string[listUsers.SelectedIndices.Count];
+                foreach (int index in listUsers.SelectedIndices)
                 {
-                    SIDs[count++] = ((string[])lbxUsers.Tag)[index];
+                    SIDs[count++] = ((string[])listUsers.Tag)[index];
                 }
                 bool setting;
                 bool success;
@@ -143,7 +144,7 @@ namespace SuperGrate
         private async void BtnListSource_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
-            lbxUsers.Items.Clear();
+            listUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> users = await Misc.GetUsersFromHost(tbSourceComputer.Text);
             List<string> tags = new List<string>();
@@ -162,10 +163,10 @@ namespace SuperGrate
                         Logger.Verbose("Skipped unknown SID: " + user.Key + ".");
                         continue;
                     }
-                    lbxUsers.Items.Add(user.Value);
+                    listUsers.Items.Add(user.Value);
                     tags.Add(user.Key);
                 }
-                lbxUsers.Tag = tags.ToArray();
+                listUsers.Tag = tags.ToArray();
                 CurrentListSource = ListSources.SourceComputer;
                 Logger.Success("Done!");
             }
@@ -174,13 +175,22 @@ namespace SuperGrate
         private async void BtnListStore_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
-            lbxUsers.Items.Clear();
+            listUsers.BeginUpdate();
+            listUsers.Items.Clear();
             lblUserList.Text = "Users in Migration Store:";
             Dictionary<string, string> results = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
             if(results != null)
             {
-                lbxUsers.Tag = results.Keys.ToArray();
-                lbxUsers.Items.AddRange(results.Values.ToArray());
+                UserListViews.SetStore(listUsers);
+                //lbxUsers.Tag = results.Keys.ToArray();
+                //lbxUsers.Items.AddRange(results.Values.ToArray());
+                listUsers.Tag = results.Keys.ToArray();
+                foreach(string userNames in results.Values)
+                {
+                    listUsers.Items.Add(userNames);
+                }
+                listUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                listUsers.EndUpdate();
                 CurrentListSource = ListSources.MigrationStore;
             }
             Running = RunningTask.None;
@@ -200,7 +210,7 @@ namespace SuperGrate
         }
         private void UpdateFormRestrictions(object sender = null, EventArgs e = null)
         {
-            if (lbxUsers.SelectedIndices.Count == 0 || (tbDestinationComputer.Text == "" && CurrentListSource == ListSources.MigrationStore))
+            if (listUsers.SelectedIndices.Count == 0 || (tbDestinationComputer.Text == "" && CurrentListSource == ListSources.MigrationStore))
             {
                 btStartStop.Enabled = false;
             }
@@ -208,7 +218,7 @@ namespace SuperGrate
             {
                 btStartStop.Enabled = true;
             }
-            if (lbxUsers.SelectedIndices.Count != 0)
+            if (listUsers.SelectedIndices.Count != 0)
             {
                 tbSourceComputer.Enabled = btnAFillSrc.Enabled = false;
                 btnDelete.Enabled = true;
@@ -232,7 +242,7 @@ namespace SuperGrate
             SourceComputer = tbSourceComputer.Text;
             if(CurrentListSource == ListSources.SourceComputer)
             {
-                lbxUsers.Items.Clear();
+                listUsers.Items.Clear();
             }
             UpdateFormRestrictions();
         }
@@ -245,9 +255,9 @@ namespace SuperGrate
         {
             Running = RunningTask.RemoteProfileDelete;
             List<string> SIDs = new List<string>();
-            foreach (int index in lbxUsers.SelectedIndices)
+            foreach (int index in listUsers.SelectedIndices)
             {
-                SIDs.Add(((string[])lbxUsers.Tag)[index]);
+                SIDs.Add(((string[])listUsers.Tag)[index]);
             }
             if(CurrentListSource == ListSources.MigrationStore)
             {
