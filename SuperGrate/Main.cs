@@ -145,7 +145,7 @@ namespace SuperGrate
         {
             Running = RunningTask.Unknown;
             listUsers.BeginUpdate();
-            UserListViews.SetSourceComputer(listUsers);
+            UserTable.SetColumns(listUsers, UserTable.HeaderRowComputerSource);
             listUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> users = await Misc.GetUsersFromHost(tbSourceComputer.Text);
@@ -182,16 +182,20 @@ namespace SuperGrate
             listUsers.BeginUpdate();
             listUsers.Items.Clear();
             lblUserList.Text = "Users in Migration Store:";
-            Dictionary<string, string> results = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
-            if(results != null)
+            UserTable.SetColumns(listUsers, UserTable.HeaderRowStoreSource);
+            UserTable.UserRows rows = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
+            if(rows != null)
             {
-                UserListViews.SetStore(listUsers);
-                //lbxUsers.Tag = results.Keys.ToArray();
-                //lbxUsers.Items.AddRange(results.Values.ToArray());
-                listUsers.Tag = results.Keys.ToArray();
-                foreach(string userNames in results.Values)
+                foreach(UserTable.UserRow row in rows)
                 {
-                    listUsers.Items.Add(userNames);
+                    ListViewItem lvRow = listUsers.Items.Add(row[0]);
+                    row.Remove(0);
+                    lvRow.Tag = row[UserTable.ColumnType.Tag];
+                    row.Remove(UserTable.ColumnType.Tag);
+                    foreach(KeyValuePair<UserTable.ColumnType, string> column in row)
+                    {
+                        lvRow.SubItems.Add(column.Value);
+                    }
                 }
                 listUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 listUsers.EndUpdate();

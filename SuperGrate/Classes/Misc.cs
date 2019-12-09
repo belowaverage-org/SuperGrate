@@ -122,23 +122,58 @@ namespace SuperGrate
                 }
             });
         }
-        static public Task<Dictionary<string, string>> GetUsersFromStore(string StorePath)
+        static public Task<UserTable.UserRows> GetUsersFromStore(string StorePath)
         {
             return Task.Run(() =>
             {
                 try
                 {
                     Logger.Information("Listing users from store: " + StorePath + "...");
-                    Dictionary<string, string> results = new Dictionary<string, string>();
+                    UserTable.UserRows rows = new UserTable.UserRows();
                     foreach (string directory in Directory.EnumerateDirectories(StorePath))
                     {
+                        UserTable.UserRow row = new UserTable.UserRow();
                         DirectoryInfo info = new DirectoryInfo(directory);
-                        string user = GetUserByIdentity(info.Name);
-                        Logger.Verbose("Found: " + user);
-                        results.Add(info.Name, user);
+                        foreach(KeyValuePair<UserTable.ColumnType, string> HeaderColumn in UserTable.CurrentHeaderRow)
+                        {
+                            if (HeaderColumn.Key == UserTable.ColumnType.Tag)
+                            {
+                                row.Add(HeaderColumn.Key, info.Name);
+                            }
+                            if (HeaderColumn.Key == UserTable.ColumnType.NTAccount)
+                            {
+                                row.Add(HeaderColumn.Key, File.ReadAllText(Path.Combine(directory, "ntaccount")));
+                            }
+                            if (HeaderColumn.Key == UserTable.ColumnType.SourceComputer)
+                            {
+
+                            }
+                            if (HeaderColumn.Key == UserTable.ColumnType.DestinationComputer)
+                            {
+
+                            }
+                            if (HeaderColumn.Key == UserTable.ColumnType.MigratedBy)
+                            {
+
+                            }
+                            if (HeaderColumn.Key == UserTable.ColumnType.ImportedOn)
+                            {
+
+                            }
+                            if (HeaderColumn.Key == UserTable.ColumnType.ExportedOn)
+                            {
+
+                            }
+                            if (HeaderColumn.Key == UserTable.ColumnType.Size)
+                            {
+
+                            }
+                        }
+                        rows.Add(row);
+                        //Logger.Verbose("Found: " + user);
                     }
                     Logger.Success("Users listed successfully.");
-                    return results;
+                    return rows;
                 }
                 catch (Exception e)
                 {
