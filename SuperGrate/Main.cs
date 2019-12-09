@@ -144,6 +144,8 @@ namespace SuperGrate
         private async void BtnListSource_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
+            listUsers.BeginUpdate();
+            UserListViews.SetSourceComputer(listUsers);
             listUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> users = await Misc.GetUsersFromHost(tbSourceComputer.Text);
@@ -167,6 +169,8 @@ namespace SuperGrate
                     tags.Add(user.Key);
                 }
                 listUsers.Tag = tags.ToArray();
+                listUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                listUsers.EndUpdate();
                 CurrentListSource = ListSources.SourceComputer;
                 Logger.Success("Done!");
             }

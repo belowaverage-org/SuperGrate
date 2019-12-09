@@ -50,6 +50,7 @@
             this.destCompTabl = new System.Windows.Forms.TableLayoutPanel();
             this.btnAFillDest = new System.Windows.Forms.Button();
             this.tbDestinationComputer = new System.Windows.Forms.TextBox();
+            this.listUsers = new System.Windows.Forms.ListView();
             this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
             this.miFile = new System.Windows.Forms.MenuItem();
             this.miNewInstance = new System.Windows.Forms.MenuItem();
@@ -67,7 +68,6 @@
             this.miAboutSG = new System.Windows.Forms.MenuItem();
             this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
-            this.listUsers = new System.Windows.Forms.ListView();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -410,6 +410,22 @@
             this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
             this.tbDestinationComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSourceDestComputer_KeyDown);
             // 
+            // listUsers
+            // 
+            this.listUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listUsers.FullRowSelect = true;
+            this.listUsers.HideSelection = false;
+            this.listUsers.Location = new System.Drawing.Point(133, 93);
+            this.listUsers.Name = "listUsers";
+            this.tblMainLayout.SetRowSpan(this.listUsers, 2);
+            this.listUsers.ShowGroups = false;
+            this.listUsers.Size = new System.Drawing.Size(532, 306);
+            this.listUsers.TabIndex = 103;
+            this.listUsers.UseCompatibleStateImageBehavior = false;
+            this.listUsers.View = System.Windows.Forms.View.Details;
+            this.listUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
+            this.listUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxUsers_KeyDown);
+            // 
             // MainMenu
             // 
             this.MainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
@@ -515,22 +531,6 @@
             this.dialogSaveLog.Filter = "Text File|*.txt|Log File|*.log";
             this.dialogSaveLog.FilterIndex = 2;
             this.dialogSaveLog.Title = "Save Super Grate Log...";
-            // 
-            // listUsers
-            // 
-            this.listUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listUsers.FullRowSelect = true;
-            this.listUsers.HideSelection = false;
-            this.listUsers.Location = new System.Drawing.Point(133, 93);
-            this.listUsers.Name = "listUsers";
-            this.tblMainLayout.SetRowSpan(this.listUsers, 2);
-            this.listUsers.ShowGroups = false;
-            this.listUsers.Size = new System.Drawing.Size(532, 306);
-            this.listUsers.TabIndex = 103;
-            this.listUsers.UseCompatibleStateImageBehavior = false;
-            this.listUsers.View = System.Windows.Forms.View.Details;
-            this.listUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
-            this.listUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxUsers_KeyDown);
             // 
             // Main
             // 

@@ -199,16 +199,17 @@ namespace SuperGrate
         {
             return Task.Run(() => {
                 Logger.Information("Uploading user state to the Store...");
-                string Destination = Path.Combine(Config.Settings["MigrationStorePath"], SID);
+                string Destination = Path.Combine(Config.Settings["MigrationStorePath"], Guid.NewGuid().ToString());
                 try
                 {
                     Directory.CreateDirectory(Destination);
-                    StreamWriter fs = File.CreateText(Path.Combine(Destination, "ntaccount"));
-                    fs.Write(Misc.GetUserByIdentity(SID));
-                    fs.Close();
+                    File.WriteAllText(Path.Combine(Destination, "sid"), SID);
+                    File.WriteAllText(Path.Combine(Destination, "source"), CurrentTarget);
+                    File.WriteAllText(Path.Combine(Destination, "ntaccount"), Misc.GetUserByIdentity(SID));
+                    File.WriteAllText(Path.Combine(Destination, "timestamp"), DateTime.Now.ToFileTime().ToString());
                     Copy.CopyFile(
                         Path.Combine(@"\\", Main.SourceComputer, Path.Combine(PayloadPathRemote, @"USMT\USMT.MIG")),
-                        Path.Combine(Destination, "USMT.MIG")
+                        Path.Combine(Destination, "data")
                     );
                     Logger.Success("User state successfully uploaded.");
                     return true;
