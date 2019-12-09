@@ -206,7 +206,8 @@ namespace SuperGrate
                     File.WriteAllText(Path.Combine(Destination, "sid"), SID);
                     File.WriteAllText(Path.Combine(Destination, "source"), CurrentTarget);
                     File.WriteAllText(Path.Combine(Destination, "ntaccount"), Misc.GetUserByIdentity(SID));
-                    File.WriteAllText(Path.Combine(Destination, "timestamp"), DateTime.Now.ToFileTime().ToString());
+                    File.WriteAllText(Path.Combine(Destination, "importedon"), DateTime.Now.ToFileTime().ToString());
+                    File.WriteAllText(Path.Combine(Destination, "importedby"), Environment.UserDomainName + "\\" + Environment.UserName);
                     Copy.CopyFile(
                         Path.Combine(@"\\", Main.SourceComputer, Path.Combine(PayloadPathRemote, @"USMT\USMT.MIG")),
                         Path.Combine(Destination, "data")

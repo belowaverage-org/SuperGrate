@@ -5,7 +5,16 @@ namespace SuperGrate
 {
     class UserTable
     {
-        public class UserRow : Dictionary<ColumnType, string> { }
+        public class UserRow : Dictionary<ColumnType, string> { 
+            public UserRow() { }
+            public UserRow(UserRow TemplateRow)
+            {
+                foreach(KeyValuePair<ColumnType, string> column in TemplateRow)
+                {
+                    Add(column.Key, null);
+                }
+            }
+        }
         public class UserRows : List<UserRow> { }
         public static UserRow CurrentHeaderRow = null;
         public static UserRow HeaderRowComputerSource = new UserRow()
@@ -21,8 +30,9 @@ namespace SuperGrate
             { ColumnType.NTAccount, "User Name" },
             { ColumnType.SourceComputer, "Source Computer" },
             { ColumnType.DestinationComputer, "Destination Computer" },
-            { ColumnType.MigratedBy, "Migrated By" },
+            { ColumnType.ImportedBy, "Imported By" },
             { ColumnType.ImportedOn, "Imported On" },
+            { ColumnType.ExportedBy, "Exported By" },
             { ColumnType.ExportedOn, "Exported On" },
             { ColumnType.Size, "Size" }
         };
@@ -44,8 +54,9 @@ namespace SuperGrate
             DestinationComputer,
             LastLogon,
             Size,
-            MigratedBy,
+            ImportedBy,
             ImportedOn,
+            ExportedBy,
             ExportedOn,
             Tag
         }

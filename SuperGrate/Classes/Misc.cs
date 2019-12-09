@@ -132,45 +132,32 @@ namespace SuperGrate
                     UserTable.UserRows rows = new UserTable.UserRows();
                     foreach (string directory in Directory.EnumerateDirectories(StorePath))
                     {
-                        UserTable.UserRow row = new UserTable.UserRow();
+                        UserTable.UserRow row = new UserTable.UserRow(UserTable.CurrentHeaderRow);
                         DirectoryInfo info = new DirectoryInfo(directory);
-                        foreach(KeyValuePair<UserTable.ColumnType, string> HeaderColumn in UserTable.CurrentHeaderRow)
+                        row[UserTable.ColumnType.Tag] = info.Name;
+                        row[UserTable.ColumnType.NTAccount] = File.ReadAllText(Path.Combine(directory, "ntaccount"));
+                        string DataFilePath = Path.Combine(directory, "data");
+                        if (row.ContainsKey(UserTable.ColumnType.Size))
                         {
-                            if (HeaderColumn.Key == UserTable.ColumnType.Tag)
-                            {
-                                row.Add(HeaderColumn.Key, info.Name);
-                            }
-                            if (HeaderColumn.Key == UserTable.ColumnType.NTAccount)
-                            {
-                                row.Add(HeaderColumn.Key, File.ReadAllText(Path.Combine(directory, "ntaccount")));
-                            }
-                            if (HeaderColumn.Key == UserTable.ColumnType.SourceComputer)
-                            {
-
-                            }
-                            if (HeaderColumn.Key == UserTable.ColumnType.DestinationComputer)
-                            {
-
-                            }
-                            if (HeaderColumn.Key == UserTable.ColumnType.MigratedBy)
-                            {
-
-                            }
-                            if (HeaderColumn.Key == UserTable.ColumnType.ImportedOn)
-                            {
-
-                            }
-                            if (HeaderColumn.Key == UserTable.ColumnType.ExportedOn)
-                            {
-
-                            }
-                            if (HeaderColumn.Key == UserTable.ColumnType.Size)
-                            {
-
-                            }
+                            row[UserTable.ColumnType.Size] = ByteHumanizer.ByteHumanize(new FileInfo(DataFilePath).Length);
+                        }
+                        string ImpOnFile = Path.Combine(directory, "importedon");
+                        if (row.ContainsKey(UserTable.ColumnType.ImportedOn) && File.Exists(ImpOnFile))
+                        {
+                            row[UserTable.ColumnType.ImportedOn] = DateTime.FromFileTime(long.Parse(File.ReadAllText(ImpOnFile))).ToString();
+                        }
+                        string ImpByFile = Path.Combine(directory, "importedby");
+                        if (row.ContainsKey(UserTable.ColumnType.ImportedBy) && File.Exists(ImpByFile))
+                        {
+                            row[UserTable.ColumnType.ImportedBy] = File.ReadAllText(ImpByFile);
+                        }
+                        string SCFilePath = Path.Combine(directory, "source");
+                        if (row.ContainsKey(UserTable.ColumnType.SourceComputer) && File.Exists(SCFilePath))
+                        {
+                            row[UserTable.ColumnType.SourceComputer] = File.ReadAllText(SCFilePath);
                         }
                         rows.Add(row);
-                        //Logger.Verbose("Found: " + user);
+                        Logger.Verbose("Found: " + row[UserTable.ColumnType.NTAccount]);
                     }
                     Logger.Success("Users listed successfully.");
                     return rows;

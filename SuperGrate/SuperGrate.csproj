@@ -106,6 +106,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ByteHumanizer.cs" />
     <Compile Include="Classes\Config.cs" />
     <Compile Include="Classes\Copy.cs" />
     <Compile Include="Classes\Download.cs" />
@@ -120,6 +121,12 @@
     </Compile>
     <Compile Include="Controls\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ChangeColumns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ChangeColumns.Designer.cs">
+      <DependentUpon>ChangeColumns.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ChangeSetting.cs">
       <SubType>Form</SubType>
@@ -143,6 +150,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Controls\About.resx">
       <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ChangeColumns.resx">
+      <DependentUpon>ChangeColumns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ChangeSetting.resx">
       <DependentUpon>ChangeSetting.cs</DependentUpon>

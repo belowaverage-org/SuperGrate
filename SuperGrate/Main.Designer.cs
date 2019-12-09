@@ -68,6 +68,8 @@
             this.miAboutSG = new System.Windows.Forms.MenuItem();
             this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
+            this.miView = new System.Windows.Forms.MenuItem();
+            this.miAddRemoveCol = new System.Windows.Forms.MenuItem();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -431,6 +433,7 @@
             this.MainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.miFile,
             this.miSetup,
+            this.miView,
             this.miHelp});
             // 
             // miFile
@@ -482,7 +485,7 @@
             // 
             // miHelp
             // 
-            this.miHelp.Index = 2;
+            this.miHelp.Index = 3;
             this.miHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.miDocumentation,
             this.miIssues,
@@ -531,6 +534,19 @@
             this.dialogSaveLog.Filter = "Text File|*.txt|Log File|*.log";
             this.dialogSaveLog.FilterIndex = 2;
             this.dialogSaveLog.Title = "Save Super Grate Log...";
+            // 
+            // miView
+            // 
+            this.miView.Index = 2;
+            this.miView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.miAddRemoveCol});
+            this.miView.Text = "&View";
+            // 
+            // miAddRemoveCol
+            // 
+            this.miAddRemoveCol.Index = 0;
+            this.miAddRemoveCol.Text = "&Add/Remove Columns...";
+            this.miAddRemoveCol.Click += new System.EventHandler(this.miAddRemoveCol_Click);
             // 
             // Main
             // 
@@ -608,6 +624,8 @@
         private System.Windows.Forms.MenuItem miNewInstance;
         private System.Windows.Forms.MenuItem menuItem2;
         private System.Windows.Forms.ListView listUsers;
+        private System.Windows.Forms.MenuItem miView;
+        private System.Windows.Forms.MenuItem miAddRemoveCol;
     }
 }
 

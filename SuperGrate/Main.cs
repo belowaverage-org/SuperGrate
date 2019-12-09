@@ -188,8 +188,8 @@ namespace SuperGrate
             {
                 foreach(UserTable.UserRow row in rows)
                 {
-                    ListViewItem lvRow = listUsers.Items.Add(row[0]);
-                    row.Remove(0);
+                    ListViewItem lvRow = listUsers.Items.Add(row[UserTable.ColumnType.NTAccount]);
+                    row.Remove(UserTable.ColumnType.NTAccount);
                     lvRow.Tag = row[UserTable.ColumnType.Tag];
                     row.Remove(UserTable.ColumnType.Tag);
                     foreach(KeyValuePair<UserTable.ColumnType, string> column in row)
@@ -396,6 +396,10 @@ namespace SuperGrate
         private void miNewInstance_Click(object sender, EventArgs e)
         {
             Process.Start(Application.ExecutablePath);
+        }
+        private void miAddRemoveCol_Click(object sender, EventArgs e)
+        {
+            new Controls.ChangeColumns().ShowDialog();
         }
     }
     public enum ListSources
