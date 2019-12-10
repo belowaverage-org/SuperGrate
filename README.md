@@ -1,4 +1,5 @@
 <h1 align="center">
+  <img src="https://belowaverage.visualstudio.com/SuperGrate/_apis/build/status/belowaverage-org.SuperGrate?branchName=master"><br><br>
   <img height="25" src="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrate/Images/supergrate.ico">
   Super Grate
 </h1>
