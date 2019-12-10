@@ -23,7 +23,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '-target:SuperGrate:Build'
+    msbuildArgs: '-target:SuperGrate\SuperGrate:Build'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
     msbuildArchitecture: 'x64'
@@ -31,7 +31,7 @@ steps:
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
-    msbuildArgs: '-target:SuperGrate:Build'
+    msbuildArgs: '-target:SuperGrate\SuperGrate:Build'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration64)'
     msbuildArchitecture: 'x64'
