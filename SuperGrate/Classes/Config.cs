@@ -16,8 +16,8 @@ namespace SuperGrate
             {"XComment1", @"The UNC or Direct path to the USMT Migration Store (E.g: \\ba-share\s$ or .\STORE)"},
             {"MigrationStorePath", @".\STORE"},
             {"XComment2", "ScanState.exe & LoadState.exe CLI Parameters. See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax "},
-            {"ScanStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /o"},
-            {"LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /lac /lae"},
+            {"ScanStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /c /r:3 /o"},
+            {"LoadStateParameters", "/config:Config_SettingsOnly.xml /i:MigUser.xml /c /r:3 /lac /lae"},
             {"XComment3", "Delete the user from the migration store after a restore? (store to destination)"},
             {"AutoDeleteFromStore", "false"},
             {"XComment8", "Delete the user from the source computer after a backup? (source to store)"},
@@ -27,7 +27,10 @@ namespace SuperGrate
             {"XComment7", "Prevent unknown accounts from being listed?"},
             {"HideUnknownSIDs", "false"},
             {"XComment6", @"Write log to disk on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)"},
-            {"DumpLogHereOnExit", ""}
+            {"DumpLogHereOnExit", ""},
+            {"XComment10", @"List of columns to display for the Source or Store users."},
+            {"ULSourceColumns", "3,4"},
+            {"ULStoreColumns", "1,5,6,4"}
         };
         public static void SaveConfig()
         {
