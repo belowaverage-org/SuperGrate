@@ -114,7 +114,7 @@
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Misc.cs" />
     <Compile Include="Classes\Remote.cs" />
-    <Compile Include="Classes\LVControl.cs" />
+    <Compile Include="Classes\ULControl.cs" />
     <Compile Include="Classes\USMT.cs" />
     <Compile Include="Controls\About.cs">
       <SubType>Form</SubType>

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Drawing;
-using SuperGrate.LVControl;
+using SuperGrate.UserList;
 
 namespace SuperGrate
 {
@@ -21,25 +21,6 @@ namespace SuperGrate
         private string[] MainParameters = null;
         private bool CloseRequested = false;
         private int CloseAttempts = 0;
-        public static ListRow HeaderRowComputerSource = new ListRow()
-        {
-            { ColumnType.Tag, null },
-            { ColumnType.NTAccount, "User Name" },
-            { ColumnType.LastLogon, "Last Logon" },
-            { ColumnType.Size, "Size" }
-        };
-        public static ListRow HeaderRowStoreSource = new ListRow()
-        {
-            { ColumnType.Tag, null },
-            { ColumnType.NTAccount, "User Name" },
-            { ColumnType.SourceComputer, "Source Computer" },
-            { ColumnType.DestinationComputer, "Destination Computer" },
-            { ColumnType.ImportedBy, "Imported By" },
-            { ColumnType.ImportedOn, "Imported On" },
-            { ColumnType.ExportedBy, "Exported By" },
-            { ColumnType.ExportedOn, "Exported On" },
-            { ColumnType.Size, "Size" }
-        };
         public Main(string[] parameters)
         {
             MainParameters = parameters;
@@ -49,7 +30,6 @@ namespace SuperGrate
             Progress = pbMain;
             listUsers.Tag = new string[0];
             Icon = Properties.Resources.supergrate;
-
         }
         private void Main_Load(object sender, EventArgs e)
         {
@@ -165,7 +145,7 @@ namespace SuperGrate
         {
             Running = RunningTask.Unknown;
             listUsers.BeginUpdate();
-            listUsers.SetColumns(HeaderRowComputerSource);
+            listUsers.SetColumns(ULControl.HeaderRowComputerSource);
             listUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> users = await Misc.GetUsersFromHost(tbSourceComputer.Text);
@@ -202,17 +182,17 @@ namespace SuperGrate
             listUsers.BeginUpdate();
             listUsers.Items.Clear();
             lblUserList.Text = "Users in Migration Store:";
-            listUsers.SetColumns(HeaderRowStoreSource);
-            ListRows rows = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
+            listUsers.SetColumns(ULControl.HeaderRowStoreSource);
+            UserRows rows = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
             if(rows != null)
             {
-                foreach(ListRow row in rows)
+                foreach(UserRow row in rows)
                 {
-                    ListViewItem lvRow = listUsers.Items.Add(row[ColumnType.NTAccount]);
-                    row.Remove(ColumnType.NTAccount);
-                    lvRow.Tag = row[ColumnType.Tag];
-                    row.Remove(ColumnType.Tag);
-                    foreach(KeyValuePair<ColumnType, string> column in row)
+                    ListViewItem lvRow = listUsers.Items.Add(row[ULColumnType.NTAccount]);
+                    row.Remove(ULColumnType.NTAccount);
+                    lvRow.Tag = row[ULColumnType.Tag];
+                    row.Remove(ULColumnType.Tag);
+                    foreach(KeyValuePair<ULColumnType, string> column in row)
                     {
                         lvRow.SubItems.Add(column.Value);
                     }
