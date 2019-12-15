@@ -59,6 +59,8 @@
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.miExitButton = new System.Windows.Forms.MenuItem();
             this.miSetup = new System.Windows.Forms.MenuItem();
+            this.miView = new System.Windows.Forms.MenuItem();
+            this.miAddRemoveCol = new System.Windows.Forms.MenuItem();
             this.miHelp = new System.Windows.Forms.MenuItem();
             this.miDocumentation = new System.Windows.Forms.MenuItem();
             this.miIssues = new System.Windows.Forms.MenuItem();
@@ -68,8 +70,6 @@
             this.miAboutSG = new System.Windows.Forms.MenuItem();
             this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
-            this.miView = new System.Windows.Forms.MenuItem();
-            this.miAddRemoveCol = new System.Windows.Forms.MenuItem();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -483,6 +483,19 @@
             this.miSetup.Text = "&Settings";
             this.miSetup.Click += new System.EventHandler(this.MiSetup_Click);
             // 
+            // miView
+            // 
+            this.miView.Index = 2;
+            this.miView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.miAddRemoveCol});
+            this.miView.Text = "&View";
+            // 
+            // miAddRemoveCol
+            // 
+            this.miAddRemoveCol.Index = 0;
+            this.miAddRemoveCol.Text = "&Add/Remove Columns...";
+            this.miAddRemoveCol.Click += new System.EventHandler(this.miAddRemoveCol_Click);
+            // 
             // miHelp
             // 
             this.miHelp.Index = 3;
@@ -534,19 +547,6 @@
             this.dialogSaveLog.Filter = "Text File|*.txt|Log File|*.log";
             this.dialogSaveLog.FilterIndex = 2;
             this.dialogSaveLog.Title = "Save Super Grate Log...";
-            // 
-            // miView
-            // 
-            this.miView.Index = 2;
-            this.miView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miAddRemoveCol});
-            this.miView.Text = "&View";
-            // 
-            // miAddRemoveCol
-            // 
-            this.miAddRemoveCol.Index = 0;
-            this.miAddRemoveCol.Text = "&Add/Remove Columns...";
-            this.miAddRemoveCol.Click += new System.EventHandler(this.miAddRemoveCol_Click);
             // 
             // Main
             // 

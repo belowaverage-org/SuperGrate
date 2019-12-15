@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Drawing;
+using SuperGrate.LVControl;
 
 namespace SuperGrate
 {
@@ -20,6 +21,25 @@ namespace SuperGrate
         private string[] MainParameters = null;
         private bool CloseRequested = false;
         private int CloseAttempts = 0;
+        public static ListRow HeaderRowComputerSource = new ListRow()
+        {
+            { ColumnType.Tag, null },
+            { ColumnType.NTAccount, "User Name" },
+            { ColumnType.LastLogon, "Last Logon" },
+            { ColumnType.Size, "Size" }
+        };
+        public static ListRow HeaderRowStoreSource = new ListRow()
+        {
+            { ColumnType.Tag, null },
+            { ColumnType.NTAccount, "User Name" },
+            { ColumnType.SourceComputer, "Source Computer" },
+            { ColumnType.DestinationComputer, "Destination Computer" },
+            { ColumnType.ImportedBy, "Imported By" },
+            { ColumnType.ImportedOn, "Imported On" },
+            { ColumnType.ExportedBy, "Exported By" },
+            { ColumnType.ExportedOn, "Exported On" },
+            { ColumnType.Size, "Size" }
+        };
         public Main(string[] parameters)
         {
             MainParameters = parameters;
@@ -145,7 +165,7 @@ namespace SuperGrate
         {
             Running = RunningTask.Unknown;
             listUsers.BeginUpdate();
-            UserTable.SetColumns(listUsers, UserTable.HeaderRowComputerSource);
+            listUsers.SetColumns(HeaderRowComputerSource);
             listUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> users = await Misc.GetUsersFromHost(tbSourceComputer.Text);
@@ -182,17 +202,17 @@ namespace SuperGrate
             listUsers.BeginUpdate();
             listUsers.Items.Clear();
             lblUserList.Text = "Users in Migration Store:";
-            UserTable.SetColumns(listUsers, UserTable.HeaderRowStoreSource);
-            UserTable.UserRows rows = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
+            listUsers.SetColumns(HeaderRowStoreSource);
+            ListRows rows = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
             if(rows != null)
             {
-                foreach(UserTable.UserRow row in rows)
+                foreach(ListRow row in rows)
                 {
-                    ListViewItem lvRow = listUsers.Items.Add(row[UserTable.ColumnType.NTAccount]);
-                    row.Remove(UserTable.ColumnType.NTAccount);
-                    lvRow.Tag = row[UserTable.ColumnType.Tag];
-                    row.Remove(UserTable.ColumnType.Tag);
-                    foreach(KeyValuePair<UserTable.ColumnType, string> column in row)
+                    ListViewItem lvRow = listUsers.Items.Add(row[ColumnType.NTAccount]);
+                    row.Remove(ColumnType.NTAccount);
+                    lvRow.Tag = row[ColumnType.Tag];
+                    row.Remove(ColumnType.Tag);
+                    foreach(KeyValuePair<ColumnType, string> column in row)
                     {
                         lvRow.SubItems.Add(column.Value);
                     }

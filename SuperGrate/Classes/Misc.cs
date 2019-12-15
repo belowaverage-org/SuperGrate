@@ -6,6 +6,7 @@ using System.IO;
 using System.Net.NetworkInformation;
 using System.Security.Principal;
 using System.Management;
+using SuperGrate.LVControl;
 
 namespace SuperGrate
 {
@@ -122,42 +123,42 @@ namespace SuperGrate
                 }
             });
         }
-        static public Task<UserTable.UserRows> GetUsersFromStore(string StorePath)
+        static public Task<ListRows> GetUsersFromStore(string StorePath)
         {
             return Task.Run(() =>
             {
                 try
                 {
                     Logger.Information("Listing users from store: " + StorePath + "...");
-                    UserTable.UserRows rows = new UserTable.UserRows();
+                    ListRows rows = new ListRows();
                     foreach (string directory in Directory.EnumerateDirectories(StorePath))
                     {
-                        UserTable.UserRow row = new UserTable.UserRow(UserTable.CurrentHeaderRow);
+                        ListRow row = new ListRow(LVControl.LVControl.CurrentHeaderRow);
                         DirectoryInfo info = new DirectoryInfo(directory);
-                        row[UserTable.ColumnType.Tag] = info.Name;
-                        row[UserTable.ColumnType.NTAccount] = File.ReadAllText(Path.Combine(directory, "ntaccount"));
+                        row[ColumnType.Tag] = info.Name;
+                        row[ColumnType.NTAccount] = File.ReadAllText(Path.Combine(directory, "ntaccount"));
                         string DataFilePath = Path.Combine(directory, "data");
-                        if (row.ContainsKey(UserTable.ColumnType.Size))
+                        if (row.ContainsKey(ColumnType.Size))
                         {
-                            row[UserTable.ColumnType.Size] = ByteHumanizer.ByteHumanize(new FileInfo(DataFilePath).Length);
+                            row[ColumnType.Size] = ByteHumanizer.ByteHumanize(new FileInfo(DataFilePath).Length);
                         }
                         string ImpOnFile = Path.Combine(directory, "importedon");
-                        if (row.ContainsKey(UserTable.ColumnType.ImportedOn) && File.Exists(ImpOnFile))
+                        if (row.ContainsKey(ColumnType.ImportedOn) && File.Exists(ImpOnFile))
                         {
-                            row[UserTable.ColumnType.ImportedOn] = DateTime.FromFileTime(long.Parse(File.ReadAllText(ImpOnFile))).ToString();
+                            row[ColumnType.ImportedOn] = DateTime.FromFileTime(long.Parse(File.ReadAllText(ImpOnFile))).ToString();
                         }
                         string ImpByFile = Path.Combine(directory, "importedby");
-                        if (row.ContainsKey(UserTable.ColumnType.ImportedBy) && File.Exists(ImpByFile))
+                        if (row.ContainsKey(ColumnType.ImportedBy) && File.Exists(ImpByFile))
                         {
-                            row[UserTable.ColumnType.ImportedBy] = File.ReadAllText(ImpByFile);
+                            row[ColumnType.ImportedBy] = File.ReadAllText(ImpByFile);
                         }
                         string SCFilePath = Path.Combine(directory, "source");
-                        if (row.ContainsKey(UserTable.ColumnType.SourceComputer) && File.Exists(SCFilePath))
+                        if (row.ContainsKey(ColumnType.SourceComputer) && File.Exists(SCFilePath))
                         {
-                            row[UserTable.ColumnType.SourceComputer] = File.ReadAllText(SCFilePath);
+                            row[ColumnType.SourceComputer] = File.ReadAllText(SCFilePath);
                         }
                         rows.Add(row);
-                        Logger.Verbose("Found: " + row[UserTable.ColumnType.NTAccount]);
+                        Logger.Verbose("Found: " + row[ColumnType.NTAccount]);
                     }
                     Logger.Success("Users listed successfully.");
                     return rows;
