@@ -28,7 +28,7 @@ namespace SuperGrate.UserList
         public static void SetColumns(this ListView Owner, UserRow Row)
         {
             Owner.Columns.Clear();
-            foreach(KeyValuePair<ULColumnType, string> Column in Row)
+            foreach (KeyValuePair<ULColumnType, string> Column in Row)
             {
                 if (Column.Value != null)
                 {
@@ -36,6 +36,23 @@ namespace SuperGrate.UserList
                 }
             }
             CurrentHeaderRow = Row;
+        }
+        public static void SetColumns(this ListView Owner, UserRow TemplateRow, ULColumnType[] Format)
+        {
+            //Wont work because it is removing tag and ntaccount.
+            UserRow Row = new UserRow();
+            foreach(ULColumnType ColumnType in Format)
+            {
+                if(TemplateRow.ContainsKey(ColumnType))
+                {
+                    Row.Add(ColumnType, TemplateRow[ColumnType]);
+                }
+            }
+            Owner.SetColumns(Row);
+        }
+        public static void SetColumns(this ListView Owner, UserRow TemplateRow, string Format)
+        {
+
         }
     }
     public class UserRow : Dictionary<ULColumnType, string>

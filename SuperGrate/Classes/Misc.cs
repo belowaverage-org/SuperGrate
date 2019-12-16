@@ -133,7 +133,7 @@ namespace SuperGrate
                     UserRows rows = new UserRows();
                     foreach (string directory in Directory.EnumerateDirectories(StorePath))
                     {
-                        UserRow row = new UserRow(UserList.ULControl.CurrentHeaderRow);
+                        UserRow row = new UserRow(ULControl.CurrentHeaderRow);
                         DirectoryInfo info = new DirectoryInfo(directory);
                         row[ULColumnType.Tag] = info.Name;
                         row[ULColumnType.NTAccount] = File.ReadAllText(Path.Combine(directory, "ntaccount"));
