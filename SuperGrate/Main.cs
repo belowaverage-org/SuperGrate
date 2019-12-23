@@ -112,28 +112,27 @@ namespace SuperGrate
             else if(Running == RunningTask.None)
             {
                 Running = RunningTask.USMT;
-                int count = 0;
-                string[] SIDs = new string[listUsers.SelectedIndices.Count];
+                List<string> IDs = new List<string>();
                 foreach (int index in listUsers.SelectedIndices)
                 {
-                    SIDs[count++] = ((string[])listUsers.Tag)[index];
+                    IDs.Add((string)listUsers.Items[index].Tag);
                 }
                 bool setting;
                 bool success;
                 if (CurrentListSource == ListSources.SourceComputer)
                 {
-                    success = await USMT.Do(USMTMode.ScanState, SIDs);
+                    success = await USMT.Do(USMTMode.ScanState, IDs.ToArray());
                     if (bool.TryParse(Config.Settings["AutoDeleteFromSource"], out setting) && setting && success)
                     {
-                        await Misc.DeleteFromSource(SourceComputer, SIDs);
+                        await Misc.DeleteFromSource(SourceComputer, IDs.ToArray());
                     }
                 }
                 if (tbDestinationComputer.Text != "" && Running == RunningTask.USMT)
                 {
-                    success = await USMT.Do(USMTMode.LoadState, SIDs);
+                    success = await USMT.Do(USMTMode.LoadState, IDs.ToArray());
                     if (bool.TryParse(Config.Settings["AutoDeleteFromStore"], out setting) && setting && success)
                     {
-                        await Misc.DeleteFromStore(SIDs);
+                        await Misc.DeleteFromStore(IDs.ToArray());
                     }
                 }
                 Running = RunningTask.None;
@@ -178,28 +177,11 @@ namespace SuperGrate
         private async void BtnListStore_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
-            listUsers.BeginUpdate();
-            listUsers.Items.Clear();
             lblUserList.Text = "Users in Migration Store:";
-            listUsers.SetColumns(ULControl.HeaderRowStoreSource);
+            listUsers.SetColumns(ULControl.HeaderRowStoreSource, Config.Settings["ULStoreColumns"]);
             UserRows rows = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
-            if(rows != null)
-            {
-                foreach(UserRow row in rows)
-                {
-                    ListViewItem lvRow = listUsers.Items.Add(row[ULColumnType.NTAccount]);
-                    row.Remove(ULColumnType.NTAccount);
-                    lvRow.Tag = row[ULColumnType.Tag];
-                    row.Remove(ULColumnType.Tag);
-                    foreach(KeyValuePair<ULColumnType, string> column in row)
-                    {
-                        lvRow.SubItems.Add(column.Value);
-                    }
-                }
-                listUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                listUsers.EndUpdate();
-                CurrentListSource = ListSources.MigrationStore;
-            }
+            listUsers.SetRows(rows);
+            CurrentListSource = ListSources.MigrationStore;
             Running = RunningTask.None;
         }
         private void LogBox_DoubleClick(object sender, EventArgs e)
@@ -261,22 +243,22 @@ namespace SuperGrate
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
             Running = RunningTask.RemoteProfileDelete;
-            List<string> SIDs = new List<string>();
+            List<string> IDs = new List<string>();
             foreach (int index in listUsers.SelectedIndices)
             {
-                SIDs.Add(((string[])listUsers.Tag)[index]);
+                IDs.Add((string)listUsers.Items[index].Tag);
             }
             if(CurrentListSource == ListSources.MigrationStore)
             {
                 btStartStop.Enabled = false;
-                await Misc.DeleteFromStore(SIDs.ToArray());
+                await Misc.DeleteFromStore(IDs.ToArray());
                 btStartStop.Enabled = true;
                 Running = RunningTask.None;
                 btnListStore.PerformClick();
             }
             else if(CurrentListSource == ListSources.SourceComputer)
             {
-                await Misc.DeleteFromSource(SourceComputer, SIDs.ToArray());
+                await Misc.DeleteFromSource(SourceComputer, IDs.ToArray());
                 Running = RunningTask.None;
                 btnListSource.PerformClick();
             }

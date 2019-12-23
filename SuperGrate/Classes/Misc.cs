@@ -133,10 +133,14 @@ namespace SuperGrate
                     UserRows rows = new UserRows();
                     foreach (string directory in Directory.EnumerateDirectories(StorePath))
                     {
+                        string NTAccount = File.ReadAllText(Path.Combine(directory, "ntaccount"));
                         UserRow row = new UserRow(ULControl.CurrentHeaderRow);
                         DirectoryInfo info = new DirectoryInfo(directory);
                         row[ULColumnType.Tag] = info.Name;
-                        row[ULColumnType.NTAccount] = File.ReadAllText(Path.Combine(directory, "ntaccount"));
+                        if(row.ContainsKey(ULColumnType.NTAccount))
+                        {
+                            row[ULColumnType.NTAccount] = NTAccount;
+                        }
                         string DataFilePath = Path.Combine(directory, "data");
                         if (row.ContainsKey(ULColumnType.Size))
                         {
@@ -158,7 +162,7 @@ namespace SuperGrate
                             row[ULColumnType.SourceComputer] = File.ReadAllText(SCFilePath);
                         }
                         rows.Add(row);
-                        Logger.Verbose("Found: " + row[ULColumnType.NTAccount]);
+                        Logger.Verbose("Found: " + NTAccount);
                     }
                     Logger.Success("Users listed successfully.");
                     return rows;

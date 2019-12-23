@@ -8,14 +8,12 @@ namespace SuperGrate.UserList
         public static UserRow CurrentHeaderRow = null;
         public static UserRow HeaderRowComputerSource = new UserRow()
         {
-            { ULColumnType.Tag, null },
             { ULColumnType.NTAccount, "User Name" },
             { ULColumnType.LastLogon, "Last Logon" },
             { ULColumnType.Size, "Size" }
         };
         public static UserRow HeaderRowStoreSource = new UserRow()
         {
-            { ULColumnType.Tag, null },
             { ULColumnType.NTAccount, "User Name" },
             { ULColumnType.SourceComputer, "Source Computer" },
             { ULColumnType.DestinationComputer, "Destination Computer" },
@@ -39,11 +37,11 @@ namespace SuperGrate.UserList
         }
         public static void SetColumns(this ListView Owner, UserRow TemplateRow, ULColumnType[] Format)
         {
-            //Wont work because it is removing tag and ntaccount.
             UserRow Row = new UserRow();
+            Row.Add(ULColumnType.Tag, null);
             foreach(ULColumnType ColumnType in Format)
             {
-                if(TemplateRow.ContainsKey(ColumnType))
+                if(TemplateRow.ContainsKey(ColumnType) && !Row.ContainsKey(ColumnType))
                 {
                     Row.Add(ColumnType, TemplateRow[ColumnType]);
                 }
@@ -52,7 +50,45 @@ namespace SuperGrate.UserList
         }
         public static void SetColumns(this ListView Owner, UserRow TemplateRow, string Format)
         {
-
+            List<ULColumnType> ColIDs = new List<ULColumnType>();
+            foreach(string sColID in Format.Split(','))
+            {
+                int ColID = -1;
+                if(int.TryParse(sColID, out ColID))
+                {
+                    ColIDs.Add((ULColumnType)ColID);
+                }
+            }
+            Owner.SetColumns(TemplateRow, ColIDs.ToArray());
+        }
+        public static void SetRows(this ListView Owner, UserRows Rows)
+        {
+            Owner.BeginUpdate();
+            Owner.Items.Clear();
+            if (Rows != null)
+            {
+                foreach (UserRow row in Rows)
+                {
+                    ListViewItem lvRow = null;
+                    bool first = true;
+                    foreach (KeyValuePair<ULColumnType, string> column in row)
+                    {
+                        if (column.Key == ULColumnType.Tag) continue;
+                        if (first)
+                        {
+                            lvRow = Owner.Items.Add(column.Value);
+                            lvRow.Tag = row[ULColumnType.Tag];
+                            first = false;
+                        }
+                        else
+                        {
+                            lvRow.SubItems.Add(column.Value);
+                        }
+                    }
+                }
+                Owner.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            }
+            Owner.EndUpdate();
         }
     }
     public class UserRow : Dictionary<ULColumnType, string>
@@ -69,6 +105,7 @@ namespace SuperGrate.UserList
     public class UserRows : List<UserRow> { }
     public enum ULColumnType
     {
+        Tag = -1,
         NTAccount = 0,
         SourceComputer = 1,
         DestinationComputer = 2,
@@ -77,7 +114,6 @@ namespace SuperGrate.UserList
         ImportedBy = 5,
         ImportedOn = 6,
         ExportedBy = 7,
-        ExportedOn = 8,
-        Tag = 9
+        ExportedOn = 8
     }
 }
