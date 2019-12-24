@@ -148,7 +148,6 @@ namespace SuperGrate
             listUsers.Items.Clear();
             lblUserList.Text = "Users on Source Computer:";
             Dictionary<string, string> users = await Misc.GetUsersFromHost(tbSourceComputer.Text);
-            List<string> tags = new List<string>();
             if (users != null)
             {
                 bool setting;
@@ -164,10 +163,9 @@ namespace SuperGrate
                         Logger.Verbose("Skipped unknown SID: " + user.Key + ".");
                         continue;
                     }
-                    listUsers.Items.Add(user.Value);
-                    tags.Add(user.Key);
+                    ListViewItem item = listUsers.Items.Add(user.Value);
+                    item.Tag = user.Key;
                 }
-                listUsers.Tag = tags.ToArray();
                 listUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 listUsers.EndUpdate();
                 CurrentListSource = ListSources.SourceComputer;

@@ -64,6 +64,7 @@ namespace SuperGrate.UserList
         public static void SetRows(this ListView Owner, UserRows Rows)
         {
             Owner.BeginUpdate();
+            Owner.SuspendLayout();
             Owner.Items.Clear();
             if (Rows != null)
             {
@@ -87,7 +88,9 @@ namespace SuperGrate.UserList
                     }
                 }
                 Owner.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                Owner.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
+            Owner.ResumeLayout();
             Owner.EndUpdate();
         }
     }

@@ -255,7 +255,7 @@
             this.lblUserList.TabIndex = 100;
             this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btStartStop
+            // btnStartStop
             // 
             this.tblMainLayout.SetColumnSpan(this.btnStartStop, 2);
             this.btnStartStop.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -265,7 +265,7 @@
         "er Grate process.");
             this.btnStartStop.Location = new System.Drawing.Point(3, 405);
             this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
-            this.btnStartStop.Name = "btStartStop";
+            this.btnStartStop.Name = "btnStartStop";
             this.helpProvider.SetShowHelp(this.btnStartStop, true);
             this.btnStartStop.Size = new System.Drawing.Size(663, 24);
             this.btnStartStop.TabIndex = 100;
