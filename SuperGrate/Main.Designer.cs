@@ -40,7 +40,7 @@
             this.lblSourceComputer = new System.Windows.Forms.Label();
             this.lblDestinationComputer = new System.Windows.Forms.Label();
             this.lblUserList = new System.Windows.Forms.Label();
-            this.btStartStop = new System.Windows.Forms.Button();
+            this.btnStartStop = new System.Windows.Forms.Button();
             this.tbleListUsersButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnListSource = new System.Windows.Forms.Button();
             this.btnListStore = new System.Windows.Forms.Button();
@@ -157,7 +157,7 @@
             this.tblMainLayout.Controls.Add(this.lblSourceComputer, 0, 0);
             this.tblMainLayout.Controls.Add(this.lblDestinationComputer, 0, 1);
             this.tblMainLayout.Controls.Add(this.lblUserList, 0, 3);
-            this.tblMainLayout.Controls.Add(this.btStartStop, 0, 5);
+            this.tblMainLayout.Controls.Add(this.btnStartStop, 0, 5);
             this.tblMainLayout.Controls.Add(this.tbleListUsersButtons, 1, 2);
             this.tblMainLayout.Controls.Add(this.pnlLogoBorder, 0, 4);
             this.tblMainLayout.Controls.Add(this.destCompTabl, 1, 1);
@@ -257,21 +257,21 @@
             // 
             // btStartStop
             // 
-            this.tblMainLayout.SetColumnSpan(this.btStartStop, 2);
-            this.btStartStop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btStartStop.Enabled = false;
-            this.btStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btStartStop, "This button will start a migration, backup, or restoration and stop any other Sup" +
+            this.tblMainLayout.SetColumnSpan(this.btnStartStop, 2);
+            this.btnStartStop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnStartStop.Enabled = false;
+            this.btnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnStartStop, "This button will start a migration, backup, or restoration and stop any other Sup" +
         "er Grate process.");
-            this.btStartStop.Location = new System.Drawing.Point(3, 405);
-            this.btStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
-            this.btStartStop.Name = "btStartStop";
-            this.helpProvider.SetShowHelp(this.btStartStop, true);
-            this.btStartStop.Size = new System.Drawing.Size(663, 24);
-            this.btStartStop.TabIndex = 100;
-            this.btStartStop.Text = "Start";
-            this.btStartStop.UseVisualStyleBackColor = true;
-            this.btStartStop.Click += new System.EventHandler(this.BtStartStop_Click);
+            this.btnStartStop.Location = new System.Drawing.Point(3, 405);
+            this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
+            this.btnStartStop.Name = "btStartStop";
+            this.helpProvider.SetShowHelp(this.btnStartStop, true);
+            this.btnStartStop.Size = new System.Drawing.Size(663, 24);
+            this.btnStartStop.TabIndex = 100;
+            this.btnStartStop.Text = "Start";
+            this.btnStartStop.UseVisualStyleBackColor = true;
+            this.btnStartStop.Click += new System.EventHandler(this.BtStartStop_Click);
             // 
             // tbleListUsersButtons
             // 
@@ -593,7 +593,7 @@
         private System.Windows.Forms.Label lblSourceComputer;
         private System.Windows.Forms.Label lblDestinationComputer;
         private System.Windows.Forms.Label lblUserList;
-        private System.Windows.Forms.Button btStartStop;
+        private System.Windows.Forms.Button btnStartStop;
         private System.Windows.Forms.Button btnListSource;
         private System.Windows.Forms.Button btnListStore;
         private System.Windows.Forms.Button btnDelete;

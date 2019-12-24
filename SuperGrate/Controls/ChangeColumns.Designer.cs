@@ -69,12 +69,6 @@
             this.lbAvailable.FormattingEnabled = true;
             this.lbAvailable.HorizontalScrollbar = true;
             this.lbAvailable.IntegralHeight = false;
-            this.lbAvailable.Items.AddRange(new object[] {
-            "1111111111111111111111111111111111",
-            "2222222222222222222222222222222222",
-            "3333333333333333333333333333333333",
-            "4444444444444444444444444444444444",
-            "5555555555555555555555555555555555"});
             this.lbAvailable.Location = new System.Drawing.Point(11, 28);
             this.lbAvailable.Name = "lbAvailable";
             this.lbAvailable.ScrollAlwaysVisible = true;
@@ -207,6 +201,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Remove Columns";
+            this.Load += new System.EventHandler(this.ChangeColumns_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

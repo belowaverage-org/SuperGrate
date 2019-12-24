@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.IO;
-using System.Drawing;
+﻿using SuperGrate.Controls;
 using SuperGrate.UserList;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace SuperGrate
 {
@@ -66,7 +67,7 @@ namespace SuperGrate
                 Logger.UpdateProgress(0);
                 if (value != RunningTask.None)
                 {
-                    btStartStop.Text = "Stop";
+                    btnStartStop.Text = "Stop";
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = true;
                     tbSourceComputer.Enabled =
@@ -81,7 +82,7 @@ namespace SuperGrate
                 }
                 else
                 {
-                    btStartStop.Text = "Start";
+                    btnStartStop.Text = "Start";
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = false;
                     tbSourceComputer.Enabled =
@@ -201,11 +202,11 @@ namespace SuperGrate
         {
             if (listUsers.SelectedIndices.Count == 0 || (tbDestinationComputer.Text == "" && CurrentListSource == ListSources.MigrationStore))
             {
-                btStartStop.Enabled = false;
+                btnStartStop.Enabled = false;
             }
             else
             {
-                btStartStop.Enabled = true;
+                btnStartStop.Enabled = true;
             }
             if (listUsers.SelectedIndices.Count != 0)
             {
@@ -250,9 +251,9 @@ namespace SuperGrate
             }
             if(CurrentListSource == ListSources.MigrationStore)
             {
-                btStartStop.Enabled = false;
+                btnStartStop.Enabled = false;
                 await Misc.DeleteFromStore(IDs.ToArray());
-                btStartStop.Enabled = true;
+                btnStartStop.Enabled = true;
                 Running = RunningTask.None;
                 btnListStore.PerformClick();
             }
@@ -301,7 +302,7 @@ namespace SuperGrate
             {
                 e.Cancel = true;
                 CloseRequested = true;
-                BtStartStop_Click(null, null);
+                btnStartStop.PerformClick();
             }
             else if(Config.Settings["DumpLogHereOnExit"] != "")
             {
@@ -358,7 +359,7 @@ namespace SuperGrate
         {
             if (e.KeyCode == Keys.Enter)
             {
-                btStartStop.PerformClick();
+                btnStartStop.PerformClick();
             }
         }
         private void miHelpButton_Click(object sender, EventArgs e)
@@ -380,7 +381,59 @@ namespace SuperGrate
         }
         private void miAddRemoveCol_Click(object sender, EventArgs e)
         {
-            new Controls.ChangeColumns().ShowDialog();
+            UserRow AllAvailableColumns = null;
+            string SettingKey = "";
+            if (CurrentListSource == ListSources.MigrationStore)
+            {
+                SettingKey = "ULStoreColumns";
+                AllAvailableColumns = ULControl.HeaderRowStoreSource;
+            }
+            else if (CurrentListSource == ListSources.SourceComputer)
+            {
+                SettingKey = "ULSourceColumns";
+                AllAvailableColumns = ULControl.HeaderRowComputerSource;
+            }
+            else
+            {
+                return;
+            }
+            ChangeColumns ColDialog = new ChangeColumns();
+            Dictionary<string, object> AvailableColumns = new Dictionary<string, object>();
+            Dictionary<string, object> DisplayedColumns = new Dictionary<string, object>();
+            foreach (KeyValuePair<ULColumnType, string> Column in AllAvailableColumns)
+            {
+                if (!ULControl.CurrentHeaderRow.ContainsKey(Column.Key))
+                {
+                    AvailableColumns.Add(Column.Value, Column.Key);
+                }
+            }
+            foreach (KeyValuePair<ULColumnType, string> Column in ULControl.CurrentHeaderRow)
+            {
+                if (Column.Value != null)
+                {
+                    DisplayedColumns.Add(Column.Value, Column.Key);
+                }
+            }
+            ColDialog.AvailableColumns = AvailableColumns;
+            ColDialog.DisplayedColumns = DisplayedColumns;
+            DialogResult result = ColDialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                string Setting = "";
+                foreach(ULColumnType Column in ColDialog.DisplayedColumns.Values)
+                {
+                    Setting += ((int)Column).ToString() + ',';
+                }
+                Config.Settings[SettingKey] = Setting.TrimEnd(',');
+                if (CurrentListSource == ListSources.MigrationStore)
+                {
+                    btnListStore.PerformClick();
+                }
+                if (CurrentListSource == ListSources.SourceComputer)
+                {
+                    btnListSource.PerformClick();
+                }
+            }
         }
     }
     public enum ListSources
