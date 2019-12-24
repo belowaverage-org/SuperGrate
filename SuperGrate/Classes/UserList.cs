@@ -87,9 +87,9 @@ namespace SuperGrate.UserList
                         }
                     }
                 }
-                Owner.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                Owner.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
+            Owner.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            Owner.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             Owner.ResumeLayout();
             Owner.EndUpdate();
         }
