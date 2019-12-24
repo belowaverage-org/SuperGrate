@@ -33,6 +33,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
+            this.btnRestoreDefault = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbComment
@@ -42,6 +43,7 @@
             this.tbComment.Multiline = true;
             this.tbComment.Name = "tbComment";
             this.tbComment.ReadOnly = true;
+            this.tbComment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.helpProvider.SetShowHelp(this.tbComment, true);
             this.tbComment.Size = new System.Drawing.Size(381, 63);
             this.tbComment.TabIndex = 0;
@@ -62,7 +64,7 @@
             // 
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnCancel, "Closes window, and does not apply change.");
-            this.btnCancel.Location = new System.Drawing.Point(230, 144);
+            this.btnCancel.Location = new System.Drawing.Point(230, 143);
             this.btnCancel.Name = "btnCancel";
             this.helpProvider.SetShowHelp(this.btnCancel, true);
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -76,7 +78,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnSave, "Applies the setting changed above for the current session. Press \"Save to Disk\" o" +
         "n the next screen to save the changes to disk.");
-            this.btnSave.Location = new System.Drawing.Point(311, 144);
+            this.btnSave.Location = new System.Drawing.Point(312, 143);
             this.btnSave.Name = "btnSave";
             this.helpProvider.SetShowHelp(this.btnSave, true);
             this.btnSave.Size = new System.Drawing.Size(75, 23);
@@ -85,12 +87,25 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
+            // btnRestoreDefault
+            // 
+            this.btnRestoreDefault.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnRestoreDefault, "Restores default setting value.");
+            this.btnRestoreDefault.Location = new System.Drawing.Point(4, 143);
+            this.btnRestoreDefault.Name = "btnRestoreDefault";
+            this.helpProvider.SetShowHelp(this.btnRestoreDefault, true);
+            this.btnRestoreDefault.Size = new System.Drawing.Size(75, 23);
+            this.btnRestoreDefault.TabIndex = 4;
+            this.btnRestoreDefault.Text = "&Default";
+            this.btnRestoreDefault.Click += new System.EventHandler(this.btnRestoreDefault_Click);
+            // 
             // ChangeSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(391, 173);
+            this.ClientSize = new System.Drawing.Size(391, 171);
+            this.Controls.Add(this.btnRestoreDefault);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.tbValue);
@@ -117,5 +132,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.HelpProvider helpProvider;
+        private System.Windows.Forms.Button btnRestoreDefault;
     }
 }

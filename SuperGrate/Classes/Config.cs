@@ -32,6 +32,7 @@ namespace SuperGrate
             {"ULSourceColumns", "0,3,4"},
             {"ULStoreColumns", "0,1,5,6,4"}
         };
+        public static Dictionary<string, string> DefaultSettings = Settings;
         public static void SaveConfig()
         {
             Logger.Information("Generating SuperGrate.xml...");

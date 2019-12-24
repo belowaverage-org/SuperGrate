@@ -381,8 +381,8 @@ namespace SuperGrate
         }
         private void miAddRemoveCol_Click(object sender, EventArgs e)
         {
-            UserRow AllAvailableColumns = null;
             string SettingKey = "";
+            UserRow AllAvailableColumns = null;
             if (CurrentListSource == ListSources.MigrationStore)
             {
                 SettingKey = "ULStoreColumns";

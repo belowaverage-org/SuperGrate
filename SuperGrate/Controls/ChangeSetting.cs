@@ -25,7 +25,7 @@ namespace SuperGrate.Controls
                     break;
                 };
             }
-            tbComment.Text = lastComment;
+            tbComment.Text = lastComment + "\r\n\r\n" + "Default Value: " + Config.DefaultSettings[Setting];
         }
         private void BtnCancel_Click(object sender, EventArgs e)
         {
@@ -43,6 +43,10 @@ namespace SuperGrate.Controls
                 e.Handled = true;
                 btnSave.PerformClick();
             }
+        }
+        private void btnRestoreDefault_Click(object sender, EventArgs e)
+        {
+            tbValue.Text = Config.DefaultSettings[Setting];
         }
     }
 }
