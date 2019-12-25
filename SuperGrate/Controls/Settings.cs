@@ -52,8 +52,14 @@ namespace SuperGrate.Controls
         {
             if (settingsList.SelectedItems.Count != 0)
             {
-                new ChangeSetting(settingsList.SelectedItems[0].Text).ShowDialog();
-                RefreshSettings();
+                DialogResult result = new ChangeSetting(settingsList.SelectedItems[0].Text).ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    int selectedIndex = settingsList.SelectedItems[0].Index;
+                    RefreshSettings();
+                    settingsList.Items[selectedIndex].Selected = true;
+                    settingsList.Items[selectedIndex].EnsureVisible();
+                }
                 btnApply.Focus();
             }
         }

@@ -34,6 +34,7 @@ namespace SuperGrate.Controls
         private void BtnSave_Click(object sender, EventArgs e)
         {
             Config.Settings[Setting] = tbValue.Text;
+            DialogResult = DialogResult.OK;
             Close();
         }
         private void TbValue_KeyPress(object sender, KeyPressEventArgs e)
