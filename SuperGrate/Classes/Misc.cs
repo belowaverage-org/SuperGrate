@@ -84,7 +84,7 @@ namespace SuperGrate
                 return Identity;
             }
         }
-        public static Task<Dictionary<string, string>> GetUsersFromHost(string Host)
+        public static Task<UserRows> GetUsersFromHost(string Host)
         {
             return Task.Run(async () =>
             {
@@ -92,19 +92,56 @@ namespace SuperGrate
                 {
                     if (await Ping(Host))
                     {
-                        Dictionary<string, string> results = new Dictionary<string, string>();
+                        UserRows rows = new UserRows();
                         RegistryKey remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
                         RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
                         Logger.Information("Getting list of users on: " + Host + "...");
                         GetLocalUsersSIDsFromHost(Host);
                         foreach (string SID in profileList.GetSubKeyNames())
                         {
+                            UserRow row = new UserRow(ULControl.CurrentHeaderRow);
                             string user = GetUserByIdentity(SID);
                             Logger.Verbose("Found: " + user);
-                            results.Add(SID, user);
+                            bool setting;
+                            if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out setting) && setting && (user.Contains("NT AUTHORITY") || user.Contains("NT SERVICE")))
+                            {
+                                Logger.Verbose("Skipped: " + SID + ": " + user + ".");
+                                continue;
+                            }
+                            if (bool.TryParse(Config.Settings["HideUnknownSIDs"], out setting) && setting && SID == user)
+                            {
+                                Logger.Verbose("Skipped unknown SID: " + SID + ".");
+                                continue;
+                            }
+                            row[ULColumnType.Tag] = SID;
+                            if (row.ContainsKey(ULColumnType.NTAccount))
+                            {
+                                row[ULColumnType.NTAccount] = user;
+                            }
+                            if (row.ContainsKey(ULColumnType.LastModified) || row.ContainsKey(ULColumnType.Size) || row.ContainsKey(ULColumnType.FirstCreated))
+                            {
+                                RegistryKey profileReg = profileList.OpenSubKey(SID, false);
+                                string profilePath = ((string)profileReg.GetValue("ProfileImagePath")).Replace(@"C:\", @"\\" + Host + @"\C$\");
+                                if(row.ContainsKey(ULColumnType.Size))
+                                {
+                                    Logger.Information("Calculating profile size for: " + user + "...");
+                                    double size = FileOperations.GetFolderSize(profilePath);
+                                    row[ULColumnType.Size] = size.ByteHumanize();
+                                }
+                                if (row.ContainsKey(ULColumnType.FirstCreated))
+                                {
+                                    row[ULColumnType.FirstCreated] = Directory.GetCreationTime(profilePath).ToString();
+                                }
+                                if (row.ContainsKey(ULColumnType.LastModified))
+                                {
+                                    row[ULColumnType.LastModified] = File.GetLastWriteTime(Path.Combine(profilePath, "NTUSER.DAT")).ToString();
+                                }
+                            }
+                            rows.Add(row);
                         }
+                        remoteReg.Close();
                         Logger.Success("Users listed successfully.");
-                        return results;
+                        return rows;
                     }
                     else
                     {

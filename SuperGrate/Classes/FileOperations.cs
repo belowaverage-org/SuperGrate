@@ -1,9 +1,10 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace SuperGrate
 {
-    class Copy
+    class FileOperations
     {
         public static void CopyFile(string Source, string Destination)
         {
@@ -61,6 +62,31 @@ namespace SuperGrate
                 Logger.UpdateProgress(progress++, sourceFiles.Length);
             }
             return !USMT.Canceled;
+        }
+        public static double GetFolderSize(string Path)
+        {
+            DirectoryInfo directory = new DirectoryInfo(Path);
+            return GetFolderSize(directory);
+        }
+        public static double GetFolderSize(DirectoryInfo Directory)
+        {
+            double size = 0;
+            try
+            {
+                foreach (DirectoryInfo directory in Directory.GetDirectories())
+                {
+                    size += GetFolderSize(directory);
+                }
+                foreach (FileInfo file in Directory.GetFiles())
+                {
+                    size += file.Length;
+                }
+                return size;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return 0;
+            }
         }
     }
 }

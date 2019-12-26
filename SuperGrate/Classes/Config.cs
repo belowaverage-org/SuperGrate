@@ -29,7 +29,7 @@ namespace SuperGrate
             {"XComment6", @"Write log to disk on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)"},
             {"DumpLogHereOnExit", ""},
             {"XComment10", @"List of columns to display for the Source or Store users."},
-            {"ULSourceColumns", "0,3,4"},
+            {"ULSourceColumns", "0,3,9"},
             {"ULStoreColumns", "0,1,5,6,4"}
         };
         public static Dictionary<string, string> DefaultSettings = Settings;

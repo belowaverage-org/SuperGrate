@@ -108,7 +108,7 @@
   <ItemGroup>
     <Compile Include="Classes\ByteHumanizer.cs" />
     <Compile Include="Classes\Config.cs" />
-    <Compile Include="Classes\Copy.cs" />
+    <Compile Include="Classes\FileOperations.cs" />
     <Compile Include="Classes\Download.cs" />
     <Compile Include="Classes\FlashWindow.cs" />
     <Compile Include="Classes\Logger.cs" />

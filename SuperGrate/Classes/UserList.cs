@@ -9,8 +9,9 @@ namespace SuperGrate.UserList
         public static UserRow HeaderRowComputerSource = new UserRow()
         {
             { ULColumnType.NTAccount, "User Name" },
-            { ULColumnType.LastLogon, "Last Logon" },
-            { ULColumnType.Size, "Size" }
+            { ULColumnType.LastModified, "Last Modified" },
+            { ULColumnType.Size, "Size" },
+            { ULColumnType.FirstCreated, "First Created" },
         };
         public static UserRow HeaderRowStoreSource = new UserRow()
         {
@@ -25,6 +26,9 @@ namespace SuperGrate.UserList
         };
         public static void SetColumns(this ListView Owner, UserRow Row)
         {
+            Owner.SuspendLayout();
+            Owner.BeginUpdate();
+            Owner.Items.Clear();
             Owner.Columns.Clear();
             foreach (KeyValuePair<ULColumnType, string> Column in Row)
             {
@@ -34,6 +38,9 @@ namespace SuperGrate.UserList
                 }
             }
             CurrentHeaderRow = Row;
+            Owner.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            Owner.EndUpdate();
+            Owner.ResumeLayout();
         }
         public static void SetColumns(this ListView Owner, UserRow TemplateRow, ULColumnType[] Format)
         {
@@ -112,11 +119,12 @@ namespace SuperGrate.UserList
         NTAccount = 0,
         SourceComputer = 1,
         DestinationComputer = 2,
-        LastLogon = 3,
+        LastModified = 3,
         Size = 4,
         ImportedBy = 5,
         ImportedOn = 6,
         ExportedBy = 7,
-        ExportedOn = 8
+        ExportedOn = 8,
+        FirstCreated = 9
     }
 }

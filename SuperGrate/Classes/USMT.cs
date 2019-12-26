@@ -122,7 +122,7 @@ namespace SuperGrate
                             return false;
                         }
                     }
-                    if (Copy.CopyFolder(
+                    if (FileOperations.CopyFolder(
                         USMTPath,
                         Path.Combine(@"\\", CurrentTarget, PayloadPathRemote)
                     )) {
@@ -208,7 +208,7 @@ namespace SuperGrate
                     File.WriteAllText(Path.Combine(Destination, "ntaccount"), Misc.GetUserByIdentity(SID));
                     File.WriteAllText(Path.Combine(Destination, "importedon"), DateTime.Now.ToFileTime().ToString());
                     File.WriteAllText(Path.Combine(Destination, "importedby"), Environment.UserDomainName + "\\" + Environment.UserName);
-                    Copy.CopyFile(
+                    FileOperations.CopyFile(
                         Path.Combine(@"\\", Main.SourceComputer, Path.Combine(PayloadPathRemote, @"USMT\USMT.MIG")),
                         Path.Combine(Destination, "data")
                     );
@@ -234,7 +234,7 @@ namespace SuperGrate
             try
             {
                 Directory.CreateDirectory(Destination);
-                Copy.CopyFile(
+                FileOperations.CopyFile(
                     Path.Combine(Config.Settings["MigrationStorePath"], SID, "USMT.MIG"),
                         Path.Combine(Destination, "USMT.MIG")
                     );

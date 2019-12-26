@@ -143,12 +143,13 @@ namespace SuperGrate
         private async void BtnListSource_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
-            listUsers.BeginUpdate();
-            listUsers.SetColumns(ULControl.HeaderRowComputerSource);
-            listUsers.Items.Clear();
+            listUsers.SetColumns(ULControl.HeaderRowComputerSource, Config.Settings["ULSourceColumns"]);
             lblUserList.Text = "Users on Source Computer:";
-            Dictionary<string, string> users = await Misc.GetUsersFromHost(tbSourceComputer.Text);
-            if (users != null)
+            UserRows rows = await Misc.GetUsersFromHost(tbSourceComputer.Text);
+            listUsers.SetRows(rows);
+            CurrentListSource = ListSources.SourceComputer;
+            /*
+            if (rows != null)
             {
                 bool setting;
                 foreach (KeyValuePair<string, string> user in users)
@@ -171,6 +172,7 @@ namespace SuperGrate
                 CurrentListSource = ListSources.SourceComputer;
                 Logger.Success("Done!");
             }
+            */
             Running = RunningTask.None;
         }
         private async void BtnListStore_Click(object sender, EventArgs e)
@@ -328,7 +330,7 @@ namespace SuperGrate
         }
         private void MiAboutSG_Click(object sender, EventArgs e)
         {
-            new Controls.About().ShowDialog();
+            new About().ShowDialog();
         }
         private void MiDocumentation_Click(object sender, EventArgs e)
         {
@@ -340,7 +342,7 @@ namespace SuperGrate
         }
         private void MiSetup_Click(object sender, EventArgs e)
         {
-            new Controls.Settings().ShowDialog();
+            new Settings().ShowDialog();
         }
         private void tbSourceDestComputer_KeyDown(object sender, KeyEventArgs e)
         {
