@@ -18,9 +18,13 @@ namespace SuperGrate
                 return Config.Settings["SuperGratePayloadPath"];
             }
         }
-        private static string PayloadPathRemote {
+        private static string PayloadPathTarget {
             get {
-                return PayloadPathLocal.Replace(':', '$');
+                if(Misc.IsHostThisMachine(CurrentTarget))
+                {
+                    return PayloadPathLocal;
+                }
+                return Path.Combine(@"\\", CurrentTarget, PayloadPathLocal.Replace(':', '$'));
             }
         }
         private static string USMTPath
@@ -124,7 +128,7 @@ namespace SuperGrate
                     }
                     if (FileOperations.CopyFolder(
                         USMTPath,
-                        Path.Combine(@"\\", CurrentTarget, PayloadPathRemote)
+                        PayloadPathTarget
                     )) {
                         Logger.Success("USMT uploaded successfully.");
                         return true;
@@ -167,7 +171,7 @@ namespace SuperGrate
                 {
                     try
                     {
-                        Directory.Delete(Path.Combine(@"\\", CurrentTarget, PayloadPathRemote), true);
+                        Directory.Delete(PayloadPathTarget, true);
                         deleted = true;
                         break;
                     }
@@ -209,7 +213,7 @@ namespace SuperGrate
                     File.WriteAllText(Path.Combine(Destination, "importedon"), DateTime.Now.ToFileTime().ToString());
                     File.WriteAllText(Path.Combine(Destination, "importedby"), Environment.UserDomainName + "\\" + Environment.UserName);
                     FileOperations.CopyFile(
-                        Path.Combine(@"\\", Main.SourceComputer, Path.Combine(PayloadPathRemote, @"USMT\USMT.MIG")),
+                        Path.Combine(Path.Combine(PayloadPathTarget, @"USMT\USMT.MIG")),
                         Path.Combine(Destination, "data")
                     );
                     Logger.Success("User state successfully uploaded.");
@@ -230,12 +234,12 @@ namespace SuperGrate
         {
             return Task.Run(() => {
                 Logger.Information("Downloading user state to: " + Main.DestinationComputer + "...");
-                string Destination = Path.Combine(@"\\", Main.DestinationComputer, Path.Combine(PayloadPathRemote, "USMT"));
-            try
-            {
-                Directory.CreateDirectory(Destination);
-                FileOperations.CopyFile(
-                    Path.Combine(Config.Settings["MigrationStorePath"], SID, "USMT.MIG"),
+                string Destination = Path.Combine(PayloadPathTarget, "USMT");
+                try
+                {
+                    Directory.CreateDirectory(Destination);
+                    FileOperations.CopyFile(
+                        Path.Combine(Config.Settings["MigrationStorePath"], SID, "USMT.MIG"),
                         Path.Combine(Destination, "USMT.MIG")
                     );
                     Logger.Success("User state successfully transferred.");
@@ -305,9 +309,8 @@ namespace SuperGrate
         {
             try
             {
-                string logDirPath = Path.Combine(@"\\", CurrentTarget, PayloadPathRemote);
-                string logFilePath = Path.Combine(logDirPath, LogFile);
-                FileSystemWatcher logFileWatcher = new FileSystemWatcher(logDirPath, LogFile);
+                string logFilePath = Path.Combine(PayloadPathTarget, LogFile);
+                FileSystemWatcher logFileWatcher = new FileSystemWatcher(PayloadPathTarget, LogFile);
                 logFileWatcher.NotifyFilter = NotifyFilters.LastWrite;
                 logFileWatcher.EnableRaisingEvents = true;
                 FileStream logStream = File.Open(logFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);

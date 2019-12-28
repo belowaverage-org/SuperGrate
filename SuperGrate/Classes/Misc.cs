@@ -16,6 +16,7 @@ namespace SuperGrate
         private static bool ShouldCancelRemoteProfileDelete = false;
         static public async Task<bool> Ping(string Host)
         {
+            if (IsHostThisMachine(Host)) return true;
             try
             {
                 Logger.Information("Pinging: " + Host + "...");
@@ -38,12 +39,46 @@ namespace SuperGrate
                 return false;
             }
         }
+        public static bool IsHostThisMachine(string Host)
+        {
+            if(Host.ToLower() == Environment.MachineName.ToLower())
+            {
+                return true;
+            }
+            if(Host.Split('.').Length > 0 && Host.Split('.')[0].ToLower() == Environment.MachineName.ToLower())
+            {
+                return true;
+            }
+            return false;
+        }
+        public static string GetBestManagementScope(string Host)
+        {
+            if (IsHostThisMachine(Host))
+            {
+                return @"\root\cimv2";
+            }
+            else
+            {
+                return @"\\" + Host + @"\root\cimv2";
+            }
+        }
+        public static string GetBestPathToC(string Host)
+        {
+            if(IsHostThisMachine(Host))
+            {
+                return @"C:\";
+            }
+            else
+            {
+                return @"\\" + Host + @"\C$\";
+            }
+        }
         public static void GetLocalUsersSIDsFromHost(string Host)
         {
             LocalSIDToUser.Clear();
             try
             {
-                ManagementScope scope = new ManagementScope(@"\\" + Host + @"\root\cimv2");
+                ManagementScope scope = new ManagementScope(GetBestManagementScope(Host));
                 scope.Connect();
                 ObjectQuery query = new ObjectQuery("SELECT SID, Caption FROM Win32_UserAccount WHERE LocalAccount=TRUE");
                 ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
@@ -93,7 +128,15 @@ namespace SuperGrate
                     if (await Ping(Host))
                     {
                         UserRows rows = new UserRows();
-                        RegistryKey remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
+                        RegistryKey remoteReg = null;
+                        if (IsHostThisMachine(Host))
+                        {
+                            remoteReg = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
+                        }
+                        else
+                        {
+                            remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
+                        }
                         RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
                         Logger.Information("Getting list of users on: " + Host + "...");
                         GetLocalUsersSIDsFromHost(Host);
@@ -121,7 +164,7 @@ namespace SuperGrate
                             if (row.ContainsKey(ULColumnType.LastModified) || row.ContainsKey(ULColumnType.Size) || row.ContainsKey(ULColumnType.FirstCreated))
                             {
                                 RegistryKey profileReg = profileList.OpenSubKey(SID, false);
-                                string profilePath = ((string)profileReg.GetValue("ProfileImagePath")).Replace(@"C:\", @"\\" + Host + @"\C$\");
+                                string profilePath = ((string)profileReg.GetValue("ProfileImagePath")).Replace(@"C:\", GetBestPathToC(Host));
                                 if(row.ContainsKey(ULColumnType.Size))
                                 {
                                     Logger.Information("Calculating profile size for: " + user + "...");
@@ -231,7 +274,7 @@ namespace SuperGrate
                 }
             });
         }
-        public static Task DeleteFromSource(string Target, string[] SIDs)
+        public static Task DeleteFromSource(string Host, string[] SIDs)
         {
             ShouldCancelRemoteProfileDelete = false;
             return Task.Run(async () =>
@@ -239,7 +282,7 @@ namespace SuperGrate
                 try
                 {
                     Logger.Information("Sending Profile Delete Daemon...");
-                    string exePath = Path.Combine(@"\\" + Target, @"C$\ProgramData\SuperGratePD.exe");
+                    string exePath = Path.Combine(GetBestPathToC(Host), @"ProgramData\SuperGratePD.exe");
                     FileStream SuperGratePD = File.OpenWrite(exePath);
                     SuperGratePD.Write(
                         Properties.Resources.SuperGrateProfileDelete,
@@ -252,14 +295,14 @@ namespace SuperGrate
                     {
                         if (ShouldCancelRemoteProfileDelete) break;
                         string name = GetUserByIdentity(SID);
-                        Logger.Information("Deleting '" + name + "' from " + Target + "...");
+                        Logger.Information("Deleting '" + name + "' from " + Host + "...");
                         await Remote.StartProcess(
-                            Target,
+                            Host,
                             @"C:\ProgramData\SuperGratePD.exe " + SID,
                             @"C:\ProgramData\"
                         );
                         Logger.UpdateProgress((int)((++count - 0.5) / SIDs.Length * 100));
-                        await Remote.WaitForProcessExit(Target, "SuperGratePD");
+                        await Remote.WaitForProcessExit(Host, "SuperGratePD");
                     }
                     Logger.Information("Removing Daemon...");
                     File.Delete(exePath);
@@ -267,7 +310,7 @@ namespace SuperGrate
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, "Failed to delete user(s) from target: " + Target + ".");
+                    Logger.Exception(e, "Failed to delete user(s) from target: " + Host + ".");
                 }
             });
         }
@@ -290,7 +333,7 @@ namespace SuperGrate
             return Task.Run(() => {
                 try
                 {
-                    ManagementScope scope = new ManagementScope(@"\\" + Host + @"\root\cimv2");
+                    ManagementScope scope = new ManagementScope(GetBestManagementScope(Host));
                     scope.Connect();
                     ObjectQuery query = new ObjectQuery("SELECT OSArchitecture FROM Win32_OperatingSystem");
                     ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);

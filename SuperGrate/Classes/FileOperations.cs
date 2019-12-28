@@ -87,6 +87,11 @@ namespace SuperGrate
             {
                 return 0;
             }
+            catch (Exception e)
+            {
+                Logger.Exception(e, "Failed to get folder size!");
+                return 0;
+            }
         }
     }
 }
