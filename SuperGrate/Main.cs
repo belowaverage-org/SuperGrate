@@ -30,6 +30,7 @@ namespace SuperGrate
             Progress = pbMain;
             listUsers.Tag = new string[0];
             Icon = Properties.Resources.supergrate;
+            Text = About.AssemblyTitle;
         }
         private void Main_Load(object sender, EventArgs e)
         {

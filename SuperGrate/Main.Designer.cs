@@ -563,7 +563,7 @@
             this.Padding = new System.Windows.Forms.Padding(5);
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Super Grate - Remote User Migration & Backup";
+            this.Text = "Super Grate";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.logTable.ResumeLayout(false);
