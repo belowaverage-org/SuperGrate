@@ -4,7 +4,7 @@
   Super Grate
 </h1>
 <h3 align="center">
-  <a href="https://github.com/belowaverage-org/SuperGrate/releases">Download</a> | <a href="https://github.com/belowaverage-org/SuperGrate/wiki">Documentation</a> | <a href="https://github.com/belowaverage-org/SuperGrate/issues">Issues</a>
+  <a href="https://github.com/belowaverage-org/SuperGrate/releases">Download</a> | <a href="https://belowaverage.org/software/supergrate">Website</a> | <a href="https://github.com/belowaverage-org/SuperGrate/wiki">Documentation</a> | <a href="https://github.com/belowaverage-org/SuperGrate/issues">Issues</a>
 </h3>
 <h1></h1>
 <p align="center">
