@@ -13,7 +13,7 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img height="80" src="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrate/Images/supergrate.ico">
   <br><br>
-  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/images/supergrate.png">
+  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/promo.png">
   <h1></h1>
   <p>
     <b>Super Grate</b> is a tool part of the Super Suite that can perform remote execution of Microsoft's USMT (User State Migration Tool) on any domain joined PC, or local execution on any non-joined PC.
