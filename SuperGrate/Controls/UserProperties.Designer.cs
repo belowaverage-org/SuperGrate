@@ -44,11 +44,12 @@
             this.lvProperties.FullRowSelect = true;
             this.lvProperties.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.helpProvider.SetHelpString(this.lvProperties, "A list of properties for the user you double-clicked a moment ago.");
-            this.lvProperties.HideSelection = false;
             this.lvProperties.Location = new System.Drawing.Point(0, 0);
+            this.lvProperties.MultiSelect = false;
             this.lvProperties.Name = "lvProperties";
+            this.lvProperties.ShowGroups = false;
             this.helpProvider.SetShowHelp(this.lvProperties, true);
-            this.lvProperties.Size = new System.Drawing.Size(315, 193);
+            this.lvProperties.Size = new System.Drawing.Size(184, 61);
             this.lvProperties.TabIndex = 0;
             this.lvProperties.UseCompatibleStateImageBehavior = false;
             this.lvProperties.View = System.Windows.Forms.View.Details;
@@ -65,14 +66,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(315, 193);
+            this.ClientSize = new System.Drawing.Size(184, 61);
             this.Controls.Add(this.lvProperties);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(187, 232);
+            this.MinimumSize = new System.Drawing.Size(200, 100);
             this.Name = "UserProperties";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "User Properties";

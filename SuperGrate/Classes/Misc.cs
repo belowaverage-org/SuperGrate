@@ -7,6 +7,7 @@ using System.Net.NetworkInformation;
 using System.Security.Principal;
 using System.Management;
 using SuperGrate.UserList;
+using System.Windows.Forms;
 
 namespace SuperGrate
 {
@@ -385,6 +386,13 @@ namespace SuperGrate
                 }
                 return null;
             });
+        }
+        public static void MainMenuSetState(MainMenu Menu, bool Enabled)
+        {
+            foreach(MenuItem mi in Menu.MenuItems)
+            {
+                mi.Enabled = Enabled;
+            }
         }
     }
 }

@@ -87,6 +87,9 @@ namespace SuperGrate
                 if (value != RunningTask.None)
                 {
                     btnStartStop.Text = "Stop";
+                    Cursor = Cursors.AppStarting;
+                    Logger.UpdateProgress(true);
+                    Misc.MainMenuSetState(MainMenu, false);
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = 
                     btnStartStop.Enabled =
@@ -105,6 +108,9 @@ namespace SuperGrate
                 else
                 {
                     btnStartStop.Text = "Start";
+                    Cursor = Cursors.Default;
+                    Logger.UpdateProgress(false);
+                    Misc.MainMenuSetState(MainMenu, true);
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = false;
                     Canceled =
@@ -436,13 +442,16 @@ namespace SuperGrate
                 Running = RunningTask.Unknown;
                 Logger.Information("Retrieving user properties...");
                 UserRow row = null;
+                UserRow template = null;
                 if (CurrentListSource == ListSources.MigrationStore)
                 {
-                    row = await Misc.GetUserFromStore(ULControl.HeaderRowStoreSource, (string)listUsers.SelectedItems[0].Tag);
+                    template = ULControl.HeaderRowStoreSource;
+                    row = await Misc.GetUserFromStore(template, (string)listUsers.SelectedItems[0].Tag);
                 }
                 if (CurrentListSource == ListSources.SourceComputer)
                 {
-                    row = await Misc.GetUserFromHost(ULControl.HeaderRowComputerSource, tbSourceComputer.Text, (string)listUsers.SelectedItems[0].Tag);
+                    template = ULControl.HeaderRowComputerSource;
+                    row = await Misc.GetUserFromHost(template, tbSourceComputer.Text, (string)listUsers.SelectedItems[0].Tag);
                 }
                 if (Canceled)
                 {
@@ -452,7 +461,7 @@ namespace SuperGrate
                 }
                 Running = RunningTask.None;
                 Logger.Success("Done!");
-                new UserProperties(row).ShowDialog();
+                new UserProperties(template, row).ShowDialog();
             }
         }
     }

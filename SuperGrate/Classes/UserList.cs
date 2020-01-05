@@ -8,6 +8,7 @@ namespace SuperGrate.UserList
         public static UserRow CurrentHeaderRow = null;
         public static UserRow HeaderRowComputerSource = new UserRow()
         {
+            { ULColumnType.Tag, "Security Identifier" },
             { ULColumnType.NTAccount, "User Name" },
             { ULColumnType.LastModified, "Last Modified" },
             { ULColumnType.Size, "Size" },
@@ -15,6 +16,7 @@ namespace SuperGrate.UserList
         };
         public static UserRow HeaderRowStoreSource = new UserRow()
         {
+            { ULColumnType.Tag, "Store Identifier" },
             { ULColumnType.NTAccount, "User Name" },
             { ULColumnType.SourceComputer, "Source Computer" },
             { ULColumnType.DestinationComputer, "Destination Computer" },

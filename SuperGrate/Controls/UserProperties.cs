@@ -6,13 +6,22 @@ namespace SuperGrate.Controls
 {
     public partial class UserProperties : Form
     {
-        public UserProperties(UserRow Row)
+        public UserProperties(UserRow Template, UserRow Row)
         {
             InitializeComponent();
             Icon = Properties.Resources.supergrate;
             foreach (KeyValuePair<ULColumnType, string> property in Row)
             {
-                ListViewItem lvProperty = lvProperties.Items.Add(property.Key.ToString());
+                string name = "";
+                if (Template.ContainsKey(property.Key))
+                {
+                    name = Template[property.Key];
+                }
+                else
+                {
+                    name = property.Key.ToString();
+                }
+                ListViewItem lvProperty = lvProperties.Items.Add(name);
                 lvProperty.SubItems.Add(property.Value);
             }
             lvProperties.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
@@ -22,7 +31,8 @@ namespace SuperGrate.Controls
             {
                 headWidth += colHeader.Width;
             }
-            Width = headWidth + 30;
+            Width = headWidth + 20;
+            Height = (17 * Row.Count) + 65;
             CenterToParent();
         }
     }

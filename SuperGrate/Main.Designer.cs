@@ -107,6 +107,7 @@
             this.pbMain.ForeColor = System.Drawing.Color.Black;
             this.pbMain.Location = new System.Drawing.Point(3, 406);
             this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pbMain.MarqueeAnimationSpeed = 30;
             this.pbMain.Name = "pbMain";
             this.pbMain.Size = new System.Drawing.Size(303, 22);
             this.pbMain.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
