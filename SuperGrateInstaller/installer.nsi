@@ -1,11 +1,11 @@
 !define NAME "Super Grate"
 !define NAME2 "SuperGrate"
-!define VERSION "1.2.1.0"
+!define VERSION "1.3.0.0"
 !include x64.nsh
 !include "MUI2.nsh"
 Name "${NAME}"
 OutFile ".\bin\${NAME2}Installer.exe"
-BrandingText "Dylan Bickerstaff (C) 2019 - Super Suite - ${NAME} - v${VERSION}"
+BrandingText "Dylan Bickerstaff (C) 2020 - Super Suite - ${NAME} - v${VERSION}"
 
 VIAddVersionKey "ProductName" "${NAME}"
 VIAddVersionKey "LegalTrademarks" "Super Suite"
