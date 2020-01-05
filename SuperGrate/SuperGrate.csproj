@@ -134,6 +134,12 @@
     <Compile Include="Controls\ChangeSetting.Designer.cs">
       <DependentUpon>ChangeSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\UserProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\UserProperties.Designer.cs">
+      <DependentUpon>UserProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Settings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ChangeSetting.resx">
       <DependentUpon>ChangeSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\UserProperties.resx">
+      <DependentUpon>UserProperties.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>

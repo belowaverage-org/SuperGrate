@@ -119,6 +119,61 @@ namespace SuperGrate
                 return Identity;
             }
         }
+        public static Task<UserRow> GetUserFromHost(UserRow TemplateRow, string Host, string SID)
+        {
+            return Task.Run(() =>
+            {
+                UserRow row = new UserRow(TemplateRow);
+                RegistryKey remoteReg = null;
+                if (IsHostThisMachine(Host))
+                {
+                    remoteReg = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
+                }
+                else
+                {
+                    remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
+                }
+                string user = GetUserByIdentity(SID);
+                Logger.Verbose("Found: " + user);
+                bool setting;
+                if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out setting) && setting && (user.Contains("NT AUTHORITY") || user.Contains("NT SERVICE")))
+                {
+                    Logger.Verbose("Skipped: " + SID + ": " + user + ".");
+                    return null;
+                }
+                if (bool.TryParse(Config.Settings["HideUnknownSIDs"], out setting) && setting && SID == user)
+                {
+                    Logger.Verbose("Skipped unknown SID: " + SID + ".");
+                    return null;
+                }
+                row[ULColumnType.Tag] = SID;
+                if (row.ContainsKey(ULColumnType.NTAccount))
+                {
+                    row[ULColumnType.NTAccount] = user;
+                }
+                if (row.ContainsKey(ULColumnType.LastModified) || row.ContainsKey(ULColumnType.Size) || row.ContainsKey(ULColumnType.FirstCreated))
+                {
+                    RegistryKey profileReg = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\" + SID, false);
+                    string profilePath = ((string)profileReg.GetValue("ProfileImagePath")).Replace(@"C:\", GetBestPathToC(Host));
+                    if (row.ContainsKey(ULColumnType.Size))
+                    {
+                        Logger.Information("Calculating profile size for: " + user + "...");
+                        double size = FileOperations.GetFolderSize(profilePath);
+                        row[ULColumnType.Size] = size.ByteHumanize();
+                    }
+                    if (row.ContainsKey(ULColumnType.FirstCreated))
+                    {
+                        row[ULColumnType.FirstCreated] = Directory.GetCreationTime(profilePath).ToString();
+                    }
+                    if (row.ContainsKey(ULColumnType.LastModified))
+                    {
+                        row[ULColumnType.LastModified] = File.GetLastWriteTime(Path.Combine(profilePath, "NTUSER.DAT")).ToString();
+                    }
+                }
+                remoteReg.Close();
+                return row;
+            });
+        }
         public static Task<UserRows> GetUsersFromHost(string Host)
         {
             return Task.Run(async () =>
@@ -143,45 +198,8 @@ namespace SuperGrate
                         foreach (string SID in profileList.GetSubKeyNames())
                         {
                             if (Main.Canceled) break;
-                            UserRow row = new UserRow(ULControl.CurrentHeaderRow);
-                            string user = GetUserByIdentity(SID);
-                            Logger.Verbose("Found: " + user);
-                            bool setting;
-                            if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out setting) && setting && (user.Contains("NT AUTHORITY") || user.Contains("NT SERVICE")))
-                            {
-                                Logger.Verbose("Skipped: " + SID + ": " + user + ".");
-                                continue;
-                            }
-                            if (bool.TryParse(Config.Settings["HideUnknownSIDs"], out setting) && setting && SID == user)
-                            {
-                                Logger.Verbose("Skipped unknown SID: " + SID + ".");
-                                continue;
-                            }
-                            row[ULColumnType.Tag] = SID;
-                            if (row.ContainsKey(ULColumnType.NTAccount))
-                            {
-                                row[ULColumnType.NTAccount] = user;
-                            }
-                            if (row.ContainsKey(ULColumnType.LastModified) || row.ContainsKey(ULColumnType.Size) || row.ContainsKey(ULColumnType.FirstCreated))
-                            {
-                                RegistryKey profileReg = profileList.OpenSubKey(SID, false);
-                                string profilePath = ((string)profileReg.GetValue("ProfileImagePath")).Replace(@"C:\", GetBestPathToC(Host));
-                                if(row.ContainsKey(ULColumnType.Size))
-                                {
-                                    Logger.Information("Calculating profile size for: " + user + "...");
-                                    double size = FileOperations.GetFolderSize(profilePath);
-                                    row[ULColumnType.Size] = size.ByteHumanize();
-                                }
-                                if (row.ContainsKey(ULColumnType.FirstCreated))
-                                {
-                                    row[ULColumnType.FirstCreated] = Directory.GetCreationTime(profilePath).ToString();
-                                }
-                                if (row.ContainsKey(ULColumnType.LastModified))
-                                {
-                                    row[ULColumnType.LastModified] = File.GetLastWriteTime(Path.Combine(profilePath, "NTUSER.DAT")).ToString();
-                                }
-                            }
-                            rows.Add(row);
+                            UserRow row = await GetUserFromHost(ULControl.CurrentHeaderRow, Host, SID);
+                            if (row != null) rows.Add(row);
                         }
                         remoteReg.Close();
                         if (Main.Canceled)
@@ -209,46 +227,56 @@ namespace SuperGrate
                 }
             });
         }
-        static public Task<UserRows> GetUsersFromStore(string StorePath)
+        static public Task<UserRow> GetUserFromStore(UserRow TemplateRow, string ID)
         {
             return Task.Run(() =>
             {
+                string StoreItemPath = Path.Combine(Config.Settings["MigrationStorePath"], ID);
+                string NTAccount = File.ReadAllText(Path.Combine(StoreItemPath, "ntaccount"));
+                UserRow row = new UserRow(TemplateRow);
+                DirectoryInfo info = new DirectoryInfo(StoreItemPath);
+                row[ULColumnType.Tag] = info.Name;
+                if (row.ContainsKey(ULColumnType.NTAccount))
+                {
+                    row[ULColumnType.NTAccount] = NTAccount;
+                }
+                string DataFilePath = Path.Combine(StoreItemPath, "data");
+                if (row.ContainsKey(ULColumnType.Size))
+                {
+                    row[ULColumnType.Size] = ByteHumanizer.ByteHumanize(new FileInfo(DataFilePath).Length);
+                }
+                string ImpOnFile = Path.Combine(StoreItemPath, "importedon");
+                if (row.ContainsKey(ULColumnType.ImportedOn) && File.Exists(ImpOnFile))
+                {
+                    row[ULColumnType.ImportedOn] = DateTime.FromFileTime(long.Parse(File.ReadAllText(ImpOnFile))).ToString();
+                }
+                string ImpByFile = Path.Combine(StoreItemPath, "importedby");
+                if (row.ContainsKey(ULColumnType.ImportedBy) && File.Exists(ImpByFile))
+                {
+                    row[ULColumnType.ImportedBy] = File.ReadAllText(ImpByFile);
+                }
+                string SCFilePath = Path.Combine(StoreItemPath, "source");
+                if (row.ContainsKey(ULColumnType.SourceComputer) && File.Exists(SCFilePath))
+                {
+                    row[ULColumnType.SourceComputer] = File.ReadAllText(SCFilePath);
+                }
+                return row;
+            });
+        }
+        static public Task<UserRows> GetUsersFromStore()
+        {
+            return Task.Run(async () =>
+            {
                 try
                 {
+                    string StorePath = Config.Settings["MigrationStorePath"];
                     Logger.Information("Listing users from store: " + StorePath + "...");
                     UserRows rows = new UserRows();
-                    foreach (string directory in Directory.EnumerateDirectories(StorePath))
+                    foreach (DirectoryInfo directory in new DirectoryInfo(StorePath).GetDirectories())
                     {
-                        string NTAccount = File.ReadAllText(Path.Combine(directory, "ntaccount"));
-                        UserRow row = new UserRow(ULControl.CurrentHeaderRow);
-                        DirectoryInfo info = new DirectoryInfo(directory);
-                        row[ULColumnType.Tag] = info.Name;
-                        if(row.ContainsKey(ULColumnType.NTAccount))
-                        {
-                            row[ULColumnType.NTAccount] = NTAccount;
-                        }
-                        string DataFilePath = Path.Combine(directory, "data");
-                        if (row.ContainsKey(ULColumnType.Size))
-                        {
-                            row[ULColumnType.Size] = ByteHumanizer.ByteHumanize(new FileInfo(DataFilePath).Length);
-                        }
-                        string ImpOnFile = Path.Combine(directory, "importedon");
-                        if (row.ContainsKey(ULColumnType.ImportedOn) && File.Exists(ImpOnFile))
-                        {
-                            row[ULColumnType.ImportedOn] = DateTime.FromFileTime(long.Parse(File.ReadAllText(ImpOnFile))).ToString();
-                        }
-                        string ImpByFile = Path.Combine(directory, "importedby");
-                        if (row.ContainsKey(ULColumnType.ImportedBy) && File.Exists(ImpByFile))
-                        {
-                            row[ULColumnType.ImportedBy] = File.ReadAllText(ImpByFile);
-                        }
-                        string SCFilePath = Path.Combine(directory, "source");
-                        if (row.ContainsKey(ULColumnType.SourceComputer) && File.Exists(SCFilePath))
-                        {
-                            row[ULColumnType.SourceComputer] = File.ReadAllText(SCFilePath);
-                        }
+                        UserRow row = await GetUserFromStore(ULControl.CurrentHeaderRow, directory.Name);
                         rows.Add(row);
-                        Logger.Verbose("Found: " + NTAccount);
+                        Logger.Verbose("Found: " + row[ULColumnType.NTAccount]);
                     }
                     Logger.Success("Users listed successfully.");
                     return rows;

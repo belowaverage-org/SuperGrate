@@ -11,7 +11,7 @@ namespace SuperGrate.UserList
             { ULColumnType.NTAccount, "User Name" },
             { ULColumnType.LastModified, "Last Modified" },
             { ULColumnType.Size, "Size" },
-            { ULColumnType.FirstCreated, "First Created" },
+            { ULColumnType.FirstCreated, "First Created" }
         };
         public static UserRow HeaderRowStoreSource = new UserRow()
         {

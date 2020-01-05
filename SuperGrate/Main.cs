@@ -174,7 +174,7 @@ namespace SuperGrate
             Running = RunningTask.Unknown;
             lblUserList.Text = "Users in Migration Store:";
             listUsers.SetColumns(ULControl.HeaderRowStoreSource, Config.Settings["ULStoreColumns"]);
-            UserRows rows = await Misc.GetUsersFromStore(Config.Settings["MigrationStorePath"]);
+            UserRows rows = await Misc.GetUsersFromStore();
             listUsers.SetRows(rows);
             CurrentListSource = ListSources.MigrationStore;
             Running = RunningTask.None;
@@ -427,6 +427,32 @@ namespace SuperGrate
                 {
                     btnListSource.PerformClick();
                 }
+            }
+        }
+        private async void listUsers_DoubleClick(object sender, EventArgs e)
+        {
+            if(listUsers.SelectedItems.Count == 1)
+            {
+                Running = RunningTask.Unknown;
+                Logger.Information("Retrieving user properties...");
+                UserRow row = null;
+                if (CurrentListSource == ListSources.MigrationStore)
+                {
+                    row = await Misc.GetUserFromStore(ULControl.HeaderRowStoreSource, (string)listUsers.SelectedItems[0].Tag);
+                }
+                if (CurrentListSource == ListSources.SourceComputer)
+                {
+                    row = await Misc.GetUserFromHost(ULControl.HeaderRowComputerSource, tbSourceComputer.Text, (string)listUsers.SelectedItems[0].Tag);
+                }
+                if (Canceled)
+                {
+                    Running = RunningTask.None;
+                    Logger.Information("Canceled.");
+                    return;
+                }
+                Running = RunningTask.None;
+                Logger.Success("Done!");
+                new UserProperties(row).ShowDialog();
             }
         }
     }

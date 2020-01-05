@@ -144,8 +144,6 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(553, 257);
             this.Name = "Settings";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);

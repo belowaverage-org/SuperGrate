@@ -11,6 +11,7 @@ namespace SuperGrate.Controls
         public About()
         {
             InitializeComponent();
+            Icon = Properties.Resources.supergrate;
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
             this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);

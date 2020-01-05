@@ -1,7 +1,5 @@
 <h1 align="center">
   <img src="https://belowaverage.visualstudio.com/SuperGrate/_apis/build/status/belowaverage-org.SuperGrate?branchName=master"><br><br>
-  <img height="25" src="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrate/Images/supergrate.ico">
-  Super Grate
 </h1>
 <h3 align="center">
   <a href="https://github.com/belowaverage-org/SuperGrate/releases">Download</a> | <a href="https://belowaverage.org/software/supergrate">Website</a> | <a href="https://github.com/belowaverage-org/SuperGrate/wiki">Documentation</a> | <a href="https://github.com/belowaverage-org/SuperGrate/issues">Issues</a>

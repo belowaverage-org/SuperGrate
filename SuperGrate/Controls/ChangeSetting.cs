@@ -10,6 +10,7 @@ namespace SuperGrate.Controls
         public ChangeSetting(string SettingToChange)
         {
             InitializeComponent();
+            Icon = Properties.Resources.supergrate;
             Setting = SettingToChange;
         }
         private void ChangeSetting_Load(object sender, EventArgs e)

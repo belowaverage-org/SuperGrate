@@ -10,6 +10,7 @@ namespace SuperGrate.Controls
         public Settings()
         {
             InitializeComponent();
+            Icon = Properties.Resources.supergrate;
         }
         private void Settings_Load(object sender, EventArgs e)
         {

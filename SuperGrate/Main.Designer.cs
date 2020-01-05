@@ -426,6 +426,7 @@
             this.listUsers.UseCompatibleStateImageBehavior = false;
             this.listUsers.View = System.Windows.Forms.View.Details;
             this.listUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
+            this.listUsers.DoubleClick += new System.EventHandler(this.listUsers_DoubleClick);
             this.listUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxUsers_KeyDown);
             // 
             // MainMenu
