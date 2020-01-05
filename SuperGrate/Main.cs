@@ -17,6 +17,7 @@ namespace SuperGrate
         public static string SourceComputer;
         public static string DestinationComputer;
         public static ListSources CurrentListSource = ListSources.Unknown;
+        private static bool storeCanceled = false;
         private static RunningTask storeRunningTask = RunningTask.None;
         private string[] MainParameters = null;
         private bool CloseRequested = false;
@@ -60,6 +61,23 @@ namespace SuperGrate
                 Help.ShowPopup(this, helpProvider.GetHelpString((Control)sender), mouse);
             }
         }
+        public static bool Canceled
+        {
+            get
+            {
+                return storeCanceled;
+            }
+            set
+            {
+                storeCanceled = value;
+                if (value)
+                {
+                    if (storeRunningTask != RunningTask.None) Logger.Warning("Canceling current task...");
+                    if (storeRunningTask == RunningTask.USMT) USMT.Cancel();
+                    if (storeRunningTask == RunningTask.RemoteProfileDelete) Misc.CancelRemoteProfileDelete(SourceComputer);
+                }
+            }
+        }
         private RunningTask Running {
             get {
                 return storeRunningTask;
@@ -70,7 +88,10 @@ namespace SuperGrate
                 {
                     btnStartStop.Text = "Stop";
                     storeRunningTask = value;
-                    imgLoadLogo.Enabled = true;
+                    imgLoadLogo.Enabled = 
+                    btnStartStop.Enabled =
+                    true;
+                    Canceled =
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
                     btnAFillSrc.Enabled =
@@ -86,6 +107,7 @@ namespace SuperGrate
                     btnStartStop.Text = "Start";
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = false;
+                    Canceled =
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
                     btnAFillSrc.Enabled =
@@ -103,15 +125,11 @@ namespace SuperGrate
         }
         private async void BtStartStop_Click(object sender, EventArgs e)
         {
-            if (Running == RunningTask.USMT)
+            if (Running != RunningTask.None)
             {
-                USMT.Cancel();
+                Canceled = true;
             }
-            else if(Running == RunningTask.RemoteProfileDelete)
-            {
-                Misc.CancelRemoteProfileDelete(SourceComputer);
-            }
-            else if(Running == RunningTask.None)
+            else
             {
                 Running = RunningTask.USMT;
                 List<string> IDs = new List<string>();
@@ -149,31 +167,6 @@ namespace SuperGrate
             UserRows rows = await Misc.GetUsersFromHost(tbSourceComputer.Text);
             listUsers.SetRows(rows);
             CurrentListSource = ListSources.SourceComputer;
-            /*
-            if (rows != null)
-            {
-                bool setting;
-                foreach (KeyValuePair<string, string> user in users)
-                {
-                    if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out setting) && setting && (user.Value.Contains("NT AUTHORITY") || user.Value.Contains("NT SERVICE")))
-                    {
-                        Logger.Verbose("Skipped: " + user.Key + ": " + user.Value + ".");
-                        continue;
-                    }
-                    if (bool.TryParse(Config.Settings["HideUnknownSIDs"], out setting) && setting && user.Key == user.Value)
-                    {
-                        Logger.Verbose("Skipped unknown SID: " + user.Key + ".");
-                        continue;
-                    }
-                    ListViewItem item = listUsers.Items.Add(user.Value);
-                    item.Tag = user.Key;
-                }
-                listUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                listUsers.EndUpdate();
-                CurrentListSource = ListSources.SourceComputer;
-                Logger.Success("Done!");
-            }
-            */
             Running = RunningTask.None;
         }
         private async void BtnListStore_Click(object sender, EventArgs e)

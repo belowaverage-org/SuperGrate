@@ -75,11 +75,17 @@ namespace SuperGrate
             {
                 foreach (DirectoryInfo directory in Directory.GetDirectories())
                 {
+                    if (Main.Canceled) break;
                     size += GetFolderSize(directory);
                 }
                 foreach (FileInfo file in Directory.GetFiles())
                 {
+                    if (Main.Canceled) break;
                     size += file.Length;
+                }
+                if (Main.Canceled)
+                {
+                    return -1;
                 }
                 return size;
             }
@@ -90,7 +96,7 @@ namespace SuperGrate
             catch (Exception e)
             {
                 Logger.Exception(e, "Failed to get folder size!");
-                return 0;
+                return -1;
             }
         }
     }

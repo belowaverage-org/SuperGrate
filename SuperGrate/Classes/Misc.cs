@@ -142,6 +142,7 @@ namespace SuperGrate
                         GetLocalUsersSIDsFromHost(Host);
                         foreach (string SID in profileList.GetSubKeyNames())
                         {
+                            if (Main.Canceled) break;
                             UserRow row = new UserRow(ULControl.CurrentHeaderRow);
                             string user = GetUserByIdentity(SID);
                             Logger.Verbose("Found: " + user);
@@ -183,6 +184,11 @@ namespace SuperGrate
                             rows.Add(row);
                         }
                         remoteReg.Close();
+                        if (Main.Canceled)
+                        {
+                            Logger.Information("Listing users was canceled.");
+                            return null;
+                        }
                         Logger.Success("Users listed successfully.");
                         return rows;
                     }
