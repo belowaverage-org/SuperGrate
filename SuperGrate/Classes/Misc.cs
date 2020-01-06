@@ -15,31 +15,6 @@ namespace SuperGrate
     {
         public static Dictionary<string, string> LocalSIDToUser = new Dictionary<string, string>();
         private static bool ShouldCancelRemoteProfileDelete = false;
-        static public async Task<bool> Ping(string Host)
-        {
-            if (IsHostThisMachine(Host)) return true;
-            try
-            {
-                Logger.Information("Pinging: " + Host + "...");
-                Ping ping = new Ping();
-                PingReply reply = await ping.SendPingAsync(Host, 1000);
-                if (reply.Status == IPStatus.Success)
-                {
-                    Logger.Success(Host + ": Online.");
-                    return true;
-                }
-                else
-                {
-                    Logger.Error(Host + ": Offline.");
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Exception(e, "Could not contact: " + Host);
-                return false;
-            }
-        }
         public static bool IsHostThisMachine(string Host)
         {
             if(Host.ToLower() == Environment.MachineName.ToLower())
@@ -181,40 +156,33 @@ namespace SuperGrate
             {
                 try
                 {
-                    if (await Ping(Host))
+                    UserRows rows = new UserRows();
+                    RegistryKey remoteReg = null;
+                    if (IsHostThisMachine(Host))
                     {
-                        UserRows rows = new UserRows();
-                        RegistryKey remoteReg = null;
-                        if (IsHostThisMachine(Host))
-                        {
-                            remoteReg = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
-                        }
-                        else
-                        {
-                            remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
-                        }
-                        RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
-                        Logger.Information("Getting list of users on: " + Host + "...");
-                        GetLocalUsersSIDsFromHost(Host);
-                        foreach (string SID in profileList.GetSubKeyNames())
-                        {
-                            if (Main.Canceled) break;
-                            UserRow row = await GetUserFromHost(ULControl.CurrentHeaderRow, Host, SID);
-                            if (row != null) rows.Add(row);
-                        }
-                        remoteReg.Close();
-                        if (Main.Canceled)
-                        {
-                            Logger.Information("Listing users was canceled.");
-                            return null;
-                        }
-                        Logger.Success("Users listed successfully.");
-                        return rows;
+                        remoteReg = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
                     }
                     else
                     {
+                        remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
+                    }
+                    RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
+                    Logger.Information("Getting list of users on: " + Host + "...");
+                    GetLocalUsersSIDsFromHost(Host);
+                    foreach (string SID in profileList.GetSubKeyNames())
+                    {
+                        if (Main.Canceled) break;
+                        UserRow row = await GetUserFromHost(ULControl.CurrentHeaderRow, Host, SID);
+                        if (row != null) rows.Add(row);
+                    }
+                    remoteReg.Close();
+                    if (Main.Canceled)
+                    {
+                        Logger.Information("Listing users was canceled.");
                         return null;
                     }
+                    Logger.Success("Users listed successfully.");
+                    return rows;
                 }
                 catch (System.Security.SecurityException e)
                 {
@@ -224,6 +192,28 @@ namespace SuperGrate
                 catch (Exception e)
                 {
                     Logger.Exception(e, "Failed to get a list of users.");
+                    return null;
+                }
+            });
+        }
+        static public Task<string> GetSIDFromStore(string ID)
+        {
+            return Task.Run(() => {
+                try
+                {
+                    string SIDPath = Path.Combine(Config.Settings["MigrationStorePath"], ID, "sid");
+                    if (File.Exists(SIDPath))
+                    {
+                        return File.ReadAllText(SIDPath);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to get SID from store ID: " + ID);
                     return null;
                 }
             });
@@ -242,30 +232,39 @@ namespace SuperGrate
             };
             return Task.Run(() =>
             {
-                string StoreItemPath = Path.Combine(Config.Settings["MigrationStorePath"], ID);
-                UserRow row = new UserRow(TemplateRow);
-                DirectoryInfo info = new DirectoryInfo(StoreItemPath);
-                row[ULColumnType.Tag] = info.Name;
-                string DataFilePath = Path.Combine(StoreItemPath, "data");
-                if (row.ContainsKey(ULColumnType.Size))
+                try
                 {
-                    row[ULColumnType.Size] = ByteHumanizer.ByteHumanize(new FileInfo(DataFilePath).Length);
-                }
-                foreach(KeyValuePair<ULColumnType, string> file in Files)
-                {
-                    string filePath = Path.Combine(StoreItemPath, file.Value);
-                    if (row.ContainsKey(file.Key) && File.Exists(filePath)) {
-                        if (file.Key == ULColumnType.ExportedOn || file.Key == ULColumnType.ImportedOn)
+                    string StoreItemPath = Path.Combine(Config.Settings["MigrationStorePath"], ID);
+                    UserRow row = new UserRow(TemplateRow);
+                    DirectoryInfo info = new DirectoryInfo(StoreItemPath);
+                    row[ULColumnType.Tag] = info.Name;
+                    string DataFilePath = Path.Combine(StoreItemPath, "data");
+                    if (row.ContainsKey(ULColumnType.Size))
+                    {
+                        row[ULColumnType.Size] = ByteHumanizer.ByteHumanize(new FileInfo(DataFilePath).Length);
+                    }
+                    foreach (KeyValuePair<ULColumnType, string> file in Files)
+                    {
+                        string filePath = Path.Combine(StoreItemPath, file.Value);
+                        if (row.ContainsKey(file.Key) && File.Exists(filePath))
                         {
-                            row[file.Key] = DateTime.FromFileTime(long.Parse(File.ReadAllText(filePath))).ToString();
-                        }
-                        else
-                        {
-                            row[file.Key] = File.ReadAllText(filePath);
+                            if (file.Key == ULColumnType.ExportedOn || file.Key == ULColumnType.ImportedOn)
+                            {
+                                row[file.Key] = DateTime.FromFileTime(long.Parse(File.ReadAllText(filePath))).ToString();
+                            }
+                            else
+                            {
+                                row[file.Key] = File.ReadAllText(filePath);
+                            }
                         }
                     }
+                    return row;
                 }
-                return row;
+                catch (Exception e)
+                {
+                    Logger.Exception(e, "Failed to get user from store, ID: " + ID);
+                    return null;
+                }
             });
         }
         static public Task<UserRows> GetUsersFromStore()
@@ -280,6 +279,11 @@ namespace SuperGrate
                     foreach (DirectoryInfo directory in new DirectoryInfo(StorePath).GetDirectories())
                     {
                         UserRow row = await GetUserFromStore(ULControl.CurrentHeaderRow, directory.Name);
+                        if(row == null)
+                        {
+                            Logger.Warning("Skipping ID: " + directory.Name);
+                            continue;
+                        }
                         rows.Add(row);
                         Logger.Verbose("Found: " + row[ULColumnType.NTAccount]);
                     }
@@ -293,17 +297,17 @@ namespace SuperGrate
                 }
             });
         }
-        public static Task DeleteFromStore(string[] SIDs)
+        public static Task DeleteFromStore(string[] IDs)
         {
             return Task.Run(() =>
             {
-                foreach (string SID in SIDs)
+                foreach (string ID in IDs)
                 {
-                    string name = GetUserByIdentity(SID);
+                    string name = GetUserByIdentity(ID);
                     Logger.Information("Deleting '" + name + "' from the Store...");
                     try
                     {
-                        Directory.Delete(Path.Combine(Config.Settings["MigrationStorePath"], SID), true);
+                        Directory.Delete(Path.Combine(Config.Settings["MigrationStorePath"], ID), true);
                         Logger.Success("'" + name + "' successfully deleted from the Store.");
                     }
                     catch (Exception e)

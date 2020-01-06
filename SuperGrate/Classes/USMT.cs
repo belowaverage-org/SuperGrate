@@ -42,7 +42,7 @@ namespace SuperGrate
                 return null;
             }
         }
-        public static Task<bool> Do(USMTMode Mode, string[] SIDs)
+        public static Task<bool> Do(USMTMode Mode, string[] IDs)
         {
             Canceled = false;
             Failed = false;
@@ -61,24 +61,25 @@ namespace SuperGrate
                 CurrentTarget = Main.SourceComputer;
             }
             return Task.Run(async () => {
-                Failed = !await Misc.Ping(CurrentTarget);
-                if (Canceled || Failed) return false;
                 DetectedArch = await Misc.GetRemoteArch(CurrentTarget);
                 if (Canceled || DetectedArch == null) return false;
                 Failed = !await CopyUSMT();
                 if (Canceled || Failed) return false;
-                foreach (string SID in SIDs)
+                foreach (string ID in IDs)
                 {
                     if(Canceled || Failed) break;
+                    string SID = "";
                     if (Mode == USMTMode.LoadState)
                     {
-                        Logger.Information("Applying user state: '" + Misc.GetUserByIdentity(SID) + "' on '" + CurrentTarget + "'...");
-                        Failed = !await DownloadFromStore(SID);
-                        if (Canceled || Failed) break;
+                        Logger.Information("Applying user state: '" + Misc.GetUserByIdentity(ID) + "' on '" + CurrentTarget + "'...");
+                        Failed = !await DownloadFromStore(ID);
+                        SID = await Misc.GetSIDFromStore(ID);
+                        if (Canceled || Failed || SID == null) break;
                     }
-                    else
+                    if (Mode == USMTMode.ScanState)
                     {
-                        Logger.Information("Capturing user state: '" + Misc.GetUserByIdentity(SID) + "' on '" + CurrentTarget + "'...");
+                        Logger.Information("Capturing user state: '" + Misc.GetUserByIdentity(ID) + "' on '" + CurrentTarget + "'...");
+                        SID = ID;
                     }
                     Failed = !await Remote.StartProcess(CurrentTarget,
                         Path.Combine(PayloadPathLocal, exec) + " " +
@@ -95,6 +96,11 @@ namespace SuperGrate
                     StartWatchLog("SuperGrate.progress");
                     Failed = !await WaitForUsmtExit(exec.Replace(".exe", ""));
                     if (Canceled || Failed) break;
+                    if (Mode == USMTMode.LoadState)
+                    {
+                        Failed = !await SetStoreExportParameters(ID);
+                        if (Canceled || Failed) break;
+                    }
                     if (Mode == USMTMode.ScanState)
                     {
                         Failed = !await UploadToStore(SID);
@@ -230,7 +236,7 @@ namespace SuperGrate
                 }
             });
         }
-        private static Task<bool> DownloadFromStore(string SID)
+        private static Task<bool> DownloadFromStore(string ID)
         {
             return Task.Run(() => {
                 Logger.Information("Downloading user state to: " + Main.DestinationComputer + "...");
@@ -239,7 +245,7 @@ namespace SuperGrate
                 {
                     Directory.CreateDirectory(Destination);
                     FileOperations.CopyFile(
-                        Path.Combine(Config.Settings["MigrationStorePath"], SID, "USMT.MIG"),
+                        Path.Combine(Config.Settings["MigrationStorePath"], ID, "data"),
                         Path.Combine(Destination, "USMT.MIG")
                     );
                     Logger.Success("User state successfully transferred.");
@@ -289,6 +295,24 @@ namespace SuperGrate
                     Logger.Warning("Removing USMT folder due to failure...");
                     Directory.Delete(USMTPath, true);
                     Logger.Exception(e, "Failed to automatically download USMT from the web. Please download USMT and update the SuperGrate.xml accordingly.");
+                    return false;
+                }
+            });
+        }
+        private static Task<bool> SetStoreExportParameters(string ID)
+        {
+            string storeObjPath = Path.Combine(Config.Settings["MigrationStorePath"], ID);
+            return Task.Run(() => {
+                try
+                {
+                    File.WriteAllText(Path.Combine(storeObjPath, "destination"), CurrentTarget);
+                    File.WriteAllText(Path.Combine(storeObjPath, "exportedby"), Environment.UserDomainName + "\\" + Environment.UserName);
+                    File.WriteAllText(Path.Combine(storeObjPath, "exportedon"), DateTime.Now.ToFileTime().ToString());
+                    return true;
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to write parameters to this store object ID: " + ID);
                     return false;
                 }
             });
