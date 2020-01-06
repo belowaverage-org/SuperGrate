@@ -230,36 +230,40 @@ namespace SuperGrate
         }
         static public Task<UserRow> GetUserFromStore(UserRow TemplateRow, string ID)
         {
+            Dictionary<ULColumnType, string> Files = new Dictionary<ULColumnType, string>
+            {
+                { ULColumnType.NTAccount, "ntaccount" },
+                { ULColumnType.SourceComputer, "source" },
+                { ULColumnType.DestinationComputer, "destination" },
+                { ULColumnType.ImportedBy, "importedby" },
+                { ULColumnType.ImportedOn, "importedon" },
+                { ULColumnType.ExportedBy, "exportedby" },
+                { ULColumnType.ExportedOn, "exportedon" }
+            };
             return Task.Run(() =>
             {
                 string StoreItemPath = Path.Combine(Config.Settings["MigrationStorePath"], ID);
-                string NTAccount = File.ReadAllText(Path.Combine(StoreItemPath, "ntaccount"));
                 UserRow row = new UserRow(TemplateRow);
                 DirectoryInfo info = new DirectoryInfo(StoreItemPath);
                 row[ULColumnType.Tag] = info.Name;
-                if (row.ContainsKey(ULColumnType.NTAccount))
-                {
-                    row[ULColumnType.NTAccount] = NTAccount;
-                }
                 string DataFilePath = Path.Combine(StoreItemPath, "data");
                 if (row.ContainsKey(ULColumnType.Size))
                 {
                     row[ULColumnType.Size] = ByteHumanizer.ByteHumanize(new FileInfo(DataFilePath).Length);
                 }
-                string ImpOnFile = Path.Combine(StoreItemPath, "importedon");
-                if (row.ContainsKey(ULColumnType.ImportedOn) && File.Exists(ImpOnFile))
+                foreach(KeyValuePair<ULColumnType, string> file in Files)
                 {
-                    row[ULColumnType.ImportedOn] = DateTime.FromFileTime(long.Parse(File.ReadAllText(ImpOnFile))).ToString();
-                }
-                string ImpByFile = Path.Combine(StoreItemPath, "importedby");
-                if (row.ContainsKey(ULColumnType.ImportedBy) && File.Exists(ImpByFile))
-                {
-                    row[ULColumnType.ImportedBy] = File.ReadAllText(ImpByFile);
-                }
-                string SCFilePath = Path.Combine(StoreItemPath, "source");
-                if (row.ContainsKey(ULColumnType.SourceComputer) && File.Exists(SCFilePath))
-                {
-                    row[ULColumnType.SourceComputer] = File.ReadAllText(SCFilePath);
+                    string filePath = Path.Combine(StoreItemPath, file.Value);
+                    if (row.ContainsKey(file.Key) && File.Exists(filePath)) {
+                        if (file.Key == ULColumnType.ExportedOn || file.Key == ULColumnType.ImportedOn)
+                        {
+                            row[file.Key] = DateTime.FromFileTime(long.Parse(File.ReadAllText(filePath))).ToString();
+                        }
+                        else
+                        {
+                            row[file.Key] = File.ReadAllText(filePath);
+                        }
+                    }
                 }
                 return row;
             });
