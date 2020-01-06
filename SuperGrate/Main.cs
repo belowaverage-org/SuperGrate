@@ -89,7 +89,7 @@ namespace SuperGrate
                     btnStartStop.Text = "Stop";
                     Cursor = Cursors.AppStarting;
                     Logger.UpdateProgress(true);
-                    Misc.MainMenuSetState(MainMenu, false);
+                    Misc.MainMenuSetState(MainMenu, false, new string[] { "&Settings", "&View" });
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = 
                     btnStartStop.Enabled =
