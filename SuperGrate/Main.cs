@@ -32,6 +32,13 @@ namespace SuperGrate
             listUsers.Tag = new string[0];
             Icon = Properties.Resources.supergrate;
             Text = About.AssemblyTitle;
+            /*
+            Bitmap bmp = new Bitmap(20, 20);
+            Graphics g = Graphics.FromImage(bmp);
+            g.Clear(SystemColors.Control);
+            g.DrawImage(new Icon(Properties.Resources.computer, 20, 20).ToBitmap(), 0, 0);
+            Misc.SetMenuItemBitmaps(MainMenu.MenuItems[0].Handle, (IntPtr)0, 0x400, bmp.GetHbitmap(), IntPtr.Zero);
+            */
         }
         private void Main_Load(object sender, EventArgs e)
         {

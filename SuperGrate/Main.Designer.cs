@@ -56,7 +56,7 @@
             this.miNewInstance = new System.Windows.Forms.MenuItem();
             this.miSpacer0 = new System.Windows.Forms.MenuItem();
             this.miSaveLog = new System.Windows.Forms.MenuItem();
-            this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.miSpacer3 = new System.Windows.Forms.MenuItem();
             this.miExitButton = new System.Windows.Forms.MenuItem();
             this.miSetup = new System.Windows.Forms.MenuItem();
             this.miView = new System.Windows.Forms.MenuItem();
@@ -445,7 +445,7 @@
             this.miNewInstance,
             this.miSpacer0,
             this.miSaveLog,
-            this.menuItem2,
+            this.miSpacer3,
             this.miExitButton});
             this.miFile.Text = "&File";
             // 
@@ -467,10 +467,10 @@
             this.miSaveLog.Text = "Save Log...";
             this.miSaveLog.Click += new System.EventHandler(this.MiSaveLog_Click);
             // 
-            // menuItem2
+            // miSpacer3
             // 
-            this.menuItem2.Index = 3;
-            this.menuItem2.Text = "-";
+            this.miSpacer3.Index = 3;
+            this.miSpacer3.Text = "-";
             // 
             // miExitButton
             // 
@@ -624,7 +624,7 @@
         private System.Windows.Forms.MenuItem miHelpButton;
         private System.Windows.Forms.MenuItem miSpacer2;
         private System.Windows.Forms.MenuItem miNewInstance;
-        private System.Windows.Forms.MenuItem menuItem2;
+        private System.Windows.Forms.MenuItem miSpacer3;
         private System.Windows.Forms.ListView listUsers;
         private System.Windows.Forms.MenuItem miView;
         private System.Windows.Forms.MenuItem miAddRemoveCol;

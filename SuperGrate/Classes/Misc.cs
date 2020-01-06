@@ -7,6 +7,7 @@ using System.Security.Principal;
 using System.Management;
 using SuperGrate.UserList;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace SuperGrate
 {
@@ -487,5 +488,16 @@ namespace SuperGrate
                 mi.Enabled = Enabled;
             }
         }
+        /// <summary>
+        /// Sets a bitmap on a Menu's menu item.
+        /// </summary>
+        /// <param name="hMenu">Menu handle.</param>
+        /// <param name="nPosition">Menu item position.</param>
+        /// <param name="wFlags">Should be 0x00000400L for zero position based.</param>
+        /// <param name="hBitmapUnchecked">"Unchecked" bitmap to display.</param>
+        /// <param name="hBitmapChecked">"Checked" bitmap to display.</param>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
+        public static extern int SetMenuItemBitmaps(IntPtr hMenu, IntPtr nPosition, int wFlags, IntPtr hBitmapUnchecked, IntPtr hBitmapChecked);
     }
 }
