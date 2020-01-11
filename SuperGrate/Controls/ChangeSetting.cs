@@ -11,6 +11,9 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.supergrate;
+            btnCancel.SetSystemIcon(Properties.Resources.stop);
+            btnSave.SetSystemIcon(Properties.Resources.check);
+            btnRestoreDefault.SetSystemIcon(Properties.Resources.reload);
             Setting = SettingToChange;
         }
         private void ChangeSetting_Load(object sender, EventArgs e)

@@ -39,6 +39,11 @@ namespace SuperGrate
             g.DrawImage(new Icon(Properties.Resources.computer, 20, 20).ToBitmap(), 0, 0);
             Misc.SetMenuItemBitmaps(MainMenu.MenuItems[0].Handle, (IntPtr)0, 0x400, bmp.GetHbitmap(), IntPtr.Zero);
             */
+
+            btnListSource.SetSystemIcon(Properties.Resources.users);
+            btnListStore.SetSystemIcon(Properties.Resources.usercheck);
+            btnDelete.SetSystemIcon(Properties.Resources.stop);
+
         }
         private void Main_Load(object sender, EventArgs e)
         {
@@ -93,7 +98,8 @@ namespace SuperGrate
                 Logger.UpdateProgress(0);
                 if (value != RunningTask.None)
                 {
-                    btnStartStop.Text = "Stop";
+                    btnStartStop.Text = " &Stop";
+                    btnStartStop.SetSystemIcon(Properties.Resources.stop);
                     Cursor = Cursors.AppStarting;
                     Logger.UpdateProgress(true);
                     Misc.MainMenuSetState(MainMenu, false, new string[] { "&Settings", "&View" });
@@ -114,7 +120,8 @@ namespace SuperGrate
                 }
                 else
                 {
-                    btnStartStop.Text = "Start";
+                    btnStartStop.Text = " &Start";
+                    btnStartStop.SetSystemIcon(Properties.Resources.go);
                     Cursor = Cursors.Default;
                     Logger.UpdateProgress(false);
                     Misc.MainMenuSetState(MainMenu, true);

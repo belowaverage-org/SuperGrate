@@ -19,6 +19,8 @@ namespace SuperGrate.Controls
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
             pbLogo.Image = new Icon(Properties.Resources.supergrate, 100, 100).ToBitmap();
+            okButton.SetSystemIcon(Properties.Resources.check);
+            btnGithub.SetSystemIcon(Properties.Resources.link);
         }
 
         #region Assembly Attribute Accessors

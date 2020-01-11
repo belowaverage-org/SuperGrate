@@ -82,7 +82,7 @@
             this.helpProvider.SetShowHelp(this.btnSave, true);
             this.btnSave.Size = new System.Drawing.Size(95, 29);
             this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "&Save to Disk";
+            this.btnSave.Text = " &Save to Disk";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
@@ -108,7 +108,7 @@
             this.helpProvider.SetShowHelp(this.btnRevert, true);
             this.btnRevert.Size = new System.Drawing.Size(95, 29);
             this.btnRevert.TabIndex = 3;
-            this.btnRevert.Text = "&Load from Disk";
+            this.btnRevert.Text = " &Reload";
             this.btnRevert.UseVisualStyleBackColor = false;
             this.btnRevert.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
@@ -122,7 +122,7 @@
             this.helpProvider.SetShowHelp(this.btnApply, true);
             this.btnApply.Size = new System.Drawing.Size(95, 29);
             this.btnApply.TabIndex = 4;
-            this.btnApply.Text = "&Close";
+            this.btnApply.Text = " &Close";
             this.btnApply.UseVisualStyleBackColor = false;
             this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 

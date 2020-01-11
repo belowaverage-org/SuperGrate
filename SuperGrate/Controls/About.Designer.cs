@@ -171,7 +171,7 @@
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 24);
             this.okButton.TabIndex = 24;
-            this.okButton.Text = "&OK";
+            this.okButton.Text = " &OK";
             // 
             // btnGithub
             // 
@@ -183,7 +183,7 @@
             this.btnGithub.Name = "btnGithub";
             this.btnGithub.Size = new System.Drawing.Size(75, 24);
             this.btnGithub.TabIndex = 25;
-            this.btnGithub.Text = "&Github";
+            this.btnGithub.Text = " &Github";
             this.btnGithub.Click += new System.EventHandler(this.BtnGithub_Click);
             // 
             // pbLogo

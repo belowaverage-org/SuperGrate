@@ -11,10 +11,12 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.supergrate;
+            btnSave.SetSystemIcon(Properties.Resources.save);
+            btnRevert.SetSystemIcon(Properties.Resources.reload);
+            btnApply.SetSystemIcon(Properties.Resources.stop);
         }
         private void Settings_Load(object sender, EventArgs e)
         {
-            Icon = Properties.Resources.supergrate;
             RefreshSettings();
         }
         private void RefreshSettings()
@@ -44,8 +46,10 @@ namespace SuperGrate.Controls
             Config.LoadConfig();
             RefreshSettings();
             string text = btnRevert.Text;
-            btnRevert.Text = "Loaded!";
+            btnRevert.SetSystemIcon(Properties.Resources.check);
+            btnRevert.Text = " Loaded!";
             await Task.Delay(1000);
+            btnRevert.SetSystemIcon(Properties.Resources.reload);
             btnRevert.Text = text;
             btnRevert.Enabled = true;
         }
@@ -69,8 +73,10 @@ namespace SuperGrate.Controls
             btnSave.Enabled = false;
             Config.SaveConfig();
             string text = btnSave.Text;
-            btnSave.Text = "Saved!";
+            btnSave.SetSystemIcon(Properties.Resources.check);
+            btnSave.Text = " Saved!";
             await Task.Delay(1000);
+            btnSave.SetSystemIcon(Properties.Resources.save);
             btnSave.Text = text;
             btnSave.Enabled = true;
         }

@@ -69,7 +69,7 @@
             this.helpProvider.SetShowHelp(this.btnCancel, true);
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.Text = " &Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
@@ -83,7 +83,7 @@
             this.helpProvider.SetShowHelp(this.btnSave, true);
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "&Apply";
+            this.btnSave.Text = " &Apply";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
@@ -96,7 +96,7 @@
             this.helpProvider.SetShowHelp(this.btnRestoreDefault, true);
             this.btnRestoreDefault.Size = new System.Drawing.Size(75, 23);
             this.btnRestoreDefault.TabIndex = 4;
-            this.btnRestoreDefault.Text = "&Default";
+            this.btnRestoreDefault.Text = " &Default";
             this.btnRestoreDefault.Click += new System.EventHandler(this.btnRestoreDefault_Click);
             // 
             // ChangeSetting
