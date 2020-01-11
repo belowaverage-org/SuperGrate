@@ -11,8 +11,10 @@
 </h3>
 
 <h1></h1>
+  <p align="center">
   <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/promo.png">
-  <h1></h1>
+  </p>
+<h1></h1>
 
 
   
