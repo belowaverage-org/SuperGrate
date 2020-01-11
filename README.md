@@ -3,15 +3,16 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img height="80" src="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrate/Images/supergrate.ico">
   <br><br>
-  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/promo.png">
-  <h1></h1>
 <h1 align="center">
   <img src="https://belowaverage.visualstudio.com/SuperGrate/_apis/build/status/belowaverage-org.SuperGrate?branchName=master"><br><br>
 </h1>
 <h3 align="center">
   <a href="https://github.com/belowaverage-org/SuperGrate/releases">Download</a> | <a href="https://belowaverage.org/software/supergrate">Website</a> | <a href="https://github.com/belowaverage-org/SuperGrate/wiki">Documentation</a> | <a href="https://github.com/belowaverage-org/SuperGrate/issues">Issues</a>
 </h3>
+
 <h1></h1>
+  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/promo.png">
+  <h1></h1>
 <p align="center">
 
   <p>
