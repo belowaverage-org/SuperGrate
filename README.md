@@ -1,3 +1,10 @@
+  <br>
+  <img height="74" src="https://raw.githubusercontent.com/krisdb2009/documentation/master/images/supersweet.png">
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img height="80" src="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrate/Images/supergrate.ico">
+  <br><br>
+  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/promo.png">
+  <h1></h1>
 <h1 align="center">
   <img src="https://belowaverage.visualstudio.com/SuperGrate/_apis/build/status/belowaverage-org.SuperGrate?branchName=master"><br><br>
 </h1>
@@ -6,13 +13,7 @@
 </h3>
 <h1></h1>
 <p align="center">
-  <br>
-  <img height="74" src="https://raw.githubusercontent.com/krisdb2009/documentation/master/images/supersweet.png">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img height="80" src="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrate/Images/supergrate.ico">
-  <br><br>
-  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/promo.png">
-  <h1></h1>
+
   <p>
     <b>Super Grate</b> is a tool part of the Super Suite that can perform remote execution of Microsoft's USMT (User State Migration Tool) on any domain joined PC, or local execution on any non-joined PC.
   </p>
@@ -40,8 +41,8 @@
   <!--The UNC or Direct path to the USMT Migration Store (E.g: \\ba-share\s$ or .\STORE)-->
   <MigrationStorePath>.\STORE</MigrationStorePath>
   <!--ScanState.exe & LoadState.exe CLI Parameters. See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax -->
-  <ScanStateParameters>/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3 /o</ScanStateParameters>
-  <LoadStateParameters>/config:Config_SettingsOnly.xml /i:MigUser.xml /r:3</LoadStateParameters>
+  <ScanStateParameters>/config:Config_SettingsOnly.xml /i:MigUser.xml /c /r:3 /o</ScanStateParameters>
+  <LoadStateParameters>/config:Config_SettingsOnly.xml /i:MigUser.xml /c /r:3 /lac /lae</LoadStateParameters>
   <!--Delete the user from the migration store after a restore? (store to destination)-->
   <AutoDeleteFromStore>false</AutoDeleteFromStore>
   <!--Delete the user from the source computer after a backup? (source to store)-->
@@ -52,5 +53,8 @@
   <HideUnknownSIDs>false</HideUnknownSIDs>
   <!--Write log to disk on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)-->
   <DumpLogHereOnExit></DumpLogHereOnExit>
+  <!--List of columns to display for the Source or Store users.-->
+  <ULSourceColumns>0,3,9</ULSourceColumns>
+  <ULStoreColumns>0,1,5,6,4</ULStoreColumns>
 </SuperGrate>
 ```
