@@ -55,10 +55,11 @@
             this.miFile = new System.Windows.Forms.MenuItem();
             this.miNewInstance = new System.Windows.Forms.MenuItem();
             this.miSpacer0 = new System.Windows.Forms.MenuItem();
+            this.miSettings = new System.Windows.Forms.MenuItem();
+            this.miSpace9 = new System.Windows.Forms.MenuItem();
             this.miSaveLog = new System.Windows.Forms.MenuItem();
             this.miSpacer3 = new System.Windows.Forms.MenuItem();
             this.miExitButton = new System.Windows.Forms.MenuItem();
-            this.miSetup = new System.Windows.Forms.MenuItem();
             this.miView = new System.Windows.Forms.MenuItem();
             this.miAddRemoveCol = new System.Windows.Forms.MenuItem();
             this.miHelp = new System.Windows.Forms.MenuItem();
@@ -411,6 +412,7 @@
             // 
             // listUsers
             // 
+            this.listUsers.AutoArrange = false;
             this.listUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listUsers.FullRowSelect = true;
             this.listUsers.HideSelection = false;
@@ -430,7 +432,6 @@
             // 
             this.MainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.miFile,
-            this.miSetup,
             this.miView,
             this.miHelp});
             // 
@@ -440,6 +441,8 @@
             this.miFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.miNewInstance,
             this.miSpacer0,
+            this.miSettings,
+            this.miSpace9,
             this.miSaveLog,
             this.miSpacer3,
             this.miExitButton});
@@ -448,6 +451,7 @@
             // miNewInstance
             // 
             this.miNewInstance.Index = 0;
+            this.miNewInstance.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
             this.miNewInstance.Text = "New Instance";
             this.miNewInstance.Click += new System.EventHandler(this.miNewInstance_Click);
             // 
@@ -456,34 +460,40 @@
             this.miSpacer0.Index = 1;
             this.miSpacer0.Text = "-";
             // 
+            // miSettings
+            // 
+            this.miSettings.Index = 2;
+            this.miSettings.Shortcut = System.Windows.Forms.Shortcut.F12;
+            this.miSettings.Text = "&Settings...";
+            this.miSettings.Click += new System.EventHandler(this.miSettings_Click);
+            // 
+            // miSpace9
+            // 
+            this.miSpace9.Index = 3;
+            this.miSpace9.Text = "-";
+            // 
             // miSaveLog
             // 
-            this.miSaveLog.Index = 2;
+            this.miSaveLog.Index = 4;
             this.miSaveLog.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
             this.miSaveLog.Text = "Save Log...";
             this.miSaveLog.Click += new System.EventHandler(this.MiSaveLog_Click);
             // 
             // miSpacer3
             // 
-            this.miSpacer3.Index = 3;
+            this.miSpacer3.Index = 5;
             this.miSpacer3.Text = "-";
             // 
             // miExitButton
             // 
-            this.miExitButton.Index = 4;
+            this.miExitButton.Index = 6;
             this.miExitButton.Shortcut = System.Windows.Forms.Shortcut.AltF4;
             this.miExitButton.Text = "Exit";
             this.miExitButton.Click += new System.EventHandler(this.MiExitButton_Click);
             // 
-            // miSetup
-            // 
-            this.miSetup.Index = 1;
-            this.miSetup.Text = "&Settings";
-            this.miSetup.Click += new System.EventHandler(this.MiSetup_Click);
-            // 
             // miView
             // 
-            this.miView.Index = 2;
+            this.miView.Index = 1;
             this.miView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.miAddRemoveCol});
             this.miView.Text = "&View";
@@ -496,7 +506,7 @@
             // 
             // miHelp
             // 
-            this.miHelp.Index = 3;
+            this.miHelp.Index = 2;
             this.miHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.miDocumentation,
             this.miIssues,
@@ -526,7 +536,8 @@
             // miHelpButton
             // 
             this.miHelpButton.Index = 3;
-            this.miHelpButton.Text = "Help";
+            this.miHelpButton.Shortcut = System.Windows.Forms.Shortcut.F1;
+            this.miHelpButton.Text = "Toggle Help";
             this.miHelpButton.Click += new System.EventHandler(this.miHelpButton_Click);
             // 
             // miSpacer2
@@ -537,6 +548,7 @@
             // miAboutSG
             // 
             this.miAboutSG.Index = 5;
+            this.miAboutSG.Shortcut = System.Windows.Forms.Shortcut.F2;
             this.miAboutSG.Text = "About Super Grate";
             this.miAboutSG.Click += new System.EventHandler(this.MiAboutSG_Click);
             // 
@@ -609,7 +621,6 @@
         private System.Windows.Forms.MenuItem miExitButton;
         private System.Windows.Forms.MenuItem miSaveLog;
         private System.Windows.Forms.MenuItem miSpacer0;
-        private System.Windows.Forms.MenuItem miSetup;
         private System.Windows.Forms.MenuItem miHelp;
         private System.Windows.Forms.MenuItem miDocumentation;
         private System.Windows.Forms.MenuItem miIssues;
@@ -624,6 +635,8 @@
         private System.Windows.Forms.ListView listUsers;
         private System.Windows.Forms.MenuItem miView;
         private System.Windows.Forms.MenuItem miAddRemoveCol;
+        private System.Windows.Forms.MenuItem miSettings;
+        private System.Windows.Forms.MenuItem miSpace9;
     }
 }
 

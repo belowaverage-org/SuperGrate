@@ -87,6 +87,7 @@ namespace SuperGrate.UserList
                         if (first)
                         {
                             lvRow = Owner.Items.Add(column.Value);
+                            lvRow.ImageKey = "user";
                             lvRow.Tag = row[ULColumnType.Tag];
                             first = false;
                         }

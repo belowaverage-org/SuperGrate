@@ -9,10 +9,14 @@ namespace SuperGrate.Controls
         public UserProperties(UserRow Template, UserRow Row)
         {
             InitializeComponent();
-            Icon = Properties.Resources.supergrate;
+            Icon = Properties.Resources.user;
             foreach (KeyValuePair<ULColumnType, string> property in Row)
             {
                 string name = "";
+                if(property.Key == ULColumnType.NTAccount)
+                {
+                    Text = property.Value;
+                }
                 if (Template.ContainsKey(property.Key))
                 {
                     name = Template[property.Key];

@@ -32,23 +32,26 @@ namespace SuperGrate
             listUsers.Tag = new string[0];
             Icon = Properties.Resources.supergrate;
             Text = About.AssemblyTitle;
-            /*
-            Bitmap bmp = new Bitmap(20, 20);
-            Graphics g = Graphics.FromImage(bmp);
-            g.Clear(SystemColors.Control);
-            g.DrawImage(new Icon(Properties.Resources.computer, 20, 20).ToBitmap(), 0, 0);
-            Misc.SetMenuItemBitmaps(MainMenu.MenuItems[0].Handle, (IntPtr)0, 0x400, bmp.GetHbitmap(), IntPtr.Zero);
-            */
-
             btnListSource.SetSystemIcon(Properties.Resources.users);
             btnListStore.SetSystemIcon(Properties.Resources.usercheck);
             btnDelete.SetSystemIcon(Properties.Resources.stop);
-
+            miDocumentation.SetMenuItemIcon(Properties.Resources.link);
+            miIssues.SetMenuItemIcon(Properties.Resources.link);
+            miAddRemoveCol.SetMenuItemIcon(Properties.Resources.columns);
+            miAboutSG.SetMenuItemIcon(Properties.Resources.info);
+            miSettings.SetMenuItemIcon(Properties.Resources.settings);
+            miSaveLog.SetMenuItemIcon(Properties.Resources.save);
+            miExitButton.SetMenuItemIcon(Properties.Resources.stop);
+            miNewInstance.SetMenuItemIcon(Properties.Resources.move);
+            listUsers.SmallImageList = new ImageList();
+            listUsers.SmallImageList.Images.Add("user", Properties.Resources.user.ToBitmap());
+            listUsers.LargeImageList = new ImageList();
+            listUsers.LargeImageList.Images.Add("user", Properties.Resources.user.ToBitmap());
         }
         private void Main_Load(object sender, EventArgs e)
         {
             Config.LoadConfig(MainParameters);
-            Logger.Success("Welcome to Super Grate! v" + Application.ProductVersion);
+            Logger.Success("Welcome to " + Application.ProductName + "! v" + Application.ProductVersion);
             Logger.Information("Enter some information to get started!");
             UpdateFormRestrictions();
             BindHelp(this);
@@ -102,12 +105,13 @@ namespace SuperGrate
                     btnStartStop.SetSystemIcon(Properties.Resources.stop);
                     Cursor = Cursors.AppStarting;
                     Logger.UpdateProgress(true);
-                    Misc.MainMenuSetState(MainMenu, false, new string[] { "&Settings", "&View" });
+                    Misc.MainMenuSetState(MainMenu, false, new string[] { "&View" });
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = 
                     btnStartStop.Enabled =
                     true;
                     Canceled =
+                    miSettings.Enabled =
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
                     btnAFillSrc.Enabled =
@@ -128,6 +132,7 @@ namespace SuperGrate
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = false;
                     Canceled =
+                    miSettings.Enabled =
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
                     btnAFillSrc.Enabled =
@@ -354,10 +359,6 @@ namespace SuperGrate
         {
             Process.Start("https://github.com/belowaverage-org/SuperGrate/issues");
         }
-        private void MiSetup_Click(object sender, EventArgs e)
-        {
-            new Settings().ShowDialog();
-        }
         private void tbSourceDestComputer_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -477,6 +478,10 @@ namespace SuperGrate
                 Logger.Success("Done!");
                 new UserProperties(template, row).ShowDialog();
             }
+        }
+        private void miSettings_Click(object sender, EventArgs e)
+        {
+            new Settings().ShowDialog();
         }
     }
     public enum ListSources

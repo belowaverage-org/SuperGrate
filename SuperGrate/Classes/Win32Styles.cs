@@ -17,7 +17,7 @@ namespace SuperGrate
         /// <param name="hBitmapChecked">"Checked" bitmap to display.</param>
         /// <returns></returns>
         [DllImport("user32.dll")]
-        public static extern int SetMenuItemBitmaps(IntPtr hMenu, IntPtr nPosition, int wFlags, IntPtr hBitmapUnchecked, IntPtr hBitmapChecked);
+        private static extern int SetMenuItemBitmaps(IntPtr hMenu, IntPtr nPosition, int wFlags, IntPtr hBitmapUnchecked, IntPtr hBitmapChecked);
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
         /// <summary>
@@ -29,5 +29,15 @@ namespace SuperGrate
         {
             SendMessage(Button.Handle, 0xf7, (IntPtr)1, Icon.Handle);
         }
+        public static void SetMenuItemIcon(this MenuItem MenuItem, Icon Icon)
+        {
+            Icon sIcon = new Icon(Icon, 16, 16);
+            Bitmap bmIcon = new Bitmap(16, 16);
+            Graphics g = Graphics.FromImage(bmIcon);
+            g.Clear(SystemColors.Control);
+            g.DrawIcon(sIcon, 0, 0);
+            IntPtr hBitmap = bmIcon.GetHbitmap();
+            SetMenuItemBitmaps(MenuItem.Parent.Handle, (IntPtr)MenuItem.Index, 0x400, hBitmap, hBitmap);
+        } 
     }
 }

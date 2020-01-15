@@ -215,13 +215,7 @@
     <None Include="Resources\users.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\computer.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\link.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\question.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\save.ico" />
@@ -231,6 +225,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\reload.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\columns.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\computer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\move.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />

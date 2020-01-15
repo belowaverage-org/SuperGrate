@@ -83,6 +83,16 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon columns {
+            get {
+                object obj = ResourceManager.GetObject("columns", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon computer {
             get {
                 object obj = ResourceManager.GetObject("computer", resourceCulture);
@@ -103,6 +113,16 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon info {
+            get {
+                object obj = ResourceManager.GetObject("info", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon link {
             get {
                 object obj = ResourceManager.GetObject("link", resourceCulture);
@@ -113,9 +133,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon question {
+        internal static System.Drawing.Icon move {
             get {
-                object obj = ResourceManager.GetObject("question", resourceCulture);
+                object obj = ResourceManager.GetObject("move", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -136,6 +156,16 @@ namespace SuperGrate.Properties {
         internal static System.Drawing.Icon save {
             get {
                 object obj = ResourceManager.GetObject("save", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon settings {
+            get {
+                object obj = ResourceManager.GetObject("settings", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -167,6 +197,16 @@ namespace SuperGrate.Properties {
             get {
                 object obj = ResourceManager.GetObject("SuperGrateProfileDelete", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon user {
+            get {
+                object obj = ResourceManager.GetObject("user", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
         

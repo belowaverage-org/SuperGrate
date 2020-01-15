@@ -2,10 +2,10 @@
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Super Grate - User Migration & Backup")]
-[assembly: AssemblyDescription("Super Grate is a GUI - Graphical User Interface - for Microsoft's USMT - User State Migration Utility - that also works remotely over a network! Super Grate can remotely migrate a user profile by backing it up to a central store, then restoring it to another target machine / computer.")]
+[assembly: AssemblyDescription("prerelease - Super Grate is a GUI - Graphical User Interface - for Microsoft's USMT - User State Migration Utility - that also works remotely over a network! Super Grate can remotely migrate a user profile by backing it up to a central store, then restoring it to another target machine / computer.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Dylan Bickerstaff")]
-[assembly: AssemblyProduct("Super Grate")]
+[assembly: AssemblyProduct("prerelease - Super Grate")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("Dylan Bickerstaff")]
 [assembly: AssemblyCulture("")]
