@@ -10,7 +10,7 @@ namespace SuperGrate.Controls
         public Settings()
         {
             InitializeComponent();
-            Icon = Properties.Resources.supergrate;
+            Icon = Properties.Resources.settings;
             btnSave.SetSystemIcon(Properties.Resources.save);
             btnRevert.SetSystemIcon(Properties.Resources.reload);
             btnApply.SetSystemIcon(Properties.Resources.stop);

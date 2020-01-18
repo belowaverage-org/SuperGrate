@@ -11,7 +11,7 @@ namespace SuperGrate.Controls
         public ChangeColumns()
         {
             InitializeComponent();
-            Icon = Properties.Resources.supergrate;
+            Icon = Properties.Resources.columns;
         }
         private void ChangeColumns_Load(object sender, EventArgs e)
         {

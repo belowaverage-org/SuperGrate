@@ -483,6 +483,29 @@ namespace SuperGrate
         {
             new Settings().ShowDialog();
         }
+        private void miViewMode_Click(object sender, EventArgs e)
+        {
+            MenuItem mi = (MenuItem)sender;
+            View view = View.Details;
+            if (mi == miViewDetail) view = View.Details;
+            if (mi == miViewList) view = View.List;
+            if (mi == miViewLarge) view = View.LargeIcon;
+            if (mi == miViewSmall) view = View.SmallIcon;
+            if (mi == miViewTile) view = View.Tile;
+            Config.Settings["ULViewMode"] = ((int)view).ToString();
+            listUsers.View = view;
+        }
+        private void miView_Popup(object sender, EventArgs e)
+        {
+            int ViewMode = -1;
+            int.TryParse(Config.Settings["ULViewMode"], out ViewMode);
+            foreach (MenuItem mi in miView.MenuItems) mi.Checked = false;
+            if ((View)ViewMode == View.Details) miViewDetail.Checked = true;
+            if ((View)ViewMode == View.List) miViewList.Checked = true;
+            if ((View)ViewMode == View.LargeIcon) miViewLarge.Checked = true;
+            if ((View)ViewMode == View.SmallIcon) miViewSmall.Checked = true;
+            if ((View)ViewMode == View.Tile) miViewTile.Checked = true;
+        }
     }
     public enum ListSources
     {

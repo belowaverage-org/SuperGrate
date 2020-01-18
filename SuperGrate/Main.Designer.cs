@@ -62,6 +62,11 @@
             this.miExitButton = new System.Windows.Forms.MenuItem();
             this.miView = new System.Windows.Forms.MenuItem();
             this.miAddRemoveCol = new System.Windows.Forms.MenuItem();
+            this.miSeperator65 = new System.Windows.Forms.MenuItem();
+            this.miViewLarge = new System.Windows.Forms.MenuItem();
+            this.miViewSmall = new System.Windows.Forms.MenuItem();
+            this.miViewList = new System.Windows.Forms.MenuItem();
+            this.miViewDetail = new System.Windows.Forms.MenuItem();
             this.miHelp = new System.Windows.Forms.MenuItem();
             this.miDocumentation = new System.Windows.Forms.MenuItem();
             this.miIssues = new System.Windows.Forms.MenuItem();
@@ -71,6 +76,7 @@
             this.miAboutSG = new System.Windows.Forms.MenuItem();
             this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
+            this.miViewTile = new System.Windows.Forms.MenuItem();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -495,14 +501,54 @@
             // 
             this.miView.Index = 1;
             this.miView.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.miAddRemoveCol});
+            this.miAddRemoveCol,
+            this.miSeperator65,
+            this.miViewLarge,
+            this.miViewSmall,
+            this.miViewList,
+            this.miViewDetail,
+            this.miViewTile});
             this.miView.Text = "&View";
+            this.miView.Popup += new System.EventHandler(this.miView_Popup);
             // 
             // miAddRemoveCol
             // 
             this.miAddRemoveCol.Index = 0;
             this.miAddRemoveCol.Text = "&Add/Remove Columns...";
             this.miAddRemoveCol.Click += new System.EventHandler(this.miAddRemoveCol_Click);
+            // 
+            // miSeperator65
+            // 
+            this.miSeperator65.Index = 1;
+            this.miSeperator65.Text = "-";
+            // 
+            // miViewLarge
+            // 
+            this.miViewLarge.Index = 2;
+            this.miViewLarge.RadioCheck = true;
+            this.miViewLarge.Text = "Large Icons";
+            this.miViewLarge.Click += new System.EventHandler(this.miViewMode_Click);
+            // 
+            // miViewSmall
+            // 
+            this.miViewSmall.Index = 3;
+            this.miViewSmall.RadioCheck = true;
+            this.miViewSmall.Text = "Small Icons";
+            this.miViewSmall.Click += new System.EventHandler(this.miViewMode_Click);
+            // 
+            // miViewList
+            // 
+            this.miViewList.Index = 4;
+            this.miViewList.RadioCheck = true;
+            this.miViewList.Text = "List";
+            this.miViewList.Click += new System.EventHandler(this.miViewMode_Click);
+            // 
+            // miViewDetail
+            // 
+            this.miViewDetail.Index = 5;
+            this.miViewDetail.RadioCheck = true;
+            this.miViewDetail.Text = "Detail";
+            this.miViewDetail.Click += new System.EventHandler(this.miViewMode_Click);
             // 
             // miHelp
             // 
@@ -557,6 +603,13 @@
             this.dialogSaveLog.Filter = "Text File|*.txt|Log File|*.log";
             this.dialogSaveLog.FilterIndex = 2;
             this.dialogSaveLog.Title = "Save Super Grate Log...";
+            // 
+            // miViewTile
+            // 
+            this.miViewTile.Index = 6;
+            this.miViewTile.RadioCheck = true;
+            this.miViewTile.Text = "Tile";
+            this.miViewTile.Click += new System.EventHandler(this.miViewMode_Click);
             // 
             // Main
             // 
@@ -637,6 +690,12 @@
         private System.Windows.Forms.MenuItem miAddRemoveCol;
         private System.Windows.Forms.MenuItem miSettings;
         private System.Windows.Forms.MenuItem miSpace9;
+        private System.Windows.Forms.MenuItem miSeperator65;
+        private System.Windows.Forms.MenuItem miViewLarge;
+        private System.Windows.Forms.MenuItem miViewSmall;
+        private System.Windows.Forms.MenuItem miViewList;
+        private System.Windows.Forms.MenuItem miViewDetail;
+        private System.Windows.Forms.MenuItem miViewTile;
     }
 }
 

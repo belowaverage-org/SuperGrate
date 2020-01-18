@@ -30,7 +30,9 @@ namespace SuperGrate
             {"DumpLogHereOnExit", ""},
             {"XComment10", @"List of columns to display for the Source or Store users."},
             {"ULSourceColumns", "0,3,9"},
-            {"ULStoreColumns", "0,1,5,6,4"}
+            {"ULStoreColumns", "0,1,5,6,4"},
+            {"XComment11", @"User List View Mode: Large (0) / Small Icon (2), List (3), Details (1) and Tile (4)."},
+            {"ULViewMode", "1"}
         };
         public static Dictionary<string, string> DefaultSettings = Settings;
         public static void SaveConfig()
