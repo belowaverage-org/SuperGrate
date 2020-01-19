@@ -46,7 +46,8 @@ namespace SuperGrate
             listUsers.SmallImageList = new ImageList();
             listUsers.SmallImageList.Images.Add("user", Properties.Resources.user.ToBitmap());
             listUsers.LargeImageList = new ImageList();
-            listUsers.LargeImageList.Images.Add("user", Properties.Resources.user.ToBitmap());
+            listUsers.LargeImageList.ImageSize = new Size(32, 32);
+            listUsers.LargeImageList.Images.Add("user", Properties.Resources.user_32.ToBitmap());
         }
         private void Main_Load(object sender, EventArgs e)
         {
