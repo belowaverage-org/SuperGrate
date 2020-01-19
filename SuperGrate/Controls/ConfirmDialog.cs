@@ -12,13 +12,12 @@ namespace SuperGrate.Controls
             if (DialogIcon == null)
             {
                 Icon = Properties.Resources.question;
-                Bitmap icon = Properties.Resources.question_32.ToBitmap();
-                pbIcon.Image = icon;
+                pbIcon.Image = Properties.Resources.question_32.ToBitmapAlpha(32, 32);
             }
             else
             {
                 Icon = DialogIcon;
-                pbIcon.Image = new Icon(DialogIcon, 32, 32).ToBitmap();
+                pbIcon.Image = DialogIcon.ToBitmapAlpha(32, 32);
             }
             Text = DialogTitle;
             lblDescription.Text = DialogDescription;

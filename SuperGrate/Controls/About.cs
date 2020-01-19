@@ -2,7 +2,6 @@
 using System.Reflection;
 using System.Windows.Forms;
 using System.Diagnostics;
-using System.Drawing;
 
 namespace SuperGrate.Controls
 {
@@ -18,7 +17,7 @@ namespace SuperGrate.Controls
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
-            pbLogo.Image = new Icon(Properties.Resources.supergrate, 100, 100).ToBitmap();
+            pbLogo.Image = Properties.Resources.supergrate.ToBitmapAlpha(64, 64);
             okButton.SetSystemIcon(Properties.Resources.check);
             btnGithub.SetSystemIcon(Properties.Resources.link);
         }

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 namespace SuperGrate
 {
-    static class Win32Styles
+    static class Win32Interop
     {
         /// <summary>
         /// Sets a bitmap on a Menu's menu item.
@@ -20,6 +20,10 @@ namespace SuperGrate
         private static extern int SetMenuItemBitmaps(IntPtr hMenu, IntPtr nPosition, int wFlags, IntPtr hBitmapUnchecked, IntPtr hBitmapChecked);
         [DllImport("user32.dll")]
         private static extern int SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll", SetLastError = true)]
+        private static extern bool DrawIconEx(IntPtr hdc, int xLeft, int yTop, IntPtr hIcon, int cxWidth, int cyHeight, int istepIfAniCur, IntPtr hbrFlickerFreeDraw, int diFlags);
+        [DllImport("gdi32.dll")]
+        private static extern IntPtr CreateSolidBrush(uint crColor);
         /// <summary>
         /// Sets an icon on a button with the FlatStyle set to System.
         /// </summary>
@@ -31,13 +35,22 @@ namespace SuperGrate
         }
         public static void SetMenuItemIcon(this MenuItem MenuItem, Icon Icon)
         {
-            Icon sIcon = new Icon(Icon, 16, 16);
-            Bitmap bmIcon = new Bitmap(16, 16);
-            Graphics g = Graphics.FromImage(bmIcon);
-            g.Clear(SystemColors.Control);
-            g.DrawIcon(sIcon, 0, 0);
-            IntPtr hBitmap = bmIcon.GetHbitmap();
+            IntPtr hBitmap = Icon.ToBitmapAlpha(16, 16, SystemColors.Control).GetHbitmap();
             SetMenuItemBitmaps(MenuItem.Parent.Handle, (IntPtr)MenuItem.Index, 0x400, hBitmap, hBitmap);
-        } 
+        }
+        public static Bitmap ToBitmapAlpha(this Icon Icon, int Width, int Height, Color Background)
+        {
+            Icon rsIcon = new Icon(Icon, Width, Height);
+            Bitmap bmIcon = new Bitmap(Width, Height);
+            Graphics g = Graphics.FromImage(bmIcon);
+            IntPtr hdc = g.GetHdc();
+            DrawIconEx(hdc, 0, 0, rsIcon.Handle, Width, Height, 0, CreateSolidBrush((uint)ColorTranslator.ToWin32(Background)), 0x3);
+            g.ReleaseHdc(hdc);
+            return bmIcon;
+        }
+        public static Bitmap ToBitmapAlpha(this Icon Icon, int Width, int Height)
+        {
+            return ToBitmapAlpha(Icon, Width, Height, Color.White);
+        }
     }
 }

@@ -48,7 +48,6 @@ namespace SuperGrate
             listUsers.LargeImageList = new ImageList();
             listUsers.LargeImageList.ImageSize = new Size(32, 32);
             listUsers.LargeImageList.Images.Add("user", Properties.Resources.user_32.ToBitmap());
-            new ConfirmDialog("Enter Super Grate?").ShowDialog();
         }
         private void Main_Load(object sender, EventArgs e)
         {

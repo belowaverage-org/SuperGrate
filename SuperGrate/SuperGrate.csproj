@@ -61,9 +61,6 @@
     <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
     </Reference>
-    <Reference Include="ImageProcessor, Version=2.8.0.152, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ImageProcessor.2.8.0\lib\net452\ImageProcessor.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
@@ -120,7 +117,7 @@
     <Compile Include="Classes\Remote.cs" />
     <Compile Include="Classes\UserList.cs" />
     <Compile Include="Classes\USMT.cs" />
-    <Compile Include="Classes\Win32Styles.cs" />
+    <Compile Include="Classes\Win32Interop.cs" />
     <Compile Include="Controls\About.cs">
       <SubType>Form</SubType>
     </Compile>
