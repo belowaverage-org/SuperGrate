@@ -115,6 +115,7 @@
             // btnApply
             // 
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApply.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnApply, "Closes this window.");
             this.btnApply.Location = new System.Drawing.Point(593, 320);
@@ -124,13 +125,14 @@
             this.btnApply.TabIndex = 4;
             this.btnApply.Text = " &Close";
             this.btnApply.UseVisualStyleBackColor = false;
-            this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
             // Settings
             // 
+            this.AcceptButton = this.btnApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.CancelButton = this.btnApply;
             this.ClientSize = new System.Drawing.Size(694, 357);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnRevert);

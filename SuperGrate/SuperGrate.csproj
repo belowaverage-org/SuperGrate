@@ -61,9 +61,11 @@
     <Reference Include="Costura, Version=4.1.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>..\packages\Costura.Fody.4.1.0\lib\net40\Costura.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ImageProcessor, Version=2.8.0.152, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageProcessor.2.8.0\lib\net452\ImageProcessor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.2\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
@@ -137,6 +139,12 @@
     <Compile Include="Controls\ChangeSetting.Designer.cs">
       <DependentUpon>ChangeSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ConfirmDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ConfirmDialog.Designer.cs">
+      <DependentUpon>ConfirmDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ChangeSetting.resx">
       <DependentUpon>ChangeSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ConfirmDialog.resx">
+      <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserProperties.resx">
       <DependentUpon>UserProperties.cs</DependentUpon>
@@ -236,9 +247,6 @@
     <None Include="Resources\move.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\question.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\user.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -250,14 +258,19 @@
   <ItemGroup>
     <None Include="Resources\user_32.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\question_32.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Fody.6.0.0\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.0\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Fody.6.0.0\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.0.0\build\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.4.1.0\build\Costura.Fody.props'))" />
+    <Error Condition="!Exists('..\packages\Fody.6.0.6\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.6.0.6\build\Fody.targets'))" />
   </Target>
   <PropertyGroup>
     <PreBuildEvent>
@@ -267,4 +280,5 @@
     <PostBuildEvent>del $(TargetDir)\Microsoft.WindowsAPICodePack.Shell.xml
 del $(TargetDir)\Microsoft.WindowsAPICodePack.xml</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\Fody.6.0.6\build\Fody.targets" Condition="Exists('..\packages\Fody.6.0.6\build\Fody.targets')" />
 </Project>

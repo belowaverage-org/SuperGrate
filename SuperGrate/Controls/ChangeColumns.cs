@@ -32,6 +32,7 @@ namespace SuperGrate.Controls
             lbAvailable.SelectedIndex = lbAvailable.Items.Count - 1;
             lbDisplayed.SelectedIndex = lbDisplayed.Items.Count - 1;
             UpdateUI();
+            ActiveControl = btnOk;
         }
         private void UpdateUI()
         {
@@ -93,13 +94,11 @@ namespace SuperGrate.Controls
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
-            Close();
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             UpdateDictionary();
-            Close();
         }
         private void btnAddRemove_Click(object sender, EventArgs e)
         {

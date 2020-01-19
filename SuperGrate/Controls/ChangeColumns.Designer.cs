@@ -165,6 +165,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCancel.Location = new System.Drawing.Point(437, 250);
             this.btnCancel.Name = "btnCancel";
@@ -176,8 +177,10 @@
             // 
             // ChangeColumns
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(519, 281);
             this.Controls.Add(this.lblLine);
             this.Controls.Add(this.lblDispl);

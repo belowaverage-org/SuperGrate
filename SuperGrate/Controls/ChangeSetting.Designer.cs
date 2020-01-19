@@ -62,6 +62,7 @@
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnCancel, "Closes window, and does not apply change.");
             this.btnCancel.Location = new System.Drawing.Point(230, 143);
@@ -71,7 +72,6 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = " &Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnSave
             // 
@@ -101,9 +101,11 @@
             // 
             // ChangeSetting
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(391, 171);
             this.Controls.Add(this.btnRestoreDefault);
             this.Controls.Add(this.btnSave);

@@ -48,6 +48,7 @@ namespace SuperGrate
             listUsers.LargeImageList = new ImageList();
             listUsers.LargeImageList.ImageSize = new Size(32, 32);
             listUsers.LargeImageList.Images.Add("user", Properties.Resources.user_32.ToBitmap());
+            new ConfirmDialog("Enter Super Grate?").ShowDialog();
         }
         private void Main_Load(object sender, EventArgs e)
         {
@@ -188,6 +189,7 @@ namespace SuperGrate
         private async void BtnListSource_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
+            miAddRemoveCol.Enabled = true;
             listUsers.SetColumns(ULControl.HeaderRowComputerSource, Config.Settings["ULSourceColumns"]);
             lblUserList.Text = "Users on Source Computer:";
             UserRows rows = await Misc.GetUsersFromHost(tbSourceComputer.Text);
@@ -198,6 +200,7 @@ namespace SuperGrate
         private async void BtnListStore_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
+            miAddRemoveCol.Enabled = true;
             lblUserList.Text = "Users in Migration Store:";
             listUsers.SetColumns(ULControl.HeaderRowStoreSource, Config.Settings["ULStoreColumns"]);
             UserRows rows = await Misc.GetUsersFromStore();
@@ -495,6 +498,11 @@ namespace SuperGrate
             if (mi == miViewTile) view = View.Tile;
             Config.Settings["ULViewMode"] = ((int)view).ToString();
             listUsers.View = view;
+            if (view == View.Details)
+            {
+                listUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                listUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+            }
         }
         private void miView_Popup(object sender, EventArgs e)
         {

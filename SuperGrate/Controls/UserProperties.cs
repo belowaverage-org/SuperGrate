@@ -10,6 +10,7 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.user;
+            btnOK.SetSystemIcon(Properties.Resources.check);
             foreach (KeyValuePair<ULColumnType, string> property in Row)
             {
                 string name = "";
@@ -37,7 +38,7 @@ namespace SuperGrate.Controls
                 headWidth += colHeader.Width;
             }
             Width = headWidth + 20;
-            Height = (17 * Row.Count) + 65;
+            Height = (17 * Row.Count) + 95;
             CenterToParent();
         }
     }

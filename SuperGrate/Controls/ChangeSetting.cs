@@ -31,15 +31,10 @@ namespace SuperGrate.Controls
             }
             tbComment.Text = lastComment + "\r\n\r\n" + "Default Value: " + Config.DefaultSettings[Setting];
         }
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
         private void BtnSave_Click(object sender, EventArgs e)
         {
             Config.Settings[Setting] = tbValue.Text;
             DialogResult = DialogResult.OK;
-            Close();
         }
         private void TbValue_KeyPress(object sender, KeyPressEventArgs e)
         {

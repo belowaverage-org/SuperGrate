@@ -515,6 +515,7 @@
             // 
             // miAddRemoveCol
             // 
+            this.miAddRemoveCol.Enabled = false;
             this.miAddRemoveCol.Index = 0;
             this.miAddRemoveCol.Text = "&Add/Remove Columns...";
             this.miAddRemoveCol.Click += new System.EventHandler(this.miAddRemoveCol_Click);

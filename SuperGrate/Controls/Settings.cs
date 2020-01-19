@@ -80,9 +80,5 @@ namespace SuperGrate.Controls
             btnSave.Text = text;
             btnSave.Enabled = true;
         }
-        private void BtnApply_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
     }
 }
