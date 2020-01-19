@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace SuperGrate.UserList
@@ -70,7 +71,7 @@ namespace SuperGrate.UserList
             }
             Owner.SetColumns(TemplateRow, ColIDs.ToArray());
         }
-        public static void SetRows(this ListView Owner, UserRows Rows)
+        public static void SetRows(this ListView Owner, UserRows Rows, ULColumnType SortColumn = ULColumnType.Tag, ULSortType SortType = ULSortType.Ascending)
         {
             Owner.BeginUpdate();
             Owner.SuspendLayout();
@@ -84,16 +85,17 @@ namespace SuperGrate.UserList
                     foreach (KeyValuePair<ULColumnType, string> column in row)
                     {
                         if (column.Key == ULColumnType.Tag) continue;
+                        string value = ConvertColumnValue(column);
                         if (first)
                         {
-                            lvRow = Owner.Items.Add(column.Value);
+                            lvRow = Owner.Items.Add(value);
                             lvRow.ImageKey = "user";
                             lvRow.Tag = row[ULColumnType.Tag];
                             first = false;
                         }
                         else
                         {
-                            lvRow.SubItems.Add(column.Value);
+                            lvRow.SubItems.Add(value);
                         }
                     }
                 }
@@ -102,6 +104,30 @@ namespace SuperGrate.UserList
             Owner.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             Owner.ResumeLayout();
             Owner.EndUpdate();
+        }
+        public static string ConvertColumnValue(KeyValuePair<ULColumnType, string> ColumnItem)
+        {
+            if (ColumnItem.Key == ULColumnType.Size)
+            {
+                double dblValue = 0;
+                if (double.TryParse(ColumnItem.Value, out dblValue))
+                {
+                    return dblValue.ByteHumanize();
+                }
+            }
+            if (
+                ColumnItem.Key == ULColumnType.ExportedOn ||
+                ColumnItem.Key == ULColumnType.FirstCreated ||
+                ColumnItem.Key == ULColumnType.ImportedOn ||
+                ColumnItem.Key == ULColumnType.LastModified
+            ) {
+                long longValue = 0;
+                if(long.TryParse(ColumnItem.Value, out longValue))
+                {
+                    return DateTime.FromFileTime(longValue).ToString();
+                }
+            }
+            return ColumnItem.Value;
         }
     }
     public class UserRow : Dictionary<ULColumnType, string>
@@ -129,5 +155,10 @@ namespace SuperGrate.UserList
         ExportedBy = 7,
         ExportedOn = 8,
         FirstCreated = 9
+    }
+    public enum ULSortType
+    {
+        Ascending = 0,
+        Descending = 1
     }
 }

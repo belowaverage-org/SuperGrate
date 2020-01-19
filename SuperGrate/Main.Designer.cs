@@ -67,6 +67,7 @@
             this.miViewSmall = new System.Windows.Forms.MenuItem();
             this.miViewList = new System.Windows.Forms.MenuItem();
             this.miViewDetail = new System.Windows.Forms.MenuItem();
+            this.miViewTile = new System.Windows.Forms.MenuItem();
             this.miHelp = new System.Windows.Forms.MenuItem();
             this.miDocumentation = new System.Windows.Forms.MenuItem();
             this.miIssues = new System.Windows.Forms.MenuItem();
@@ -76,7 +77,6 @@
             this.miAboutSG = new System.Windows.Forms.MenuItem();
             this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
-            this.miViewTile = new System.Windows.Forms.MenuItem();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -427,9 +427,11 @@
             this.tblMainLayout.SetRowSpan(this.listUsers, 2);
             this.listUsers.ShowGroups = false;
             this.listUsers.Size = new System.Drawing.Size(446, 284);
+            this.listUsers.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listUsers.TabIndex = 103;
             this.listUsers.UseCompatibleStateImageBehavior = false;
             this.listUsers.View = System.Windows.Forms.View.Details;
+            this.listUsers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listUsers_ColumnClick);
             this.listUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
             this.listUsers.DoubleClick += new System.EventHandler(this.listUsers_DoubleClick);
             this.listUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxUsers_KeyDown);
@@ -550,6 +552,13 @@
             this.miViewDetail.Text = "Detail";
             this.miViewDetail.Click += new System.EventHandler(this.miViewMode_Click);
             // 
+            // miViewTile
+            // 
+            this.miViewTile.Index = 6;
+            this.miViewTile.RadioCheck = true;
+            this.miViewTile.Text = "Tile";
+            this.miViewTile.Click += new System.EventHandler(this.miViewMode_Click);
+            // 
             // miHelp
             // 
             this.miHelp.Index = 2;
@@ -603,13 +612,6 @@
             this.dialogSaveLog.Filter = "Text File|*.txt|Log File|*.log";
             this.dialogSaveLog.FilterIndex = 2;
             this.dialogSaveLog.Title = "Save Super Grate Log...";
-            // 
-            // miViewTile
-            // 
-            this.miViewTile.Index = 6;
-            this.miViewTile.RadioCheck = true;
-            this.miViewTile.Text = "Tile";
-            this.miViewTile.Click += new System.EventHandler(this.miViewMode_Click);
             // 
             // Main
             // 

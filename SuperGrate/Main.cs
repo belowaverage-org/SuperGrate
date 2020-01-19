@@ -506,6 +506,11 @@ namespace SuperGrate
             if ((View)ViewMode == View.SmallIcon) miViewSmall.Checked = true;
             if ((View)ViewMode == View.Tile) miViewTile.Checked = true;
         }
+        private void listUsers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            Logger.Information(e.Column.ToString());
+            //listUsers.Columns[e.Column].Text += "  ▼";
+        }
     }
     public enum ListSources
     {

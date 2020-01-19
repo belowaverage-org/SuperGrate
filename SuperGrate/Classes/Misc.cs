@@ -171,15 +171,15 @@ namespace SuperGrate
                     {
                         Logger.Information("Calculating profile size for: " + user + "...");
                         double size = FileOperations.GetFolderSize(profilePath);
-                        row[ULColumnType.Size] = size.ByteHumanize();
+                        row[ULColumnType.Size] = size.ToString();
                     }
                     if (row.ContainsKey(ULColumnType.FirstCreated))
                     {
-                        row[ULColumnType.FirstCreated] = Directory.GetCreationTime(profilePath).ToString();
+                        row[ULColumnType.FirstCreated] = Directory.GetCreationTime(profilePath).ToFileTime().ToString();
                     }
                     if (row.ContainsKey(ULColumnType.LastModified))
                     {
-                        row[ULColumnType.LastModified] = File.GetLastWriteTime(Path.Combine(profilePath, "NTUSER.DAT")).ToString();
+                        row[ULColumnType.LastModified] = File.GetLastWriteTime(Path.Combine(profilePath, "NTUSER.DAT")).ToFileTime().ToString();
                     }
                 }
                 remoteReg.Close();
@@ -293,21 +293,14 @@ namespace SuperGrate
                     string DataFilePath = Path.Combine(StoreItemPath, "data");
                     if (row.ContainsKey(ULColumnType.Size))
                     {
-                        row[ULColumnType.Size] = ByteHumanizer.ByteHumanize(new FileInfo(DataFilePath).Length);
+                        row[ULColumnType.Size] = new FileInfo(DataFilePath).Length.ToString();
                     }
                     foreach (KeyValuePair<ULColumnType, string> file in Files)
                     {
                         string filePath = Path.Combine(StoreItemPath, file.Value);
                         if (row.ContainsKey(file.Key) && File.Exists(filePath))
                         {
-                            if (file.Key == ULColumnType.ExportedOn || file.Key == ULColumnType.ImportedOn)
-                            {
-                                row[file.Key] = DateTime.FromFileTime(long.Parse(File.ReadAllText(filePath))).ToString();
-                            }
-                            else
-                            {
-                                row[file.Key] = File.ReadAllText(filePath);
-                            }
+                            row[file.Key] = File.ReadAllText(filePath);
                         }
                     }
                     return row;

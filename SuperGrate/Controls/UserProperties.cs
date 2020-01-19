@@ -13,9 +13,10 @@ namespace SuperGrate.Controls
             foreach (KeyValuePair<ULColumnType, string> property in Row)
             {
                 string name = "";
+                string value = ULControl.ConvertColumnValue(property);
                 if(property.Key == ULColumnType.NTAccount)
                 {
-                    Text = property.Value;
+                    Text = value;
                 }
                 if (Template.ContainsKey(property.Key))
                 {
@@ -26,7 +27,7 @@ namespace SuperGrate.Controls
                     name = property.Key.ToString();
                 }
                 ListViewItem lvProperty = lvProperties.Items.Add(name);
-                lvProperty.SubItems.Add(property.Value);
+                lvProperty.SubItems.Add(value);
             }
             lvProperties.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             lvProperties.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
