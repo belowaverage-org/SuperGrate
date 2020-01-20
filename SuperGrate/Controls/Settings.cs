@@ -18,6 +18,7 @@ namespace SuperGrate.Controls
         private void Settings_Load(object sender, EventArgs e)
         {
             RefreshSettings();
+            btnSave.Enabled = Config.CanSaveConfig();
         }
         private void RefreshSettings()
         {
@@ -40,7 +41,7 @@ namespace SuperGrate.Controls
             }
             settingsList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
-        private async void BtnCancel_Click(object sender, EventArgs e)
+        private async void btnRevert_Click(object sender, EventArgs e)
         {
             btnRevert.Enabled = false;
             Config.LoadConfig();
@@ -70,7 +71,6 @@ namespace SuperGrate.Controls
         }
         private async void BtnSave_Click(object sender, EventArgs e)
         {
-            btnSave.Enabled = false;
             Config.SaveConfig();
             string text = btnSave.Text;
             btnSave.SetSystemIcon(Properties.Resources.check);
@@ -78,7 +78,6 @@ namespace SuperGrate.Controls
             await Task.Delay(1000);
             btnSave.SetSystemIcon(Properties.Resources.save);
             btnSave.Text = text;
-            btnSave.Enabled = true;
         }
     }
 }

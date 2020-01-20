@@ -110,7 +110,7 @@
             this.btnRevert.TabIndex = 3;
             this.btnRevert.Text = " &Reload";
             this.btnRevert.UseVisualStyleBackColor = false;
-            this.btnRevert.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.btnRevert.Click += new System.EventHandler(this.btnRevert_Click);
             // 
             // btnApply
             // 

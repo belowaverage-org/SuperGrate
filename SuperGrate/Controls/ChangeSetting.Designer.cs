@@ -65,10 +65,10 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnCancel, "Closes window, and does not apply change.");
-            this.btnCancel.Location = new System.Drawing.Point(230, 143);
+            this.btnCancel.Location = new System.Drawing.Point(312, 143);
             this.btnCancel.Name = "btnCancel";
             this.helpProvider.SetShowHelp(this.btnCancel, true);
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = " &Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -78,10 +78,10 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnSave, "Applies the setting changed above for the current session. Press \"Save to Disk\" o" +
         "n the next screen to save the changes to disk.");
-            this.btnSave.Location = new System.Drawing.Point(312, 143);
+            this.btnSave.Location = new System.Drawing.Point(232, 143);
             this.btnSave.Name = "btnSave";
             this.helpProvider.SetShowHelp(this.btnSave, true);
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.Size = new System.Drawing.Size(75, 25);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = " &Apply";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -94,7 +94,7 @@
             this.btnRestoreDefault.Location = new System.Drawing.Point(4, 143);
             this.btnRestoreDefault.Name = "btnRestoreDefault";
             this.helpProvider.SetShowHelp(this.btnRestoreDefault, true);
-            this.btnRestoreDefault.Size = new System.Drawing.Size(75, 23);
+            this.btnRestoreDefault.Size = new System.Drawing.Size(75, 25);
             this.btnRestoreDefault.TabIndex = 4;
             this.btnRestoreDefault.Text = " &Default";
             this.btnRestoreDefault.Click += new System.EventHandler(this.btnRestoreDefault_Click);

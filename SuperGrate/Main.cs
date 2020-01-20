@@ -269,11 +269,11 @@ namespace SuperGrate
             ConfirmDialog confirm = null;
             if (selectedCount == 1)
             {
-                confirm = new ConfirmDialog("Are you sure?", "Are you sure you want to delete this user?", Properties.Resources.trash_16_32);
+                confirm = new ConfirmDialog("Delete User", "Are you sure you want to delete this user?", Properties.Resources.trash_16_32);
             }
             else
             {
-                confirm = new ConfirmDialog("Are you sure?", "Are you sure you want to delete " + selectedCount + " users?", Properties.Resources.trash_16_32);
+                confirm = new ConfirmDialog("Delete Users", "Are you sure you want to delete these " + selectedCount + " users?", Properties.Resources.trash_16_32);
             }
             confirm.ShowDialog();
             if (confirm.DialogResult != DialogResult.OK) return;

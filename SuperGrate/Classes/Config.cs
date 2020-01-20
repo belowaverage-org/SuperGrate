@@ -60,6 +60,20 @@ namespace SuperGrate
                 Logger.Exception(e, "Failed to save the configuration!");
             }
         }
+        public static bool CanSaveConfig()
+        {
+            try
+            {
+                File.OpenWrite(@".\SuperGrate.xml").Close();
+                FileAttributes fa = File.GetAttributes(@".\SuperGrate.xml");
+                if (fa.HasFlag(FileAttributes.Hidden)) return false;
+                return true;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
         public static void LoadConfig(string[] parameters = null)
         {
             if(!File.Exists(@".\SuperGrate.xml"))
