@@ -261,6 +261,12 @@
   <ItemGroup>
     <None Include="Resources\question_32.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash_16_32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

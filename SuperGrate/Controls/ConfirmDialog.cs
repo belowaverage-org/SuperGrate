@@ -8,6 +8,8 @@ namespace SuperGrate.Controls
         public ConfirmDialog(string DialogTitle, string DialogDescription = null, Icon DialogIcon = null)
         {
             InitializeComponent();
+            btnAccept.SetSystemIcon(Properties.Resources.check);
+            btnCancel.SetSystemIcon(Properties.Resources.cancel);
             if (DialogDescription == null) DialogDescription = DialogTitle;
             if (DialogIcon == null)
             {

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
+            this.btnAccept = new System.Windows.Forms.Button();
             this.pnlWhite = new System.Windows.Forms.Panel();
             this.lblDescription = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();
@@ -44,22 +44,22 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCancel.Location = new System.Drawing.Point(222, 82);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(75, 24);
             this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.Text = " &Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // btnOK
+            // btnAccept
             // 
-            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnOK.Location = new System.Drawing.Point(303, 82);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "&OK";
-            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAccept.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnAccept.Location = new System.Drawing.Point(303, 82);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(75, 24);
+            this.btnAccept.TabIndex = 1;
+            this.btnAccept.Text = " &Accept";
+            this.btnAccept.UseVisualStyleBackColor = true;
             // 
             // pnlWhite
             // 
@@ -96,13 +96,13 @@
             // 
             // ConfirmDialog
             // 
-            this.AcceptButton = this.btnOK;
+            this.AcceptButton = this.btnAccept;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(384, 111);
             this.Controls.Add(this.pnlWhite);
-            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.btnCancel);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
@@ -123,7 +123,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Panel pnlWhite;
         private System.Windows.Forms.PictureBox pbIcon;
-        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Label lblDescription;
     }
 }

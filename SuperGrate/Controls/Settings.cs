@@ -13,7 +13,7 @@ namespace SuperGrate.Controls
             Icon = Properties.Resources.settings;
             btnSave.SetSystemIcon(Properties.Resources.save);
             btnRevert.SetSystemIcon(Properties.Resources.reload);
-            btnApply.SetSystemIcon(Properties.Resources.stop);
+            btnApply.SetSystemIcon(Properties.Resources.x);
         }
         private void Settings_Load(object sender, EventArgs e)
         {

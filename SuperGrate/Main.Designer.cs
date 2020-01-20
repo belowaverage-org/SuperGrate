@@ -181,8 +181,6 @@
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tblMainLayout.Size = new System.Drawing.Size(582, 410);
             this.tblMainLayout.TabIndex = 100;
             // 
@@ -307,7 +305,7 @@
             this.btnListSource.Margin = new System.Windows.Forms.Padding(2, 3, 3, 3);
             this.btnListSource.Name = "btnListSource";
             this.helpProvider.SetShowHelp(this.btnListSource, true);
-            this.btnListSource.Size = new System.Drawing.Size(145, 25);
+            this.btnListSource.Size = new System.Drawing.Size(145, 26);
             this.btnListSource.TabIndex = 100;
             this.btnListSource.Text = " List Source";
             this.btnListSource.Click += new System.EventHandler(this.BtnListSource_Click);
@@ -321,7 +319,7 @@
             this.btnListStore.Location = new System.Drawing.Point(153, 3);
             this.btnListStore.Name = "btnListStore";
             this.helpProvider.SetShowHelp(this.btnListStore, true);
-            this.btnListStore.Size = new System.Drawing.Size(144, 25);
+            this.btnListStore.Size = new System.Drawing.Size(144, 26);
             this.btnListStore.TabIndex = 100;
             this.btnListStore.Text = " List Store";
             this.btnListStore.Click += new System.EventHandler(this.BtnListStore_Click);
@@ -337,7 +335,7 @@
             this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btnDelete.Name = "btnDelete";
             this.helpProvider.SetShowHelp(this.btnDelete, true);
-            this.btnDelete.Size = new System.Drawing.Size(147, 25);
+            this.btnDelete.Size = new System.Drawing.Size(147, 26);
             this.btnDelete.TabIndex = 100;
             this.btnDelete.Text = " Delete";
             this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);

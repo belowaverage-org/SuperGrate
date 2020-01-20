@@ -34,14 +34,14 @@ namespace SuperGrate
             Text = About.AssemblyTitle;
             btnListSource.SetSystemIcon(Properties.Resources.users);
             btnListStore.SetSystemIcon(Properties.Resources.usercheck);
-            btnDelete.SetSystemIcon(Properties.Resources.stop);
+            btnDelete.SetSystemIcon(Properties.Resources.x);
             miDocumentation.SetMenuItemIcon(Properties.Resources.link);
             miIssues.SetMenuItemIcon(Properties.Resources.link);
             miAddRemoveCol.SetMenuItemIcon(Properties.Resources.columns);
             miAboutSG.SetMenuItemIcon(Properties.Resources.info);
             miSettings.SetMenuItemIcon(Properties.Resources.settings);
             miSaveLog.SetMenuItemIcon(Properties.Resources.save);
-            miExitButton.SetMenuItemIcon(Properties.Resources.stop);
+            miExitButton.SetMenuItemIcon(Properties.Resources.x);
             miNewInstance.SetMenuItemIcon(Properties.Resources.move);
             listUsers.SmallImageList = new ImageList();
             listUsers.SmallImageList.Images.Add("user", Properties.Resources.user.ToBitmap());
@@ -103,7 +103,7 @@ namespace SuperGrate
                 if (value != RunningTask.None)
                 {
                     btnStartStop.Text = " &Stop";
-                    btnStartStop.SetSystemIcon(Properties.Resources.stop);
+                    btnStartStop.SetSystemIcon(Properties.Resources.cancel);
                     Cursor = Cursors.AppStarting;
                     Logger.UpdateProgress(true);
                     Misc.MainMenuSetState(MainMenu, false, new string[] { "&View" });
@@ -265,6 +265,18 @@ namespace SuperGrate
         }
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
+            int selectedCount = listUsers.SelectedItems.Count;
+            ConfirmDialog confirm = null;
+            if (selectedCount == 1)
+            {
+                confirm = new ConfirmDialog("Are you sure?", "Are you sure you want to delete this user?", Properties.Resources.trash_16_32);
+            }
+            else
+            {
+                confirm = new ConfirmDialog("Are you sure?", "Are you sure you want to delete " + selectedCount + " users?", Properties.Resources.trash_16_32);
+            }
+            confirm.ShowDialog();
+            if (confirm.DialogResult != DialogResult.OK) return;
             Running = RunningTask.RemoteProfileDelete;
             List<string> IDs = new List<string>();
             foreach (int index in listUsers.SelectedIndices)

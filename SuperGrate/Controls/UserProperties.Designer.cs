@@ -69,6 +69,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnOK, "Closes the user properties window.");
             this.btnOK.Location = new System.Drawing.Point(127, 73);
@@ -76,7 +77,7 @@
             this.helpProvider.SetShowHelp(this.btnOK, true);
             this.btnOK.Size = new System.Drawing.Size(65, 22);
             this.btnOK.TabIndex = 1;
-            this.btnOK.Text = "&OK";
+            this.btnOK.Text = " &OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
             // UserProperties

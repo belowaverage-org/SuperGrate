@@ -29,9 +29,9 @@ namespace SuperGrate
         /// </summary>
         /// <param name="Button">Button Object</param>
         /// <param name="Icon">Icon Object</param>
-        public static void SetSystemIcon(this Button Button, Icon Icon)
+        public static void SetSystemIcon(this Button Button, Icon Icon, int Width = 16, int Height = 16)
         {
-            SendMessage(Button.Handle, 0xf7, (IntPtr)1, Icon.Handle);
+            SendMessage(Button.Handle, 0xf7, (IntPtr)1, new Icon(Icon, Width, Height).Handle);
         }
         public static void SetMenuItemIcon(this MenuItem MenuItem, Icon Icon)
         {

@@ -11,12 +11,12 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.info;
-            this.Text = String.Format("About {0}", AssemblyTitle);
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            Text = String.Format("About {0}", AssemblyTitle);
+            labelProductName.Text = AssemblyProduct;
+            labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            labelCopyright.Text = AssemblyCopyright;
+            labelCompanyName.Text = AssemblyCompany;
+            textBoxDescription.Text = AssemblyDescription;
             pbLogo.Image = Properties.Resources.supergrate.ToBitmapAlpha(64, 64);
             okButton.SetSystemIcon(Properties.Resources.check);
             btnGithub.SetSystemIcon(Properties.Resources.link);
