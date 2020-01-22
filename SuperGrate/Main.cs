@@ -22,6 +22,15 @@ namespace SuperGrate
         private string[] MainParameters = null;
         private bool CloseRequested = false;
         private int CloseAttempts = 0;
+        private UserRows CurrentUserRows = null;
+        private Dictionary<ListSources, ULSortDirection> CurrentSortDirection = new Dictionary<ListSources, ULSortDirection>() {
+            { ListSources.MigrationStore, ULSortDirection.Descending },
+            { ListSources.SourceComputer, ULSortDirection.Descending }
+        };
+        private Dictionary<ListSources, ULColumnType> CurrentSortColumn = new Dictionary<ListSources, ULColumnType>() {
+            { ListSources.MigrationStore, ULColumnType.NTAccount },
+            { ListSources.SourceComputer, ULColumnType.NTAccount }
+        };
         public Main(string[] parameters)
         {
             MainParameters = parameters;
@@ -191,8 +200,8 @@ namespace SuperGrate
             miAddRemoveCol.Enabled = true;
             listUsers.SetColumns(ULControl.HeaderRowComputerSource, Config.Settings["ULSourceColumns"]);
             lblUserList.Text = "Users on Source Computer:";
-            UserRows rows = await Misc.GetUsersFromHost(tbSourceComputer.Text);
-            listUsers.SetRows(rows);
+            CurrentUserRows = await Misc.GetUsersFromHost(tbSourceComputer.Text);
+            listUsers.SetRows(CurrentUserRows, CurrentSortColumn[ListSources.SourceComputer], CurrentSortDirection[ListSources.SourceComputer]);
             CurrentListSource = ListSources.SourceComputer;
             Running = RunningTask.None;
         }
@@ -202,8 +211,8 @@ namespace SuperGrate
             miAddRemoveCol.Enabled = true;
             lblUserList.Text = "Users in Migration Store:";
             listUsers.SetColumns(ULControl.HeaderRowStoreSource, Config.Settings["ULStoreColumns"]);
-            UserRows rows = await Misc.GetUsersFromStore();
-            listUsers.SetRows(rows);
+            CurrentUserRows = await Misc.GetUsersFromStore();
+            listUsers.SetRows(CurrentUserRows, CurrentSortColumn[ListSources.MigrationStore], CurrentSortDirection[ListSources.MigrationStore]);
             CurrentListSource = ListSources.MigrationStore;
             Running = RunningTask.None;
         }
@@ -528,8 +537,21 @@ namespace SuperGrate
         }
         private void listUsers_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            Logger.Information(e.Column.ToString());
-            //listUsers.Columns[e.Column].Text += "  ▼";
+            ULColumnType selColumn = (ULColumnType)listUsers.Columns[e.Column].Tag;
+            if (CurrentSortDirection[CurrentListSource] == ULSortDirection.Ascending)
+            {
+                CurrentSortDirection[CurrentListSource] = ULSortDirection.Descending;
+            }
+            else if(CurrentSortDirection[CurrentListSource] == ULSortDirection.Descending)
+            {
+                CurrentSortDirection[CurrentListSource] = ULSortDirection.Ascending;
+            }
+            if (CurrentSortColumn[CurrentListSource] != selColumn)
+            {
+                CurrentSortDirection[CurrentListSource] = ULSortDirection.Descending;
+            }
+            CurrentSortColumn[CurrentListSource] = selColumn;
+            listUsers.SetRows(CurrentUserRows, CurrentSortColumn[CurrentListSource], CurrentSortDirection[CurrentListSource]);
         }
     }
     public enum ListSources

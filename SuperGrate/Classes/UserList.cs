@@ -37,7 +37,7 @@ namespace SuperGrate.UserList
             {
                 if (Column.Value != null)
                 {
-                    Owner.Columns.Add(Column.Value);
+                    Owner.Columns.Add(Column.Value).Tag = Column.Key;
                 }
             }
             CurrentHeaderRow = Row;
@@ -71,11 +71,36 @@ namespace SuperGrate.UserList
             }
             Owner.SetColumns(TemplateRow, ColIDs.ToArray());
         }
-        public static void SetRows(this ListView Owner, UserRows Rows, ULColumnType SortColumn = ULColumnType.Tag, ULSortType SortType = ULSortType.Ascending)
+        public static void SetRows(this ListView Owner, UserRows Rows, ULColumnType SortColumn = ULColumnType.Tag, ULSortDirection SortDirection = ULSortDirection.Ascending)
         {
             Owner.BeginUpdate();
             Owner.SuspendLayout();
             Owner.Items.Clear();
+            foreach(ColumnHeader colHead in Owner.Columns)
+            {
+                ULColumnType colType = (ULColumnType)colHead.Tag;
+                string arrow = "";
+                if (colType == SortColumn)
+                {
+                    if (SortDirection == ULSortDirection.Ascending) arrow = " ↑";
+                    if (SortDirection == ULSortDirection.Descending) arrow = " ↓";
+                }
+                colHead.Text = CurrentHeaderRow[colType] + arrow;
+            }
+            Rows.Sort(delegate(UserRow x, UserRow y) {
+                if (!x.ContainsKey(SortColumn) && !y.ContainsKey(SortColumn)) return 0;
+                if (!x.ContainsKey(SortColumn)) return -1;
+                if (!y.ContainsKey(SortColumn)) return 1;
+                if (x[SortColumn] == y[SortColumn]) return 0;
+                long intX, intY = 0;
+                if (long.TryParse(x[SortColumn], out intX) && long.TryParse(y[SortColumn], out intY))
+                {
+                    if (intX > intY) return -1;
+                    if (intX < intY) return 1;
+                }
+                return x[SortColumn].CompareTo(y[SortColumn]);
+            });
+            if (SortDirection == ULSortDirection.Ascending) Rows.Reverse();
             if (Rows != null)
             {
                 foreach (UserRow row in Rows)
@@ -156,7 +181,7 @@ namespace SuperGrate.UserList
         ExportedOn = 8,
         FirstCreated = 9
     }
-    public enum ULSortType
+    public enum ULSortDirection
     {
         Ascending = 0,
         Descending = 1

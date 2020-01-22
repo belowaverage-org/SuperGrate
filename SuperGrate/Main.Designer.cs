@@ -425,7 +425,6 @@
             this.tblMainLayout.SetRowSpan(this.listUsers, 2);
             this.listUsers.ShowGroups = false;
             this.listUsers.Size = new System.Drawing.Size(446, 284);
-            this.listUsers.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listUsers.TabIndex = 103;
             this.listUsers.UseCompatibleStateImageBehavior = false;
             this.listUsers.View = System.Windows.Forms.View.Details;
