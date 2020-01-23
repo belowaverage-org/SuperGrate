@@ -198,6 +198,7 @@ namespace SuperGrate
         {
             Running = RunningTask.Unknown;
             miAddRemoveCol.Enabled = true;
+            listUsers.SetViewMode(Config.Settings["ULViewMode"]);
             listUsers.SetColumns(ULControl.HeaderRowComputerSource, Config.Settings["ULSourceColumns"]);
             lblUserList.Text = "Users on Source Computer:";
             CurrentUserRows = await Misc.GetUsersFromHost(tbSourceComputer.Text);
@@ -210,6 +211,7 @@ namespace SuperGrate
             Running = RunningTask.Unknown;
             miAddRemoveCol.Enabled = true;
             lblUserList.Text = "Users in Migration Store:";
+            listUsers.SetViewMode(Config.Settings["ULViewMode"]);
             listUsers.SetColumns(ULControl.HeaderRowStoreSource, Config.Settings["ULStoreColumns"]);
             CurrentUserRows = await Misc.GetUsersFromStore();
             listUsers.SetRows(CurrentUserRows, CurrentSortColumn[ListSources.MigrationStore], CurrentSortDirection[ListSources.MigrationStore]);
@@ -526,14 +528,13 @@ namespace SuperGrate
         }
         private void miView_Popup(object sender, EventArgs e)
         {
-            int ViewMode = -1;
-            int.TryParse(Config.Settings["ULViewMode"], out ViewMode);
+            View ViewMode = ULControl.ParseViewMode(Config.Settings["ULViewMode"]);
             foreach (MenuItem mi in miView.MenuItems) mi.Checked = false;
-            if ((View)ViewMode == View.Details) miViewDetail.Checked = true;
-            if ((View)ViewMode == View.List) miViewList.Checked = true;
-            if ((View)ViewMode == View.LargeIcon) miViewLarge.Checked = true;
-            if ((View)ViewMode == View.SmallIcon) miViewSmall.Checked = true;
-            if ((View)ViewMode == View.Tile) miViewTile.Checked = true;
+            if (ViewMode == View.Details) miViewDetail.Checked = true;
+            if (ViewMode == View.List) miViewList.Checked = true;
+            if (ViewMode == View.LargeIcon) miViewLarge.Checked = true;
+            if (ViewMode == View.SmallIcon) miViewSmall.Checked = true;
+            if (ViewMode == View.Tile) miViewTile.Checked = true;
         }
         private void listUsers_ColumnClick(object sender, ColumnClickEventArgs e)
         {

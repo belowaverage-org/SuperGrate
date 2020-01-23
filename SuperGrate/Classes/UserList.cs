@@ -76,7 +76,7 @@ namespace SuperGrate.UserList
             Owner.BeginUpdate();
             Owner.SuspendLayout();
             Owner.Items.Clear();
-            foreach(ColumnHeader colHead in Owner.Columns)
+            foreach (ColumnHeader colHead in Owner.Columns)
             {
                 ULColumnType colType = (ULColumnType)colHead.Tag;
                 string arrow = "";
@@ -153,6 +153,17 @@ namespace SuperGrate.UserList
                 }
             }
             return ColumnItem.Value;
+        }
+        public static void SetViewMode(this ListView View, string ViewMode)
+        {
+            View.View = ParseViewMode(ViewMode);
+        }
+        public static View ParseViewMode(string ViewMode)
+        {
+            int intMode = 1;
+            int.TryParse(ViewMode, out intMode);
+            if (intMode < 0 || intMode > 4) intMode = 1;
+            return (View)intMode;
         }
     }
     public class UserRow : Dictionary<ULColumnType, string>
