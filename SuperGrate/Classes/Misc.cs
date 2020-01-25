@@ -254,6 +254,7 @@ namespace SuperGrate
                     }
                     else
                     {
+                        Logger.Error("Failed to get SID from store ID: " + ID);
                         return null;
                     }
                 }
