@@ -70,6 +70,7 @@ namespace SuperGrate
         }
         public static double GetFolderSize(DirectoryInfo Directory)
         {
+            if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint)) return 0;
             double size = 0;
             try
             {
@@ -88,10 +89,6 @@ namespace SuperGrate
                     return -1;
                 }
                 return size;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return 0;
             }
             catch (Exception e)
             {
