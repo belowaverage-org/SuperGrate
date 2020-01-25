@@ -219,7 +219,7 @@ namespace SuperGrate
                     remoteReg.Close();
                     if (Main.Canceled)
                     {
-                        Logger.Information("Listing users was canceled.");
+                        Logger.Warning("Listing users was canceled.");
                         return null;
                     }
                     Logger.Success("Users listed successfully.");
