@@ -77,6 +77,11 @@
             this.miAboutSG = new System.Windows.Forms.MenuItem();
             this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
+            this.miConUser = new System.Windows.Forms.ContextMenu();
+            this.miConStart = new System.Windows.Forms.MenuItem();
+            this.miConDelete = new System.Windows.Forms.MenuItem();
+            this.miConSeperator = new System.Windows.Forms.MenuItem();
+            this.miConProperties = new System.Windows.Forms.MenuItem();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -430,8 +435,9 @@
             this.listUsers.View = System.Windows.Forms.View.Details;
             this.listUsers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listUsers_ColumnClick);
             this.listUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
-            this.listUsers.DoubleClick += new System.EventHandler(this.listUsers_DoubleClick);
+            this.listUsers.DoubleClick += new System.EventHandler(this.OpenUserProperties_Event);
             this.listUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxUsers_KeyDown);
+            this.listUsers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listUsers_MouseClick);
             // 
             // MainMenu
             // 
@@ -611,6 +617,37 @@
             this.dialogSaveLog.FilterIndex = 2;
             this.dialogSaveLog.Title = "Save Super Grate Log...";
             // 
+            // miConUser
+            // 
+            this.miConUser.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.miConStart,
+            this.miConDelete,
+            this.miConSeperator,
+            this.miConProperties});
+            // 
+            // miConStart
+            // 
+            this.miConStart.Index = 0;
+            this.miConStart.Text = "Start";
+            this.miConStart.Click += new System.EventHandler(this.BtStartStop_Click);
+            // 
+            // miConDelete
+            // 
+            this.miConDelete.Index = 1;
+            this.miConDelete.Text = "Delete...";
+            this.miConDelete.Click += new System.EventHandler(this.BtnDelete_Click);
+            // 
+            // miConSeperator
+            // 
+            this.miConSeperator.Index = 2;
+            this.miConSeperator.Text = "-";
+            // 
+            // miConProperties
+            // 
+            this.miConProperties.Index = 3;
+            this.miConProperties.Text = "Properties";
+            this.miConProperties.Click += new System.EventHandler(this.OpenUserProperties_Event);
+            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -696,6 +733,11 @@
         private System.Windows.Forms.MenuItem miViewList;
         private System.Windows.Forms.MenuItem miViewDetail;
         private System.Windows.Forms.MenuItem miViewTile;
+        private System.Windows.Forms.ContextMenu miConUser;
+        private System.Windows.Forms.MenuItem miConStart;
+        private System.Windows.Forms.MenuItem miConDelete;
+        private System.Windows.Forms.MenuItem miConSeperator;
+        private System.Windows.Forms.MenuItem miConProperties;
     }
 }
 

@@ -57,6 +57,9 @@ namespace SuperGrate
             listUsers.LargeImageList = new ImageList();
             listUsers.LargeImageList.ImageSize = new Size(32, 32);
             listUsers.LargeImageList.Images.Add("user", Properties.Resources.user_32.ToBitmap());
+            miConDelete.SetMenuItemIcon(Properties.Resources.x);
+            miConProperties.SetMenuItemIcon(Properties.Resources.user);
+            miConStart.SetMenuItemIcon(Properties.Resources.go);
         }
         private void Main_Load(object sender, EventArgs e)
         {
@@ -476,7 +479,7 @@ namespace SuperGrate
                 }
             }
         }
-        private async void listUsers_DoubleClick(object sender, EventArgs e)
+        private async void OpenUserProperties_Event(object sender, EventArgs e)
         {
             if(listUsers.SelectedItems.Count == 1)
             {
@@ -553,6 +556,21 @@ namespace SuperGrate
             }
             CurrentSortColumn[CurrentListSource] = selColumn;
             listUsers.SetRows(CurrentUserRows, CurrentSortColumn[CurrentListSource], CurrentSortDirection[CurrentListSource]);
+        }
+        private void listUsers_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                if (listUsers.SelectedItems.Count == 1)
+                {
+                    miConProperties.Enabled = true;
+                }
+                else
+                {
+                    miConProperties.Enabled = false;
+                }
+                miConUser.Show((Control)sender, e.Location);
+            }
         }
     }
     public enum ListSources
