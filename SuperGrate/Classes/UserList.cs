@@ -87,22 +87,22 @@ namespace SuperGrate.UserList
                 }
                 colHead.Text = CurrentHeaderRow[colType] + arrow;
             }
-            Rows.Sort(delegate(UserRow x, UserRow y) {
-                if (!x.ContainsKey(SortColumn) && !y.ContainsKey(SortColumn)) return 0;
-                if (!x.ContainsKey(SortColumn) || x[SortColumn] == null) return -1;
-                if (!y.ContainsKey(SortColumn) || y[SortColumn] == null) return 1;
-                if (x[SortColumn] == y[SortColumn]) return 0;
-                long intX, intY = 0;
-                if (long.TryParse(x[SortColumn], out intX) && long.TryParse(y[SortColumn], out intY))
-                {
-                    if (intX > intY) return -1;
-                    if (intX < intY) return 1;
-                }
-                return x[SortColumn].CompareTo(y[SortColumn]);
-            });
-            if (SortDirection == ULSortDirection.Ascending) Rows.Reverse();
             if (Rows != null)
             {
+                Rows.Sort(delegate (UserRow x, UserRow y) {
+                    if (!x.ContainsKey(SortColumn) && !y.ContainsKey(SortColumn)) return 0;
+                    if (!x.ContainsKey(SortColumn) || x[SortColumn] == null) return -1;
+                    if (!y.ContainsKey(SortColumn) || y[SortColumn] == null) return 1;
+                    if (x[SortColumn] == y[SortColumn]) return 0;
+                    long intX, intY = 0;
+                    if (long.TryParse(x[SortColumn], out intX) && long.TryParse(y[SortColumn], out intY))
+                    {
+                        if (intX > intY) return -1;
+                        if (intX < intY) return 1;
+                    }
+                    return x[SortColumn].CompareTo(y[SortColumn]);
+                });
+                if (SortDirection == ULSortDirection.Ascending) Rows.Reverse();
                 foreach (UserRow row in Rows)
                 {
                     ListViewItem lvRow = null;

@@ -205,7 +205,6 @@ namespace SuperGrate
             listUsers.SetColumns(ULControl.HeaderRowComputerSource, Config.Settings["ULSourceColumns"]);
             lblUserList.Text = "Users on Source Computer:";
             CurrentUserRows = await Misc.GetUsersFromHost(tbSourceComputer.Text);
-            if (CurrentUserRows == null) return;
             listUsers.SetRows(CurrentUserRows, CurrentSortColumn[ListSources.SourceComputer], CurrentSortDirection[ListSources.SourceComputer]);
             CurrentListSource = ListSources.SourceComputer;
             Running = RunningTask.None;
@@ -218,7 +217,6 @@ namespace SuperGrate
             listUsers.SetViewMode(Config.Settings["ULViewMode"]);
             listUsers.SetColumns(ULControl.HeaderRowStoreSource, Config.Settings["ULStoreColumns"]);
             CurrentUserRows = await Misc.GetUsersFromStore();
-            if (CurrentUserRows == null) return;
             listUsers.SetRows(CurrentUserRows, CurrentSortColumn[ListSources.MigrationStore], CurrentSortDirection[ListSources.MigrationStore]);
             CurrentListSource = ListSources.MigrationStore;
             Running = RunningTask.None;

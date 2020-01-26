@@ -186,6 +186,31 @@ namespace SuperGrate
                 return row;
             });
         }
+        public static Task<string> GetHostNameFromHost(string Host)
+        {
+            return Task.Run(() =>
+            {
+                try
+                {
+                    RegistryKey remoteReg = null;
+                    if (IsHostThisMachine(Host))
+                    {
+                        remoteReg = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
+                    }
+                    else
+                    {
+                        remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
+                    }
+                    RegistryKey key = remoteReg.OpenSubKey(@"SYSTEM\ControlSet001\Control\ComputerName\ComputerName");
+                    return (string)key.GetValue("ComputerName");
+                }
+                catch(Exception e)
+                {
+                    Logger.Exception(e, "Failed to get computer name from: " + Host);
+                    return null;
+                }
+            });
+        }
         /// <summary>
         /// Retrieves users' properties from host based on the ULControl.CurrentHeaderRow property.
         /// </summary>

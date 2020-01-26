@@ -207,14 +207,14 @@ namespace SuperGrate
         }
         private static Task<bool> UploadToStore(string SID)
         {
-            return Task.Run(() => {
+            return Task.Run(async () => {
                 Logger.Information("Uploading user state to the Store...");
                 string Destination = Path.Combine(Config.Settings["MigrationStorePath"], Guid.NewGuid().ToString());
                 try
                 {
                     Directory.CreateDirectory(Destination);
                     File.WriteAllText(Path.Combine(Destination, "sid"), SID);
-                    File.WriteAllText(Path.Combine(Destination, "source"), CurrentTarget);
+                    File.WriteAllText(Path.Combine(Destination, "source"), await Misc.GetHostNameFromHost(CurrentTarget));
                     File.WriteAllText(Path.Combine(Destination, "ntaccount"), Misc.GetUserByIdentity(SID));
                     File.WriteAllText(Path.Combine(Destination, "importedon"), DateTime.Now.ToFileTime().ToString());
                     File.WriteAllText(Path.Combine(Destination, "importedby"), Environment.UserDomainName + "\\" + Environment.UserName);
