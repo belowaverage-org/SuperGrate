@@ -181,7 +181,7 @@ namespace SuperGrate
                         deleted = true;
                         break;
                     }
-                    catch (IOException e)
+                    catch (Exception e)
                     {
                         Logger.Verbose(e.Message);
                         Logger.Verbose(e.StackTrace);
