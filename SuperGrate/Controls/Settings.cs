@@ -7,6 +7,9 @@ namespace SuperGrate.Controls
 {
     public partial class Settings : Form
     {
+        /// <summary>
+        /// This method is the entrypoint for the settings class.
+        /// </summary>
         public Settings()
         {
             InitializeComponent();
@@ -15,11 +18,17 @@ namespace SuperGrate.Controls
             btnRevert.SetSystemIcon(Properties.Resources.reload);
             btnApply.SetSystemIcon(Properties.Resources.x);
         }
+        /// <summary>
+        /// This event fires when the settings form loads. The method calls RefreshSettings.
+        /// </summary>
         private void Settings_Load(object sender, EventArgs e)
         {
             RefreshSettings();
             btnSave.Enabled = Config.CanSaveConfig();
         }
+        /// <summary>
+        /// This method loads the Config.Settings dictionary into the settingsList.
+        /// </summary>
         private void RefreshSettings()
         {
             settingsList.Items.Clear();
@@ -41,6 +50,9 @@ namespace SuperGrate.Controls
             }
             settingsList.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
+        /// <summary>
+        /// This event fires when the btnRevert button is clicked. The method re-loads the configuration on disk back into the settingsList control.
+        /// </summary>
         private async void btnRevert_Click(object sender, EventArgs e)
         {
             btnRevert.Enabled = false;
@@ -54,6 +66,9 @@ namespace SuperGrate.Controls
             btnRevert.Text = text;
             btnRevert.Enabled = true;
         }
+        /// <summary>
+        /// This event fires when the settingsList list is double clicked. The method opens the selected setting for editing.
+        /// </summary>
         private void SettingsList_DoubleClick(object sender, EventArgs e)
         {
             if (settingsList.SelectedItems.Count != 0)
@@ -69,6 +84,9 @@ namespace SuperGrate.Controls
                 btnApply.Focus();
             }
         }
+        /// <summary>
+        /// This event fires when the btnSave button is clicked. The method will attempt to save the configuration to disk.
+        /// </summary>
         private async void BtnSave_Click(object sender, EventArgs e)
         {
             Config.SaveConfig();

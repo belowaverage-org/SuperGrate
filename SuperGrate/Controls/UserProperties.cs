@@ -6,6 +6,11 @@ namespace SuperGrate.Controls
 {
     public partial class UserProperties : Form
     {
+        /// <summary>
+        /// The entry point for the UserProperties form.
+        /// </summary>
+        /// <param name="Template">Template user rows to generate the "Properties" column.</param>
+        /// <param name="Row">The rows with data to fill in the "Values" column.</param>
         public UserProperties(UserRow Template, UserRow Row)
         {
             InitializeComponent();

@@ -5,6 +5,12 @@ namespace SuperGrate.Controls
 {
     public partial class ConfirmDialog : Form
     {
+        /// <summary>
+        /// Entry point for the ConfirmDialog class. This method displays a Dialog box with a custom title, message, and icon.
+        /// </summary>
+        /// <param name="DialogTitle">Title text.</param>
+        /// <param name="DialogDescription">Main message text.</param>
+        /// <param name="DialogIcon">Icon to show in the dialog box.</param>
         public ConfirmDialog(string DialogTitle, string DialogDescription = null, Icon DialogIcon = null)
         {
             InitializeComponent();

@@ -7,6 +7,10 @@ namespace SuperGrate.Controls
     public partial class ChangeSetting : Form
     {
         private string Setting = "";
+        /// <summary>
+        /// Entry point for the ChangeSetting class. This method will display a form with the selected setting and allow the user to change it's value.
+        /// </summary>
+        /// <param name="SettingToChange">The key name of the Config.Settings[] dictionary to change.</param>
         public ChangeSetting(string SettingToChange)
         {
             InitializeComponent();
@@ -16,6 +20,9 @@ namespace SuperGrate.Controls
             btnRestoreDefault.SetSystemIcon(Properties.Resources.reload);
             Setting = SettingToChange;
         }
+        /// <summary>
+        /// This event will fire when the changeSetting form has loaded. The method will fill in the selected information into the form's controls.
+        /// </summary>
         private void ChangeSetting_Load(object sender, EventArgs e)
         {
             Text += Setting;
@@ -31,11 +38,17 @@ namespace SuperGrate.Controls
             }
             tbComment.Text = lastComment + "\r\n\r\n" + "Default Value: " + Config.DefaultSettings[Setting];
         }
+        /// <summary>
+        /// This event will fire when the btnSave button is clicked. The method will apply the setting to the session.
+        /// </summary>
         private void BtnSave_Click(object sender, EventArgs e)
         {
             Config.Settings[Setting] = tbValue.Text;
             DialogResult = DialogResult.OK;
         }
+        /// <summary>
+        /// This event will fire when the tbValue text box gets an input. The method will simulate a click for the btnSave button if the enter key is pressed.
+        /// </summary>
         private void TbValue_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '\r')
@@ -44,6 +57,9 @@ namespace SuperGrate.Controls
                 btnSave.PerformClick();
             }
         }
+        /// <summary>
+        /// This event will fire when the btnRestoreDefault button is clicked. The method will restore the default value for the setting.
+        /// </summary>
         private void btnRestoreDefault_Click(object sender, EventArgs e)
         {
             tbValue.Text = Config.DefaultSettings[Setting];
