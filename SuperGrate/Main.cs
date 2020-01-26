@@ -31,6 +31,10 @@ namespace SuperGrate
             { ListSources.MigrationStore, ULColumnType.NTAccount },
             { ListSources.SourceComputer, ULColumnType.NTAccount }
         };
+        /// <summary>
+        /// The main form entry point.
+        /// </summary>
+        /// <param name="parameters">A list of parameters to override XML settings.</param>
         public Main(string[] parameters)
         {
             MainParameters = parameters;
@@ -61,6 +65,9 @@ namespace SuperGrate
             miConProperties.SetMenuItemIcon(Properties.Resources.user);
             miConStart.SetMenuItemIcon(Properties.Resources.go);
         }
+        /// <summary>
+        /// This event will fire when the main form has loaded.
+        /// </summary>
         private void Main_Load(object sender, EventArgs e)
         {
             Config.LoadConfig(MainParameters);
@@ -69,18 +76,25 @@ namespace SuperGrate
             UpdateFormRestrictions();
             BindHelp(this);
         }
+        /// <summary>
+        /// This method will loop through all child controls of a control and apply the Control_Hover event to the MouseEnter event.
+        /// </summary>
+        /// <param name="control">Parent control.</param>
         private void BindHelp(Control control)
         {
             foreach (Control childControl in control.Controls)
             {
-                childControl.MouseEnter += Control_Click;
+                childControl.MouseEnter += Control_Hover;
                 if(childControl.HasChildren)
                 {
                     BindHelp(childControl);
                 }
             }
         }
-        private void Control_Click(object sender, EventArgs e)
+        /// <summary>
+        /// This event will fire whenever any control on the main form is hovered. And will show a help box if requested.
+        /// </summary>
+        private void Control_Hover(object sender, EventArgs e)
         {
             if (Cursor == Cursors.Help)
             {
@@ -89,6 +103,9 @@ namespace SuperGrate
                 Help.ShowPopup(this, helpProvider.GetHelpString((Control)sender), mouse);
             }
         }
+        /// <summary>
+        /// This getter/setter will attempt to cancel a running task if set true.
+        /// </summary>
         public static bool Canceled
         {
             get
@@ -106,6 +123,9 @@ namespace SuperGrate
                 }
             }
         }
+        /// <summary>
+        /// This getter/setter will update various controls and variables whenever changed in regards to a running task.
+        /// </summary>
         private RunningTask Running {
             get {
                 return storeRunningTask;
@@ -161,6 +181,9 @@ namespace SuperGrate
                 }
             }
         }
+        /// <summary>
+        /// This event will fire whenever the btStartStop button is clicked, starting or stopping whatever task is queued to happen.
+        /// </summary>
         private async void BtStartStop_Click(object sender, EventArgs e)
         {
             if (Running != RunningTask.None)
@@ -197,6 +220,9 @@ namespace SuperGrate
                 Logger.Information("Done.");
             }
         }
+        /// <summary>
+        /// This event will fire whenever the btnListSource is clicked. This will refresh or re-list the listUsers control with users from the source computer.
+        /// </summary>
         private async void BtnListSource_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
@@ -209,6 +235,9 @@ namespace SuperGrate
             CurrentListSource = ListSources.SourceComputer;
             Running = RunningTask.None;
         }
+        /// <summary>
+        /// This event will fire whenever the btnListStore is clicked. This will refresh or re-list the listUsers control with users from the store.
+        /// </summary>
         private async void BtnListStore_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
@@ -221,6 +250,9 @@ namespace SuperGrate
             CurrentListSource = ListSources.MigrationStore;
             Running = RunningTask.None;
         }
+        /// <summary>
+        /// This event will fire if the logBox text box is double clicked, and will toggle VerboseMode (Which allows the logger class to output more).
+        /// </summary>
         private void LogBox_DoubleClick(object sender, EventArgs e)
         {
             if(Logger.VerboseEnabled)
@@ -234,6 +266,9 @@ namespace SuperGrate
                 Logger.Information("Verbose mode enabled.");
             }
         }
+        /// <summary>
+        /// This method will enable or disable different controls on the main form depending on conditions in the form to prevent invalid inputs.
+        /// </summary>
         private void UpdateFormRestrictions(object sender = null, EventArgs e = null)
         {
             if (listUsers.SelectedIndices.Count == 0 || (tbDestinationComputer.Text == "" && CurrentListSource == ListSources.MigrationStore))
@@ -263,6 +298,9 @@ namespace SuperGrate
                 btnListSource.Enabled = true;
             }
         }
+        /// <summary>
+        /// This event will fire whenever the tbSourceComputer text box receives new text, and will clear the users from the list, and call UpdateFormRestrictions().
+        /// </summary>
         private void TbSourceComputer_TextChanged(object sender, EventArgs e)
         {
             SourceComputer = tbSourceComputer.Text;
@@ -272,11 +310,17 @@ namespace SuperGrate
             }
             UpdateFormRestrictions();
         }
+        /// <summary>
+        /// This event will fire when the tbDestinationComputer text box recieves new text, and will call the UpdateFormRestrictions() method.
+        /// </summary>
         private void TbDestinationComputer_TextChanged(object sender, EventArgs e)
         {
             DestinationComputer = tbDestinationComputer.Text;
             UpdateFormRestrictions();
         }
+        /// <summary>
+        /// This event will fire when the btnDelete button is clicked, and will start the deletion process for the selected users.
+        /// </summary>
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
             int selectedCount = listUsers.SelectedItems.Count;
@@ -314,6 +358,9 @@ namespace SuperGrate
                 Running = RunningTask.None;
             }
         }
+        /// <summary>
+        /// This event will fire when the tbSourceComputer text box recieves an enter key, then will simulate a click on the btnListSource button.
+        /// </summary>
         private void TbSourceComputer_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -321,18 +368,30 @@ namespace SuperGrate
                 btnListSource.PerformClick();
             }
         }
+        /// <summary>
+        /// This event will fire when the btnBFillDest button is clicked, this will fill the ajacent text box with the current PC name.
+        /// </summary>
         private void BtnAFillSrc_Click(object sender, EventArgs e)
         {
             tbSourceComputer.Text = Environment.MachineName;
         }
+        /// <summary>
+        /// This event will fire when the btnAFillDest button is clicked, this will fill the ajacent text box with the current PC name.
+        /// </summary>
         private void BtnAFillDest_Click(object sender, EventArgs e)
         {
             tbDestinationComputer.Text = Environment.MachineName;
         }
+        /// <summary>
+        /// This event will fire if the miExitButton is clicked, and will attempt to close the main form.
+        /// </summary>
         private void MiExitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
+        /// <summary>
+        /// This event will fire when the menu item miSaveLog is clicked, and will open the save log dialog window.
+        /// </summary>
         private async void MiSaveLog_Click(object sender, EventArgs e)
         {
             dialogSaveLog.FileName = 
@@ -344,6 +403,9 @@ namespace SuperGrate
                 await Logger.WriteLogToFile(dialogSaveLog.OpenFile());
             }
         }
+        /// <summary>
+        /// This event will fire when the main window is about to close, and will block the closure if a task is running, otherwise it will allow the window to close after writing a log if instrucuted.
+        /// </summary>
         private async void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(++CloseAttempts >= 3) return;
@@ -377,18 +439,30 @@ namespace SuperGrate
             }
             Logger.Warning("Super Grate is exiting. Attempt: " + CloseAttempts + "/3.");
         }
+        /// <summary>
+        /// This event will fire when the miAbout menu item is clicked, and will open the about dialog box.
+        /// </summary>
         private void MiAboutSG_Click(object sender, EventArgs e)
         {
             new About().ShowDialog();
         }
+        /// <summary>
+        /// This event will fire when the miDocumentation menu item is clicked, and will open the docs page on github.
+        /// </summary>
         private void MiDocumentation_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/belowaverage-org/SuperGrate/wiki");
         }
+        /// <summary>
+        /// This event will fire when the miIssues menu item is clicked, and will open the issues page on github.
+        /// </summary>
         private void MiIssues_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/belowaverage-org/SuperGrate/issues");
         }
+        /// <summary>
+        /// This event fires when the tbSourceDestComputer text box recieves an enter key, this will simulate a click on the button btnListSource.
+        /// </summary>
         private void tbSourceDestComputer_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
@@ -400,6 +474,9 @@ namespace SuperGrate
                 }
             }
         }
+        /// <summary>
+        /// This event will fire when the lbxUsers registers an enter key, this simulates a click on the button btnStartStop.
+        /// </summary>
         private void lbxUsers_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
