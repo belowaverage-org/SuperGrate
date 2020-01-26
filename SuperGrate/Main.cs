@@ -407,6 +407,9 @@ namespace SuperGrate
                 btnStartStop.PerformClick();
             }
         }
+        /// <summary>
+        /// This event will fire when the miHelpButton menu item is clicked, and will toggle the help on hover function in the main window.
+        /// </summary>
         private void miHelpButton_Click(object sender, EventArgs e)
         {
             if (Cursor == Cursors.Help)
@@ -420,10 +423,16 @@ namespace SuperGrate
                 Cursor = Cursors.Help;
             }
         }
+        /// <summary>
+        /// This event will fire when the miNewInstance menu item is clicked and will start a new instance of Super Grate.
+        /// </summary>
         private void miNewInstance_Click(object sender, EventArgs e)
         {
             Process.Start(Application.ExecutablePath);
         }
+        /// <summary>
+        /// This event fires when the miAddRemoveCol menu item is clicked, and will display the column selection dialog box.
+        /// </summary>
         private void miAddRemoveCol_Click(object sender, EventArgs e)
         {
             string SettingKey = "";
@@ -480,6 +489,9 @@ namespace SuperGrate
                 }
             }
         }
+        /// <summary>
+        /// This event will open the User Properties dialog box.
+        /// </summary>
         private async void OpenUserProperties_Event(object sender, EventArgs e)
         {
             if(listUsers.SelectedItems.Count == 1)
@@ -509,10 +521,16 @@ namespace SuperGrate
                 new UserProperties(template, row).ShowDialog();
             }
         }
+        /// <summary>
+        /// This event fires when the menu item miSettings is clicked. It will show the settings menu dialog box.
+        /// </summary>
         private void miSettings_Click(object sender, EventArgs e)
         {
             new Settings().ShowDialog();
         }
+        /// <summary>
+        /// This event fires when view mode menu items are clicked. It will apply the settings and the new view mode the list box "listUsers". 
+        /// </summary>
         private void miViewMode_Click(object sender, EventArgs e)
         {
             MenuItem mi = (MenuItem)sender;
@@ -530,6 +548,9 @@ namespace SuperGrate
                 listUsers.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
             }
         }
+        /// <summary>
+        /// This event fires before the miView menu is shown, and determines what menu items are checked based on current settings.
+        /// </summary>
         private void miView_Popup(object sender, EventArgs e)
         {
             View ViewMode = ULControl.ParseViewMode(Config.Settings["ULViewMode"]);
@@ -540,6 +561,10 @@ namespace SuperGrate
             if (ViewMode == View.SmallIcon) miViewSmall.Checked = true;
             if (ViewMode == View.Tile) miViewTile.Checked = true;
         }
+        /// <summary>
+        /// Event fired when a user clicks a column button (Sort Button) in the listUsers control.
+        /// This method toggles the sort direction for each column in each list mode.
+        /// </summary>
         private void listUsers_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ULColumnType selColumn = (ULColumnType)listUsers.Columns[e.Column].Tag;
@@ -558,6 +583,10 @@ namespace SuperGrate
             CurrentSortColumn[CurrentListSource] = selColumn;
             listUsers.SetRows(CurrentUserRows, CurrentSortColumn[CurrentListSource], CurrentSortDirection[CurrentListSource]);
         }
+        /// <summary>
+        /// Event fired when user right clicks the listUsers control.
+        /// The method will display a context menu at the user's mouse.
+        /// </summary>
         private void listUsers_MouseClick(object sender, MouseEventArgs e)
         {
             if(e.Button == MouseButtons.Right)
@@ -574,12 +603,18 @@ namespace SuperGrate
             }
         }
     }
+    /// <summary>
+    /// Enum of user sources that can be displayed in Super Grate.
+    /// </summary>
     public enum ListSources
     {
         Unknown = -1,
         SourceComputer = 1,
         MigrationStore = 2
     }
+    /// <summary>
+    /// Enum of tasks that can be running in Super Grate.
+    /// </summary>
     public enum RunningTask
     {
         Unknown = -2,

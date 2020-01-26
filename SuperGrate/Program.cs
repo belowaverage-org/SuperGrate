@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperGrate
@@ -21,6 +18,9 @@ namespace SuperGrate
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
             Application.Run(new Main(parameters));
         }
+        /// <summary>
+        /// Thread Exception event for uncaught UI errors.
+        /// </summary>
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             Logger.Error("\r-----------FATAL ERROR-----------\r", true);
