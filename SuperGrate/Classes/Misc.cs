@@ -252,12 +252,12 @@ namespace SuperGrate
                 }
                 catch (System.Security.SecurityException e)
                 {
-                    Logger.Exception(e, "Failed to get a list of users, Please make sure the user \"" + Environment.UserDomainName + "\\" + Environment.UserName + "\" is an administrator on the host: " + Host);
+                    Logger.Exception(e, "Failed to get a list of users. Please make sure the user \"" + Environment.UserDomainName + "\\" + Environment.UserName + "\" is an administrator on the host: " + Host);
                     return null;
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to get a list of users.");
+                    Logger.Exception(e, "Failed to get a list of users. Please make sure that the specified host is valid and online, also make sure the \"Remote Registry\" service is enabled and running on the specified host: " + Host);
                     return null;
                 }
             });
