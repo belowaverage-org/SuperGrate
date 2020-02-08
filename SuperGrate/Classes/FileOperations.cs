@@ -63,13 +63,9 @@ namespace SuperGrate
             }
             return !USMT.Canceled;
         }
-        public static double GetFolderSize(string Path)
+        public static double GetFolderSize(string Directory)
         {
-            DirectoryInfo directory = new DirectoryInfo(Path);
-            return GetFolderSize(directory);
-        }
-        public static double GetFolderSize(DirectoryInfo Directory)
-        {
+            DirectoryInfo Dirnew DirectoryInfo(Directory);
             if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint)) return 0;
             double size = 0;
             try
