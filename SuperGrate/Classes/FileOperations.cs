@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace SuperGrate
+namespace SuperGrate.IO
 {
     class FileOperations
     {
@@ -65,36 +66,60 @@ namespace SuperGrate
         }
         public static double GetFolderSize(string Path)
         {
-            DirectoryInfo directory = new DirectoryInfo(Path);
-            return GetFolderSize(directory);
+            return new GetFolderSize(Path).Size;
         }
-        public static double GetFolderSize(DirectoryInfo Directory)
+    }
+    class GetFolderSize
+    {
+        public double Size = 0;
+        private Dictionary<int, double> ThreadsStatus = new Dictionary<int, double>();
+        public GetFolderSize(string Path)
         {
-            if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint)) return 0;
-            double size = 0;
-            try
+            StartWorker(new DirectoryInfo(Path));
+            while(true)
             {
-                foreach (DirectoryInfo directory in Directory.GetDirectories())
+                Task.Delay(5000).Wait();
+                bool done = true;
+                foreach(KeyValuePair<int, double> threadStatus in ThreadsStatus)
                 {
-                    if (Main.Canceled) break;
-                    size += GetFolderSize(directory);
+                    if(threadStatus.Value == -1)
+                    {
+                        done = false;
+                        break;
+                    }
                 }
-                foreach (FileInfo file in Directory.GetFiles())
-                {
-                    if (Main.Canceled) break;
-                    size += file.Length;
-                }
-                if (Main.Canceled)
-                {
-                    return -1;
-                }
-                return size;
+                if (done && ThreadsStatus.Count != 0) break;
             }
-            catch (Exception e)
+            foreach (KeyValuePair<int, double> threadStatus in ThreadsStatus)
             {
-                Logger.Exception(e, "Failed to get folder size!");
-                return -1;
+                Size += threadStatus.Value;
             }
+        }
+        private Task StartWorker(DirectoryInfo Directory)
+        {
+            return Task.Run(() => {
+                double folderSize = 0;
+                ThreadsStatus.Add(Task.CurrentId.Value, -1);
+                if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint)) return;
+                try
+                {
+                    foreach (DirectoryInfo subDir in Directory.EnumerateDirectories())
+                    {
+                        StartWorker(subDir);
+                    }
+                    foreach (FileInfo file in Directory.EnumerateFiles())
+                    {
+                        folderSize += file.Length;
+                    }
+                    ThreadsStatus[Task.CurrentId.Value] = folderSize;
+                }
+                catch (Exception e)
+                {
+                    Logger.Exception(e, "Failed to get folder size!");
+                    ThreadsStatus[Task.CurrentId.Value] = 0;
+                    return;
+                }
+            });
         }
     }
 }

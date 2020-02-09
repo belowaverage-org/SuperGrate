@@ -6,6 +6,7 @@ using System.IO;
 using System.Security.Principal;
 using System.Management;
 using SuperGrate.UserList;
+using SuperGrate.IO;
 using System.Windows.Forms;
 
 namespace SuperGrate

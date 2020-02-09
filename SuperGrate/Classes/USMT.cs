@@ -2,6 +2,7 @@
 using System.IO;
 using System.IO.Compression;
 using System;
+using SuperGrate.IO;
 
 namespace SuperGrate
 {
