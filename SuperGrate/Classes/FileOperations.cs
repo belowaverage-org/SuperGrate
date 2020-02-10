@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace SuperGrate.IO
 {
@@ -72,14 +73,17 @@ namespace SuperGrate.IO
     class GetFolderSize
     {
         public double Size = 0;
+        private ReaderWriterLock Lock = new ReaderWriterLock();
         private Dictionary<int, double> ThreadsStatus = new Dictionary<int, double>();
         public GetFolderSize(string Path)
         {
             StartWorker(new DirectoryInfo(Path));
             while(true)
             {
-                Task.Delay(5000).Wait();
+                if (Main.Canceled) return;
+                Task.Delay(10).Wait();
                 bool done = true;
+                Lock.AcquireReaderLock(100);
                 foreach(KeyValuePair<int, double> threadStatus in ThreadsStatus)
                 {
                     if(threadStatus.Value == -1)
@@ -88,7 +92,12 @@ namespace SuperGrate.IO
                         break;
                     }
                 }
-                if (done && ThreadsStatus.Count != 0) break;
+                if (done && ThreadsStatus.Count != 0)
+                {
+                    Lock.ReleaseReaderLock();
+                    break;
+                }
+                Lock.ReleaseReaderLock();
             }
             foreach (KeyValuePair<int, double> threadStatus in ThreadsStatus)
             {
@@ -99,24 +108,38 @@ namespace SuperGrate.IO
         {
             return Task.Run(() => {
                 double folderSize = 0;
+                Lock.AcquireWriterLock(100);
                 ThreadsStatus.Add(Task.CurrentId.Value, -1);
-                if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint)) return;
+                Lock.ReleaseWriterLock();
+                if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint))
+                {
+                    Lock.AcquireWriterLock(100);
+                    ThreadsStatus[Task.CurrentId.Value] = 0;
+                    Lock.ReleaseWriterLock();
+                    return;
+                }
                 try
                 {
                     foreach (DirectoryInfo subDir in Directory.EnumerateDirectories())
                     {
+                        if (Main.Canceled) return;
                         StartWorker(subDir);
                     }
                     foreach (FileInfo file in Directory.EnumerateFiles())
                     {
+                        if (Main.Canceled) return;
                         folderSize += file.Length;
                     }
+                    Lock.AcquireWriterLock(100);
                     ThreadsStatus[Task.CurrentId.Value] = folderSize;
+                    Lock.ReleaseWriterLock();
                 }
                 catch (Exception e)
                 {
                     Logger.Exception(e, "Failed to get folder size!");
+                    Lock.AcquireWriterLock(100);
                     ThreadsStatus[Task.CurrentId.Value] = 0;
+                    Lock.ReleaseWriterLock();
                     return;
                 }
             });
