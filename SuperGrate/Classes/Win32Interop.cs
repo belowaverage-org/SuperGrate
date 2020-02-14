@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace SuperGrate
 {
@@ -24,6 +25,7 @@ namespace SuperGrate
         private static extern bool DrawIconEx(IntPtr hdc, int xLeft, int yTop, IntPtr hIcon, int cxWidth, int cyHeight, int istepIfAniCur, IntPtr hbrFlickerFreeDraw, int diFlags);
         [DllImport("gdi32.dll")]
         private static extern IntPtr CreateSolidBrush(uint crColor);
+        private static Dictionary<IntPtr, IntPtr[]> MenuItemIcons = new Dictionary<IntPtr, IntPtr[]>();
         /// <summary>
         /// Sets an icon on a button with the FlatStyle set to System.
         /// </summary>
@@ -35,9 +37,30 @@ namespace SuperGrate
         }
         public static void SetMenuItemIcon(this MenuItem MenuItem, Icon Icon)
         {
-            IntPtr hBitmap = Icon.ToBitmapAlpha(16, 16, SystemColors.Control).GetHbitmap();
-            SetMenuItemBitmaps(MenuItem.Parent.Handle, (IntPtr)MenuItem.Index, 0x400, hBitmap, hBitmap);
+            IntPtr[] hBitmaps =
+            {
+                Icon.ToBitmapAlpha(16, 16, SystemColors.Control).GetHbitmap(),
+                Icon.ToBitmapAlpha(16, 16, SystemColors.GrayText).GetHbitmap()
+            };
+            //SetMenuItemBitmaps(MenuItem.Parent.Handle, (IntPtr)MenuItem.Index, 0x400, hBitmap, hBitmap);
+            MenuItemIcons.Add(MenuItem.Handle, hBitmaps);
+            //MenuItem.Select += MenuItem_Select;
+            //MenuItem.MeasureItem += MenuItem_MeasureItem;
+            
         }
+
+        private static void MenuItem_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            MenuItem mi = (MenuItem)sender;
+            SetMenuItemBitmaps(mi.Parent.Handle, (IntPtr)mi.Index, 0x400, MenuItemIcons[mi.Handle][0], MenuItemIcons[mi.Handle][0]);
+        }
+
+        private static void MenuItem_Select(object sender, EventArgs e)
+        {
+            MenuItem mi = (MenuItem)sender;
+            SetMenuItemBitmaps(mi.Parent.Handle, (IntPtr)mi.Index, 0x400, MenuItemIcons[mi.Handle][1], MenuItemIcons[mi.Handle][1]);
+        }
+
         public static Bitmap ToBitmapAlpha(this Icon Icon, int Width, int Height, Color Background)
         {
             Icon rsIcon = new Icon(Icon, Width, Height);
