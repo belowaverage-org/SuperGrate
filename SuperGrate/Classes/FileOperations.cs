@@ -78,7 +78,8 @@ namespace SuperGrate.IO
         public GetFolderSize(string Path)
         {
             StartWorker(new DirectoryInfo(Path));
-            while(true)
+            int checks = 0;
+            while (true)
             {
                 if (Main.Canceled) return;
                 Task.Delay(10).Wait();
@@ -92,7 +93,15 @@ namespace SuperGrate.IO
                         break;
                     }
                 }
-                if (done && ThreadsStatus.Count != 0)
+                if(done)
+                {
+                    checks++;
+                }
+                else
+                {
+                    checks = 0;
+                }
+                if (checks >= 2 && ThreadsStatus.Count != 0)
                 {
                     Lock.ReleaseReaderLock();
                     break;
