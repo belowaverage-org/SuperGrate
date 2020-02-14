@@ -83,30 +83,13 @@ namespace SuperGrate.IO
             {
                 if (Main.Canceled) return;
                 Task.Delay(10).Wait();
-                bool done = true;
-                Lock.AcquireReaderLock(100);
-                foreach(KeyValuePair<int, double> threadStatus in ThreadsStatus)
-                {
-                    if(threadStatus.Value == -1)
-                    {
-                        done = false;
-                        break;
-                    }
-                }
-                if(done)
-                {
+                int running = RunningThreads();
+                if (running == 0) {
                     checks++;
-                }
-                else
-                {
+                } else {
                     checks = 0;
                 }
-                if (checks >= 2 && ThreadsStatus.Count != 0)
-                {
-                    Lock.ReleaseReaderLock();
-                    break;
-                }
-                Lock.ReleaseReaderLock();
+                if (checks >= 2) break;
             }
             foreach (KeyValuePair<int, double> threadStatus in ThreadsStatus)
             {
@@ -152,6 +135,21 @@ namespace SuperGrate.IO
                     return;
                 }
             });
+        }
+        private int RunningThreads()
+        {
+            int count = 0;
+            Lock.AcquireReaderLock(100);
+            foreach (KeyValuePair<int, double> threadStatus in ThreadsStatus)
+            {
+                if (threadStatus.Value == -1)
+                {
+                    count++;
+                    break;
+                }
+            }
+            Lock.ReleaseReaderLock();
+            return count;
         }
     }
 }
