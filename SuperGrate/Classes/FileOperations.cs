@@ -103,7 +103,7 @@ namespace SuperGrate.IO
                 Lock.AcquireWriterLock(100);
                 ThreadsStatus.Add(Task.CurrentId.Value, -1);
                 Lock.ReleaseWriterLock();
-                if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint))
+                if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint) || Directory.FullName.Contains(@"\AppData\Local\"))
                 {
                     Lock.AcquireWriterLock(100);
                     ThreadsStatus[Task.CurrentId.Value] = 0;

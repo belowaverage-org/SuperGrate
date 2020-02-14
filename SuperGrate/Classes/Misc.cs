@@ -236,10 +236,13 @@ namespace SuperGrate
                     RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
                     Logger.Information("Getting list of users on: " + Host + "...");
                     GetLocalUsersSIDsFromHost(Host);
-                    foreach (string SID in profileList.GetSubKeyNames())
+                    string[] SIDs = profileList.GetSubKeyNames();
+                    int count = 0;
+                    foreach (string SID in SIDs)
                     {
                         if (Main.Canceled) break;
                         UserRow row = await GetUserFromHost(ULControl.CurrentHeaderRow, Host, SID);
+                        Logger.UpdateProgress((int)(((float)++count / SIDs.Length) * 100));
                         if (row != null) rows.Add(row);
                     }
                     remoteReg.Close();
@@ -352,7 +355,9 @@ namespace SuperGrate
                     string StorePath = Config.Settings["MigrationStorePath"];
                     Logger.Information("Listing users from store: " + StorePath + "...");
                     UserRows rows = new UserRows();
-                    foreach (DirectoryInfo directory in new DirectoryInfo(StorePath).GetDirectories())
+                    int count = 0;
+                    DirectoryInfo[] directories = new DirectoryInfo(StorePath).GetDirectories();
+                    foreach (DirectoryInfo directory in directories)
                     {
                         UserRow row = await GetUserFromStore(ULControl.CurrentHeaderRow, directory.Name);
                         if(row == null)
@@ -361,6 +366,7 @@ namespace SuperGrate
                             continue;
                         }
                         rows.Add(row);
+                        Logger.UpdateProgress((int)(((float)++count / directories.Length) * 100));
                         Logger.Verbose("Found: " + row[ULColumnType.NTAccount]);
                     }
                     Logger.Success("Users listed successfully.");
