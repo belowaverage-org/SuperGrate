@@ -134,7 +134,7 @@ namespace SuperGrate
         /// <returns>Filled in UserRow.</returns>
         public static Task<UserRow> GetUserFromHost(UserRow TemplateRow, string Host, string SID)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
                 UserRow row = new UserRow(TemplateRow);
                 RegistryKey remoteReg = null;
@@ -171,7 +171,7 @@ namespace SuperGrate
                     if (row.ContainsKey(ULColumnType.Size))
                     {
                         Logger.Information("Calculating profile size for: " + user + "...");
-                        double size = FileOperations.GetFolderSize(profilePath);
+                        double size = await FileOperations.GetFolderSize(profilePath);
                         row[ULColumnType.Size] = size.ToString();
                     }
                     if (row.ContainsKey(ULColumnType.FirstCreated))

@@ -65,91 +65,42 @@ namespace SuperGrate.IO
             }
             return !USMT.Canceled;
         }
-        public static double GetFolderSize(string Path)
+        public static Task<double> GetFolderSize(string Directory)
         {
-            return new GetFolderSize(Path).Size;
+            return GetFolderSize(new DirectoryInfo(Directory));
         }
-    }
-    class GetFolderSize
-    {
-        public double Size = 0;
-        private ReaderWriterLock Lock = new ReaderWriterLock();
-        private Dictionary<int, double> ThreadsStatus = new Dictionary<int, double>();
-        public GetFolderSize(string Path)
-        {
-            StartWorker(new DirectoryInfo(Path));
-            int checks = 0;
-            while (true)
-            {
-                if (Main.Canceled) return;
-                Task.Delay(10).Wait();
-                int running = RunningThreads();
-                if (running == 0) {
-                    checks++;
-                } else {
-                    checks = 0;
-                }
-                if (checks >= 2) break;
-            }
-            foreach (KeyValuePair<int, double> threadStatus in ThreadsStatus)
-            {
-                Size += threadStatus.Value;
-            }
-        }
-        private Task StartWorker(DirectoryInfo Directory)
+        public static Task<double> GetFolderSize(DirectoryInfo Directory)
         {
             return Task.Run(() => {
+                if (Main.Canceled) return 0;
                 double folderSize = 0;
-                Lock.AcquireWriterLock(100);
-                ThreadsStatus.Add(Task.CurrentId.Value, -1);
-                Lock.ReleaseWriterLock();
-                if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint) || Directory.FullName.Contains(@"\AppData\Local\"))
-                {
-                    Lock.AcquireWriterLock(100);
-                    ThreadsStatus[Task.CurrentId.Value] = 0;
-                    Lock.ReleaseWriterLock();
-                    return;
-                }
+                if (Directory.Attributes.HasFlag(FileAttributes.ReparsePoint)) return 0;
                 try
                 {
+                    List<Task> childTasks = new List<Task>();
                     foreach (DirectoryInfo subDir in Directory.EnumerateDirectories())
                     {
-                        if (Main.Canceled) return;
-                        StartWorker(subDir);
+                        if (Main.Canceled) return 0;
+                        childTasks.Add(GetFolderSize(subDir));
                     }
                     foreach (FileInfo file in Directory.EnumerateFiles())
                     {
-                        if (Main.Canceled) return;
+                        if (Main.Canceled) return 0;
                         folderSize += file.Length;
                     }
-                    Lock.AcquireWriterLock(100);
-                    ThreadsStatus[Task.CurrentId.Value] = folderSize;
-                    Lock.ReleaseWriterLock();
+                    Task.WaitAll(childTasks.ToArray());
+                    foreach (Task<double> childTask in childTasks)
+                    {
+                        folderSize += childTask.Result;
+                    }
+                    return folderSize;
                 }
                 catch (Exception e)
                 {
                     Logger.Exception(e, "Failed to get folder size!");
-                    Lock.AcquireWriterLock(100);
-                    ThreadsStatus[Task.CurrentId.Value] = 0;
-                    Lock.ReleaseWriterLock();
-                    return;
+                    return 0;
                 }
             });
-        }
-        private int RunningThreads()
-        {
-            int count = 0;
-            Lock.AcquireReaderLock(100);
-            foreach (KeyValuePair<int, double> threadStatus in ThreadsStatus)
-            {
-                if (threadStatus.Value == -1)
-                {
-                    count++;
-                    break;
-                }
-            }
-            Lock.ReleaseReaderLock();
-            return count;
         }
     }
 }
