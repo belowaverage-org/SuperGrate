@@ -64,6 +64,9 @@ namespace SuperGrate
             miConDelete.SetMenuItemIcon(Properties.Resources.x);
             miConProperties.SetMenuItemIcon(Properties.Resources.user);
             miConStart.SetMenuItemIcon(Properties.Resources.go);
+
+
+
         }
         /// <summary>
         /// This event will fire when the main form has loaded.
