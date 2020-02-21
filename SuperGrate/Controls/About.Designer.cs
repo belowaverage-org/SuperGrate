@@ -87,7 +87,7 @@
             // logoPictureBox
             // 
             this.logoPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logoPictureBox.Image = global::SuperGrate.Properties.Resources.banner;
+            this.logoPictureBox.Image = global::SuperGrate.Properties.Resources.banner_png;
             this.logoPictureBox.Location = new System.Drawing.Point(0, 0);
             this.logoPictureBox.Margin = new System.Windows.Forms.Padding(0, 0, 6, 0);
             this.logoPictureBox.Name = "logoPictureBox";

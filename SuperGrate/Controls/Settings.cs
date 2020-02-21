@@ -13,10 +13,10 @@ namespace SuperGrate.Controls
         public Settings()
         {
             InitializeComponent();
-            Icon = Properties.Resources.settings;
-            btnSave.SetSystemIcon(Properties.Resources.save);
-            btnRevert.SetSystemIcon(Properties.Resources.reload);
-            btnApply.SetSystemIcon(Properties.Resources.x);
+            Icon = Properties.Resources.settings_ico;
+            btnSave.SetSystemIcon(Properties.Resources.save_ico);
+            btnRevert.SetSystemIcon(Properties.Resources.reload_ico);
+            btnApply.SetSystemIcon(Properties.Resources.x_ico);
         }
         /// <summary>
         /// This event fires when the settings form loads. The method calls RefreshSettings.
@@ -59,10 +59,10 @@ namespace SuperGrate.Controls
             Config.LoadConfig();
             RefreshSettings();
             string text = btnRevert.Text;
-            btnRevert.SetSystemIcon(Properties.Resources.check);
+            btnRevert.SetSystemIcon(Properties.Resources.check_ico);
             btnRevert.Text = " Loaded!";
             await Task.Delay(1000);
-            btnRevert.SetSystemIcon(Properties.Resources.reload);
+            btnRevert.SetSystemIcon(Properties.Resources.reload_ico);
             btnRevert.Text = text;
             btnRevert.Enabled = true;
         }
@@ -91,10 +91,10 @@ namespace SuperGrate.Controls
         {
             Config.SaveConfig();
             string text = btnSave.Text;
-            btnSave.SetSystemIcon(Properties.Resources.check);
+            btnSave.SetSystemIcon(Properties.Resources.check_ico);
             btnSave.Text = " Saved!";
             await Task.Delay(1000);
-            btnSave.SetSystemIcon(Properties.Resources.save);
+            btnSave.SetSystemIcon(Properties.Resources.save_ico);
             btnSave.Text = text;
         }
     }

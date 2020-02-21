@@ -14,8 +14,8 @@ namespace SuperGrate.Controls
         public UserProperties(UserRow Template, UserRow Row)
         {
             InitializeComponent();
-            Icon = Properties.Resources.user;
-            btnOK.SetSystemIcon(Properties.Resources.check);
+            Icon = Properties.Resources.user_ico;
+            btnOK.SetSystemIcon(Properties.Resources.check_ico);
             foreach (KeyValuePair<ULColumnType, string> property in Row)
             {
                 string name = "";

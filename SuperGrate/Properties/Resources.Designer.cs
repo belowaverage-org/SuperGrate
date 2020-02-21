@@ -63,9 +63,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap banner {
+        internal static System.Drawing.Bitmap banner_png {
             get {
-                object obj = ResourceManager.GetObject("banner", resourceCulture);
+                object obj = ResourceManager.GetObject("banner_png", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon cancel {
+        internal static System.Drawing.Icon cancel_ico {
             get {
-                object obj = ResourceManager.GetObject("cancel", resourceCulture);
+                object obj = ResourceManager.GetObject("cancel_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon check {
+        internal static System.Drawing.Icon check_ico {
             get {
-                object obj = ResourceManager.GetObject("check", resourceCulture);
+                object obj = ResourceManager.GetObject("check_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -93,30 +93,40 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon columns {
+        internal static System.Drawing.Icon columns_ico {
             get {
-                object obj = ResourceManager.GetObject("columns", resourceCulture);
+                object obj = ResourceManager.GetObject("columns_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap columns_png {
+            get {
+                object obj = ResourceManager.GetObject("columns_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon computer {
+        internal static System.Drawing.Icon go_ico {
             get {
-                object obj = ResourceManager.GetObject("computer", resourceCulture);
+                object obj = ResourceManager.GetObject("go_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Icon go {
+        internal static System.Drawing.Bitmap go_png {
             get {
-                object obj = ResourceManager.GetObject("go", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                object obj = ResourceManager.GetObject("go_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -143,9 +153,39 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon link {
+        internal static System.Drawing.Icon link_ico {
             get {
-                object obj = ResourceManager.GetObject("link", resourceCulture);
+                object obj = ResourceManager.GetObject("link_ico", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap link_png {
+            get {
+                object obj = ResourceManager.GetObject("link_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap move_png {
+            get {
+                object obj = ResourceManager.GetObject("move_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon question_32_ico {
+            get {
+                object obj = ResourceManager.GetObject("question_32_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -153,9 +193,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon move {
+        internal static System.Drawing.Icon question_ico {
             get {
-                object obj = ResourceManager.GetObject("move", resourceCulture);
+                object obj = ResourceManager.GetObject("question_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -163,9 +203,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon question {
+        internal static System.Drawing.Icon reload_ico {
             get {
-                object obj = ResourceManager.GetObject("question", resourceCulture);
+                object obj = ResourceManager.GetObject("reload_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -173,49 +213,49 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon question_32 {
+        internal static System.Drawing.Icon save_ico {
             get {
-                object obj = ResourceManager.GetObject("question_32", resourceCulture);
+                object obj = ResourceManager.GetObject("save_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap save_png {
+            get {
+                object obj = ResourceManager.GetObject("save_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon reload {
+        internal static System.Drawing.Icon settings_ico {
             get {
-                object obj = ResourceManager.GetObject("reload", resourceCulture);
+                object obj = ResourceManager.GetObject("settings_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_png {
+            get {
+                object obj = ResourceManager.GetObject("settings_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon save {
+        internal static System.Drawing.Icon supergrate_ico {
             get {
-                object obj = ResourceManager.GetObject("save", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon settings {
-            get {
-                object obj = ResourceManager.GetObject("settings", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
-        /// </summary>
-        internal static System.Drawing.Icon supergrate {
-            get {
-                object obj = ResourceManager.GetObject("supergrate", resourceCulture);
+                object obj = ResourceManager.GetObject("supergrate_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -233,9 +273,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon trash_16_32 {
+        internal static System.Drawing.Icon trash_16_32_ico {
             get {
-                object obj = ResourceManager.GetObject("trash_16_32", resourceCulture);
+                object obj = ResourceManager.GetObject("trash_16_32_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -243,9 +283,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon user {
+        internal static System.Drawing.Icon user_32_ico {
             get {
-                object obj = ResourceManager.GetObject("user", resourceCulture);
+                object obj = ResourceManager.GetObject("user_32_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -253,10 +293,20 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon user_32 {
+        internal static System.Drawing.Icon user_ico {
             get {
-                object obj = ResourceManager.GetObject("user_32", resourceCulture);
+                object obj = ResourceManager.GetObject("user_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_png {
+            get {
+                object obj = ResourceManager.GetObject("user_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -273,9 +323,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon users {
+        internal static System.Drawing.Icon users_ico {
             get {
-                object obj = ResourceManager.GetObject("users", resourceCulture);
+                object obj = ResourceManager.GetObject("users_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }
@@ -283,9 +333,9 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap working {
+        internal static System.Drawing.Bitmap working_gif {
             get {
-                object obj = ResourceManager.GetObject("working", resourceCulture);
+                object obj = ResourceManager.GetObject("working_gif", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,10 +343,20 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon x {
+        internal static System.Drawing.Icon x_ico {
             get {
-                object obj = ResourceManager.GetObject("x", resourceCulture);
+                object obj = ResourceManager.GetObject("x_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap x_png {
+            get {
+                object obj = ResourceManager.GetObject("x_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

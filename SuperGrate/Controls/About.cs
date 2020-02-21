@@ -17,9 +17,9 @@ namespace SuperGrate.Controls
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = AssemblyCompany;
             textBoxDescription.Text = AssemblyDescription;
-            pbLogo.Image = Properties.Resources.supergrate.ToBitmapAlpha(64, 64);
-            okButton.SetSystemIcon(Properties.Resources.check);
-            btnGithub.SetSystemIcon(Properties.Resources.link);
+            pbLogo.Image = Properties.Resources.supergrate_ico.ToBitmapAlpha(64, 64);
+            okButton.SetSystemIcon(Properties.Resources.check_ico);
+            btnGithub.SetSystemIcon(Properties.Resources.link_ico);
         }
 
         #region Assembly Attribute Accessors

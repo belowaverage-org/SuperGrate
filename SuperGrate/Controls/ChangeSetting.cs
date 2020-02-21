@@ -14,10 +14,10 @@ namespace SuperGrate.Controls
         public ChangeSetting(string SettingToChange)
         {
             InitializeComponent();
-            Icon = Properties.Resources.settings;
-            btnCancel.SetSystemIcon(Properties.Resources.cancel);
-            btnSave.SetSystemIcon(Properties.Resources.check);
-            btnRestoreDefault.SetSystemIcon(Properties.Resources.reload);
+            Icon = Properties.Resources.settings_ico;
+            btnCancel.SetSystemIcon(Properties.Resources.cancel_ico);
+            btnSave.SetSystemIcon(Properties.Resources.check_ico);
+            btnRestoreDefault.SetSystemIcon(Properties.Resources.reload_ico);
             Setting = SettingToChange;
         }
         /// <summary>

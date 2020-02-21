@@ -43,31 +43,27 @@ namespace SuperGrate
             LoggerBox = LogBox;
             Progress = pbMain;
             listUsers.Tag = new string[0];
-            Icon = Properties.Resources.supergrate;
+            Icon = Properties.Resources.supergrate_ico;
             Text = About.AssemblyTitle;
-            btnListSource.SetSystemIcon(Properties.Resources.users);
+            btnListSource.SetSystemIcon(Properties.Resources.users_ico);
             btnListStore.SetSystemIcon(Properties.Resources.usercheck);
-            btnDelete.SetSystemIcon(Properties.Resources.x);
+            btnDelete.SetSystemIcon(Properties.Resources.x_ico);
             miAboutSG.SetMenuItemBitmap(Properties.Resources.info_png);
-            /*miDocumentation.SetMenuItemIcon(Properties.Resources.link);
-            miIssues.SetMenuItemIcon(Properties.Resources.link);
-            miAddRemoveCol.SetMenuItemIcon(Properties.Resources.columns);
-            miAboutSG.SetMenuItemIcon(Properties.Resources.info);
-            miSettings.SetMenuItemIcon(Properties.Resources.settings);
-            miSaveLog.SetMenuItemIcon(Properties.Resources.save);
-            miExitButton.SetMenuItemIcon(Properties.Resources.x);
-            miNewInstance.SetMenuItemIcon(Properties.Resources.move);*/
+            miNewInstance.SetMenuItemBitmap(Properties.Resources.move_png);
+            miAddRemoveCol.SetMenuItemBitmap(Properties.Resources.columns_png);
+            miIssues.SetMenuItemBitmap(Properties.Resources.link_png);
+            miDocumentation.SetMenuItemBitmap(Properties.Resources.link_png);
+            miExitButton.SetMenuItemBitmap(Properties.Resources.x_png);
+            miConDelete.SetMenuItemBitmap(Properties.Resources.x_png);
+            miSettings.SetMenuItemBitmap(Properties.Resources.settings_png);
+            miSaveLog.SetMenuItemBitmap(Properties.Resources.save_png);
+            miConProperties.SetMenuItemBitmap(Properties.Resources.user_png);
+            miConStart.SetMenuItemBitmap(Properties.Resources.go_png);
             listUsers.SmallImageList = new ImageList();
-            listUsers.SmallImageList.Images.Add("user", Properties.Resources.user.ToBitmap());
+            listUsers.SmallImageList.Images.Add("user", Properties.Resources.user_ico.ToBitmap());
             listUsers.LargeImageList = new ImageList();
             listUsers.LargeImageList.ImageSize = new Size(32, 32);
-            listUsers.LargeImageList.Images.Add("user", Properties.Resources.user_32.ToBitmap());
-            /*miConDelete.SetMenuItemIcon(Properties.Resources.x);
-            miConProperties.SetMenuItemIcon(Properties.Resources.user);
-            miConStart.SetMenuItemIcon(Properties.Resources.go);*/
-
-
-
+            listUsers.LargeImageList.Images.Add("user", Properties.Resources.user_32_ico.ToBitmap());
         }
         /// <summary>
         /// This event will fire when the main form has loaded.
@@ -139,7 +135,7 @@ namespace SuperGrate
                 if (value != RunningTask.None)
                 {
                     btnStartStop.Text = " &Stop";
-                    btnStartStop.SetSystemIcon(Properties.Resources.cancel);
+                    btnStartStop.SetSystemIcon(Properties.Resources.cancel_ico);
                     Cursor = Cursors.AppStarting;
                     Logger.UpdateProgress(true);
                     Misc.MainMenuSetState(MainMenu, false, new string[] { "&View" });
@@ -162,7 +158,7 @@ namespace SuperGrate
                 else
                 {
                     btnStartStop.Text = " &Start";
-                    btnStartStop.SetSystemIcon(Properties.Resources.go);
+                    btnStartStop.SetSystemIcon(Properties.Resources.go_ico);
                     Cursor = Cursors.Default;
                     Logger.UpdateProgress(false);
                     Misc.MainMenuSetState(MainMenu, true);
@@ -331,11 +327,11 @@ namespace SuperGrate
             ConfirmDialog confirm = null;
             if (selectedCount == 1)
             {
-                confirm = new ConfirmDialog("Delete User", "Are you sure you want to delete this user?", Properties.Resources.trash_16_32);
+                confirm = new ConfirmDialog("Delete User", "Are you sure you want to delete this user?", Properties.Resources.trash_16_32_ico);
             }
             else
             {
-                confirm = new ConfirmDialog("Delete Users", "Are you sure you want to delete these " + selectedCount + " users?", Properties.Resources.trash_16_32);
+                confirm = new ConfirmDialog("Delete Users", "Are you sure you want to delete these " + selectedCount + " users?", Properties.Resources.trash_16_32_ico);
             }
             confirm.ShowDialog();
             if (confirm.DialogResult != DialogResult.OK) return;
@@ -634,6 +630,7 @@ namespace SuperGrate
         /// </summary>
         private void miView_Popup(object sender, EventArgs e)
         {
+            ((Menu)sender).DrawMenuItemBitmaps();
             View ViewMode = ULControl.ParseViewMode(Config.Settings["ULViewMode"]);
             foreach (MenuItem mi in miView.MenuItems) mi.Checked = false;
             if (ViewMode == View.Details) miViewDetail.Checked = true;
@@ -682,6 +679,10 @@ namespace SuperGrate
                 }
                 miConUser.Show((Control)sender, e.Location);
             }
+        }
+        private void Menu_Popup(object sender, EventArgs e)
+        {
+            ((Menu)sender).DrawMenuItemBitmaps();
         }
     }
     /// <summary>

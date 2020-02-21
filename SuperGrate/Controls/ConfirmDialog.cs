@@ -14,13 +14,13 @@ namespace SuperGrate.Controls
         public ConfirmDialog(string DialogTitle, string DialogDescription = null, Icon DialogIcon = null)
         {
             InitializeComponent();
-            btnAccept.SetSystemIcon(Properties.Resources.check);
-            btnCancel.SetSystemIcon(Properties.Resources.cancel);
+            btnAccept.SetSystemIcon(Properties.Resources.check_ico);
+            btnCancel.SetSystemIcon(Properties.Resources.cancel_ico);
             if (DialogDescription == null) DialogDescription = DialogTitle;
             if (DialogIcon == null)
             {
-                Icon = Properties.Resources.question;
-                pbIcon.Image = Properties.Resources.question_32.ToBitmapAlpha(32, 32);
+                Icon = Properties.Resources.question_ico;
+                pbIcon.Image = Properties.Resources.question_32_ico.ToBitmapAlpha(32, 32);
             }
             else
             {

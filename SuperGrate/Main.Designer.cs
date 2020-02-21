@@ -364,7 +364,7 @@
             this.imgLoadLogo.Enabled = false;
             this.helpProvider.SetHelpString(this.imgLoadLogo, "This picture illustrates the inner workings of Super Grate. Presented here is an " +
         "acturate representation of the currently running Super Grate processes.");
-            this.imgLoadLogo.Image = global::SuperGrate.Properties.Resources.working;
+            this.imgLoadLogo.Image = global::SuperGrate.Properties.Resources.working_gif;
             this.imgLoadLogo.Location = new System.Drawing.Point(1, 1);
             this.imgLoadLogo.Margin = new System.Windows.Forms.Padding(0);
             this.imgLoadLogo.Name = "imgLoadLogo";
@@ -458,6 +458,7 @@
             this.miSpacer3,
             this.miExitButton});
             this.miFile.Text = "&File";
+            this.miFile.Popup += new System.EventHandler(this.Menu_Popup);
             // 
             // miNewInstance
             // 
@@ -574,6 +575,7 @@
             this.miSpacer2,
             this.miAboutSG});
             this.miHelp.Text = "&Help";
+            this.miHelp.Popup += new System.EventHandler(this.Menu_Popup);
             // 
             // miDocumentation
             // 
@@ -624,6 +626,7 @@
             this.miConDelete,
             this.miConSeperator,
             this.miConProperties});
+            this.miConUser.Popup += new System.EventHandler(this.Menu_Popup);
             // 
             // miConStart
             // 
