@@ -10,15 +10,31 @@
 </h3>
 
 <h1></h1>
-  <p align="center">
+
+<p align="center">
   <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/promo.png">
-  </p>
+</p>
+
 <h1></h1>
-  </p>
-  <h2>Getting Started</h2>
-  <p>Getting started with Super Grate is super easy! Simply <a href="https://github.com/belowaverage-org/SuperGrate/releases">download</a> the installer, run the setup wizard, and begin migrating user profiles! </p>
-  <p>There are no prerequisites, Super Grate will automatically download any nessesary components from this repository.</p>
-  <h2>Configuration</h2>
+
+<h2>Getting Started</h2>
+<p>Getting started with Super Grate is super easy! Simply <a href="https://github.com/belowaverage-org/SuperGrate/releases">download</a> the installer, run the setup wizard, and begin migrating user profiles! </p>
+<p>There are no prerequisites, Super Grate will automatically download any nessesary components from this repository.</p>
+
+<h2>Screen Shots</h2>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-02-21%20094109.png">
+  <br><br>
+  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-02-21%20095111.png">
+  <br><br>
+  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-02-21%20095207.png">
+  <br><br>
+  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-02-21%20095327.png">
+  <br><br>
+  <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-02-21%20095554.png">
+</p>
+
+<h2>Configuration</h2>
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
