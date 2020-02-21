@@ -27,7 +27,11 @@ If applicable, add screenshots to help explain your problem.
 ```
 Please paste logs here in a code block.
 
+**IMPORTANT**
+
 To retrieve the logs, click "File", the select "Save log..." Copy the contents of the log file and paste it here.
+Refrain from copying and pasting the log from the console since it does not output verbose information.
+
 ```
 
 **Additional context**
