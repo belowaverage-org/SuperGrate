@@ -123,10 +123,20 @@ namespace SuperGrate.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon info {
+        internal static System.Drawing.Icon info_ico {
             get {
-                object obj = ResourceManager.GetObject("info", resourceCulture);
+                object obj = ResourceManager.GetObject("info_ico", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap info_png {
+            get {
+                object obj = ResourceManager.GetObject("info_png", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

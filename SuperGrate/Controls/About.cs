@@ -10,7 +10,7 @@ namespace SuperGrate.Controls
         public About()
         {
             InitializeComponent();
-            Icon = Properties.Resources.info;
+            Icon = Properties.Resources.info_ico;
             Text = String.Format("About {0}", AssemblyTitle);
             labelProductName.Text = AssemblyProduct;
             labelVersion.Text = String.Format("Version {0}", AssemblyVersion);

@@ -48,22 +48,23 @@ namespace SuperGrate
             btnListSource.SetSystemIcon(Properties.Resources.users);
             btnListStore.SetSystemIcon(Properties.Resources.usercheck);
             btnDelete.SetSystemIcon(Properties.Resources.x);
-            miDocumentation.SetMenuItemIcon(Properties.Resources.link);
+            miAboutSG.SetMenuItemBitmap(Properties.Resources.info_png);
+            /*miDocumentation.SetMenuItemIcon(Properties.Resources.link);
             miIssues.SetMenuItemIcon(Properties.Resources.link);
             miAddRemoveCol.SetMenuItemIcon(Properties.Resources.columns);
             miAboutSG.SetMenuItemIcon(Properties.Resources.info);
             miSettings.SetMenuItemIcon(Properties.Resources.settings);
             miSaveLog.SetMenuItemIcon(Properties.Resources.save);
             miExitButton.SetMenuItemIcon(Properties.Resources.x);
-            miNewInstance.SetMenuItemIcon(Properties.Resources.move);
+            miNewInstance.SetMenuItemIcon(Properties.Resources.move);*/
             listUsers.SmallImageList = new ImageList();
             listUsers.SmallImageList.Images.Add("user", Properties.Resources.user.ToBitmap());
             listUsers.LargeImageList = new ImageList();
             listUsers.LargeImageList.ImageSize = new Size(32, 32);
             listUsers.LargeImageList.Images.Add("user", Properties.Resources.user_32.ToBitmap());
-            miConDelete.SetMenuItemIcon(Properties.Resources.x);
+            /*miConDelete.SetMenuItemIcon(Properties.Resources.x);
             miConProperties.SetMenuItemIcon(Properties.Resources.user);
-            miConStart.SetMenuItemIcon(Properties.Resources.go);
+            miConStart.SetMenuItemIcon(Properties.Resources.go);*/
 
 
 

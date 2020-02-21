@@ -14,6 +14,8 @@ namespace SuperGrate
         private static extern bool DrawIconEx(IntPtr hdc, int xLeft, int yTop, IntPtr hIcon, int cxWidth, int cyHeight, int istepIfAniCur, IntPtr hbrFlickerFreeDraw, int diFlags);
         [DllImport("gdi32.dll")]
         private static extern IntPtr CreateSolidBrush(uint crColor);
+        [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        static extern IntPtr LoadImage(IntPtr hinst, string lpszName, uint uType, int cxDesired, int cyDesired, uint fuLoad);
         [DllImport("user32.dll")]
         private static extern bool SetMenuItemInfo(IntPtr hMenu, uint uItem, bool fByPosition, [In] ref MENUITEMINFO lpmii);
         private static Dictionary<IntPtr, IntPtr[]> MenuItemIcons = new Dictionary<IntPtr, IntPtr[]>();
@@ -26,14 +28,15 @@ namespace SuperGrate
         {
             SendMessage(Button.Handle, 0xf7, (IntPtr)1, new Icon(Icon, Width, Height).Handle);
         }
-        public static void SetMenuItemIcon(this MenuItem MenuItem, Icon Icon)
+        public static void SetMenuItemBitmap(this MenuItem MenuItem, Image Image)
         {
-            //https://stackoverflow.com/questions/19322926/loading-image-onto-menuitem-is-losing-transparency-on-pre-multiplied-alpha-image
+            Bitmap bitmap = new Bitmap(Image.Width, Image.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+            Graphics g = Graphics.FromImage(bitmap);
+            g.DrawImage(Image, 0, 0, Image.Width, Image.Height);
             MENUITEMINFO mii = new MENUITEMINFO();
-            IntPtr hBitmap = Icon.ToBitmapAlpha(16, 16, SystemColors.Control).GetHbitmap();
             mii.cbSize = (uint)Marshal.SizeOf(typeof(MENUITEMINFO));
             mii.fMask = 0x80u;
-            mii.hbmpItem = hBitmap;
+            mii.hbmpItem = bitmap.GetHbitmap(Color.FromArgb(0,0,0,0));
             SetMenuItemInfo(MenuItem.Parent.Handle, (uint)MenuItem.Index, true, ref mii);
         }
         public static Bitmap ToBitmapAlpha(this Icon Icon, int Width, int Height, Color Background)
