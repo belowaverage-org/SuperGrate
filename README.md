@@ -1,8 +1,7 @@
 <p align="center">
   <img height="74" src="https://raw.githubusercontent.com/krisdb2009/documentation/master/images/supersweet.png">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img height="80" src="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrate/Images/supergrate.ico">
-  <br><br><p>
+<p>
+<h3 align="center">Super Grate - USMT GUI / Remote User Migration / Backup </h3>
 <h1 align="center">
   <img src="https://belowaverage.visualstudio.com/SuperGrate/_apis/build/status/belowaverage-org.SuperGrate?branchName=master"><br><br>
 </h1>
@@ -15,20 +14,10 @@
   <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/promo.png">
   </p>
 <h1></h1>
-
-<b>Super Grate</b> is a tool part of the Super Suite that can perform remote execution of Microsoft's USMT (User State Migration Tool) on any domain joined PC, or local execution on any non-joined PC.
   </p>
   <h2>Getting Started</h2>
   <p>Getting started with Super Grate is super easy! Simply <a href="https://github.com/belowaverage-org/SuperGrate/releases">download</a> the installer, run the setup wizard, and begin migrating user profiles! </p>
   <p>There are no prerequisites, Super Grate will automatically download any nessesary components from this repository.</p>
-  <h2>Features</h2>
-  <ul>
-    <li>Simple GUI</li>
-    <li>Configurable</li>
-    <li>Works on Domain Joined and Non-Joined PCs</li>
-    <li>Unified Backup Store</li>
-    <li>Works remotely over a network</li>
-  </ul>
   <h2>Configuration</h2>
 
 ```xml
