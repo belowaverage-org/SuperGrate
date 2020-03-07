@@ -272,11 +272,15 @@ namespace SuperGrate
         {
             if (listUsers.SelectedIndices.Count == 0 || (tbDestinationComputer.Text == "" && CurrentListSource == ListSources.MigrationStore))
             {
-                btnStartStop.Enabled = false;
+                btnStartStop.Enabled = 
+                miConStart.Enabled = 
+                false;
             }
             else
             {
-                btnStartStop.Enabled = true;
+                btnStartStop.Enabled =
+                miConStart.Enabled =
+                true;
             }
             if (listUsers.SelectedIndices.Count != 0)
             {
