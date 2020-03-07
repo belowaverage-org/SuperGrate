@@ -66,6 +66,7 @@ namespace SuperGrate
                 if (Canceled || DetectedArch == null) return false;
                 Failed = !await CopyUSMT();
                 if (Canceled || Failed) return false;
+                Logger.UpdateProgress(0);
                 foreach (string ID in IDs)
                 {
                     if(Canceled || Failed) break;
@@ -97,6 +98,7 @@ namespace SuperGrate
                     StartWatchLog("SuperGrate.progress");
                     Failed = !await WaitForUsmtExit(exec.Replace(".exe", ""));
                     if (Canceled || Failed) break;
+                    Logger.UpdateProgress(0);
                     if (Mode == USMTMode.LoadState)
                     {
                         Failed = !await SetStoreExportParameters(ID);
@@ -107,6 +109,7 @@ namespace SuperGrate
                         Failed = !await UploadToStore(SID);
                         if (Canceled || Failed) break;
                     }
+                    Logger.UpdateProgress(0);
                 }
                 Failed = !await CleaupUSMT();
                 if(Canceled || Failed)
