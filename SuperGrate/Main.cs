@@ -399,7 +399,9 @@ namespace SuperGrate
             DateTime.Now.ToLongTimeString().Replace(':', '-');
             if (dialogSaveLog.ShowDialog() == DialogResult.OK)
             {
+                Logger.Information("Writing log to: " + dialogSaveLog.FileName + "...");
                 await Logger.WriteLogToFile(dialogSaveLog.OpenFile());
+                Logger.Success("Log written successfully.");
             }
         }
         /// <summary>
