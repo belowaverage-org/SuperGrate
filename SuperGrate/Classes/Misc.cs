@@ -168,7 +168,13 @@ namespace SuperGrate
                 if (row.ContainsKey(ULColumnType.LastModified) || row.ContainsKey(ULColumnType.Size) || row.ContainsKey(ULColumnType.FirstCreated))
                 {
                     RegistryKey profileReg = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\" + SID, false);
-                    string profilePath = ((string)profileReg.GetValue("ProfileImagePath")).Replace(@"C:\", GetBestPathToC(Host));
+                    string profilePathReg = (string)profileReg.GetValue("ProfileImagePath");
+                    if (profilePathReg == null)
+                    {
+                        Logger.Verbose("Skipped SID with no profile directory: " + SID + ".");
+                        return null;
+                    }
+                    string profilePath = profilePathReg.Replace(@"C:\", GetBestPathToC(Host));
                     if (row.ContainsKey(ULColumnType.Size))
                     {
                         Logger.Information("Calculating profile size for: " + user + "...");
