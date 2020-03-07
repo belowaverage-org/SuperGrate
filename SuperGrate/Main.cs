@@ -416,6 +416,8 @@ namespace SuperGrate
             }
             else if(Config.Settings["DumpLogHereOnExit"] != "")
             {
+                e.Cancel = true;
+                Logger.Information("Writing log to: " + Config.Settings["DumpLogHereOnExit"] + "...");
                 string fileName =
                 "SuperGrate_" +
                 Environment.UserName + "_" +
@@ -429,10 +431,11 @@ namespace SuperGrate
                         Directory.CreateDirectory(Config.Settings["DumpLogHereOnExit"]);
                     }
                     await Logger.WriteLogToFile(File.OpenWrite(Path.Combine(Config.Settings["DumpLogHereOnExit"], fileName)));
+                    Config.Settings["DumpLogHereOnExit"] = "";
+                    Close();
                 }
                 catch(Exception exc)
                 {
-                    e.Cancel = true;
                     Logger.Exception(exc, "Failed to write log file to disk.");
                 }
             }
