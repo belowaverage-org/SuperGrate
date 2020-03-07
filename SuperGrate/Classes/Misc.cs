@@ -28,11 +28,12 @@ namespace SuperGrate
         /// <returns>True if is this machine, false if otherwise.</returns>
         public static bool IsHostThisMachine(string Host)
         {
-            if(Host.ToLower() == Environment.MachineName.ToLower())
+            if (Host == "127.0.0.1" || Host == "::1" || Host.ToLower() == "localhost") return true;
+            if (Host.ToLower() == Environment.MachineName.ToLower())
             {
                 return true;
             }
-            if(Host.Split('.').Length > 0 && Host.Split('.')[0].ToLower() == Environment.MachineName.ToLower())
+            if (Host.Split('.').Length > 0 && Host.Split('.')[0].ToLower() == Environment.MachineName.ToLower())
             {
                 return true;
             }
@@ -61,7 +62,7 @@ namespace SuperGrate
         /// <returns>Either "C:\" or "\\HOST\C$\".</returns>
         public static string GetBestPathToC(string Host)
         {
-            if(IsHostThisMachine(Host))
+            if (IsHostThisMachine(Host))
             {
                 return @"C:\";
             }
@@ -89,7 +90,7 @@ namespace SuperGrate
                     LocalSIDToUser.Add((string)manObj["SID"], (string)manObj["Caption"]);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.Exception(e, "Failed to get a list of Local Users' SIDs from host: " + Host + ".");
             }
@@ -105,9 +106,9 @@ namespace SuperGrate
             {
                 return new SecurityIdentifier(Identity).Translate(typeof(NTAccount)).ToString();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                if(LocalSIDToUser.ContainsKey(Identity) && LocalSIDToUser[Identity] != "")
+                if (LocalSIDToUser.ContainsKey(Identity) && LocalSIDToUser[Identity] != "")
                 {
                     return LocalSIDToUser[Identity];
                 }
@@ -115,7 +116,7 @@ namespace SuperGrate
                 if (File.Exists(fNTAccount))
                 {
                     string NTAccount = File.ReadAllText(fNTAccount);
-                    if(NTAccount != "")
+                    if (NTAccount != "")
                     {
                         return NTAccount;
                     }
@@ -205,7 +206,7 @@ namespace SuperGrate
                     RegistryKey key = remoteReg.OpenSubKey(@"SYSTEM\ControlSet001\Control\ComputerName\ComputerName");
                     return (string)key.GetValue("ComputerName");
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Logger.Exception(e, "Failed to get computer name from: " + Host);
                     return null;
@@ -287,7 +288,7 @@ namespace SuperGrate
                         return null;
                     }
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Logger.Exception(e, "Failed to get SID from store ID: " + ID);
                     return null;
@@ -360,7 +361,7 @@ namespace SuperGrate
                     foreach (DirectoryInfo directory in directories)
                     {
                         UserRow row = await GetUserFromStore(ULControl.CurrentHeaderRow, directory.Name);
-                        if(row == null)
+                        if (row == null)
                         {
                             Logger.Warning("Skipping ID: " + directory.Name);
                             continue;
@@ -444,7 +445,7 @@ namespace SuperGrate
                     File.Delete(exePath);
                     Logger.Success("Done.");
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Logger.Exception(e, "Failed to delete user(s) from target: " + Host + ".");
                 }
