@@ -87,26 +87,25 @@ namespace SuperGrate
             if (Main.Form.IsDisposed) return;
             int Percent = (int)Math.Round(((double)Value / (double)Max) * 100, 0);
             Main.Form.Invoke(new Action(() => {
-                if(Percent <= 100 && Percent >= 0)
+                if(Percent < 100 && Percent > 0)
                 {
-                    UpdateProgress(false);
+                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
+                    Main.Progress.Style = ProgressBarStyle.Continuous;
                     TaskbarManager.Instance.SetProgressValue(Percent, 100);
                     Main.Progress.Value = Percent;
                 }
+                else if(Percent < 0)
+                {
+                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
+                    Main.Progress.Style = ProgressBarStyle.Continuous;
+                    Main.Progress.Value = 0;
+                }
+                else
+                {
+                    TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Indeterminate);
+                    Main.Progress.Style = ProgressBarStyle.Marquee;
+                }
             }));
-        }
-        public static void UpdateProgress(bool Marquee = true)
-        {
-            if (Main.Form.IsDisposed) return;
-            if (Marquee) { 
-                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Indeterminate);
-                Main.Progress.Style = ProgressBarStyle.Marquee;
-            }
-            else
-            {
-                TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.Normal);
-                Main.Progress.Style = ProgressBarStyle.Continuous;
-            }
         }
         public static Task WriteLogToFile(Stream fs)
         {

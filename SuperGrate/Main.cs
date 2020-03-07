@@ -131,13 +131,12 @@ namespace SuperGrate
                 return storeRunningTask;
             }
             set {
-                Logger.UpdateProgress(0);
                 if (value != RunningTask.None)
                 {
+                    Logger.UpdateProgress(0);
                     btnStartStop.Text = " &Stop";
                     btnStartStop.SetSystemIcon(Properties.Resources.cancel_ico);
                     Cursor = Cursors.AppStarting;
-                    Logger.UpdateProgress(true);
                     Misc.MainMenuSetState(MainMenu, false, new string[] { "&View" });
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = 
@@ -157,10 +156,10 @@ namespace SuperGrate
                 }
                 else
                 {
+                    Logger.UpdateProgress(-1);
                     btnStartStop.Text = " &Start";
                     btnStartStop.SetSystemIcon(Properties.Resources.go_ico);
                     Cursor = Cursors.Default;
-                    Logger.UpdateProgress(false);
                     Misc.MainMenuSetState(MainMenu, true);
                     storeRunningTask = value;
                     imgLoadLogo.Enabled = false;
