@@ -89,6 +89,7 @@ namespace SuperGrate.Controls
         /// </summary>
         private async void BtnSave_Click(object sender, EventArgs e)
         {
+            btnSave.Enabled = false;
             Config.SaveConfig();
             string text = btnSave.Text;
             btnSave.SetSystemIcon(Properties.Resources.check_ico);
@@ -96,6 +97,7 @@ namespace SuperGrate.Controls
             await Task.Delay(1000);
             btnSave.SetSystemIcon(Properties.Resources.save_ico);
             btnSave.Text = text;
+            btnSave.Enabled = true;
         }
     }
 }
