@@ -479,7 +479,7 @@ namespace SuperGrate
         /// </summary>
         /// <param name="Host">Host to get the architecture information from.</param>
         /// <returns>CPU architecture.</returns>
-        public static Task<string> GetRemoteArch(string Host)
+        public static Task<OSArchitecture> GetRemoteArch(string Host)
         {
             Logger.Information("Reading OS Architecture...");
             return Task.Run(() => {
@@ -492,7 +492,9 @@ namespace SuperGrate
                     ManagementObjectCollection collection = searcher.Get();
                     foreach (ManagementObject manObj in collection)
                     {
-                        string arch = (string)manObj["OSArchitecture"];
+                        string rawArch = (string)manObj["OSArchitecture"];
+                        OSArchitecture arch = OSArchitecture.X86;
+                        if (rawArch.Contains("64")) arch = OSArchitecture.X64;
                         Logger.Information("OS Architecture is: " + arch + ".");
                         return arch;
                     }
@@ -501,7 +503,7 @@ namespace SuperGrate
                 {
                     Logger.Exception(e, "Failed to read the OS Architecture from host: " + Host + ".");
                 }
-                return null;
+                return OSArchitecture.Unknown;
             });
         }
         /// <summary>
@@ -519,6 +521,12 @@ namespace SuperGrate
                 if (Menus != null && !lMenus.Contains(mi.Text)) continue;
                 mi.Enabled = Enabled;
             }
+        }
+        public enum OSArchitecture
+        {
+            Unknown = 0,
+            X86 = 1,
+            X64 = 2
         }
     }
 }

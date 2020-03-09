@@ -12,7 +12,7 @@ namespace SuperGrate
         private static bool Failed = false;
         private static bool Running = false;
         private static string CurrentTarget = "";
-        private static string DetectedArch = null;
+        private static Misc.OSArchitecture DetectedArch = Misc.OSArchitecture.Unknown;
         private static string PayloadPathLocal
         {
             get {
@@ -32,11 +32,11 @@ namespace SuperGrate
         {
             get
             {
-                if(DetectedArch == "64-bit")
+                if(DetectedArch == Misc.OSArchitecture.X64)
                 {
                     return Config.Settings["USMTPathX64"];
                 }
-                if(DetectedArch == "32-bit")
+                if(DetectedArch == Misc.OSArchitecture.X64)
                 {
                     return Config.Settings["USMTPathX86"];
                 }
@@ -63,7 +63,7 @@ namespace SuperGrate
             }
             return Task.Run(async () => {
                 DetectedArch = await Misc.GetRemoteArch(CurrentTarget);
-                if (Canceled || DetectedArch == null) return false;
+                if (Canceled || DetectedArch == Misc.OSArchitecture.Unknown) return false;
                 Failed = !await CopyUSMT();
                 if (Canceled || Failed) return false;
                 Logger.UpdateProgress(0);
@@ -274,12 +274,12 @@ namespace SuperGrate
                         Directory.CreateDirectory(USMTPath);
                     }
                     string dlPath = Path.Combine(USMTPath, "USMT.zip");
-                    if (DetectedArch == "64-bit")
+                    if (DetectedArch == Misc.OSArchitecture.X64)
                     {
                         success = await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", dlPath).Start();
                         if (!success) throw new Exception("Download failure.");
                     }
-                    else if (DetectedArch == "32-bit")
+                    else if (DetectedArch == Misc.OSArchitecture.X86)
                     {
                         success = await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x86.zip", dlPath).Start();
                         if (!success) throw new Exception("Download failure.");
