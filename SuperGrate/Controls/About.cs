@@ -106,5 +106,9 @@ namespace SuperGrate.Controls
         {
             Process.Start("https://github.com/belowaverage-org/SuperGrate");
         }
+        private void About_Load(object sender, EventArgs e)
+        {
+            textBoxDescription.Text += "\r\n\r\nBuild Hash: " + Updater.CalculateVersionID();
+        }
     }
 }

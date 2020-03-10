@@ -82,6 +82,8 @@
             this.miConDelete = new System.Windows.Forms.MenuItem();
             this.miConSeperator = new System.Windows.Forms.MenuItem();
             this.miConProperties = new System.Windows.Forms.MenuItem();
+            this.miUpdateCheck = new System.Windows.Forms.MenuItem();
+            this.miSeperator55 = new System.Windows.Forms.MenuItem();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -573,7 +575,9 @@
             this.miSpacer1,
             this.miHelpButton,
             this.miSpacer2,
-            this.miAboutSG});
+            this.miAboutSG,
+            this.miSeperator55,
+            this.miUpdateCheck});
             this.miHelp.Text = "&Help";
             this.miHelp.Popup += new System.EventHandler(this.Menu_Popup);
             // 
@@ -650,6 +654,16 @@
             this.miConProperties.Index = 3;
             this.miConProperties.Text = "Properties";
             this.miConProperties.Click += new System.EventHandler(this.OpenUserProperties_Event);
+            // 
+            // miUpdateCheck
+            // 
+            this.miUpdateCheck.Index = 7;
+            this.miUpdateCheck.Text = "Check for updates...";
+            // 
+            // miSeperator55
+            // 
+            this.miSeperator55.Index = 6;
+            this.miSeperator55.Text = "-";
             // 
             // Main
             // 
@@ -741,6 +755,8 @@
         private System.Windows.Forms.MenuItem miConDelete;
         private System.Windows.Forms.MenuItem miConSeperator;
         private System.Windows.Forms.MenuItem miConProperties;
+        private System.Windows.Forms.MenuItem miSeperator55;
+        private System.Windows.Forms.MenuItem miUpdateCheck;
     }
 }
 

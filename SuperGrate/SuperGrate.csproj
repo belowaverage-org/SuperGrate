@@ -12,7 +12,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
+    <Deterministic>false</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
@@ -111,6 +111,7 @@
     <Compile Include="Classes\Misc.cs" />
     <Compile Include="Classes\Remote.cs" />
     <Compile Include="Classes\SystemMenu.cs" />
+    <Compile Include="Classes\Updater.cs" />
     <Compile Include="Classes\UserList.cs" />
     <Compile Include="Classes\USMT.cs" />
     <Compile Include="Classes\Win32Interop.cs" />
