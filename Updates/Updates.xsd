@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+  attributeFormDefault="unqualified"
+  elementFormDefault="qualified"
+  targetNamespace="http://tempuri.org/XMLSchema.xsd"
+  xmlns="http://tempuri.org/XMLSchema.xsd"
+  xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="SuperGrate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Settings">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Redirect">
+                <xs:complexType>
+                  <xs:attribute name="RedirectURL" type="xs:string" use="required" />
+                  <xs:attribute name="UpdaterVersion" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="UpdateChannels">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="Type">
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Updates">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Update">
+                <xs:complexType>
+                  <xs:attribute name="Version" type="xs:string" use="required" />
+                  <xs:attribute name="Date" type="xs:string" use="required" />
+                  <xs:attribute name="BuildHash" type="xs:string" use="required" />
+                  <xs:attribute name="Channel" type="xs:string" use="required" />
+                  <xs:attribute name="DownloadURL" type="xs:string" use="required" />
+                  <xs:attribute name="ReleaseURL" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="UpdaterVersion" type="xs:unsignedByte" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
