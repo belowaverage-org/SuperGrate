@@ -2,9 +2,9 @@
 <xs:schema
   attributeFormDefault="unqualified"
   elementFormDefault="qualified"
-  targetNamespace="http://tempuri.org/XMLSchema.xsd"
-  xmlns="http://tempuri.org/XMLSchema.xsd"
-  xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+  targetNamespace="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/Updates/Updates.xsd"
+  xmlns="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/Updates/Updates.xsd"
+  xmlns:mstns="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/Updates/Updates.xsd"
   xmlns:xs="http://www.w3.org/2001/XMLSchema"
 >
   <xs:element name="SuperGrate">
