@@ -11,6 +11,12 @@ namespace SuperGrate
 {
     class Updater
     {
+        public static Task CheckForUpdates(string XmlURL = Constants.UpdaterURL)
+        {
+            return Task.Run(() => {
+                new Controls.ConfirmDialog("Update Found! Download & Install?", "Version: 1.1.1.1\r\nDate: March 20th 2020\r\nChannel: Pre-Release\r\nURL: https://asdf.com/", Properties.Resources.reload_ico).ShowDialog();
+            });
+        }
         public static string CalculateVersionID()
         {
             try

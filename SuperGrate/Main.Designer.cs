@@ -74,6 +74,8 @@
             this.miSpacer1 = new System.Windows.Forms.MenuItem();
             this.miHelpButton = new System.Windows.Forms.MenuItem();
             this.miSpacer2 = new System.Windows.Forms.MenuItem();
+            this.miUpdateCheck = new System.Windows.Forms.MenuItem();
+            this.miSeperator55 = new System.Windows.Forms.MenuItem();
             this.miAboutSG = new System.Windows.Forms.MenuItem();
             this.dialogSaveLog = new System.Windows.Forms.SaveFileDialog();
             this.helpProvider = new System.Windows.Forms.HelpProvider();
@@ -82,8 +84,6 @@
             this.miConDelete = new System.Windows.Forms.MenuItem();
             this.miConSeperator = new System.Windows.Forms.MenuItem();
             this.miConProperties = new System.Windows.Forms.MenuItem();
-            this.miUpdateCheck = new System.Windows.Forms.MenuItem();
-            this.miSeperator55 = new System.Windows.Forms.MenuItem();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -575,9 +575,9 @@
             this.miSpacer1,
             this.miHelpButton,
             this.miSpacer2,
-            this.miAboutSG,
+            this.miUpdateCheck,
             this.miSeperator55,
-            this.miUpdateCheck});
+            this.miAboutSG});
             this.miHelp.Text = "&Help";
             this.miHelp.Popup += new System.EventHandler(this.Menu_Popup);
             // 
@@ -610,9 +610,20 @@
             this.miSpacer2.Index = 4;
             this.miSpacer2.Text = "-";
             // 
+            // miUpdateCheck
+            // 
+            this.miUpdateCheck.Index = 5;
+            this.miUpdateCheck.Text = "Check for updates...";
+            this.miUpdateCheck.Click += new System.EventHandler(this.miUpdateCheck_Click);
+            // 
+            // miSeperator55
+            // 
+            this.miSeperator55.Index = 6;
+            this.miSeperator55.Text = "-";
+            // 
             // miAboutSG
             // 
-            this.miAboutSG.Index = 5;
+            this.miAboutSG.Index = 7;
             this.miAboutSG.Shortcut = System.Windows.Forms.Shortcut.F2;
             this.miAboutSG.Text = "About Super Grate";
             this.miAboutSG.Click += new System.EventHandler(this.MiAboutSG_Click);
@@ -654,16 +665,6 @@
             this.miConProperties.Index = 3;
             this.miConProperties.Text = "Properties";
             this.miConProperties.Click += new System.EventHandler(this.OpenUserProperties_Event);
-            // 
-            // miUpdateCheck
-            // 
-            this.miUpdateCheck.Index = 7;
-            this.miUpdateCheck.Text = "Check for updates...";
-            // 
-            // miSeperator55
-            // 
-            this.miSeperator55.Index = 6;
-            this.miSeperator55.Text = "-";
             // 
             // Main
             // 

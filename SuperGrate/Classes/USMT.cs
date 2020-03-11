@@ -276,12 +276,12 @@ namespace SuperGrate
                     string dlPath = Path.Combine(USMTPath, "USMT.zip");
                     if (DetectedArch == Misc.OSArchitecture.X64)
                     {
-                        success = await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x64.zip", dlPath).Start();
+                        success = await new Download(Constants.USMTx64URL, dlPath).Start();
                         if (!success) throw new Exception("Download failure.");
                     }
                     else if (DetectedArch == Misc.OSArchitecture.X86)
                     {
-                        success = await new Download("https://github.com/belowaverage-org/SuperGrate/raw/master/USMT/x86.zip", dlPath).Start();
+                        success = await new Download(Constants.USMTx86URL, dlPath).Start();
                         if (!success) throw new Exception("Download failure.");
                     }
                     else

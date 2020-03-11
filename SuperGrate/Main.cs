@@ -59,6 +59,7 @@ namespace SuperGrate
             miSaveLog.SetMenuItemBitmap(Properties.Resources.save_png);
             miConProperties.SetMenuItemBitmap(Properties.Resources.user_png);
             miConStart.SetMenuItemBitmap(Properties.Resources.go_png);
+            miUpdateCheck.SetMenuItemBitmap(Properties.Resources.update_png);
             listUsers.SmallImageList = new ImageList();
             listUsers.SmallImageList.Images.Add("user", Properties.Resources.user_ico.ToBitmap());
             listUsers.LargeImageList = new ImageList();
@@ -691,6 +692,10 @@ namespace SuperGrate
         private void Menu_Popup(object sender, EventArgs e)
         {
             ((Menu)sender).DrawMenuItemBitmaps();
+        }
+        private async void miUpdateCheck_Click(object sender, EventArgs e)
+        {
+            await Updater.CheckForUpdates();
         }
     }
     /// <summary>
