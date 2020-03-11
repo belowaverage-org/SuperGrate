@@ -3,14 +3,10 @@
   <Settings>
     <Redirect RedirectURL="https://api.belowaverage.org/v1/SuperGrate/Updates/" UpdaterVersion="0" />
   </Settings>
-  <UpdateChannels>
-    <Type Name="RELEASE" />
-    <Type Name="PRERELEASE" />
-  </UpdateChannels>
   <Updates>
     <Update
       Version="1.1.1.1"
-      Date=""
+      DateTime="2000-01-01T00:00:00"
       BuildHash="9E95275A3B912AEB9992B0B82CA829C5EF102992"
       Channel="PRERELEASE"
       DownloadURL="https://github.com/belowaverage-org/SuperGrate/releases/download/1.2.0.0/SuperGrateX64.exe"

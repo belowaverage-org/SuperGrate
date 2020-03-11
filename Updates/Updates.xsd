@@ -9,18 +9,7 @@
               <xs:element name="Redirect">
                 <xs:complexType>
                   <xs:attribute name="RedirectURL" type="xs:string" use="required" />
-                  <xs:attribute name="UpdaterVersion" type="xs:unsignedByte" use="required" />
-                </xs:complexType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="UpdateChannels">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element maxOccurs="unbounded" name="Type">
-                <xs:complexType>
-                  <xs:attribute name="Name" type="xs:string" use="required" />
+                  <xs:attribute name="UpdaterVersion" type="xs:integer" use="optional" />
                 </xs:complexType>
               </xs:element>
             </xs:sequence>
@@ -32,7 +21,7 @@
               <xs:element name="Update">
                 <xs:complexType>
                   <xs:attribute name="Version" type="xs:string" use="required" />
-                  <xs:attribute name="Date" type="xs:string" use="required" />
+                  <xs:attribute name="DateTime" type="xs:dateTime" use="required" />
                   <xs:attribute name="BuildHash" type="xs:string" use="required" />
                   <xs:attribute name="Channel" type="xs:string" use="required" />
                   <xs:attribute name="DownloadURL" type="xs:string" use="required" />
@@ -43,7 +32,7 @@
           </xs:complexType>
         </xs:element>
       </xs:sequence>
-      <xs:attribute name="UpdaterVersion" type="xs:unsignedByte" use="required" />
+      <xs:attribute name="UpdaterVersion" type="xs:integer" use="required" />
     </xs:complexType>
   </xs:element>
 </xs:schema>
