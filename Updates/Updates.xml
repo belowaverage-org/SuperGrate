@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SuperGrate xmlns:xs="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/Updates/Updates.xsd" UpdaterVersion="0">
+<SuperGrate UpdaterVersion="0">
   <Settings>
     <Redirect RedirectURL="https://api.belowaverage.org/v1/SuperGrate/Updates/" UpdaterVersion="0" />
   </Settings>
