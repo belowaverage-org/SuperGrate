@@ -44,7 +44,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ApplicationIcon>Resources\supergrate.ico</ApplicationIcon>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release_64|AnyCPU'">
     <OutputPath>bin\Release_64\</OutputPath>
@@ -255,9 +255,6 @@
     <None Include="Resources\banner.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\supergrate.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\working.gif" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +286,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\update_png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
