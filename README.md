@@ -10,7 +10,7 @@
 <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-08-25%20234142.png"><br><br>
 <h2>'Migration Store' users list:</h2>
 <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-08-25%20234312.png"><br><br>
-<h2>A closer look at a user in the 'Migration Store'</h2>
+<h2>A closer look at a user in the 'Migration Store':</h2>
 <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-08-25%20234339.png"><br><br>
 <h2>The settings panel:</h2>
 <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-08-25%20234443.png"><br><br>
