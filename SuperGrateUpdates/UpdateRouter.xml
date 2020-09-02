@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SuperUpdate UpdaterVersion="0">
+    <Settings>
+        <Redirect RedirectURL="https://static.belowaverage.org/software/SuperGrate/Updates/UpdateRouter.xml" UpdaterVersion="0" />
+    </Settings>
+</SuperUpdate>
