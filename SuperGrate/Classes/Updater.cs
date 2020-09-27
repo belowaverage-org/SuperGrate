@@ -6,15 +6,30 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace SuperGrate
 {
     class Updater
     {
-        public static Task CheckForUpdates(string XmlURL = Constants.UpdaterURL)
+        private const string UpdaterEXE = @".\SuperUpdate.exe";
+        public static Task<bool> CheckForUpdates(string UpdaterXmlUrl = Constants.UpdaterURL, string UpdaterExeUrl = Constants.UpdaterEXE)
         {
-            return Task.Run(() => {
-                new Controls.ConfirmDialog("Update Found! Download & Install?", "Version: 1.1.1.1\r\nDate: March 20th 2020\r\nChannel: Pre-Release\r\nURL: https://asdf.com/", Properties.Resources.reload_ico).ShowDialog();
+            return Task.Run(async () => {
+                Logger.Verbose("Checking if " + UpdaterEXE + " exists...");
+                if (!File.Exists(UpdaterEXE))
+                {
+                    Logger.Information("Downloading SuperUpdate from the web...");
+                    if(!await new Download(UpdaterExeUrl, UpdaterEXE).Start())
+                    {
+                        Logger.Error("Could not download SuperUpdate from the web!");
+                        return false;
+                    }
+                }
+                Logger.Information("Starting SuperUpdate...");
+                Process.Start(UpdaterEXE, UpdaterXmlUrl);
+                Logger.Success("Done.");
+                return true;
             });
         }
         public static string CalculateVersionID()

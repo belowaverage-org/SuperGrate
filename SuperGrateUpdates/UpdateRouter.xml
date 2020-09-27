@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SuperUpdate
-	UpdaterVersion="0"
-	xmlns="http://belowaverage.org/schemas/superupdate/0.0.0.2"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://belowaverage.org/schemas/superupdate/0.0.0.2 https://raw.githubusercontent.com/belowaverage-org/SuperUpdate/master/SuperUpdate/UpdateSchema.xsd"
->
-    <Settings>
-        <WindowTitle Title="Super Grate" />
-        <Redirect RedirectURL="https://static.belowaverage.org/software/SuperGrate/Updates/UpdateRouter.xml" UpdaterVersion="0" />
-        <WindowIcon URL="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrateAssets/logo.ico" />
-        <WindowIconLarge URL="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrateAssets/logo.png" />
-    </Settings>
+<SuperUpdate UpdaterVersion="0"
+  xmlns="http://belowaverage.org/schemas/superupdate/0.0.0.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://belowaverage.org/schemas/superupdate/0.0.0.2 https://raw.githubusercontent.com/belowaverage-org/SuperUpdate/master/SuperUpdate/UpdateSchema.xsd">
+  <Settings>
+    <WindowTitle Title="Super Grate" />
+    <Redirect RedirectURL="https://static.belowaverage.org/software/SuperGrate/Updates/UpdateRouter.xml" UpdaterVersion="0" />
+    <WindowIcon URL="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrateAssets/logo.ico" />
+    <WindowIconLarge URL="https://raw.githubusercontent.com/belowaverage-org/SuperGrate/master/SuperGrateAssets/logo.png" />
+  </Settings>
 </SuperUpdate>

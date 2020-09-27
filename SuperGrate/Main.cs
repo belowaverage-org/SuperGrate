@@ -695,7 +695,9 @@ namespace SuperGrate
         }
         private async void miUpdateCheck_Click(object sender, EventArgs e)
         {
+            Running = RunningTask.Unknown;
             await Updater.CheckForUpdates();
+            Running = RunningTask.None;
         }
     }
     /// <summary>
