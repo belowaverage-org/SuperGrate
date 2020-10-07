@@ -193,27 +193,29 @@ namespace SuperGrate
             else
             {
                 Running = RunningTask.USMT;
-                List<string> IDs = new List<string>();
+                List<string> ListIDs = new List<string>();
                 foreach (int index in listUsers.SelectedIndices)
                 {
-                    IDs.Add((string)listUsers.Items[index].Tag);
+                    ListIDs.Add((string)listUsers.Items[index].Tag);
                 }
+                string[] IDs = ListIDs.ToArray();
                 bool setting;
                 bool success;
                 if (CurrentListSource == ListSources.SourceComputer)
                 {
-                    success = await USMT.Do(USMTMode.ScanState, IDs.ToArray());
+                    success = await USMT.Do(USMTMode.ScanState, IDs);
                     if (bool.TryParse(Config.Settings["AutoDeleteFromSource"], out setting) && setting && success)
                     {
-                        await Misc.DeleteFromSource(SourceComputer, IDs.ToArray());
+                        await Misc.DeleteFromSource(SourceComputer, IDs);
                     }
+                    IDs = USMT.UploadedGUIDs.ToArray();
                 }
                 if (tbDestinationComputer.Text != "" && Running == RunningTask.USMT)
                 {
-                    success = await USMT.Do(USMTMode.LoadState, IDs.ToArray());
+                    success = await USMT.Do(USMTMode.LoadState, IDs);
                     if (bool.TryParse(Config.Settings["AutoDeleteFromStore"], out setting) && setting && success)
                     {
-                        await Misc.DeleteFromStore(IDs.ToArray());
+                        await Misc.DeleteFromStore(IDs);
                     }
                 }
                 Running = RunningTask.None;

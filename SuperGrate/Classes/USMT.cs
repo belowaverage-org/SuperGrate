@@ -3,12 +3,14 @@ using System.IO;
 using System.IO.Compression;
 using System;
 using SuperGrate.IO;
+using System.Collections.Generic;
 
 namespace SuperGrate
 {
     class USMT
     {
         public static bool Canceled = false;
+        public static List<string> UploadedGUIDs = new List<string>();
         private static bool Failed = false;
         private static bool Running = false;
         private static string CurrentTarget = "";
@@ -45,6 +47,7 @@ namespace SuperGrate
         }
         public static Task<bool> Do(USMTMode Mode, string[] IDs)
         {
+            UploadedGUIDs.Clear();
             Canceled = false;
             Failed = false;
             string exec = "";
@@ -106,8 +109,10 @@ namespace SuperGrate
                     }
                     if (Mode == USMTMode.ScanState)
                     {
-                        Failed = !await UploadToStore(SID);
+                        string GUID;
+                        Failed = !await UploadToStore(SID, out GUID);
                         if (Canceled || Failed) break;
+                        UploadedGUIDs.Add(GUID);
                     }
                     Logger.UpdateProgress(0);
                 }
@@ -209,11 +214,13 @@ namespace SuperGrate
                 }
             });
         }
-        private static Task<bool> UploadToStore(string SID)
+        private static Task<bool> UploadToStore(string SID, out string GUID)
         {
+            string lGUID = Guid.NewGuid().ToString();
+            GUID = lGUID;
             return Task.Run(async () => {
                 Logger.Information("Uploading user state to the Store...");
-                string Destination = Path.Combine(Config.Settings["MigrationStorePath"], Guid.NewGuid().ToString());
+                string Destination = Path.Combine(Config.Settings["MigrationStorePath"], lGUID);
                 try
                 {
                     Directory.CreateDirectory(Destination);
@@ -240,7 +247,7 @@ namespace SuperGrate
                 }
             });
         }
-        private static Task<bool> DownloadFromStore(string ID)
+        private static Task<bool> DownloadFromStore(string GUID)
         {
             return Task.Run(() => {
                 Logger.Information("Downloading user state to: " + Main.DestinationComputer + "...");
@@ -249,7 +256,7 @@ namespace SuperGrate
                 {
                     Directory.CreateDirectory(Destination);
                     FileOperations.CopyFile(
-                        Path.Combine(Config.Settings["MigrationStorePath"], ID, "data"),
+                        Path.Combine(Config.Settings["MigrationStorePath"], GUID, "data"),
                         Path.Combine(Destination, "USMT.MIG")
                     );
                     Logger.Success("User state successfully transferred.");
