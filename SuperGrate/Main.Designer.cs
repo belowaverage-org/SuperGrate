@@ -410,7 +410,7 @@
             // tbDestinationComputer
             // 
             this.tbDestinationComputer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.helpProvider.SetHelpString(this.tbDestinationComputer, "Enter the source computer hostname. This is where the user profiles will be migra" +
+            this.helpProvider.SetHelpString(this.tbDestinationComputer, "Enter the destination computer hostname. This is where the user profiles will be migra" +
         "ted / restored to.");
             this.tbDestinationComputer.Location = new System.Drawing.Point(3, 4);
             this.tbDestinationComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
