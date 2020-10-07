@@ -36,7 +36,7 @@ namespace SuperGrate
                 {
                     return Config.Settings["USMTPathX64"];
                 }
-                if(DetectedArch == Misc.OSArchitecture.X64)
+                if(DetectedArch == Misc.OSArchitecture.X86)
                 {
                     return Config.Settings["USMTPathX86"];
                 }
