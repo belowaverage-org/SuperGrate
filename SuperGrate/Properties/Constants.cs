@@ -1,7 +1,13 @@
-﻿namespace SuperGrate
+﻿using System.Net;
+
+namespace SuperGrate
 {
     public class Constants
     {
+        /// <summary>
+        /// Security Protocol Version
+        /// </summary>
+        public const SecurityProtocolType SecProtocol = SecurityProtocolType.Tls12;
         /// <summary>
         /// XML Download Location for determining software updates.
         /// </summary>

@@ -76,9 +76,9 @@ namespace SuperGrate
                     string SID = "";
                     if (Mode == USMTMode.LoadState)
                     {
-                        Logger.Information("Applying user state: '" + Misc.GetUserByIdentity(ID) + "' on '" + CurrentTarget + "'...");
                         Failed = !await DownloadFromStore(ID);
                         SID = await Misc.GetSIDFromStore(ID);
+                        Logger.Information("Applying user state: '" + Misc.GetUserByIdentity(ID) + "' on '" + CurrentTarget + "'...");
                         if (Canceled || Failed || SID == null) break;
                     }
                     if (Mode == USMTMode.ScanState)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -12,6 +13,7 @@ namespace SuperGrate
         [STAThread]
         static void Main(string[] parameters)
         {
+            ServicePointManager.SecurityProtocol = Constants.SecProtocol;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Application_ThreadException;
