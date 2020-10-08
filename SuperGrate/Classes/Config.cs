@@ -32,7 +32,9 @@ namespace SuperGrate
             {"ULSourceColumns", "0,3,9"},
             {"ULStoreColumns", "0,1,5,6,4"},
             {"XComment11", @"User List View Mode: Large (0) / Small Icon (2), List (3), Details (1) and Tile (4)."},
-            {"ULViewMode", "1"}
+            {"ULViewMode", "1"},
+            {"XComment12", @"Security Protocol Version (Restart Required): SystemDefault, Ssl3, Tls, Tls11, Tls12, Tls13."},
+            {"SecurityProtocol", "Tls12"}
         };
         public static Dictionary<string, string> DefaultSettings = Settings;
         public static void SaveConfig()

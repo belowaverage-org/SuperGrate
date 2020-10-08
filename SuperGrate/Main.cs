@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Windows.Forms;
 
 namespace SuperGrate
@@ -74,8 +75,20 @@ namespace SuperGrate
             Config.LoadConfig(MainParameters);
             Logger.Success("Welcome to " + Application.ProductName + "! v" + Application.ProductVersion);
             Logger.Information("Enter some information to get started!");
+            UpdateSecurityProtocolType();
             UpdateFormRestrictions();
             BindHelp(this);
+        }
+        private void UpdateSecurityProtocolType()
+        {
+            int SecurityProtocolInt;
+            SecurityProtocolType SecurityProtocolSPT;
+            Enum.TryParse(Config.Settings["SecurityProtocol"], out SecurityProtocolSPT);
+            if (int.TryParse(Config.Settings["SecurityProtocol"], out SecurityProtocolInt))
+            {
+                SecurityProtocolSPT = (SecurityProtocolType)SecurityProtocolInt;
+            }
+            ServicePointManager.SecurityProtocol = SecurityProtocolSPT;
         }
         /// <summary>
         /// This method will loop through all child controls of a control and apply the Control_Hover event to the MouseEnter event.

@@ -5,10 +5,6 @@ namespace SuperGrate
     public class Constants
     {
         /// <summary>
-        /// Security Protocol Version
-        /// </summary>
-        public const SecurityProtocolType SecProtocol = SecurityProtocolType.Tls12;
-        /// <summary>
         /// XML Download Location for determining software updates.
         /// </summary>
         public const string UpdaterURL = "https://github.com/belowaverage-org/SuperGrate/raw/master/SuperGrateUpdates/UpdateRouter.xml";

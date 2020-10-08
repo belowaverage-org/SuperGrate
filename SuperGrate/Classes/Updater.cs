@@ -14,7 +14,14 @@ namespace SuperGrate
         {
             return Task.Run(async () => {
                 Logger.Verbose("Checking if " + UpdaterEXE + " exists...");
-                if (!File.Exists(UpdaterEXE))
+                bool FileExists = File.Exists(UpdaterEXE);
+                if (FileExists)
+                {
+                    FileStream file = File.OpenRead(UpdaterEXE);
+                    if (file.Length == 0) FileExists = false;
+                    file.Close();
+                }
+                if (!FileExists)
                 {
                     Logger.Information("Downloading SuperUpdate from the web...");
                     if(!await new Download(UpdaterExeUrl, UpdaterEXE).Start())
