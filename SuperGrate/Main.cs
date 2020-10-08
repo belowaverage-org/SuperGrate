@@ -609,7 +609,11 @@ namespace SuperGrate
                 if (CurrentListSource == ListSources.SourceComputer)
                 {
                     template = ULControl.HeaderRowComputerSource;
-                    row = await Misc.GetUserFromHost(template, tbSourceComputer.Text, (string)listUsers.SelectedItems[0].Tag);
+                    row = await Misc.GetUserFromHost(
+                        template,
+                        tbSourceComputer.Text,
+                        await WMI.GetInstance(tbSourceComputer.Text, "Win32_UserProfile.SID=\"" + (string)listUsers.SelectedItems[0].Tag + "\"")
+                    );
                 }
                 if (Canceled)
                 {

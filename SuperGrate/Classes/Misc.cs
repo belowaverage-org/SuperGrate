@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Win32;
 using System.IO;
-using System.Security.Principal;
 using System.Management;
 using SuperGrate.UserList;
 using SuperGrate.IO;
@@ -13,10 +11,6 @@ namespace SuperGrate
 {
     class Misc
     {
-        /// <summary>
-        /// A list of Local, Non-Domain SIDs on a host set by: GetLocalUsersSIDsFromHost().
-        /// </summary>
-        //public static Dictionary<string, string> LocalSIDToUser = new Dictionary<string, string>();
         /// <summary>
         /// If true, will cancel any task pertaining to Remote Profile Deletions.
         /// </summary>
@@ -55,25 +49,6 @@ namespace SuperGrate
                 return @"\\" + Host + @"\C$\";
             }
         }
-        /// <summary>
-        /// Fills the LocalSIDToUser property for other methods in this class with a list of SIDs (Security Identifiers / Local User Profiles (Non-Domain)) from a host.
-        /// </summary>
-        /// <param name="Host">Host to get SIDs from.</param>
-        /*public static async void GetLocalUsersSIDsFromHost(string Host)
-        {
-            LocalSIDToUser.Clear();
-            try
-            {
-                foreach (ManagementObject manObj in await WMI.Query("SELECT SID, Caption FROM Win32_UserAccount WHERE LocalAccount=TRUE", Host))
-                {
-                    LocalSIDToUser.Add((string)manObj["SID"], (string)manObj["Caption"]);
-                }
-            }
-            catch (Exception e)
-            {
-                Logger.Exception(e, "Failed to get a list of Local Users' SIDs from host: " + Host + ".");
-            }
-        }*/
         /// <summary>
         /// Attempts to resolve an identity (Store ID / Security ID) to a DOMAIN\USERNAME string. If failed, returns the given identity string.
         /// </summary>
@@ -115,20 +90,12 @@ namespace SuperGrate
         /// <param name="Host">A host computer to get the information from.</param>
         /// <param name="SID">An SID (Security Identifier) of the user profile on the host.</param>
         /// <returns>Filled in UserRow.</returns>
-        public static Task<UserRow> GetUserFromHost(UserRow TemplateRow, string Host, string SID)
+        public static Task<UserRow> GetUserFromHost(UserRow TemplateRow, string Host, ManagementObject UserObject)
         {
+            string SID = UserObject.GetPropertyValue("SID").ToString();
             return Task.Run(async () =>
             {
                 UserRow row = new UserRow(TemplateRow);
-                RegistryKey remoteReg = null;
-                if (IsHostThisMachine(Host))
-                {
-                    remoteReg = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
-                }
-                else
-                {
-                    remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
-                }
                 string user = await GetUserByIdentity(SID, Host);
                 Logger.Verbose("Found: " + user);
                 bool setting;
@@ -149,14 +116,13 @@ namespace SuperGrate
                 }
                 if (row.ContainsKey(ULColumnType.LastModified) || row.ContainsKey(ULColumnType.Size) || row.ContainsKey(ULColumnType.FirstCreated))
                 {
-                    RegistryKey profileReg = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList\" + SID, false);
-                    string profilePathReg = (string)profileReg.GetValue("ProfileImagePath");
-                    if (profilePathReg == null)
+                    string profilePath = UserObject.GetPropertyValue("LocalPath").ToString();
+                    if (profilePath == null)
                     {
                         Logger.Verbose("Skipped SID with no profile directory: " + SID + ".");
                         return null;
                     }
-                    string profilePath = profilePathReg.Replace(@"C:\", GetBestPathToC(Host));
+                    string profilePath = profilePath.Replace(@"C:\", GetBestPathToC(Host));
                     if (row.ContainsKey(ULColumnType.Size))
                     {
                         Logger.Information("Calculating profile size for: " + user + "...");
@@ -172,7 +138,6 @@ namespace SuperGrate
                         row[ULColumnType.LastModified] = File.GetLastWriteTime(Path.Combine(profilePath, "NTUSER.DAT")).ToFileTime().ToString();
                     }
                 }
-                remoteReg.Close();
                 return row;
             });
         }
@@ -210,11 +175,11 @@ namespace SuperGrate
                     UserRows rows = new UserRows();
                     Logger.Information("Getting list of users on: " + Host + "...");
                     int count = 0;
-                    ManagementObjectCollection manObjCol = await WMI.Query("SELECT SID FROM Win32_UserProfile", Host);
+                    ManagementObjectCollection manObjCol = await WMI.Query("SELECT SID, LocalPath FROM Win32_UserProfile", Host);
                     foreach (ManagementObject mo in manObjCol)
                     {
                         if (Main.Canceled) break;
-                        UserRow row = await GetUserFromHost(ULControl.CurrentHeaderRow, Host, mo["SID"].ToString());
+                        UserRow row = await GetUserFromHost(ULControl.CurrentHeaderRow, Host, mo);
                         Logger.UpdateProgress((int)(((float)++count / manObjCol.Count) * 100));
                         if (row != null) rows.Add(row);
                     }
@@ -233,7 +198,7 @@ namespace SuperGrate
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to get a list of users. Please make sure that the specified host is valid and online, also make sure the \"Remote Registry\" service is enabled and running on the specified host: " + Host);
+                    Logger.Exception(e, "Failed to get a list of users. Please make sure that the specified host is valid and online and that you are an administrator of: " + Host);
                     return null;
                 }
             });
@@ -402,7 +367,7 @@ namespace SuperGrate
                     foreach (string SID in SIDs)
                     {
                         if (ShouldCancelRemoteProfileDelete) break;
-                        string name = await GetUserByIdentity(SID);
+                        string name = await GetUserByIdentity(SID, Host);
                         Logger.Information("Deleting '" + name + "' from " + Host + "...");
                         await Remote.StartProcess(
                             Host,

@@ -78,12 +78,12 @@ namespace SuperGrate
                     {
                         Failed = !await DownloadFromStore(ID);
                         SID = await Misc.GetSIDFromStore(ID);
-                        Logger.Information("Applying user state: '" + Misc.GetUserByIdentity(ID) + "' on '" + CurrentTarget + "'...");
+                        Logger.Information("Applying user state: '" + await Misc.GetUserByIdentity(ID, CurrentTarget) + "' on '" + CurrentTarget + "'...");
                         if (Canceled || Failed || SID == null) break;
                     }
                     if (Mode == USMTMode.ScanState)
                     {
-                        Logger.Information("Capturing user state: '" + Misc.GetUserByIdentity(ID) + "' on '" + CurrentTarget + "'...");
+                        Logger.Information("Capturing user state: '" + await Misc.GetUserByIdentity(ID, CurrentTarget) + "' on '" + CurrentTarget + "'...");
                         SID = ID;
                     }
                     Failed = !await Remote.StartProcess(CurrentTarget,
@@ -226,7 +226,7 @@ namespace SuperGrate
                     Directory.CreateDirectory(Destination);
                     File.WriteAllText(Path.Combine(Destination, "sid"), SID);
                     File.WriteAllText(Path.Combine(Destination, "source"), await Misc.GetHostNameFromHost(CurrentTarget));
-                    File.WriteAllText(Path.Combine(Destination, "ntaccount"), await Misc.GetUserByIdentity(SID));
+                    File.WriteAllText(Path.Combine(Destination, "ntaccount"), await Misc.GetUserByIdentity(SID, CurrentTarget));
                     File.WriteAllText(Path.Combine(Destination, "importedon"), DateTime.Now.ToFileTime().ToString());
                     File.WriteAllText(Path.Combine(Destination, "importedby"), Environment.UserDomainName + "\\" + Environment.UserName);
                     FileOperations.CopyFile(
