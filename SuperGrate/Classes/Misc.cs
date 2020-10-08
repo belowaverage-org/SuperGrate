@@ -16,7 +16,7 @@ namespace SuperGrate
         /// <summary>
         /// A list of Local, Non-Domain SIDs on a host set by: GetLocalUsersSIDsFromHost().
         /// </summary>
-        public static Dictionary<string, string> LocalSIDToUser = new Dictionary<string, string>();
+        //public static Dictionary<string, string> LocalSIDToUser = new Dictionary<string, string>();
         /// <summary>
         /// If true, will cancel any task pertaining to Remote Profile Deletions.
         /// </summary>
@@ -40,22 +40,6 @@ namespace SuperGrate
             return false;
         }
         /// <summary>
-        /// Returns the best path to "ManagementScope" based on the host provided. (If the host provided is the current host then the best path is "\root\cimv2" otherwise it is "\\HOST\root\cimv2".)
-        /// </summary>
-        /// <param name="Host">Host to check against.</param>
-        /// <returns>Either "\root\cimv2" or "\\HOST\root\cimv2".</returns>
-        public static string GetBestManagementScope(string Host)
-        {
-            if (IsHostThisMachine(Host))
-            {
-                return @"\root\cimv2";
-            }
-            else
-            {
-                return @"\\" + Host + @"\root\cimv2";
-            }
-        }
-        /// <summary>
         /// Returns the best path to C:\ based on the host provided. (If the host provided is the current host then the best path is "C:\" otherwise it is "\\HOST\C$\".)
         /// </summary>
         /// <param name="Host">Host to check against.</param>
@@ -75,17 +59,12 @@ namespace SuperGrate
         /// Fills the LocalSIDToUser property for other methods in this class with a list of SIDs (Security Identifiers / Local User Profiles (Non-Domain)) from a host.
         /// </summary>
         /// <param name="Host">Host to get SIDs from.</param>
-        public static void GetLocalUsersSIDsFromHost(string Host)
+        /*public static async void GetLocalUsersSIDsFromHost(string Host)
         {
             LocalSIDToUser.Clear();
             try
             {
-                ManagementScope scope = new ManagementScope(GetBestManagementScope(Host));
-                scope.Connect();
-                ObjectQuery query = new ObjectQuery("SELECT SID, Caption FROM Win32_UserAccount WHERE LocalAccount=TRUE");
-                ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
-                ManagementObjectCollection collection = searcher.Get();
-                foreach (ManagementObject manObj in collection)
+                foreach (ManagementObject manObj in await WMI.Query("SELECT SID, Caption FROM Win32_UserAccount WHERE LocalAccount=TRUE", Host))
                 {
                     LocalSIDToUser.Add((string)manObj["SID"], (string)manObj["Caption"]);
                 }
@@ -94,37 +73,40 @@ namespace SuperGrate
             {
                 Logger.Exception(e, "Failed to get a list of Local Users' SIDs from host: " + Host + ".");
             }
-        }
+        }*/
         /// <summary>
         /// Attempts to resolve an identity (Store ID / Security ID) to a DOMAIN\USERNAME string. If failed, returns the given identity string.
         /// </summary>
         /// <param name="Identity">A Store ID or SID (Security Identifier) to resolve.</param>
         /// <returns>DOMAIN\USERNAME.</returns>
-        public static string GetUserByIdentity(string Identity)
+        public static async Task<string> GetUserByIdentity(string Identity, string Host = null)
         {
-            try
-            {
-                return new SecurityIdentifier(Identity).Translate(typeof(NTAccount)).ToString();
-            }
-            catch (Exception e)
-            {
-                if (LocalSIDToUser.ContainsKey(Identity) && LocalSIDToUser[Identity] != "")
+            if (Host != null) {
+                try
                 {
-                    return LocalSIDToUser[Identity];
+                    ManagementObject mo = await WMI.GetInstance(Host, "Win32_SID.SID=\"" + Identity + "\"");
+                    string NTDomain = mo.GetPropertyValue("ReferencedDomainName").ToString();
+                    string NTAccountName = mo.GetPropertyValue("AccountName").ToString();
+                    string NTAccount = NTDomain + "\\" + NTAccountName;
+                    if (NTDomain == "" || NTAccountName == "") throw new Exception();
+                    return NTAccount;
                 }
-                string fNTAccount = Path.Combine(Config.Settings["MigrationStorePath"], Identity, "ntaccount");
-                if (File.Exists(fNTAccount))
+                catch (Exception)
                 {
-                    string NTAccount = File.ReadAllText(fNTAccount);
-                    if (NTAccount != "")
-                    {
-                        return NTAccount;
-                    }
+                    Logger.Verbose("Could not resolve SID via WMI, trying the store...");
                 }
-                Logger.Verbose(e.Message);
-                Logger.Warning("Failed to lookup: " + Identity + ".");
-                return Identity;
             }
+            string fNTAccount = Path.Combine(Config.Settings["MigrationStorePath"], Identity, "ntaccount");
+            if (File.Exists(fNTAccount))
+            {
+                string NTAccount = File.ReadAllText(fNTAccount);
+                if (NTAccount != "")
+                {
+                    return NTAccount;
+                }
+            }
+            Logger.Warning("Could not resolve SID: " + Identity + ".");
+            return Identity;
         }
         /// <summary>
         /// Retrieves a single users properties from a Host.
@@ -147,7 +129,7 @@ namespace SuperGrate
                 {
                     remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
                 }
-                string user = GetUserByIdentity(SID);
+                string user = await GetUserByIdentity(SID, Host);
                 Logger.Verbose("Found: " + user);
                 bool setting;
                 if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out setting) && setting && (user.Contains("NT AUTHORITY") || user.Contains("NT SERVICE")))
@@ -196,21 +178,16 @@ namespace SuperGrate
         }
         public static Task<string> GetHostNameFromHost(string Host)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
                 try
                 {
-                    RegistryKey remoteReg = null;
-                    if (IsHostThisMachine(Host))
+                    string name = "";
+                    foreach (ManagementObject mo in await WMI.Query("SELECT Name FROM Win32_ComputerSystem", Host))
                     {
-                        remoteReg = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
+                        name = mo["Name"].ToString();
                     }
-                    else
-                    {
-                        remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
-                    }
-                    RegistryKey key = remoteReg.OpenSubKey(@"SYSTEM\ControlSet001\Control\ComputerName\ComputerName");
-                    return (string)key.GetValue("ComputerName");
+                    return name;
                 }
                 catch (Exception e)
                 {
@@ -231,28 +208,16 @@ namespace SuperGrate
                 try
                 {
                     UserRows rows = new UserRows();
-                    RegistryKey remoteReg = null;
-                    if (IsHostThisMachine(Host))
-                    {
-                        remoteReg = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Default);
-                    }
-                    else
-                    {
-                        remoteReg = RegistryKey.OpenRemoteBaseKey(RegistryHive.LocalMachine, Host);
-                    }
-                    RegistryKey profileList = remoteReg.OpenSubKey(@"SOFTWARE\Microsoft\Windows NT\CurrentVersion\ProfileList", false);
                     Logger.Information("Getting list of users on: " + Host + "...");
-                    GetLocalUsersSIDsFromHost(Host);
-                    string[] SIDs = profileList.GetSubKeyNames();
                     int count = 0;
-                    foreach (string SID in SIDs)
+                    ManagementObjectCollection manObjCol = await WMI.Query("SELECT SID FROM Win32_UserProfile", Host);
+                    foreach (ManagementObject mo in manObjCol)
                     {
                         if (Main.Canceled) break;
-                        UserRow row = await GetUserFromHost(ULControl.CurrentHeaderRow, Host, SID);
-                        Logger.UpdateProgress((int)(((float)++count / SIDs.Length) * 100));
+                        UserRow row = await GetUserFromHost(ULControl.CurrentHeaderRow, Host, mo["SID"].ToString());
+                        Logger.UpdateProgress((int)(((float)++count / manObjCol.Count) * 100));
                         if (row != null) rows.Add(row);
                     }
-                    remoteReg.Close();
                     if (Main.Canceled)
                     {
                         Logger.Warning("Listing users was canceled.");
@@ -393,11 +358,11 @@ namespace SuperGrate
         /// <returns>Awaitable Task.</returns>
         public static Task DeleteFromStore(string[] IDs)
         {
-            return Task.Run(() =>
+            return Task.Run(async () =>
             {
                 foreach (string ID in IDs)
                 {
-                    string name = GetUserByIdentity(ID);
+                    string name = await GetUserByIdentity(ID);
                     Logger.Information("Deleting '" + name + "' from the Store...");
                     try
                     {
@@ -437,7 +402,7 @@ namespace SuperGrate
                     foreach (string SID in SIDs)
                     {
                         if (ShouldCancelRemoteProfileDelete) break;
-                        string name = GetUserByIdentity(SID);
+                        string name = await GetUserByIdentity(SID);
                         Logger.Information("Deleting '" + name + "' from " + Host + "...");
                         await Remote.StartProcess(
                             Host,
@@ -482,15 +447,10 @@ namespace SuperGrate
         public static Task<OSArchitecture> GetRemoteArch(string Host)
         {
             Logger.Information("Reading OS Architecture...");
-            return Task.Run(() => {
+            return Task.Run(async () => {
                 try
                 {
-                    ManagementScope scope = new ManagementScope(GetBestManagementScope(Host));
-                    scope.Connect();
-                    ObjectQuery query = new ObjectQuery("SELECT OSArchitecture FROM Win32_OperatingSystem");
-                    ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
-                    ManagementObjectCollection collection = searcher.Get();
-                    foreach (ManagementObject manObj in collection)
+                    foreach (ManagementObject manObj in await WMI.Query("SELECT OSArchitecture FROM Win32_OperatingSystem", Host))
                     {
                         string rawArch = (string)manObj["OSArchitecture"];
                         OSArchitecture arch = OSArchitecture.X86;

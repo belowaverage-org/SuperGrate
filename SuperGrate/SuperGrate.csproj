@@ -116,6 +116,7 @@
     <Compile Include="Classes\UserList.cs" />
     <Compile Include="Classes\USMT.cs" />
     <Compile Include="Classes\Win32Interop.cs" />
+    <Compile Include="Classes\WMI.cs" />
     <Compile Include="Controls\About.cs">
       <SubType>Form</SubType>
     </Compile>

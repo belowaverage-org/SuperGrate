@@ -226,7 +226,7 @@ namespace SuperGrate
                     Directory.CreateDirectory(Destination);
                     File.WriteAllText(Path.Combine(Destination, "sid"), SID);
                     File.WriteAllText(Path.Combine(Destination, "source"), await Misc.GetHostNameFromHost(CurrentTarget));
-                    File.WriteAllText(Path.Combine(Destination, "ntaccount"), Misc.GetUserByIdentity(SID));
+                    File.WriteAllText(Path.Combine(Destination, "ntaccount"), await Misc.GetUserByIdentity(SID));
                     File.WriteAllText(Path.Combine(Destination, "importedon"), DateTime.Now.ToFileTime().ToString());
                     File.WriteAllText(Path.Combine(Destination, "importedby"), Environment.UserDomainName + "\\" + Environment.UserName);
                     FileOperations.CopyFile(
