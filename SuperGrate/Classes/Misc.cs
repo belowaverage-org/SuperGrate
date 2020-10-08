@@ -6,6 +6,7 @@ using System.Management;
 using SuperGrate.UserList;
 using SuperGrate.IO;
 using System.Windows.Forms;
+using System.Security.Principal;
 
 namespace SuperGrate
 {
@@ -52,14 +53,16 @@ namespace SuperGrate
         /// <summary>
         /// Attempts to resolve an identity (Store ID / Security ID) to a DOMAIN\USERNAME string. If failed, returns the given identity string.
         /// </summary>
-        /// <param name="Identity">A Store ID or SID (Security Identifier) to resolve.</param>
+        /// <param name="ID">A Store ID or SID (Security Identifier) to resolve.</param>
+        /// <param name="Host">If this parameter is specified, then this method will treat the ID parameter as an SID and reslove it on the remote host.</param>
         /// <returns>DOMAIN\USERNAME.</returns>
-        public static async Task<string> GetUserByIdentity(string Identity, string Host = null)
+        public static async Task<string> GetUserByIdentity(string ID, string Host = null)
         {
-            if (Host != null) {
+            if (Host != null)
+            {
                 try
                 {
-                    ManagementObject mo = await WMI.GetInstance(Host, "Win32_SID.SID=\"" + Identity + "\"");
+                    ManagementObject mo = await WMI.GetInstance(Host, "Win32_SID.SID=\"" + ID + "\"");
                     string NTDomain = mo.GetPropertyValue("ReferencedDomainName").ToString();
                     string NTAccountName = mo.GetPropertyValue("AccountName").ToString();
                     string NTAccount = NTDomain + "\\" + NTAccountName;
@@ -68,20 +71,24 @@ namespace SuperGrate
                 }
                 catch (Exception)
                 {
-                    Logger.Verbose("Could not resolve SID via WMI, trying the store...");
+                    Logger.Warning("Could not resolve as an SID via WMI!");
+                    return ID;
                 }
             }
-            string fNTAccount = Path.Combine(Config.Settings["MigrationStorePath"], Identity, "ntaccount");
-            if (File.Exists(fNTAccount))
+            else
             {
-                string NTAccount = File.ReadAllText(fNTAccount);
-                if (NTAccount != "")
+                string fNTAccount = Path.Combine(Config.Settings["MigrationStorePath"], ID, "ntaccount");
+                if (File.Exists(fNTAccount))
                 {
-                    return NTAccount;
+                    string NTAccount = File.ReadAllText(fNTAccount);
+                    if (NTAccount != "")
+                    {
+                        return NTAccount;
+                    }
                 }
+                Logger.Warning("Could not resolve Store GUID!");
+                return ID;
             }
-            Logger.Warning("Could not resolve SID: " + Identity + ".");
-            return Identity;
         }
         /// <summary>
         /// Retrieves a single users properties from a Host.
@@ -98,8 +105,7 @@ namespace SuperGrate
                 UserRow row = new UserRow(TemplateRow);
                 string user = await GetUserByIdentity(SID, Host);
                 Logger.Verbose("Found: " + user);
-                bool setting;
-                if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out setting) && setting && (user.Contains("NT AUTHORITY") || user.Contains("NT SERVICE")))
+                if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out bool setting) && setting && (user.Contains("NT AUTHORITY") || user.Contains("NT SERVICE")))
                 {
                     Logger.Verbose("Skipped: " + SID + ": " + user + ".");
                     return null;

@@ -12,10 +12,12 @@ namespace SuperGrate
             return Task.Run(() => {
                 try
                 {
-                    ConnectionOptions conOps = new ConnectionOptions();
-                    conOps.Impersonation = ImpersonationLevel.Impersonate;
-                    conOps.Authentication = AuthenticationLevel.Default;
-                    conOps.EnablePrivileges = true;
+                    ConnectionOptions conOps = new ConnectionOptions
+                    {
+                        Impersonation = ImpersonationLevel.Impersonate,
+                        Authentication = AuthenticationLevel.Default,
+                        EnablePrivileges = true
+                    };
                     ManagementScope mScope = new ManagementScope(@"\\" + Target + @"\root\cimv2", conOps);
                     ManagementPath mPath = new ManagementPath("Win32_Process");
                     ManagementClass mClass = new ManagementClass(mScope, mPath, null);

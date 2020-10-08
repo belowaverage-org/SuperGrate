@@ -78,7 +78,7 @@ namespace SuperGrate
                     {
                         Failed = !await DownloadFromStore(ID);
                         SID = await Misc.GetSIDFromStore(ID);
-                        Logger.Information("Applying user state: '" + await Misc.GetUserByIdentity(ID, CurrentTarget) + "' on '" + CurrentTarget + "'...");
+                        Logger.Information("Applying user state: '" + await Misc.GetUserByIdentity(ID) + "' on '" + CurrentTarget + "'...");
                         if (Canceled || Failed || SID == null) break;
                     }
                     if (Mode == USMTMode.ScanState)
@@ -109,8 +109,7 @@ namespace SuperGrate
                     }
                     if (Mode == USMTMode.ScanState)
                     {
-                        string GUID;
-                        Failed = !await UploadToStore(SID, out GUID);
+                        Failed = !await UploadToStore(SID, out string GUID);
                         if (Canceled || Failed) break;
                         UploadedGUIDs.Add(GUID);
                     }
@@ -313,10 +312,10 @@ namespace SuperGrate
         private static Task<bool> SetStoreExportParameters(string ID)
         {
             string storeObjPath = Path.Combine(Config.Settings["MigrationStorePath"], ID);
-            return Task.Run(() => {
+            return Task.Run(async () => {
                 try
                 {
-                    File.WriteAllText(Path.Combine(storeObjPath, "destination"), CurrentTarget);
+                    File.WriteAllText(Path.Combine(storeObjPath, "destination"), await Misc.GetHostNameFromHost(CurrentTarget));
                     File.WriteAllText(Path.Combine(storeObjPath, "exportedby"), Environment.UserDomainName + "\\" + Environment.UserName);
                     File.WriteAllText(Path.Combine(storeObjPath, "exportedon"), DateTime.Now.ToFileTime().ToString());
                     return true;
@@ -345,9 +344,11 @@ namespace SuperGrate
             try
             {
                 string logFilePath = Path.Combine(PayloadPathTarget, LogFile);
-                FileSystemWatcher logFileWatcher = new FileSystemWatcher(PayloadPathTarget, LogFile);
-                logFileWatcher.NotifyFilter = NotifyFilters.LastWrite;
-                logFileWatcher.EnableRaisingEvents = true;
+                FileSystemWatcher logFileWatcher = new FileSystemWatcher(PayloadPathTarget, LogFile)
+                {
+                    NotifyFilter = NotifyFilters.LastWrite,
+                    EnableRaisingEvents = true
+                };
                 FileStream logStream = File.Open(logFilePath, FileMode.OpenOrCreate, FileAccess.Read, FileShare.ReadWrite);
                 StreamReader logReader = new StreamReader(logStream);
                 long lastPosition = 0;
@@ -362,10 +363,9 @@ namespace SuperGrate
                         string startsWith = "PercentageCompleted, ";
                         if (log.Contains(startsWith))
                         {
-                            int percent;
                             int start = log.LastIndexOf(startsWith) + startsWith.Length;
                             int end = log.LastIndexOf("\r\n");
-                            if (int.TryParse(log.Substring(start, end - start), out percent))
+                            if (int.TryParse(log.Substring(start, end - start), out int percent))
                             {
                                 Logger.UpdateProgress(percent);
                                 Logger.Verbose(log, true);
