@@ -15,7 +15,7 @@ namespace SuperGrate.IO
             const int bufferSize = 1024 * 1024;
             byte[] buffer = new byte[bufferSize], buffer2 = new byte[bufferSize];
             bool swap = false;
-            int progress = 0, reportedProgress = 0, read = 0;
+            int reportedProgress = 0;
             long len = file.Length;
             float flen = len;
             Task writer = null;
@@ -23,8 +23,10 @@ namespace SuperGrate.IO
             using (var dest = destination.OpenWrite())
             {
                 dest.SetLength(source.Length);
+                int read;
                 for (long size = 0; size < len; size += read)
                 {
+                    int progress;
                     if ((progress = ((int)((size / flen) * 100))) != reportedProgress)
                     {
                         Logger.UpdateProgress(reportedProgress = progress);

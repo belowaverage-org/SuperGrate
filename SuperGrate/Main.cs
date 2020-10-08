@@ -20,15 +20,15 @@ namespace SuperGrate
         public static ListSources CurrentListSource = ListSources.Unknown;
         private static bool storeCanceled = false;
         private static RunningTask storeRunningTask = RunningTask.None;
-        private string[] MainParameters = null;
+        private readonly string[] MainParameters = null;
         private bool CloseRequested = false;
         private int CloseAttempts = 0;
         private UserRows CurrentUserRows = null;
-        private Dictionary<ListSources, ULSortDirection> CurrentSortDirection = new Dictionary<ListSources, ULSortDirection>() {
+        private readonly Dictionary<ListSources, ULSortDirection> CurrentSortDirection = new Dictionary<ListSources, ULSortDirection>() {
             { ListSources.MigrationStore, ULSortDirection.Descending },
             { ListSources.SourceComputer, ULSortDirection.Descending }
         };
-        private Dictionary<ListSources, ULColumnType> CurrentSortColumn = new Dictionary<ListSources, ULColumnType>() {
+        private readonly Dictionary<ListSources, ULColumnType> CurrentSortColumn = new Dictionary<ListSources, ULColumnType>() {
             { ListSources.MigrationStore, ULColumnType.NTAccount },
             { ListSources.SourceComputer, ULColumnType.NTAccount }
         };
@@ -63,8 +63,10 @@ namespace SuperGrate
             miUpdateCheck.SetMenuItemBitmap(Properties.Resources.update_png);
             listUsers.SmallImageList = new ImageList();
             listUsers.SmallImageList.Images.Add("user", Properties.Resources.user_ico.ToBitmap());
-            listUsers.LargeImageList = new ImageList();
-            listUsers.LargeImageList.ImageSize = new Size(32, 32);
+            listUsers.LargeImageList = new ImageList
+            {
+                ImageSize = new Size(32, 32)
+            };
             listUsers.LargeImageList.Images.Add("user", Properties.Resources.user_32_ico.ToBitmap());
         }
         /// <summary>
@@ -81,10 +83,8 @@ namespace SuperGrate
         }
         private void UpdateSecurityProtocolType()
         {
-            int SecurityProtocolInt;
-            SecurityProtocolType SecurityProtocolSPT;
-            Enum.TryParse(Config.Settings["SecurityProtocol"], out SecurityProtocolSPT);
-            if (int.TryParse(Config.Settings["SecurityProtocol"], out SecurityProtocolInt))
+            Enum.TryParse(Config.Settings["SecurityProtocol"], out SecurityProtocolType SecurityProtocolSPT);
+            if (int.TryParse(Config.Settings["SecurityProtocol"], out int SecurityProtocolInt))
             {
                 SecurityProtocolSPT = (SecurityProtocolType)SecurityProtocolInt;
             }
@@ -343,7 +343,7 @@ namespace SuperGrate
         private async void BtnDelete_Click(object sender, EventArgs e)
         {
             int selectedCount = listUsers.SelectedItems.Count;
-            ConfirmDialog confirm = null;
+            ConfirmDialog confirm;
             if (selectedCount == 1)
             {
                 confirm = new ConfirmDialog("Delete User", "Are you sure you want to delete this user?", Properties.Resources.trash_16_32_ico);
@@ -536,8 +536,8 @@ namespace SuperGrate
         /// </summary>
         private void miAddRemoveCol_Click(object sender, EventArgs e)
         {
-            string SettingKey = "";
-            UserRow AllAvailableColumns = null;
+            string SettingKey;
+            UserRow AllAvailableColumns;
             if (CurrentListSource == ListSources.MigrationStore)
             {
                 SettingKey = "ULStoreColumns";

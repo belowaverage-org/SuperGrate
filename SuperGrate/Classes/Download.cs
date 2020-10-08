@@ -7,9 +7,9 @@ namespace SuperGrate
 {
     class Download
     {
-        private WebClient Client = new WebClient();
-        private string URL;
-        private string DESTINATION;
+        private readonly WebClient Client = new WebClient();
+        private readonly string URL;
+        private readonly string DESTINATION;
         private AsyncCompletedEventArgs Done = null;
         public Download(string Url, string Destination)
         {

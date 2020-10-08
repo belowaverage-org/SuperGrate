@@ -47,9 +47,11 @@ namespace SuperGrate.UserList
         }
         public static void SetColumns(this ListView Owner, UserRow TemplateRow, ULColumnType[] Format)
         {
-            UserRow Row = new UserRow();
-            Row.Add(ULColumnType.Tag, null);
-            foreach(ULColumnType ColumnType in Format)
+            UserRow Row = new UserRow
+            {
+                { ULColumnType.Tag, null }
+            };
+            foreach (ULColumnType ColumnType in Format)
             {
                 if(TemplateRow.ContainsKey(ColumnType) && !Row.ContainsKey(ColumnType))
                 {
@@ -63,8 +65,7 @@ namespace SuperGrate.UserList
             List<ULColumnType> ColIDs = new List<ULColumnType>();
             foreach(string sColID in Format.Split(','))
             {
-                int ColID = -1;
-                if(int.TryParse(sColID, out ColID))
+                if (int.TryParse(sColID, out int ColID))
                 {
                     ColIDs.Add((ULColumnType)ColID);
                 }
@@ -94,8 +95,7 @@ namespace SuperGrate.UserList
                     if (!x.ContainsKey(SortColumn) || x[SortColumn] == null) return -1;
                     if (!y.ContainsKey(SortColumn) || y[SortColumn] == null) return 1;
                     if (x[SortColumn] == y[SortColumn]) return 0;
-                    long intX, intY = 0;
-                    if (long.TryParse(x[SortColumn], out intX) && long.TryParse(y[SortColumn], out intY))
+                    if (long.TryParse(x[SortColumn], out long intX) && long.TryParse(y[SortColumn], out long intY))
                     {
                         if (intX > intY) return -1;
                         if (intX < intY) return 1;
@@ -134,8 +134,7 @@ namespace SuperGrate.UserList
         {
             if (ColumnItem.Key == ULColumnType.Size)
             {
-                double dblValue = 0;
-                if (double.TryParse(ColumnItem.Value, out dblValue))
+                if (double.TryParse(ColumnItem.Value, out double dblValue))
                 {
                     return dblValue.ByteHumanize();
                 }
@@ -146,8 +145,7 @@ namespace SuperGrate.UserList
                 ColumnItem.Key == ULColumnType.ImportedOn ||
                 ColumnItem.Key == ULColumnType.LastModified
             ) {
-                long longValue = 0;
-                if(long.TryParse(ColumnItem.Value, out longValue))
+                if (long.TryParse(ColumnItem.Value, out long longValue))
                 {
                     return DateTime.FromFileTime(longValue).ToString();
                 }
@@ -160,8 +158,7 @@ namespace SuperGrate.UserList
         }
         public static View ParseViewMode(string ViewMode)
         {
-            int intMode = 1;
-            int.TryParse(ViewMode, out intMode);
+            int.TryParse(ViewMode, out int intMode);
             if (intMode < 0 || intMode > 4) intMode = 1;
             return (View)intMode;
         }

@@ -6,7 +6,7 @@ namespace SuperGrate.Controls
 {
     public partial class ChangeSetting : Form
     {
-        private string Setting = "";
+        private readonly string Setting = "";
         /// <summary>
         /// Entry point for the ChangeSetting class. This method will display a form with the selected setting and allow the user to change it's value.
         /// </summary>
@@ -60,7 +60,7 @@ namespace SuperGrate.Controls
         /// <summary>
         /// This event will fire when the btnRestoreDefault button is clicked. The method will restore the default value for the setting.
         /// </summary>
-        private void btnRestoreDefault_Click(object sender, EventArgs e)
+        private void BtnRestoreDefault_Click(object sender, EventArgs e)
         {
             tbValue.Text = Config.DefaultSettings[Setting];
         }

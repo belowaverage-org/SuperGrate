@@ -32,7 +32,7 @@ namespace SuperGrate
             public uint cch;
             public IntPtr hbmpItem;
         }
-        private static Dictionary<MenuItem, Image> MenuItemIcons = new Dictionary<MenuItem, Image>();
+        private static readonly Dictionary<MenuItem, Image> MenuItemIcons = new Dictionary<MenuItem, Image>();
         /// <summary>
         /// Sets an icon on a button with the FlatStyle set to System.
         /// </summary>
@@ -62,10 +62,12 @@ namespace SuperGrate
                 Bitmap bitmap = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 Graphics g = Graphics.FromImage(bitmap);
                 g.DrawImage(image, 0, 0, image.Width, image.Height);
-                MENUITEMINFO mii = new MENUITEMINFO();
-                mii.cbSize = (uint)Marshal.SizeOf(typeof(MENUITEMINFO));
-                mii.fMask = 0x80u;
-                mii.hbmpItem = bitmap.GetHbitmap(Color.FromArgb(0, 0, 0, 0));
+                MENUITEMINFO mii = new MENUITEMINFO
+                {
+                    cbSize = (uint)Marshal.SizeOf(typeof(MENUITEMINFO)),
+                    fMask = 0x80u,
+                    hbmpItem = bitmap.GetHbitmap(Color.FromArgb(0, 0, 0, 0))
+                };
                 SetMenuItemInfo(mi.Parent.Handle, (uint)mi.Index, true, ref mii);
             }
         }

@@ -51,7 +51,7 @@
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "A&dd ->";
             this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAddRemove_Click);
+            this.btnAdd.Click += new System.EventHandler(this.BtnAddRemove_Click);
             // 
             // btnRemove
             // 
@@ -62,7 +62,7 @@
             this.btnRemove.TabIndex = 1;
             this.btnRemove.Text = "<- &Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnAddRemove_Click);
+            this.btnRemove.Click += new System.EventHandler(this.BtnAddRemove_Click);
             // 
             // lbAvailable
             // 
@@ -75,7 +75,7 @@
             this.lbAvailable.Size = new System.Drawing.Size(135, 192);
             this.lbAvailable.TabIndex = 2;
             this.lbAvailable.SelectedIndexChanged += new System.EventHandler(this.ListBox_SelectedIndexChanged);
-            this.lbAvailable.DoubleClick += new System.EventHandler(this.btnAddRemove_Click);
+            this.lbAvailable.DoubleClick += new System.EventHandler(this.BtnAddRemove_Click);
             // 
             // lbDisplayed
             // 
@@ -88,7 +88,7 @@
             this.lbDisplayed.Size = new System.Drawing.Size(135, 192);
             this.lbDisplayed.TabIndex = 3;
             this.lbDisplayed.SelectedIndexChanged += new System.EventHandler(this.ListBox_SelectedIndexChanged);
-            this.lbDisplayed.DoubleClick += new System.EventHandler(this.btnAddRemove_Click);
+            this.lbDisplayed.DoubleClick += new System.EventHandler(this.BtnAddRemove_Click);
             // 
             // btnMoveUp
             // 
@@ -99,7 +99,7 @@
             this.btnMoveUp.TabIndex = 4;
             this.btnMoveUp.Text = "M&ove Up";
             this.btnMoveUp.UseVisualStyleBackColor = true;
-            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
+            this.btnMoveUp.Click += new System.EventHandler(this.BtnMoveUp_Click);
             // 
             // btnMoveDown
             // 
@@ -110,7 +110,7 @@
             this.btnMoveDown.TabIndex = 5;
             this.btnMoveDown.Text = "Mo&ve Down";
             this.btnMoveDown.UseVisualStyleBackColor = true;
-            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
+            this.btnMoveDown.Click += new System.EventHandler(this.BtnMoveDown_Click);
             // 
             // btnRestoreDefaults
             // 
@@ -121,7 +121,7 @@
             this.btnRestoreDefaults.TabIndex = 6;
             this.btnRestoreDefaults.Text = "Re&store Defaults";
             this.btnRestoreDefaults.UseVisualStyleBackColor = true;
-            this.btnRestoreDefaults.Click += new System.EventHandler(this.btnRestoreDefaults_Click);
+            this.btnRestoreDefaults.Click += new System.EventHandler(this.BtnRestoreDefaults_Click);
             // 
             // lblAvail
             // 
@@ -161,7 +161,7 @@
             this.btnOk.TabIndex = 7;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            this.btnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
             // btnCancel
             // 
@@ -173,7 +173,7 @@
             this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // ChangeColumns
             // 

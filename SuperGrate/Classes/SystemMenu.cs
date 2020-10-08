@@ -29,10 +29,10 @@ namespace Unclassified.UI
 
         #region Private data
 
-        private Form form;
+        private readonly Form form;
         private IntPtr hSysMenu;
         private int lastId = 0;
-        private List<Action> actions = new List<Action>();
+        private readonly List<Action> actions = new List<Action>();
         private List<CommandInfo> pendingCommands;
 
         #endregion Private data

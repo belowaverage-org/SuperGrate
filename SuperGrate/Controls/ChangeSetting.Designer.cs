@@ -97,7 +97,7 @@
             this.btnRestoreDefault.Size = new System.Drawing.Size(75, 25);
             this.btnRestoreDefault.TabIndex = 4;
             this.btnRestoreDefault.Text = " &Default";
-            this.btnRestoreDefault.Click += new System.EventHandler(this.btnRestoreDefault_Click);
+            this.btnRestoreDefault.Click += new System.EventHandler(this.BtnRestoreDefault_Click);
             // 
             // ChangeSetting
             // 

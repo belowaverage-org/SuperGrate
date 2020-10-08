@@ -18,12 +18,12 @@ namespace SuperGrate.Controls
             btnOK.SetSystemIcon(Properties.Resources.check_ico);
             foreach (KeyValuePair<ULColumnType, string> property in Row)
             {
-                string name = "";
                 string value = ULControl.ConvertColumnValue(property);
-                if(property.Key == ULColumnType.NTAccount)
+                if (property.Key == ULColumnType.NTAccount)
                 {
                     Text = value;
                 }
+                string name;
                 if (Template.ContainsKey(property.Key))
                 {
                     name = Template[property.Key];

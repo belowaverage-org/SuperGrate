@@ -91,16 +91,16 @@ namespace SuperGrate.Controls
                 DisplayedColumns.Add(Item, AllColumns[Item]);
             }
         }
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
-        private void btnOk_Click(object sender, EventArgs e)
+        private void BtnOk_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
             UpdateDictionary();
         }
-        private void btnAddRemove_Click(object sender, EventArgs e)
+        private void BtnAddRemove_Click(object sender, EventArgs e)
         {
             ListBox lbFrom = null;
             ListBox lbTo = null;
@@ -127,7 +127,7 @@ namespace SuperGrate.Controls
             }
             UpdateUI();
         }
-        private void btnMoveUp_Click(object sender, EventArgs e)
+        private void BtnMoveUp_Click(object sender, EventArgs e)
         {
             int index = lbDisplayed.SelectedIndex;
             object item = lbDisplayed.Items[index];
@@ -135,7 +135,7 @@ namespace SuperGrate.Controls
             lbDisplayed.Items.Insert(--index, item);
             lbDisplayed.SelectedIndex = index;
         }
-        private void btnMoveDown_Click(object sender, EventArgs e)
+        private void BtnMoveDown_Click(object sender, EventArgs e)
         {
             int index = lbDisplayed.SelectedIndex;
             object item = lbDisplayed.Items[index];
@@ -143,7 +143,7 @@ namespace SuperGrate.Controls
             lbDisplayed.Items.Insert(++index, item);
             lbDisplayed.SelectedIndex = index;
         }
-        private void btnRestoreDefaults_Click(object sender, EventArgs e)
+        private void BtnRestoreDefaults_Click(object sender, EventArgs e)
         {
             Initialize();
         }

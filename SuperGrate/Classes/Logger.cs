@@ -17,7 +17,7 @@ namespace SuperGrate
             if (!Raw)
             {
                 Text = DateTime.Now.ToLongTimeString() + "> " + Text;
-                Text = Text + "\n";
+                Text += "\n";
             }
             try
             {
