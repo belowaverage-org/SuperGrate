@@ -116,13 +116,13 @@ namespace SuperGrate
                 }
                 if (row.ContainsKey(ULColumnType.LastModified) || row.ContainsKey(ULColumnType.Size) || row.ContainsKey(ULColumnType.FirstCreated))
                 {
-                    string profilePath = UserObject.GetPropertyValue("LocalPath").ToString();
-                    if (profilePath == null)
+                    string profilePathWMI = UserObject.GetPropertyValue("LocalPath").ToString();
+                    if (profilePathWMI == null)
                     {
                         Logger.Verbose("Skipped SID with no profile directory: " + SID + ".");
                         return null;
                     }
-                    string profilePath = profilePath.Replace(@"C:\", GetBestPathToC(Host));
+                    string profilePath = profilePathWMI.Replace(@"C:\", GetBestPathToC(Host));
                     if (row.ContainsKey(ULColumnType.Size))
                     {
                         Logger.Information("Calculating profile size for: " + user + "...");
