@@ -6,7 +6,6 @@ using System.Management;
 using SuperGrate.UserList;
 using SuperGrate.IO;
 using System.Windows.Forms;
-using System.Security.Principal;
 
 namespace SuperGrate
 {
@@ -95,7 +94,7 @@ namespace SuperGrate
         /// </summary>
         /// <param name="TemplateRow">A template row to fill in with information from the host.</param>
         /// <param name="Host">A host computer to get the information from.</param>
-        /// <param name="SID">An SID (Security Identifier) of the user profile on the host.</param>
+        /// <param name="UserObject">An ManagementObject of the user profile on the host.</param>
         /// <returns>Filled in UserRow.</returns>
         public static Task<UserRow> GetUserFromHost(UserRow TemplateRow, string Host, ManagementObject UserObject)
         {
@@ -120,8 +119,12 @@ namespace SuperGrate
                 {
                     row[ULColumnType.NTAccount] = user;
                 }
-                if (row.ContainsKey(ULColumnType.LastModified) || row.ContainsKey(ULColumnType.Size) || row.ContainsKey(ULColumnType.FirstCreated))
-                {
+                if (
+                    row.ContainsKey(ULColumnType.LastModified) ||
+                    row.ContainsKey(ULColumnType.Size) ||
+                    row.ContainsKey(ULColumnType.FirstCreated) ||
+                    row.ContainsKey(ULColumnType.ProfilePath)
+                ) {
                     string profilePathWMI = UserObject.GetPropertyValue("LocalPath").ToString();
                     if (profilePathWMI == null)
                     {
@@ -129,6 +132,10 @@ namespace SuperGrate
                         return null;
                     }
                     string profilePath = profilePathWMI.Replace(@"C:\", GetBestPathToC(Host));
+                    if (row.ContainsKey(ULColumnType.ProfilePath))
+                    {
+                        row[ULColumnType.ProfilePath] = profilePath;
+                    }
                     if (row.ContainsKey(ULColumnType.Size))
                     {
                         Logger.Information("Calculating profile size for: " + user + "...");
@@ -247,6 +254,7 @@ namespace SuperGrate
         {
             Dictionary<ULColumnType, string> Files = new Dictionary<ULColumnType, string>
             {
+                { ULColumnType.SecurityIdentifier, "sid" },
                 { ULColumnType.NTAccount, "ntaccount" },
                 { ULColumnType.SourceComputer, "source" },
                 { ULColumnType.DestinationComputer, "destination" },

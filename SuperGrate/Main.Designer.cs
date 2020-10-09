@@ -219,7 +219,7 @@
             this.tbSourceComputer.Size = new System.Drawing.Size(418, 22);
             this.tbSourceComputer.TabIndex = 101;
             this.tbSourceComputer.TextChanged += new System.EventHandler(this.TbSourceComputer_TextChanged);
-            this.tbSourceComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSourceDestComputer_KeyDown);
+            this.tbSourceComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbSourceDestComputer_KeyDown);
             // 
             // btnAFillSrc
             // 
@@ -419,7 +419,7 @@
             this.tbDestinationComputer.Size = new System.Drawing.Size(418, 22);
             this.tbDestinationComputer.TabIndex = 102;
             this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
-            this.tbDestinationComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSourceDestComputer_KeyDown);
+            this.tbDestinationComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbSourceDestComputer_KeyDown);
             // 
             // listUsers
             // 
@@ -435,11 +435,11 @@
             this.listUsers.TabIndex = 103;
             this.listUsers.UseCompatibleStateImageBehavior = false;
             this.listUsers.View = System.Windows.Forms.View.Details;
-            this.listUsers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listUsers_ColumnClick);
+            this.listUsers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ListUsers_ColumnClick);
             this.listUsers.SelectedIndexChanged += new System.EventHandler(this.UpdateFormRestrictions);
             this.listUsers.DoubleClick += new System.EventHandler(this.OpenUserProperties_Event);
-            this.listUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lbxUsers_KeyDown);
-            this.listUsers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.listUsers_MouseClick);
+            this.listUsers.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LbxUsers_KeyDown);
+            this.listUsers.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListUsers_MouseClick);
             // 
             // MainMenu
             // 
@@ -467,7 +467,7 @@
             this.miNewInstance.Index = 0;
             this.miNewInstance.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
             this.miNewInstance.Text = "New Instance";
-            this.miNewInstance.Click += new System.EventHandler(this.miNewInstance_Click);
+            this.miNewInstance.Click += new System.EventHandler(this.MiNewInstance_Click);
             // 
             // miSpacer0
             // 
@@ -479,7 +479,7 @@
             this.miSettings.Index = 2;
             this.miSettings.Shortcut = System.Windows.Forms.Shortcut.F12;
             this.miSettings.Text = "&Settings...";
-            this.miSettings.Click += new System.EventHandler(this.miSettings_Click);
+            this.miSettings.Click += new System.EventHandler(this.MiSettings_Click);
             // 
             // miSpace9
             // 
@@ -517,14 +517,14 @@
             this.miViewDetail,
             this.miViewTile});
             this.miView.Text = "&View";
-            this.miView.Popup += new System.EventHandler(this.miView_Popup);
+            this.miView.Popup += new System.EventHandler(this.MiView_Popup);
             // 
             // miAddRemoveCol
             // 
             this.miAddRemoveCol.Enabled = false;
             this.miAddRemoveCol.Index = 0;
             this.miAddRemoveCol.Text = "&Add/Remove Columns...";
-            this.miAddRemoveCol.Click += new System.EventHandler(this.miAddRemoveCol_Click);
+            this.miAddRemoveCol.Click += new System.EventHandler(this.MiAddRemoveCol_Click);
             // 
             // miSeperator65
             // 
@@ -536,35 +536,35 @@
             this.miViewLarge.Index = 2;
             this.miViewLarge.RadioCheck = true;
             this.miViewLarge.Text = "Large Icons";
-            this.miViewLarge.Click += new System.EventHandler(this.miViewMode_Click);
+            this.miViewLarge.Click += new System.EventHandler(this.MiViewMode_Click);
             // 
             // miViewSmall
             // 
             this.miViewSmall.Index = 3;
             this.miViewSmall.RadioCheck = true;
             this.miViewSmall.Text = "Small Icons";
-            this.miViewSmall.Click += new System.EventHandler(this.miViewMode_Click);
+            this.miViewSmall.Click += new System.EventHandler(this.MiViewMode_Click);
             // 
             // miViewList
             // 
             this.miViewList.Index = 4;
             this.miViewList.RadioCheck = true;
             this.miViewList.Text = "List";
-            this.miViewList.Click += new System.EventHandler(this.miViewMode_Click);
+            this.miViewList.Click += new System.EventHandler(this.MiViewMode_Click);
             // 
             // miViewDetail
             // 
             this.miViewDetail.Index = 5;
             this.miViewDetail.RadioCheck = true;
             this.miViewDetail.Text = "Detail";
-            this.miViewDetail.Click += new System.EventHandler(this.miViewMode_Click);
+            this.miViewDetail.Click += new System.EventHandler(this.MiViewMode_Click);
             // 
             // miViewTile
             // 
             this.miViewTile.Index = 6;
             this.miViewTile.RadioCheck = true;
             this.miViewTile.Text = "Tile";
-            this.miViewTile.Click += new System.EventHandler(this.miViewMode_Click);
+            this.miViewTile.Click += new System.EventHandler(this.MiViewMode_Click);
             // 
             // miHelp
             // 
@@ -603,7 +603,7 @@
             this.miHelpButton.Index = 3;
             this.miHelpButton.Shortcut = System.Windows.Forms.Shortcut.F1;
             this.miHelpButton.Text = "Toggle Help";
-            this.miHelpButton.Click += new System.EventHandler(this.miHelpButton_Click);
+            this.miHelpButton.Click += new System.EventHandler(this.MiHelpButton_Click);
             // 
             // miSpacer2
             // 
@@ -614,7 +614,7 @@
             // 
             this.miUpdateCheck.Index = 5;
             this.miUpdateCheck.Text = "Check for updates...";
-            this.miUpdateCheck.Click += new System.EventHandler(this.miUpdateCheck_Click);
+            this.miUpdateCheck.Click += new System.EventHandler(this.MiUpdateCheck_Click);
             // 
             // miSeperator55
             // 

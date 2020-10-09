@@ -12,12 +12,14 @@ namespace SuperGrate.UserList
             { ULColumnType.Tag, "Security Identifier" },
             { ULColumnType.NTAccount, "User Name" },
             { ULColumnType.LastModified, "Last Modified" },
-            { ULColumnType.Size, "Size" },
-            { ULColumnType.FirstCreated, "First Created" }
+            { ULColumnType.FirstCreated, "First Created" },
+            { ULColumnType.ProfilePath, "Profile Path" },
+            { ULColumnType.Size, "Size" }
         };
         public static UserRow HeaderRowStoreSource = new UserRow()
         {
             { ULColumnType.Tag, "Store Identifier" },
+            { ULColumnType.SecurityIdentifier, "Security Identifier" },
             { ULColumnType.NTAccount, "User Name" },
             { ULColumnType.SourceComputer, "Source Computer" },
             { ULColumnType.DestinationComputer, "Destination Computer" },
@@ -187,7 +189,9 @@ namespace SuperGrate.UserList
         ImportedOn = 6,
         ExportedBy = 7,
         ExportedOn = 8,
-        FirstCreated = 9
+        FirstCreated = 9,
+        ProfilePath = 10,
+        SecurityIdentifier = 11
     }
     public enum ULSortDirection
     {

@@ -158,6 +158,7 @@ namespace SuperGrate
                     true;
                     Canceled =
                     miSettings.Enabled =
+                    miUpdateCheck.Enabled =
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
                     btnAFillSrc.Enabled =
@@ -179,6 +180,7 @@ namespace SuperGrate
                     imgLoadLogo.Enabled = false;
                     Canceled =
                     miSettings.Enabled =
+                    miUpdateCheck.Enabled =
                     tbSourceComputer.Enabled =
                     tbDestinationComputer.Enabled =
                     btnAFillSrc.Enabled =
@@ -487,7 +489,7 @@ namespace SuperGrate
         /// <summary>
         /// This event fires when the tbSourceDestComputer text box recieves an enter key, this will simulate a click on the button btnListSource.
         /// </summary>
-        private void tbSourceDestComputer_KeyDown(object sender, KeyEventArgs e)
+        private void TbSourceDestComputer_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)
             {
@@ -501,7 +503,7 @@ namespace SuperGrate
         /// <summary>
         /// This event will fire when the lbxUsers registers an enter key, this simulates a click on the button btnStartStop.
         /// </summary>
-        private void lbxUsers_KeyDown(object sender, KeyEventArgs e)
+        private void LbxUsers_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -511,7 +513,7 @@ namespace SuperGrate
         /// <summary>
         /// This event will fire when the miHelpButton menu item is clicked, and will toggle the help on hover function in the main window.
         /// </summary>
-        private void miHelpButton_Click(object sender, EventArgs e)
+        private void MiHelpButton_Click(object sender, EventArgs e)
         {
             if (Cursor == Cursors.Help)
             {
@@ -527,14 +529,14 @@ namespace SuperGrate
         /// <summary>
         /// This event will fire when the miNewInstance menu item is clicked and will start a new instance of Super Grate.
         /// </summary>
-        private void miNewInstance_Click(object sender, EventArgs e)
+        private void MiNewInstance_Click(object sender, EventArgs e)
         {
             Process.Start(Application.ExecutablePath);
         }
         /// <summary>
         /// This event fires when the miAddRemoveCol menu item is clicked, and will display the column selection dialog box.
         /// </summary>
-        private void miAddRemoveCol_Click(object sender, EventArgs e)
+        private void MiAddRemoveCol_Click(object sender, EventArgs e)
         {
             string SettingKey;
             UserRow AllAvailableColumns;
@@ -629,14 +631,14 @@ namespace SuperGrate
         /// <summary>
         /// This event fires when the menu item miSettings is clicked. It will show the settings menu dialog box.
         /// </summary>
-        private void miSettings_Click(object sender, EventArgs e)
+        private void MiSettings_Click(object sender, EventArgs e)
         {
             new Settings().ShowDialog();
         }
         /// <summary>
         /// This event fires when view mode menu items are clicked. It will apply the settings and the new view mode the list box "listUsers". 
         /// </summary>
-        private void miViewMode_Click(object sender, EventArgs e)
+        private void MiViewMode_Click(object sender, EventArgs e)
         {
             MenuItem mi = (MenuItem)sender;
             View view = View.Details;
@@ -656,7 +658,7 @@ namespace SuperGrate
         /// <summary>
         /// This event fires before the miView menu is shown, and determines what menu items are checked based on current settings.
         /// </summary>
-        private void miView_Popup(object sender, EventArgs e)
+        private void MiView_Popup(object sender, EventArgs e)
         {
             ((Menu)sender).DrawMenuItemBitmaps();
             View ViewMode = ULControl.ParseViewMode(Config.Settings["ULViewMode"]);
@@ -671,7 +673,7 @@ namespace SuperGrate
         /// Event fired when a user clicks a column button (Sort Button) in the listUsers control.
         /// This method toggles the sort direction for each column in each list mode.
         /// </summary>
-        private void listUsers_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void ListUsers_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             ULColumnType selColumn = (ULColumnType)listUsers.Columns[e.Column].Tag;
             if (CurrentSortDirection[CurrentListSource] == ULSortDirection.Ascending)
@@ -693,7 +695,7 @@ namespace SuperGrate
         /// Event fired when user right clicks the listUsers control.
         /// The method will display a context menu at the user's mouse.
         /// </summary>
-        private void listUsers_MouseClick(object sender, MouseEventArgs e)
+        private void ListUsers_MouseClick(object sender, MouseEventArgs e)
         {
             if(e.Button == MouseButtons.Right)
             {
@@ -712,7 +714,7 @@ namespace SuperGrate
         {
             ((Menu)sender).DrawMenuItemBitmaps();
         }
-        private async void miUpdateCheck_Click(object sender, EventArgs e)
+        private async void MiUpdateCheck_Click(object sender, EventArgs e)
         {
             Running = RunningTask.Unknown;
             await Updater.CheckForUpdates();
