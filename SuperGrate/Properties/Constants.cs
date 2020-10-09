@@ -1,6 +1,4 @@
-﻿using System.Net;
-
-namespace SuperGrate
+﻿namespace SuperGrate
 {
     public class Constants
     {
