@@ -81,6 +81,7 @@
             this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.miConUser = new System.Windows.Forms.ContextMenu();
             this.miConStart = new System.Windows.Forms.MenuItem();
+            this.miRename = new System.Windows.Forms.MenuItem();
             this.miConDelete = new System.Windows.Forms.MenuItem();
             this.miConSeperator = new System.Windows.Forms.MenuItem();
             this.miConProperties = new System.Windows.Forms.MenuItem();
@@ -638,6 +639,7 @@
             // 
             this.miConUser.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.miConStart,
+            this.miRename,
             this.miConDelete,
             this.miConSeperator,
             this.miConProperties});
@@ -649,20 +651,25 @@
             this.miConStart.Text = "Start";
             this.miConStart.Click += new System.EventHandler(this.BtStartStop_Click);
             // 
+            // miRename
+            // 
+            this.miRename.Index = 1;
+            this.miRename.Text = "Rename...";
+            // 
             // miConDelete
             // 
-            this.miConDelete.Index = 1;
+            this.miConDelete.Index = 2;
             this.miConDelete.Text = "Delete...";
             this.miConDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // miConSeperator
             // 
-            this.miConSeperator.Index = 2;
+            this.miConSeperator.Index = 3;
             this.miConSeperator.Text = "-";
             // 
             // miConProperties
             // 
-            this.miConProperties.Index = 3;
+            this.miConProperties.Index = 4;
             this.miConProperties.Text = "Properties";
             this.miConProperties.Click += new System.EventHandler(this.OpenUserProperties_Event);
             // 
@@ -758,6 +765,7 @@
         private System.Windows.Forms.MenuItem miConProperties;
         private System.Windows.Forms.MenuItem miSeperator55;
         private System.Windows.Forms.MenuItem miUpdateCheck;
+        private System.Windows.Forms.MenuItem miRename;
     }
 }
 

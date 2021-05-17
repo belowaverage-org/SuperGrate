@@ -714,11 +714,9 @@ namespace SuperGrate
         {
             ((Menu)sender).DrawMenuItemBitmaps();
         }
-        private async void MiUpdateCheck_Click(object sender, EventArgs e)
+        private void MiUpdateCheck_Click(object sender, EventArgs e)
         {
-            Running = RunningTask.Unknown;
-            await Updater.CheckForUpdates();
-            Running = RunningTask.None;
+            Process.Start("OpenWith.exe", "https://github.com/belowaverage-org/SuperGrate/releases");
         }
     }
     /// <summary>
