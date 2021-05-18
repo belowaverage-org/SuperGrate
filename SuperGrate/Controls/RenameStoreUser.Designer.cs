@@ -48,9 +48,9 @@ namespace SuperGrate.Controls
             this.lblOrigName.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.lblOrigName.Location = new System.Drawing.Point(25, 37);
             this.lblOrigName.Name = "lblOrigName";
-            this.lblOrigName.Size = new System.Drawing.Size(110, 13);
+            this.lblOrigName.Size = new System.Drawing.Size(103, 13);
             this.lblOrigName.TabIndex = 0;
-            this.lblOrigName.Text = "Original User Name:";
+            this.lblOrigName.Text = "Source User Name:";
             // 
             // lblDestName
             // 
@@ -73,6 +73,7 @@ namespace SuperGrate.Controls
             // tbDestUser
             // 
             this.tbDestUser.Location = new System.Drawing.Point(171, 74);
+            this.tbDestUser.MaxLength = 50;
             this.tbDestUser.Name = "tbDestUser";
             this.tbDestUser.Size = new System.Drawing.Size(212, 22);
             this.tbDestUser.TabIndex = 3;
@@ -90,23 +91,26 @@ namespace SuperGrate.Controls
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnCancel.Location = new System.Drawing.Point(336, 19);
+            this.btnCancel.Location = new System.Drawing.Point(336, 10);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(86, 23);
-            this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.Size = new System.Drawing.Size(86, 26);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = " &Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnSave
             // 
+            this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSave.Location = new System.Drawing.Point(240, 19);
+            this.btnSave.Location = new System.Drawing.Point(240, 10);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(86, 23);
-            this.btnSave.TabIndex = 6;
-            this.btnSave.Text = "&OK";
+            this.btnSave.Size = new System.Drawing.Size(86, 26);
+            this.btnSave.TabIndex = 1;
+            this.btnSave.Text = " &OK";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // gb1
             // 
@@ -129,15 +133,17 @@ namespace SuperGrate.Controls
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Location = new System.Drawing.Point(0, 203);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(434, 59);
+            this.panel1.Size = new System.Drawing.Size(434, 45);
             this.panel1.TabIndex = 8;
             // 
             // RenameStoreUser
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(434, 262);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(434, 248);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gb1);
             this.Controls.Add(this.lblDescription);

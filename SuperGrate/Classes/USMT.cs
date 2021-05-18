@@ -78,6 +78,7 @@ namespace SuperGrate
                     {
                         Failed = !await DownloadFromStore(ID);
                         SID = await Misc.GetSIDFromStore(ID);
+                        configParams += await BuildLoadStateMUParameter(ID);
                         Logger.Information("Applying user state: '" + await Misc.GetUserByIdentity(ID) + "' on '" + CurrentTarget + "'...");
                         if (Canceled || Failed || SID == null) break;
                     }
@@ -211,6 +212,35 @@ namespace SuperGrate
                     Logger.Error("Could not delete USMT from: " + CurrentTarget + ".");
                     return false;
                 }
+            });
+        }
+        private static Task<string> BuildLoadStateMUParameter(string GUID)
+        {
+            return Task.Run(() => {
+                string parameter = "";
+                string srcUser = "";
+                string dstUser = "";
+                try
+                {
+                    string storePath = Path.Combine(Config.Settings["MigrationStorePath"], GUID);
+                    string targetNtAccountPath = Path.Combine(storePath, "targetntaccount");
+                    string sourceNtAccountPath = Path.Combine(storePath, "ntaccount");
+                    if (File.Exists(targetNtAccountPath) && File.Exists(targetNtAccountPath))
+                    {
+                        srcUser = File.ReadAllText(sourceNtAccountPath);
+                        dstUser = File.ReadAllText(targetNtAccountPath);
+                    }
+                    if (srcUser != "" && dstUser != "")
+                    {
+                        Logger.Information("'" + srcUser + "' will be applied as '" + dstUser + "'.");
+                        return " /mu:" + srcUser + ":" + dstUser;
+                    }
+                }
+                catch(Exception)
+                {
+                    Logger.Warning("Failed to build MU parameter.");
+                }
+                return parameter;
             });
         }
         private static Task<bool> UploadToStore(string SID, out string GUID)

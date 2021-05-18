@@ -651,10 +651,11 @@
             this.miConStart.Text = "Start";
             this.miConStart.Click += new System.EventHandler(this.BtStartStop_Click);
             // 
-            // miRename
+            // miConRename
             // 
             this.miConRename.Index = 1;
             this.miConRename.Text = "Set destination user name...";
+            this.miConRename.Click += new System.EventHandler(this.miConRename_Click);
             // 
             // miConDelete
             // 

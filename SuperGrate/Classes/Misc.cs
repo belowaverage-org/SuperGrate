@@ -269,6 +269,7 @@ namespace SuperGrate
                 try
                 {
                     string StoreItemPath = Path.Combine(Config.Settings["MigrationStorePath"], ID);
+                    _ = Directory.GetLastAccessTime(StoreItemPath);
                     UserRow row = new UserRow(TemplateRow);
                     DirectoryInfo info = new DirectoryInfo(StoreItemPath);
                     row[ULColumnType.Tag] = info.Name;

@@ -480,14 +480,14 @@ namespace SuperGrate
         /// </summary>
         private void MiDocumentation_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/belowaverage-org/SuperGrate/wiki");
+            Process.Start("OpenWith.exe", "https://github.com/belowaverage-org/SuperGrate/wiki");
         }
         /// <summary>
         /// This event will fire when the miIssues menu item is clicked, and will open the issues page on github.
         /// </summary>
         private void MiIssues_Click(object sender, EventArgs e)
         {
-            Process.Start("https://github.com/belowaverage-org/SuperGrate/issues");
+            Process.Start("OpenWith.exe", "https://github.com/belowaverage-org/SuperGrate/issues");
         }
         /// <summary>
         /// This event fires when the tbSourceDestComputer text box recieves an enter key, this will simulate a click on the button btnListSource.
@@ -627,8 +627,15 @@ namespace SuperGrate
                     return;
                 }
                 Running = RunningTask.None;
-                Logger.Success("Done!");
-                new UserProperties(template, row).ShowDialog();
+                if (row == null)
+                {
+                    Logger.Error("Failed to retrieve user data!");
+                }
+                else
+                {
+                    Logger.Success("Done!");
+                    new UserProperties(template, row).ShowDialog();
+                }
             }
         }
         /// <summary>
@@ -724,6 +731,31 @@ namespace SuperGrate
         private void MiUpdateCheck_Click(object sender, EventArgs e)
         {
             Process.Start("OpenWith.exe", "https://github.com/belowaverage-org/SuperGrate/releases");
+        }
+        private async void miConRename_Click(object sender, EventArgs e)
+        {
+            if (listUsers.SelectedItems.Count == 1)
+            {
+                Running = RunningTask.Unknown;
+                Logger.Information("Retrieving user properties...");
+                string storeID = (string)listUsers.SelectedItems[0].Tag;
+                UserRow row = await Misc.GetUserFromStore(new UserRow() {
+                    { ULColumnType.Tag, "Store ID" },
+                    { ULColumnType.SourceNTAccount, "Source User Name" },
+                    { ULColumnType.DestinationNTAccount, "Destination User Name" }
+                }, storeID);
+                Running = RunningTask.None;
+                if (row == null)
+                {
+                    Logger.Error("Could not retrieve user properties!");
+                }
+                else
+                {
+                    Logger.Success("Done!");
+                    new RenameStoreUser(row).ShowDialog();
+                    btnListStore.PerformClick();
+                }
+            }
         }
     }
     /// <summary>
