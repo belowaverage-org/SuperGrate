@@ -19,7 +19,7 @@ namespace SuperGrate.Controls
             foreach (KeyValuePair<ULColumnType, string> property in Row)
             {
                 string value = ULControl.ConvertColumnValue(property);
-                if (property.Key == ULColumnType.NTAccount)
+                if (property.Key == ULColumnType.SourceNTAccount)
                 {
                     Text = value;
                 }

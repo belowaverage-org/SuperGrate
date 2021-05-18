@@ -115,9 +115,9 @@ namespace SuperGrate
                     return null;
                 }
                 row[ULColumnType.Tag] = SID;
-                if (row.ContainsKey(ULColumnType.NTAccount))
+                if (row.ContainsKey(ULColumnType.SourceNTAccount))
                 {
-                    row[ULColumnType.NTAccount] = user;
+                    row[ULColumnType.SourceNTAccount] = user;
                 }
                 if (
                     row.ContainsKey(ULColumnType.LastModified) ||
@@ -255,7 +255,8 @@ namespace SuperGrate
             Dictionary<ULColumnType, string> Files = new Dictionary<ULColumnType, string>
             {
                 { ULColumnType.SecurityIdentifier, "sid" },
-                { ULColumnType.NTAccount, "ntaccount" },
+                { ULColumnType.SourceNTAccount, "ntaccount" },
+                { ULColumnType.DestinationNTAccount, "targetntaccount" },
                 { ULColumnType.SourceComputer, "source" },
                 { ULColumnType.DestinationComputer, "destination" },
                 { ULColumnType.ImportedBy, "importedby" },
@@ -318,7 +319,7 @@ namespace SuperGrate
                         }
                         rows.Add(row);
                         Logger.UpdateProgress((int)(((float)++count / directories.Length) * 100));
-                        Logger.Verbose("Found: " + row[ULColumnType.NTAccount]);
+                        Logger.Verbose("Found: " + row[ULColumnType.SourceNTAccount]);
                     }
                     Logger.Success("Users listed successfully.");
                     return rows;

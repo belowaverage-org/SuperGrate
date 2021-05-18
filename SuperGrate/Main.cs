@@ -29,8 +29,8 @@ namespace SuperGrate
             { ListSources.SourceComputer, ULSortDirection.Descending }
         };
         private readonly Dictionary<ListSources, ULColumnType> CurrentSortColumn = new Dictionary<ListSources, ULColumnType>() {
-            { ListSources.MigrationStore, ULColumnType.NTAccount },
-            { ListSources.SourceComputer, ULColumnType.NTAccount }
+            { ListSources.MigrationStore, ULColumnType.SourceNTAccount },
+            { ListSources.SourceComputer, ULColumnType.SourceNTAccount }
         };
         /// <summary>
         /// The main form entry point.
