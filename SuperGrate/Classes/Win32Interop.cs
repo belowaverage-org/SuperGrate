@@ -55,9 +55,15 @@ namespace SuperGrate
         }
         public static void DrawMenuItemBitmaps(this Menu Menu)
         {
+            int miIndexOffset = 0;
             foreach(MenuItem mi in Menu.MenuItems)
             {
                 if (!MenuItemIcons.ContainsKey(mi)) continue;
+                if (!mi.Visible)
+                {
+                    miIndexOffset--;
+                    continue;
+                }
                 Image image = MenuItemIcons[mi];
                 Bitmap bitmap = new Bitmap(image.Width, image.Height, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
                 Graphics g = Graphics.FromImage(bitmap);
@@ -68,7 +74,7 @@ namespace SuperGrate
                     fMask = 0x80u,
                     hbmpItem = bitmap.GetHbitmap(Color.FromArgb(0, 0, 0, 0))
                 };
-                SetMenuItemInfo(mi.Parent.Handle, (uint)mi.Index, true, ref mii);
+                SetMenuItemInfo(mi.Parent.Handle, (uint)(mi.Index + miIndexOffset), true, ref mii);
             }
         }
         public static Bitmap ToBitmapAlpha(this Icon Icon, int Width, int Height, Color Background)

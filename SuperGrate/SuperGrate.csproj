@@ -140,6 +140,12 @@
     <Compile Include="Controls\ConfirmDialog.Designer.cs">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\RenameStoreUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\RenameStoreUser.Designer.cs">
+      <DependentUpon>RenameStoreUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\UserProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ConfirmDialog.resx">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\RenameStoreUser.resx">
+      <DependentUpon>RenameStoreUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\UserProperties.resx">
       <DependentUpon>UserProperties.cs</DependentUpon>

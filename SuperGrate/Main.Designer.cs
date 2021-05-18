@@ -81,7 +81,7 @@
             this.helpProvider = new System.Windows.Forms.HelpProvider();
             this.miConUser = new System.Windows.Forms.ContextMenu();
             this.miConStart = new System.Windows.Forms.MenuItem();
-            this.miRename = new System.Windows.Forms.MenuItem();
+            this.miConRename = new System.Windows.Forms.MenuItem();
             this.miConDelete = new System.Windows.Forms.MenuItem();
             this.miConSeperator = new System.Windows.Forms.MenuItem();
             this.miConProperties = new System.Windows.Forms.MenuItem();
@@ -639,7 +639,7 @@
             // 
             this.miConUser.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.miConStart,
-            this.miRename,
+            this.miConRename,
             this.miConDelete,
             this.miConSeperator,
             this.miConProperties});
@@ -653,8 +653,8 @@
             // 
             // miRename
             // 
-            this.miRename.Index = 1;
-            this.miRename.Text = "Rename...";
+            this.miConRename.Index = 1;
+            this.miConRename.Text = "Set destination user name...";
             // 
             // miConDelete
             // 
@@ -765,7 +765,7 @@
         private System.Windows.Forms.MenuItem miConProperties;
         private System.Windows.Forms.MenuItem miSeperator55;
         private System.Windows.Forms.MenuItem miUpdateCheck;
-        private System.Windows.Forms.MenuItem miRename;
+        private System.Windows.Forms.MenuItem miConRename;
     }
 }
 

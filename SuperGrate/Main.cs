@@ -61,6 +61,7 @@ namespace SuperGrate
             miConProperties.SetMenuItemBitmap(Properties.Resources.user_png);
             miConStart.SetMenuItemBitmap(Properties.Resources.go_png);
             miUpdateCheck.SetMenuItemBitmap(Properties.Resources.update_png);
+            miConRename.SetMenuItemBitmap(Properties.Resources.settings_png);
             listUsers.SmallImageList = new ImageList();
             listUsers.SmallImageList.Images.Add("user", Properties.Resources.user_ico.ToBitmap());
             listUsers.LargeImageList = new ImageList
@@ -244,6 +245,7 @@ namespace SuperGrate
         {
             Running = RunningTask.Unknown;
             miAddRemoveCol.Enabled = true;
+            miConRename.Visible = false;
             listUsers.SetViewMode(Config.Settings["ULViewMode"]);
             listUsers.SetColumns(ULControl.HeaderRowComputerSource, Config.Settings["ULSourceColumns"]);
             lblUserList.Text = "Users on Source Computer:";
@@ -259,6 +261,7 @@ namespace SuperGrate
         {
             Running = RunningTask.Unknown;
             miAddRemoveCol.Enabled = true;
+            miConRename.Visible = true;
             lblUserList.Text = "Users in Migration Store:";
             listUsers.SetViewMode(Config.Settings["ULViewMode"]);
             listUsers.SetColumns(ULControl.HeaderRowStoreSource, Config.Settings["ULStoreColumns"]);
@@ -701,11 +704,15 @@ namespace SuperGrate
             {
                 if (listUsers.SelectedItems.Count == 1)
                 {
-                    miConProperties.Enabled = true;
+                    miConProperties.Enabled =
+                    miConRename.Enabled =
+                    true;
                 }
                 else
                 {
-                    miConProperties.Enabled = false;
+                    miConProperties.Enabled =
+                    miConRename.Enabled =
+                    false;
                 }
                 miConUser.Show((Control)sender, e.Location);
             }
