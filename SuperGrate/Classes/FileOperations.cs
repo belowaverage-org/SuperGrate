@@ -42,26 +42,18 @@ namespace SuperGrate.IO
         {
             DirectoryInfo source = new DirectoryInfo(Source);
             FileInfo[] sourceFiles = source.GetFiles("*", SearchOption.AllDirectories);
-            string lastStrippedPath = null;
             Logger.UpdateProgress(0);
             int progress = 0;
             foreach (FileInfo file in sourceFiles)
             {
                 if (USMT.Canceled) break;
-                string strippedFullPath = file.FullName.Replace(source.FullName, "").Replace(@"\", "");
-                string strippedPath = strippedFullPath.Replace(file.Name, "");
-                if (strippedPath != lastStrippedPath)
-                {
-                    string targetDirectory = Path.Combine(Destination, strippedPath);
-                    if (!Directory.Exists(targetDirectory))
-                    {
-                        Directory.CreateDirectory(targetDirectory);
-                    }
-                    lastStrippedPath = strippedPath;
-                }
-                string DestinationPath = Path.Combine(Destination, strippedFullPath);
-                Logger.Verbose(file.FullName + " => " + DestinationPath);
-                file.CopyTo(DestinationPath, true);
+                string strippedFullPath = file.FullName.Replace(source.FullName, "");
+                string destinationFullPath = Destination + strippedFullPath;
+                string relativeDirectoryPath = file.DirectoryName.Replace(source.FullName, "");
+                string destinationDirectoryPath = Destination + relativeDirectoryPath;
+                if (!Directory.Exists(destinationDirectoryPath)) Directory.CreateDirectory(destinationDirectoryPath);
+                file.CopyTo(destinationFullPath, true);
+                Logger.Verbose(file.FullName + " => " + destinationFullPath);
                 Logger.UpdateProgress(progress++, sourceFiles.Length);
             }
             return !USMT.Canceled;
