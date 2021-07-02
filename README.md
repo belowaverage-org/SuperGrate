@@ -23,7 +23,7 @@ __Super Grate__ is a tool part of the Super Suite that can perform remote execut
    * Super Grate can also be installed to a network share drive allowing all Super Grate users to experience the same settings and Backup Store.
 
 * __Compatible__
-   * Enjoy Super Grate on most flavors of "Windows" from Windows 7 to Windows 10.
+   * Enjoy Super Grate on most flavors of "Windows" from Windows 7 to Windows 11.
 
 * __Portable__
    * Install Super Grate directly to an external hard drive or thumb drive to take it with you on the go!
