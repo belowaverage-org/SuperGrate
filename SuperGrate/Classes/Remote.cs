@@ -63,7 +63,7 @@ namespace SuperGrate
                             Running = false;
                             break;
                         }
-                        await Task.Delay(3000);
+                        await Task.Delay(500);
                     }
                     return true;
                 }
