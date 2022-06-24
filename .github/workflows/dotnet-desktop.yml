@@ -28,5 +28,6 @@ jobs:
     - name: Upload
       uses: actions/upload-artifact@v3.1.0
       with:
-        path: .\SuperGrate\bin\Release\SuperGrate.exe
+        path: |
+              .\SuperGrate\bin\Release\SuperGrate.exe
               .\SuperGrate\bin\Release_64\SuperGrate.exe
