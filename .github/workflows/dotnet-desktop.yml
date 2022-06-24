@@ -1,0 +1,32 @@
+name: .NET Framework Desktop
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: windows-latest  
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup MSBuild.exe
+      uses: microsoft/setup-msbuild@v1.0.2
+
+    - name: Build 32
+      run: MSBuild SuperGrate.sln -t:Rebuild -p:Configuration=Release
+       
+    - name: Build 64
+      run: MSBuild SuperGrate.sln -t:Rebuild -p:Configuration=Release_64
+      
+    - name: Upload
+      uses: actions/upload-artifact@v3.1.0
+      with:
+        path: .\SuperGrate\bin\Release\SuperGrate.exe
+              .\SuperGrate\bin\Release_64\SuperGrate.exe
