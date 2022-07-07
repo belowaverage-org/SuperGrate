@@ -1,12 +1,15 @@
-﻿using System.Xml.Linq;
-using System.IO;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Linq;
 
 namespace SuperGrate
 {
     class Config
     {
+        /// <summary>
+        /// Template XML and settings loaded into memory.
+        /// </summary>
         public static Dictionary<string, string> Settings = new Dictionary<string, string>() {
             {"XComment9", @"The UNC or Direct path to the USMT directory. (E.g: .\USMT\X64)"},
             {"USMTPathX64", @".\USMT\X64"},
@@ -27,16 +30,29 @@ namespace SuperGrate
             {"XComment7", "Prevent unknown accounts from being listed?"},
             {"HideUnknownSIDs", "false"},
             {"XComment6", @"Write log to disk on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)"},
-            {"DumpLogHereOnExit", ""},
+            {"DumpLogHereOnExit", @".\LOGS"},
             {"XComment10", @"List of columns to display for the Source or Store users."},
             {"ULSourceColumns", "0,3,9"},
             {"ULStoreColumns", "0,1,5,6,4"},
             {"XComment11", @"User List View Mode: Large (0) / Small Icon (2), List (3), Details (1) and Tile (4)."},
             {"ULViewMode", "1"},
+            {"XComment13", @"Default source computer at startup."},
+            {"SourceComputer", ""},
+            {"XComment14", @"Default destination computer at startup."},
+            {"DestinationComputer", ""},
+            {"XComment15", @"Default profile to be selected after listing the source computer."},
+            {"SourceProfile", ""},
+            {"XComment16", @"Default profile to be selected after listing the profile store."},
+            {"StoreProfile", ""},
+            {"XComment17", @"Default tab view: Source, Store, None."},
+            {"TabView", "None"},
             {"XComment12", @"Security Protocol Version (Restart Required): SystemDefault, Ssl3, Tls, Tls11, Tls12, Tls13."},
             {"SecurityProtocol", "Tls12"}
         };
         public static Dictionary<string, string> DefaultSettings = Settings;
+        /// <summary>
+        /// Saves the config in memory to the XML file.
+        /// </summary>
         public static void SaveConfig()
         {
             Logger.Information("Generating SuperGrate.xml...");
@@ -62,6 +78,10 @@ namespace SuperGrate
                 Logger.Exception(e, "Failed to save the configuration!");
             }
         }
+        /// <summary>
+        /// Determines if the XML is writeable.
+        /// </summary>
+        /// <returns>True meaning it is write-able, false meaning it is not.</returns>
         public static bool CanSaveConfig()
         {
             try
@@ -76,6 +96,10 @@ namespace SuperGrate
                 return false;
             }
         }
+        /// <summary>
+        /// Loads the config from XML into memory.
+        /// </summary>
+        /// <param name="parameters">Custom parameters passed by the CLI.</param>
         public static void LoadConfig(string[] parameters = null)
         {
             if(!File.Exists(@".\SuperGrate.xml"))
@@ -115,7 +139,7 @@ namespace SuperGrate
                 }
                 else
                 {
-                    Logger.Warning("Config loaded, but is using default values for the missing elements.");
+                    Logger.Warning("Config loaded, but is using default values for the missing elements. Fix this warning by opening the \"settings\" menu and clicking \"Save to Disk\".");
                 }
             }
             catch(Exception e)
@@ -129,10 +153,9 @@ namespace SuperGrate
                     if (parameter.StartsWith("/") || parameter.StartsWith("-") && parameter.Contains(":"))
                     {
                         string[] param_parts = parameter.Substring(1).Split(':');
-                        if (Settings.ContainsKey(param_parts[0]))
-                        {
-                            Settings[param_parts[0]] = param_parts[1];
-                        }
+                        if (param_parts[0].StartsWith("XComment")) continue;
+                        if (!Settings.ContainsKey(param_parts[0])) continue;
+                        Settings[param_parts[0]] = param_parts[1];
                     }
                 }
             }

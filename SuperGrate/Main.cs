@@ -1,4 +1,5 @@
-﻿using SuperGrate.Controls;
+﻿using SuperGrate.ComInterop;
+using SuperGrate.Controls;
 using SuperGrate.UserList;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ namespace SuperGrate
         public static string SourceComputer;
         public static string DestinationComputer;
         public static ListSources CurrentListSource = ListSources.Unknown;
+        public static ITaskbarList3 TaskbarList;
         private static bool storeCanceled = false;
         private static RunningTask storeRunningTask = RunningTask.None;
         private readonly string[] MainParameters = null;
@@ -75,6 +77,8 @@ namespace SuperGrate
         /// </summary>
         private void Main_Load(object sender, EventArgs e)
         {
+            TaskbarList = (ITaskbarList3)new TaskbarList();
+            TaskbarList.HrInit();
             Config.LoadConfig(MainParameters);
             Logger.Success("Welcome to " + Application.ProductName + "! v" + Application.ProductVersion);
             Logger.Information("Enter some information to get started!");
@@ -82,6 +86,9 @@ namespace SuperGrate
             UpdateFormRestrictions();
             BindHelp(this);
         }
+        /// <summary>
+        /// Sets the Security Protocol from settings for .NET to use.
+        /// </summary>
         private void UpdateSecurityProtocolType()
         {
             Enum.TryParse(Config.Settings["SecurityProtocol"], out SecurityProtocolType SecurityProtocolSPT);
@@ -732,7 +739,7 @@ namespace SuperGrate
         {
             Process.Start("OpenWith.exe", "https://github.com/belowaverage-org/SuperGrate/releases");
         }
-        private async void miConRename_Click(object sender, EventArgs e)
+        private async void MiConRename_Click(object sender, EventArgs e)
         {
             if (listUsers.SelectedItems.Count == 1)
             {

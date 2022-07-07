@@ -154,6 +154,11 @@ namespace SuperGrate
                 return row;
             });
         }
+        /// <summary>
+        /// Gets the true hostname from the host.
+        /// </summary>
+        /// <param name="Host">The host or IP to retrieve the true hostname.</param>
+        /// <returns>Task with a string.</returns>
         public static Task<string> GetHostNameFromHost(string Host)
         {
             return Task.Run(async () =>

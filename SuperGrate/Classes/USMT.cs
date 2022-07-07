@@ -45,6 +45,12 @@ namespace SuperGrate
                 return null;
             }
         }
+        /// <summary>
+        /// Runs the main USMT / Super Grate logic.
+        /// </summary>
+        /// <param name="Mode">USMT mode to use.</param>
+        /// <param name="IDs">List of profiles to either backup or restore.</param>
+        /// <returns>A task with bool, true for success.</returns>
         public static Task<bool> Do(USMTMode Mode, string[] IDs)
         {
             UploadedGUIDs.Clear();
@@ -127,6 +133,10 @@ namespace SuperGrate
                 }
             });
         }
+        /// <summary>
+        /// Copy USMT to the remote machine.
+        /// </summary>
+        /// <returns>A task with bool, true if success.</returns>
         public static Task<bool> CopyUSMT()
         {
             return Task.Run(async () => {
@@ -161,6 +171,9 @@ namespace SuperGrate
                 }
             });
         }
+        /// <summary>
+        /// Kill USMT on remote machine.
+        /// </summary>
         public static async void Cancel()
         {
             Canceled = true;
@@ -176,6 +189,10 @@ namespace SuperGrate
                 Logger.Error("Failed to send KILL command.");
             }
         }
+        /// <summary>
+        /// Cleanup USMT from remote machine.
+        /// </summary>
+        /// <returns>A task with bool, true if success.</returns>
         public static Task<bool> CleaupUSMT()
         {
             return Task.Run(async () => {
@@ -214,6 +231,11 @@ namespace SuperGrate
                 }
             });
         }
+        /// <summary>
+        /// Generate a build load state CLI parameter to use with USMT.
+        /// </summary>
+        /// <param name="GUID">Store GUID of profile to use.</param>
+        /// <returns>A task with a string containing the CLI parameter.</returns>
         private static Task<string> BuildLoadStateMUParameter(string GUID)
         {
             return Task.Run(() => {
@@ -243,6 +265,12 @@ namespace SuperGrate
                 return parameter;
             });
         }
+        /// <summary>
+        /// Uploads a user from the remote machine to the store.
+        /// </summary>
+        /// <param name="SID">Profile Security ID.</param>
+        /// <param name="GUID">Store GUID.</param>
+        /// <returns>A task with bool, true if success.</returns>
         private static Task<bool> UploadToStore(string SID, out string GUID)
         {
             string lGUID = Guid.NewGuid().ToString();
@@ -276,6 +304,11 @@ namespace SuperGrate
                 }
             });
         }
+        /// <summary>
+        /// Downloads the profile from the store to a destination machine.
+        /// </summary>
+        /// <param name="GUID">Store GUID to use.</param>
+        /// <returns>A task with bool, true if success.</returns>
         private static Task<bool> DownloadFromStore(string GUID)
         {
             return Task.Run(() => {
@@ -298,6 +331,10 @@ namespace SuperGrate
                 }
             });
         }
+        /// <summary>
+        /// Downloads USMT from the web.
+        /// </summary>
+        /// <returns>A task with bool, true if success.</returns>
         private static Task<bool> DownloadUSMTFromWeb()
         {
             return Task.Run(async () => {
@@ -339,6 +376,11 @@ namespace SuperGrate
                 }
             });
         }
+        /// <summary>
+        /// Sets the store export parameters.
+        /// </summary>
+        /// <param name="ID">The GUID to save to.</param>
+        /// <returns>A task with bool, True if success.</returns>
         private static Task<bool> SetStoreExportParameters(string ID)
         {
             string storeObjPath = Path.Combine(Config.Settings["MigrationStorePath"], ID);
@@ -357,6 +399,11 @@ namespace SuperGrate
                 }
             });
         }
+        /// <summary>
+        /// Waits for USMT to exit.
+        /// </summary>
+        /// <param name="ImageName">Name of the process to wait on.</param>
+        /// <returns>A task with bool, true if USMT exited gracefully.</returns>
         private static async Task<bool> WaitForUsmtExit(string ImageName)
         {
             Running = true;
@@ -369,6 +416,10 @@ namespace SuperGrate
             await Task.Delay(3000);
             return result;
         }
+        /// <summary>
+        /// Watches the USMT log and updates the main UI on progress.
+        /// </summary>
+        /// <param name="LogFile">Log file to watch.</param>
         private static async void StartWatchLog(string LogFile)
         {
             try

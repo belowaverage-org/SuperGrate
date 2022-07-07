@@ -655,7 +655,7 @@
             // 
             this.miConRename.Index = 1;
             this.miConRename.Text = "Set destination user name...";
-            this.miConRename.Click += new System.EventHandler(this.miConRename_Click);
+            this.miConRename.Click += new System.EventHandler(this.MiConRename_Click);
             // 
             // miConDelete
             // 

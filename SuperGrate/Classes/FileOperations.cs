@@ -7,6 +7,11 @@ namespace SuperGrate.IO
 {
     class FileOperations
     {
+        /// <summary>
+        /// Copies a file.
+        /// </summary>
+        /// <param name="Source">Source file to copy.</param>
+        /// <param name="Destination">Destination to copy the file to.</param>
         public static void CopyFile(string Source, string Destination)
         {
             FileInfo file = new FileInfo(Source);
@@ -38,6 +43,12 @@ namespace SuperGrate.IO
                 writer?.Wait();
             }
         }
+        /// <summary>
+        /// Recursively copies a folder.
+        /// </summary>
+        /// <param name="Source">The path of the source folder.</param>
+        /// <param name="Destination">The path to the destination.</param>
+        /// <returns></returns>
         public static bool CopyFolder(string Source, string Destination)
         {
             DirectoryInfo source = new DirectoryInfo(Source);
@@ -58,10 +69,20 @@ namespace SuperGrate.IO
             }
             return !USMT.Canceled;
         }
+        /// <summary>
+        /// Recursivley calculates a folders size.
+        /// </summary>
+        /// <param name="Directory">The path to the folder.</param>
+        /// <returns>A task with a double. The double represents the number of bytes calculated.</returns>
         public static Task<double> GetFolderSize(string Directory)
         {
             return GetFolderSize(new DirectoryInfo(Directory));
         }
+        /// <summary>
+        /// Recursivley calculates a folders size.
+        /// </summary>
+        /// <param name="Directory">The directory info object of the folder.</param>
+        /// <returns>A task with a double. The double represents the number of bytes calculated.</returns>
         public static Task<double> GetFolderSize(DirectoryInfo Directory)
         {
             return Task.Run(() => {
