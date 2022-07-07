@@ -40,11 +40,7 @@ namespace SuperGrate
             {"SourceComputer", ""},
             {"XComment14", @"Default destination computer at startup."},
             {"DestinationComputer", ""},
-            {"XComment15", @"Default profile to be selected after listing the source computer."},
-            {"SourceProfile", ""},
-            {"XComment16", @"Default profile to be selected after listing the profile store."},
-            {"StoreProfile", ""},
-            {"XComment17", @"Default tab view: Source, Store, None."},
+            {"XComment17", @"Default tab view at startup: Source, Store, None."},
             {"TabView", "None"},
             {"XComment12", @"Security Protocol Version (Restart Required): SystemDefault, Ssl3, Tls, Tls11, Tls12, Tls13."},
             {"SecurityProtocol", "Tls12"}

@@ -85,6 +85,20 @@ namespace SuperGrate
             UpdateSecurityProtocolType();
             UpdateFormRestrictions();
             BindHelp(this);
+            ApplyStartupParameters();
+        }
+        /// <summary>
+        /// Apply UI fields from CLI / XML parameters at startup.
+        /// </summary>
+        private void ApplyStartupParameters()
+        {
+            tbSourceComputer.Text = Config.Settings["SourceComputer"];
+            tbDestinationComputer.Text = Config.Settings["DestinationComputer"];
+            if (Enum.TryParse(Config.Settings["TabView"], out TabView tvResult))
+            {
+                if (tvResult == TabView.Source) btnListSource.PerformClick();
+                if (tvResult == TabView.Store) btnListStore.PerformClick();
+            }
         }
         /// <summary>
         /// Sets the Security Protocol from settings for .NET to use.
@@ -783,5 +797,14 @@ namespace SuperGrate
         None = -1,
         USMT = 1,
         RemoteProfileDelete = 2
+    }
+    /// <summary>
+    /// Enum of tabs.
+    /// </summary>
+    public enum TabView
+    {
+        Source = 0,
+        Store = 1,
+        None = 2
     }
 }
