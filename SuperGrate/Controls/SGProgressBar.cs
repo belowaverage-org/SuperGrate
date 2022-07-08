@@ -19,7 +19,6 @@ namespace SuperGrate.Controls
         /// <param name="Text">Text to draw.</param>
         private void DrawText(string Text)
         {
-            RECT.Left = (int)(((float)Value / (float)Maximum) * Width);
             Win32Interop.DrawText(HDC, Text, -1, RECT, Win32Interop.DTFormat.DT_NOCLIP | Win32Interop.DTFormat.DT_BOTTOM);
         }
         /// <summary>

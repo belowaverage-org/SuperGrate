@@ -19,7 +19,6 @@
       </requestedPrivileges>
     </security>
   </trustInfo>
-
   <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
     <application>
       <!-- A list of the Windows versions that this application has been tested on
@@ -49,17 +48,18 @@
        to opt in. Windows Forms applications targeting .NET Framework 4.6 that opt into this setting, should 
        also set the 'EnableWindowsFormsHighDpiAutoResizing' setting to 'true' in their app.config. -->
 
-  <!--<application xmlns="urn:schemas-microsoft-com:asm.v3">
+  <application xmlns="urn:schemas-microsoft-com:asm.v3">
     <windowsSettings>
-      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true</dpiAware>
+      <dpiAware xmlns="http://schemas.microsoft.com/SMI/2005/WindowsSettings">true/pm</dpiAware>
+      <!--<dpiAwareness>PerMonitorV2</dpiAwareness>-->
     </windowsSettings>
-  </application>-->
+  </application>
 
-  <asmv3:application>
+  <!--<asmv3:application>
     <asmv3:windowsSettings>
-      <gdiScaling xmlns="http://schemas.microsoft.com/SMI/2017/WindowsSettings">true</gdiScaling>
+      <gdiScaling xmlns="http://schemas.microsoft.com/SMI/2017/WindowsSettings">false</gdiScaling>
     </asmv3:windowsSettings>
-  </asmv3:application>
+  </asmv3:application>-->
 
   <!-- Enable themes for Windows common controls and dialogs (Windows XP and later) -->
   <!--
