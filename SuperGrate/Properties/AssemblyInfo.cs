@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Dylan Bickerstaff")]
 [assembly: AssemblyProduct("Super Grate")]
-[assembly: AssemblyCopyright("Copyright © 2021")]
+[assembly: AssemblyCopyright("Copyright © 2022")]
 [assembly: AssemblyTrademark("Dylan Bickerstaff")]
 [assembly: AssemblyCulture("")]
 
