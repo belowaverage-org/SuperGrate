@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.LogBox = new System.Windows.Forms.RichTextBox();
-            this.pbMain = new SuperGrate.Controls.SGProgressBar();
             this.logTable = new System.Windows.Forms.TableLayoutPanel();
             this.spltContainer = new System.Windows.Forms.SplitContainer();
             this.tblMainLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -85,6 +84,7 @@
             this.miConDelete = new System.Windows.Forms.MenuItem();
             this.miConSeperator = new System.Windows.Forms.MenuItem();
             this.miConProperties = new System.Windows.Forms.MenuItem();
+            this.pbMain = new SuperGrate.Controls.SGProgressBar();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -111,22 +111,10 @@
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
             this.helpProvider.SetShowHelp(this.LogBox, true);
-            this.LogBox.Size = new System.Drawing.Size(294, 372);
+            this.LogBox.Size = new System.Drawing.Size(294, 330);
             this.LogBox.TabIndex = 100;
             this.LogBox.Text = "";
             this.LogBox.DoubleClick += new System.EventHandler(this.LogBox_DoubleClick);
-            // 
-            // pbMain
-            // 
-            this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMain.ForeColor = System.Drawing.Color.Black;
-            this.pbMain.Location = new System.Drawing.Point(3, 384);
-            this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pbMain.MarqueeAnimationSpeed = 30;
-            this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(294, 22);
-            this.pbMain.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.pbMain.TabIndex = 100;
             // 
             // logTable
             // 
@@ -141,7 +129,7 @@
             this.logTable.RowCount = 2;
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.logTable.Size = new System.Drawing.Size(300, 410);
+            this.logTable.Size = new System.Drawing.Size(300, 368);
             this.logTable.TabIndex = 100;
             // 
             // spltContainer
@@ -160,7 +148,7 @@
             // 
             this.spltContainer.Panel2.Controls.Add(this.logTable);
             this.spltContainer.Panel2MinSize = 300;
-            this.spltContainer.Size = new System.Drawing.Size(886, 410);
+            this.spltContainer.Size = new System.Drawing.Size(886, 368);
             this.spltContainer.SplitterDistance = 582;
             this.spltContainer.TabIndex = 100;
             // 
@@ -189,7 +177,7 @@
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tblMainLayout.Size = new System.Drawing.Size(582, 410);
+            this.tblMainLayout.Size = new System.Drawing.Size(582, 368);
             this.tblMainLayout.TabIndex = 100;
             // 
             // sourCompTabl
@@ -265,7 +253,7 @@
             this.lblUserList.Location = new System.Drawing.Point(3, 90);
             this.lblUserList.Name = "lblUserList";
             this.helpProvider.SetShowHelp(this.lblUserList, true);
-            this.lblUserList.Size = new System.Drawing.Size(124, 180);
+            this.lblUserList.Size = new System.Drawing.Size(124, 138);
             this.lblUserList.TabIndex = 100;
             this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -277,7 +265,7 @@
             this.btnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnStartStop, "This button will start a migration, backup, or restoration and stop any other Sup" +
         "er Grate process.");
-            this.btnStartStop.Location = new System.Drawing.Point(3, 383);
+            this.btnStartStop.Location = new System.Drawing.Point(3, 341);
             this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btnStartStop.Name = "btnStartStop";
             this.helpProvider.SetShowHelp(this.btnStartStop, true);
@@ -353,7 +341,7 @@
             this.pnlLogoBorder.BackColor = System.Drawing.Color.DarkGray;
             this.pnlLogoBorder.Controls.Add(this.imgLoadLogo);
             this.pnlLogoBorder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLogoBorder.Location = new System.Drawing.Point(4, 270);
+            this.pnlLogoBorder.Location = new System.Drawing.Point(4, 228);
             this.pnlLogoBorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.pnlLogoBorder.Name = "pnlLogoBorder";
             this.pnlLogoBorder.Padding = new System.Windows.Forms.Padding(1);
@@ -432,7 +420,7 @@
             this.listUsers.Name = "listUsers";
             this.tblMainLayout.SetRowSpan(this.listUsers, 2);
             this.listUsers.ShowGroups = false;
-            this.listUsers.Size = new System.Drawing.Size(446, 284);
+            this.listUsers.Size = new System.Drawing.Size(446, 242);
             this.listUsers.TabIndex = 103;
             this.listUsers.UseCompatibleStateImageBehavior = false;
             this.listUsers.View = System.Windows.Forms.View.Details;
@@ -674,11 +662,23 @@
             this.miConProperties.Text = "Properties";
             this.miConProperties.Click += new System.EventHandler(this.OpenUserProperties_Event);
             // 
+            // pbMain
+            // 
+            this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbMain.ForeColor = System.Drawing.Color.Black;
+            this.pbMain.Location = new System.Drawing.Point(3, 342);
+            this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pbMain.MarqueeAnimationSpeed = 30;
+            this.pbMain.Name = "pbMain";
+            this.pbMain.Size = new System.Drawing.Size(294, 22);
+            this.pbMain.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pbMain.TabIndex = 100;
+            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(896, 420);
+            this.ClientSize = new System.Drawing.Size(896, 378);
             this.Controls.Add(this.spltContainer);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

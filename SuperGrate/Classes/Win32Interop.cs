@@ -9,6 +9,20 @@ namespace SuperGrate
     static class Win32Interop
     {
         /// <summary>
+        /// The SelectObject function selects an object into the specified device context (DC). The new object replaces the previous object of the same type.
+        /// </summary>
+        /// <param name="hdc">A handle to the DC.</param>
+        /// <param name="Object">A handle to the object to be selected.</param>
+        /// <returns>If an error occurs and the selected object is not a region, the return value is NULL.</returns>
+        [DllImport("gdi32.dll")]
+        public static extern IntPtr SelectObject(IntPtr hdc, IntPtr Object);
+        /// <summary>
+        /// The GetStockObject function retrieves a handle to one of the stock pens, brushes, fonts, or palettes.
+        /// </summary>
+        /// <returns>If the function fails, the return value is NULL.</returns>
+        [DllImport("gdi32.dll")]
+        public static extern IntPtr GetStockObject(StockLogicalObjects Object);
+        /// <summary>
         /// The SetBkMode function sets the background mix mode of the specified device context.
         /// </summary>
         /// <param name="hdc">A handle to the device context.</param>
@@ -100,10 +114,10 @@ namespace SuperGrate
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT
         {
-            public long Left;
-            public long Top;
-            public long Right;
-            public long Bottom;
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
         }
         /// <summary>
         /// The background mode. This parameter can be one of the following values.
@@ -112,6 +126,15 @@ namespace SuperGrate
         {
             Opaque = 0,
             Transparent = 1
+        }
+        public enum StockLogicalObjects
+        {
+            OEM_FIXED_FONT = 10,
+            ANSI_FIXED_FONT = 11,
+            ANSI_VAR_FONT = 12,
+            SYSTEM_FONT = 13,
+            DEVICE_DEFAULT_FONT = 14,
+            SYSTEM_FIXED_FONT = 16
         }
         /// <summary>
         /// DrawText() Format Flags
