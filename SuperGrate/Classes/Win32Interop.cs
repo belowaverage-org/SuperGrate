@@ -9,6 +9,32 @@ namespace SuperGrate
     static class Win32Interop
     {
         /// <summary>
+        /// The SetBkMode function sets the background mix mode of the specified device context.
+        /// </summary>
+        /// <param name="hdc">A handle to the device context.</param>
+        /// <param name="Mode">The background mode.</param>
+        /// <returns>If the function fails, the return value is zero.</returns>
+        [DllImport("gdi32.dll")]
+        public static extern int SetBkMode(IntPtr hdc, BkMode Mode);
+        /// <summary>
+        /// The GetDC function retrieves a handle to a device context (DC) for the client area of a specified window or for the entire screen. You can use the returned handle in subsequent GDI functions to draw in the DC. The device context is an opaque data structure, whose values are used internally by GDI.
+        /// </summary>
+        /// <param name="hWnd">A handle to the window whose DC is to be retrieved. If this value is NULL, GetDC retrieves the DC for the entire screen.</param>
+        /// <returns>If the function succeeds, the return value is a handle to the DC for the specified window's client area.</returns>
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetDC(IntPtr hWnd);
+        /// <summary>
+        /// The DrawText function draws formatted text in the specified rectangle. It formats the text according to the specified method (expanding tabs, justifying characters, breaking lines, and so forth).
+        /// </summary>
+        /// <param name="hdc">A handle to the device context.</param>
+        /// <param name="Text">A pointer to the string that specifies the text to be drawn. If the nCount parameter is -1, the string must be null-terminated.</param>
+        /// <param name="Length">The length, in characters, of the string. If nCount is -1, then the lpchText parameter is assumed to be a pointer to a null-terminated string and DrawText computes the character count automatically.</param>
+        /// <param name="Rectangle">A pointer to a RECT structure that contains the rectangle (in logical coordinates) in which the text is to be formatted.</param>
+        /// <param name="Format">The method of formatting the text.</param>
+        /// <returns>If the function fails, the return value is zero.</returns>
+        [DllImport("user32.dll")]
+        public static extern int DrawText(IntPtr hdc, string Text, int Length, RECT Rectangle, DTFormat Format);
+        /// <summary>
         /// Sends the specified message to a window or windows. The SendMessage function calls the window procedure for the specified window and does not return until the window procedure has processed the message.
         /// </summary>
         /// <param name="hWnd">A handle to the window whose window procedure will receive the message.</param>
@@ -49,6 +75,9 @@ namespace SuperGrate
         /// <returns>If the function succeeds, the return value is nonzero.</returns>
         [DllImport("user32.dll")]
         private static extern bool SetMenuItemInfo(IntPtr hMenu, uint uItem, bool fByPosition, [In] ref MENUITEMINFO lpmii);
+        /// <summary>
+        /// Contains information about a menu item.
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         private struct MENUITEMINFO
         {
@@ -64,6 +93,46 @@ namespace SuperGrate
             public string dwTypeData;
             public uint cch;
             public IntPtr hbmpItem;
+        }
+        /// <summary>
+        /// The RECT structure defines a rectangle by the coordinates of its upper-left and lower-right corners.
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public long Left;
+            public long Top;
+            public long Right;
+            public long Bottom;
+        }
+        /// <summary>
+        /// The background mode. This parameter can be one of the following values.
+        /// </summary>
+        public enum BkMode
+        {
+            Opaque = 0,
+            Transparent = 1
+        }
+        /// <summary>
+        /// DrawText() Format Flags
+        /// </summary>
+        public enum DTFormat
+        {
+            DT_TOP = 0x00000000,
+            DT_LEFT = 0x00000000,
+            DT_CENTER = 0x00000001,
+            DT_RIGHT = 0x00000002,
+            DT_VCENTER = 0x00000004,
+            DT_BOTTOM = 0x00000008,
+            DT_WORDBREAK = 0x00000010,
+            DT_SINGLELINE = 0x00000020,
+            DT_EXPANDTABS = 0x00000040,
+            DT_TABSTOP = 0x00000080,
+            DT_NOCLIP = 0x00000100,
+            DT_EXTERNALLEADING = 0x00000200,
+            DT_CALCRECT = 0x00000400,
+            DT_NOPREFIX = 0x00000800,
+            DT_INTERNAL = 0x00001000
         }
         private static readonly Dictionary<MenuItem, Image> MenuItemIcons = new Dictionary<MenuItem, Image>();
         /// <summary>

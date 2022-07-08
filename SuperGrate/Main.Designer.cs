@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.LogBox = new System.Windows.Forms.RichTextBox();
-            this.pbMain = new System.Windows.Forms.ProgressBar();
+            this.pbMain = new SuperGrate.Controls.SGProgressBar();
             this.logTable = new System.Windows.Forms.TableLayoutPanel();
             this.spltContainer = new System.Windows.Forms.SplitContainer();
             this.tblMainLayout = new System.Windows.Forms.TableLayoutPanel();
@@ -712,7 +712,7 @@
         #endregion
 
         private System.Windows.Forms.RichTextBox LogBox;
-        private System.Windows.Forms.ProgressBar pbMain;
+        private SuperGrate.Controls.SGProgressBar pbMain;
         private System.Windows.Forms.TableLayoutPanel logTable;
         private System.Windows.Forms.SplitContainer spltContainer;
         private System.Windows.Forms.TableLayoutPanel tblMainLayout;
