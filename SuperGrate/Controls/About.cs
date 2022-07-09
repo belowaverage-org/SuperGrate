@@ -1,7 +1,7 @@
-﻿using System;
+﻿using System.Diagnostics;
+using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace SuperGrate.Controls
 {
@@ -11,15 +11,14 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.info_ico;
-            Text = String.Format("About {0}", AssemblyTitle);
+            Text = string.Format("About {0}", AssemblyTitle);
             labelProductName.Text = AssemblyProduct;
-            labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            labelVersion.Text = string.Format("Version {0}", AssemblyVersion);
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = AssemblyCompany;
             textBoxDescription.Text = AssemblyDescription;
-            pbLogo.Image = Properties.Resources.supergrate_ico.ToBitmapAlpha(64, 64);
+            pbLogo.Image = new Icon(Properties.Resources.supergrate_ico, 48, 48).ToBitmapAlpha(48, 48);
             okButton.SetSystemIcon(Properties.Resources.check_ico);
-            btnGithub.SetSystemIcon(Properties.Resources.link_ico);
         }
 
         #region Assembly Attribute Accessors
@@ -102,9 +101,13 @@ namespace SuperGrate.Controls
         }
         #endregion
 
-        private void BtnGithub_Click(object sender, EventArgs e)
+        private void llGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("OpenWith.exe", "https://github.com/belowaverage-org/SuperGrate");
+        }
+        private void llLicense_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new License().ShowDialog();
         }
     }
 }

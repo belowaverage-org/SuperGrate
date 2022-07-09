@@ -778,6 +778,10 @@ namespace SuperGrate
                 }
             }
         }
+        private void LogBox_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            Process.Start("OpenWith.exe", e.LinkText);
+        }
     }
     /// <summary>
     /// Enum of user sources that can be displayed in Super Grate.

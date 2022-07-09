@@ -35,8 +35,9 @@
             this.labelCompanyName = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.llLicense = new System.Windows.Forms.LinkLabel();
+            this.llGitHub = new System.Windows.Forms.LinkLabel();
             this.okButton = new System.Windows.Forms.Button();
-            this.btnGithub = new System.Windows.Forms.Button();
             this.pbLogo = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
@@ -152,14 +153,37 @@
             // panel1
             // 
             this.tableLayoutPanel.SetColumnSpan(this.panel1, 2);
+            this.panel1.Controls.Add(this.llLicense);
+            this.panel1.Controls.Add(this.llGitHub);
             this.panel1.Controls.Add(this.okButton);
-            this.panel1.Controls.Add(this.btnGithub);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(170, 281);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(301, 33);
             this.panel1.TabIndex = 26;
+            // 
+            // llLicense
+            // 
+            this.llLicense.AutoSize = true;
+            this.llLicense.Location = new System.Drawing.Point(47, 10);
+            this.llLicense.Name = "llLicense";
+            this.llLicense.Size = new System.Drawing.Size(44, 13);
+            this.llLicense.TabIndex = 26;
+            this.llLicense.TabStop = true;
+            this.llLicense.Text = "License";
+            this.llLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llLicense_LinkClicked);
+            // 
+            // llGitHub
+            // 
+            this.llGitHub.AutoSize = true;
+            this.llGitHub.Location = new System.Drawing.Point(-1, 10);
+            this.llGitHub.Name = "llGitHub";
+            this.llGitHub.Size = new System.Drawing.Size(44, 13);
+            this.llGitHub.TabIndex = 25;
+            this.llGitHub.TabStop = true;
+            this.llGitHub.Text = "GitHub";
+            this.llGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llGitHub_LinkClicked);
             // 
             // okButton
             // 
@@ -172,19 +196,6 @@
             this.okButton.Size = new System.Drawing.Size(75, 24);
             this.okButton.TabIndex = 24;
             this.okButton.Text = " &OK";
-            // 
-            // btnGithub
-            // 
-            this.btnGithub.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGithub.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnGithub.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnGithub.Location = new System.Drawing.Point(-1, 4);
-            this.btnGithub.Margin = new System.Windows.Forms.Padding(0, 0, 2, 2);
-            this.btnGithub.Name = "btnGithub";
-            this.btnGithub.Size = new System.Drawing.Size(75, 24);
-            this.btnGithub.TabIndex = 25;
-            this.btnGithub.Text = " &Github";
-            this.btnGithub.Click += new System.EventHandler(this.BtnGithub_Click);
             // 
             // pbLogo
             // 
@@ -216,6 +227,7 @@
             this.tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
 
@@ -232,7 +244,8 @@
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button okButton;
-        private System.Windows.Forms.Button btnGithub;
         private System.Windows.Forms.PictureBox pbLogo;
+        private System.Windows.Forms.LinkLabel llLicense;
+        private System.Windows.Forms.LinkLabel llGitHub;
     }
 }
