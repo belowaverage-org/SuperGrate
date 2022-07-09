@@ -17,7 +17,7 @@ namespace SuperGrate.Controls
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = AssemblyCompany;
             textBoxDescription.Text = AssemblyDescription;
-            pbLogo.Image = new Icon(Properties.Resources.supergrate_ico, 48, 48).ToBitmapAlpha(48, 48);
+            pbLogo.Image = Properties.Resources.supergrate_ico.ToBitmapAlpha(48, 48);
             okButton.SetSystemIcon(Properties.Resources.check_ico);
         }
 
