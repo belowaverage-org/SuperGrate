@@ -125,13 +125,12 @@ namespace SuperGrate
                     row.ContainsKey(ULColumnType.FirstCreated) ||
                     row.ContainsKey(ULColumnType.ProfilePath)
                 ) {
-                    string profilePathWMI = UserObject.GetPropertyValue("LocalPath").ToString();
-                    if (profilePathWMI == null)
+                    if (UserObject.GetPropertyValue("LocalPath") == null)
                     {
                         Logger.Verbose("Skipped SID with no profile directory: " + SID + ".");
                         return null;
                     }
-                    string profilePath = profilePathWMI.Replace(@"C:\", GetBestPathToC(Host));
+                    string profilePath = UserObject.GetPropertyValue("LocalPath").ToString().Replace(@"C:\", GetBestPathToC(Host));
                     if (row.ContainsKey(ULColumnType.ProfilePath))
                     {
                         row[ULColumnType.ProfilePath] = profilePath;
