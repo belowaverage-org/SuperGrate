@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<migration urlid="http://belowaverage.org/migration/1.0/migxmlext/migsgadditional">
+
+    <!-- Google Chrome -->
+    <component context="User" type="Application">
+        <displayName _locID="migsgadditional.chrome">Google Chrome</displayName>
+        <role role="Settings">
+            <destinationCleanup>
+                <objectSet>
+                    <pattern type="File">%CSIDL_LOCAL_APPDATA%\Google\Chrome\User Data\*\Cache\* [*]</pattern>
+                </objectSet>
+            </destinationCleanup>
+            <detection>
+                <conditions>
+                    <condition>MigXmlHelper.DoesObjectExist("File","%CSIDL_LOCAL_APPDATA%\Google\Chrome\User Data")</condition>
+                </conditions>
+            </detection>
+            <rules context="User">
+                <include>
+                    <objectSet>
+                        <pattern type="File">%CSIDL_LOCAL_APPDATA%\Google\Chrome\User Data\* [*]</pattern>
+                    </objectSet>
+                </include>
+                <exclude>
+                    <objectSet>
+                        <pattern type="File">%CSIDL_LOCAL_APPDATA%\Google\Chrome\User Data\*\Cache\* [*]</pattern>
+                    </objectSet>
+                </exclude>
+                <merge script="MigXmlHelper.SourcePriority()">
+                    <objectSet>
+                        <pattern type="File">%CSIDL_LOCAL_APPDATA%\Google\Chrome\User Data\* [*]</pattern>
+                    </objectSet>
+                </merge>
+            </rules>
+        </role>
+    </component>
+
+    <!-- MS Edge (Chromium) -->
+    <component context="User" type="Application">
+        <displayName _locID="migsgadditional.edgechrome">MS Edge (Chromium)</displayName>
+        <role role="Settings">
+            <destinationCleanup>
+                <objectSet>
+                    <pattern type="File">%CSIDL_LOCAL_APPDATA%\Microsoft\Edge\User Data\*\Cache\* [*]</pattern>
+                </objectSet>
+            </destinationCleanup>
+            <detection>
+                <conditions>
+                    <condition>MigXmlHelper.DoesObjectExist("File","%CSIDL_LOCAL_APPDATA%\Microsoft\Edge\User Data")</condition>
+                </conditions>
+            </detection>
+            <rules context="User">
+                <include>
+                    <objectSet>
+                        <pattern type="File">%CSIDL_LOCAL_APPDATA%\Microsoft\Edge\User Data\* [*]</pattern>
+                    </objectSet>
+                </include>
+                <exclude>
+                    <objectSet>
+                        <pattern type="File">%CSIDL_LOCAL_APPDATA%\Microsoft\Edge\User Data\*\Cache\* [*]</pattern>
+                    </objectSet>
+                </exclude>
+                <merge script="MigXmlHelper.SourcePriority()">
+                    <objectSet>
+                        <pattern type="File">%CSIDL_LOCAL_APPDATA%\Microsoft\Edge\User Data\* [*]</pattern>
+                    </objectSet>
+                </merge>
+            </rules>
+        </role>
+    </component>
+
+    <!-- This component migrates My Download files -->
+    <component type="Documents" context="User">
+        <displayName _locID="migsgadditional.mydownload">My Download</displayName>
+        <paths>
+            <path type="File">%CSIDL_PROFILE%\Downloads</path>
+        </paths>
+        <role role="Data">
+            <detects>
+                <detect>
+                    <condition>MigXmlHelper.DoesObjectExist("File","%CSIDL_PROFILE%\Downloads")</condition>
+                </detect>
+            </detects>
+            <rules>
+                <include filter='MigXmlHelper.IgnoreIrrelevantLinks()'>
+                    <objectSet>
+                        <pattern type="File">%CSIDL_PROFILE%\Downloads\* [*]</pattern>
+                    </objectSet>
+                </include>
+                <merge script="MigXmlHelper.DestinationPriority()">
+                    <objectSet>
+                        <pattern type="File">%CSIDL_PROFILE%\Downloads [desktop.ini]</pattern>
+                    </objectSet>
+                </merge>
+            </rules>
+        </role>
+    </component>
+
+</migration>
