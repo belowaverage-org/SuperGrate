@@ -104,7 +104,7 @@ namespace SuperGrate
                 UserRow row = new UserRow(TemplateRow);
                 string user = await GetUserByIdentity(SID, Host);
                 Logger.Verbose("Found: " + user);
-                if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out bool setting) && setting && (user.Contains("NT AUTHORITY") || user.Contains("NT SERVICE")))
+                if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out bool setting) && setting && (Regex.IsMatch(SID, @"^S-1-5-[0-9]+$")))
                 {
                     Logger.Verbose("Skipped: " + SID + ": " + user + ".");
                     return null;
