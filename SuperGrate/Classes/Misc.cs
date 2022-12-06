@@ -6,6 +6,7 @@ using System.Management;
 using SuperGrate.UserList;
 using SuperGrate.IO;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace SuperGrate
 {
