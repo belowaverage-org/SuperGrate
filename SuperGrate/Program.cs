@@ -16,7 +16,8 @@ namespace SuperGrate
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Application_ThreadException;
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-            Application.Run(new Main(parameters));
+            //Application.Run(new Main(parameters));
+            new System.Windows.Application().Run(new ModernControls.Main());
         }
         /// <summary>
         /// Thread Exception event for uncaught UI errors.
