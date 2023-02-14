@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Management;
 using System.Threading.Tasks;
 
@@ -71,6 +70,23 @@ namespace SuperGrate
         public static Task<bool> WaitForProcessExit(string Target, string ImageName)
         {
             return Task.Run(async () => {
+                try
+                {
+                    Logger.Verbose("Waiting for " + ImageName + " to finish...");
+                    while (true)
+                    {
+                        ManagementObjectCollection moc = await WMI.Query("SELECT Name FROM Win32_Process WHERE Name = \"" + ImageName + ".exe\"", Target);
+                        if (moc.Count == 0) break;
+                        await Task.Delay(333);
+                    }
+                    return true;
+                } 
+                catch (Exception e)
+                {
+                    Logger.Exception(e, "Something went wrong while waiting for the remote process \"" + ImageName + "\" to finish.");
+                    return false;
+                }
+                /*
                 bool Running = true;
                 Logger.Verbose("Waiting for " + ImageName + " to finish...");
                 try
@@ -91,6 +107,7 @@ namespace SuperGrate
                     Logger.Exception(e, "Failed to check if " + ImageName + " is still running.");
                     return false;
                 }
+                */
             });
         }
     }
