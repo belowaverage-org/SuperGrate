@@ -78,10 +78,6 @@ namespace SuperGrate
         /// </summary>
         private void Main_Load(object sender, EventArgs e)
         {
-            IntPtr dmValue = Marshal.AllocHGlobal(32);
-            Marshal.WriteInt32(dmValue, 1);
-            Win32Interop.DwmSetWindowAttribute(Handle, Win32Interop.DWMWINDOWATTRIBUTE.DWMWA_USE_IMMERSIVE_DARK_MODE, dmValue, 32);
-            Marshal.FreeHGlobal(dmValue);
             TaskbarList = (ITaskbarList3)new TaskbarList();
             TaskbarList.HrInit();
             Config.LoadConfig(MainParameters);
