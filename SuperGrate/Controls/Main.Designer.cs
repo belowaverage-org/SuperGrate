@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.LogBox = new System.Windows.Forms.RichTextBox();
             this.logTable = new System.Windows.Forms.TableLayoutPanel();
+            this.pbMain = new SuperGrate.Controls.SGProgressBar();
             this.spltContainer = new System.Windows.Forms.SplitContainer();
             this.tblMainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.sourCompTabl = new System.Windows.Forms.TableLayoutPanel();
@@ -84,7 +85,6 @@
             this.miConDelete = new System.Windows.Forms.MenuItem();
             this.miConSeperator = new System.Windows.Forms.MenuItem();
             this.miConProperties = new System.Windows.Forms.MenuItem();
-            this.pbMain = new SuperGrate.Controls.SGProgressBar();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -103,7 +103,7 @@
             this.LogBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.LogBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.LogBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LogBox.Font = new System.Drawing.Font("Cascadia Code", 9F);
+            this.LogBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LogBox.ForeColor = System.Drawing.Color.White;
             this.helpProvider.SetHelpString(this.LogBox, "This console is updated live with information regarding the progress of Super Gra" +
         "te. (Double click the console to toggle verbose mode)");
@@ -133,6 +133,18 @@
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.logTable.Size = new System.Drawing.Size(386, 415);
             this.logTable.TabIndex = 100;
+            // 
+            // pbMain
+            // 
+            this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbMain.ForeColor = System.Drawing.Color.Black;
+            this.pbMain.Location = new System.Drawing.Point(3, 389);
+            this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pbMain.MarqueeAnimationSpeed = 30;
+            this.pbMain.Name = "pbMain";
+            this.pbMain.Size = new System.Drawing.Size(380, 22);
+            this.pbMain.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pbMain.TabIndex = 100;
             // 
             // spltContainer
             // 
@@ -340,7 +352,7 @@
             // 
             // pnlLogoBorder
             // 
-            this.pnlLogoBorder.BackColor = System.Drawing.Color.DarkGray;
+            this.pnlLogoBorder.BackColor = System.Drawing.Color.White;
             this.pnlLogoBorder.Controls.Add(this.imgLoadLogo);
             this.pnlLogoBorder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLogoBorder.Location = new System.Drawing.Point(4, 275);
@@ -663,18 +675,6 @@
             this.miConProperties.Index = 4;
             this.miConProperties.Text = "Properties";
             this.miConProperties.Click += new System.EventHandler(this.OpenUserProperties_Event);
-            // 
-            // pbMain
-            // 
-            this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMain.ForeColor = System.Drawing.Color.Black;
-            this.pbMain.Location = new System.Drawing.Point(3, 389);
-            this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pbMain.MarqueeAnimationSpeed = 30;
-            this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(380, 22);
-            this.pbMain.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.pbMain.TabIndex = 100;
             // 
             // Main
             // 
