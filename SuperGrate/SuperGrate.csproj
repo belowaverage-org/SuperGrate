@@ -96,7 +96,9 @@
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ByteHumanizer.cs" />
@@ -148,7 +150,10 @@
     <Compile Include="Controls\RenameStoreUser.Designer.cs">
       <DependentUpon>RenameStoreUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\SGProgressBar.cs">
+    <Compile Include="Controls\Components\SGProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Components\SGButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\UserProperties.cs">
@@ -185,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ChangeSetting.resx">
       <DependentUpon>ChangeSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Components\SGProgressBar.resx">
+      <DependentUpon>SGProgressBar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ConfirmDialog.resx">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
@@ -314,6 +322,13 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Styles\SGDefaultStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

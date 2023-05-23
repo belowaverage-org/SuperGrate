@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SuperGrate.Controls
+namespace SuperGrate.Controls.Components
 {
     public class SGProgressBar : ProgressBar
     {
         private IntPtr HDC;
+
         /// <summary>
         /// Position to use to draw the text.
         /// </summary>
@@ -44,6 +45,13 @@ namespace SuperGrate.Controls
                 if (Value == 100 || Value == 0) return;
                 DrawText((((float)Value / (float)Maximum) * 100).ToString() + "%");
             }
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            this.ResumeLayout(false);
+
         }
     }
 }

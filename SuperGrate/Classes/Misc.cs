@@ -7,6 +7,8 @@ using SuperGrate.UserList;
 using SuperGrate.IO;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.ComponentModel;
 
 namespace SuperGrate
 {
@@ -473,6 +475,20 @@ namespace SuperGrate
             Unknown = 0,
             X86 = 1,
             X64 = 2
+        }
+        /// <summary>
+        /// Applies the default theme / resource dictionary style to the element provided.
+        /// </summary>
+        /// <param name="Element">Element to apply the resource dictionary to.</param>
+        public static void ApplyStyles(FrameworkElement Element)
+        {
+            if (LicenseManager.UsageMode == LicenseUsageMode.Runtime)
+            {
+                Element.Resources = new ResourceDictionary()
+                {
+                    Source = new Uri("pack://application:,,,/Styles/SGDefaultStyle.xaml")
+                };
+            }
         }
     }
 }

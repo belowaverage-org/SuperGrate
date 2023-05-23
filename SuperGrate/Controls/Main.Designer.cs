@@ -1,4 +1,6 @@
-﻿namespace SuperGrate
+﻿using SuperGrate.Controls.Components;
+
+namespace SuperGrate
 {
     partial class Main
     {
@@ -31,24 +33,24 @@
             this.components = new System.ComponentModel.Container();
             this.LogBox = new System.Windows.Forms.RichTextBox();
             this.logTable = new System.Windows.Forms.TableLayoutPanel();
-            this.pbMain = new SuperGrate.Controls.SGProgressBar();
+            this.pbMain = new SuperGrate.Controls.Components.SGProgressBar();
             this.spltContainer = new System.Windows.Forms.SplitContainer();
             this.tblMainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.sourCompTabl = new System.Windows.Forms.TableLayoutPanel();
             this.tbSourceComputer = new System.Windows.Forms.TextBox();
-            this.btnAFillSrc = new System.Windows.Forms.Button();
+            this.btnAFillSrc = new SuperGrate.Controls.Components.SGButton();
             this.lblSourceComputer = new System.Windows.Forms.Label();
             this.lblDestinationComputer = new System.Windows.Forms.Label();
             this.lblUserList = new System.Windows.Forms.Label();
-            this.btnStartStop = new System.Windows.Forms.Button();
+            this.btnStartStop = new SuperGrate.Controls.Components.SGButton();
             this.tbleListUsersButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.btnListSource = new System.Windows.Forms.Button();
-            this.btnListStore = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnListSource = new SuperGrate.Controls.Components.SGButton();
+            this.btnListStore = new SuperGrate.Controls.Components.SGButton();
+            this.btnDelete = new SuperGrate.Controls.Components.SGButton();
             this.pnlLogoBorder = new System.Windows.Forms.Panel();
             this.imgLoadLogo = new System.Windows.Forms.PictureBox();
             this.destCompTabl = new System.Windows.Forms.TableLayoutPanel();
-            this.btnAFillDest = new System.Windows.Forms.Button();
+            this.btnAFillDest = new SuperGrate.Controls.Components.SGButton();
             this.tbDestinationComputer = new System.Windows.Forms.TextBox();
             this.listUsers = new System.Windows.Forms.ListView();
             this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
@@ -112,7 +114,7 @@
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
             this.helpProvider.SetShowHelp(this.LogBox, true);
-            this.LogBox.Size = new System.Drawing.Size(380, 377);
+            this.LogBox.Size = new System.Drawing.Size(380, 233);
             this.LogBox.TabIndex = 100;
             this.LogBox.Text = "";
             this.LogBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.LogBox_LinkClicked);
@@ -131,14 +133,14 @@
             this.logTable.RowCount = 2;
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.logTable.Size = new System.Drawing.Size(386, 415);
+            this.logTable.Size = new System.Drawing.Size(386, 271);
             this.logTable.TabIndex = 100;
             // 
             // pbMain
             // 
             this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbMain.ForeColor = System.Drawing.Color.Black;
-            this.pbMain.Location = new System.Drawing.Point(3, 389);
+            this.pbMain.Location = new System.Drawing.Point(3, 245);
             this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbMain.MarqueeAnimationSpeed = 30;
             this.pbMain.Name = "pbMain";
@@ -162,7 +164,7 @@
             // 
             this.spltContainer.Panel2.Controls.Add(this.logTable);
             this.spltContainer.Panel2MinSize = 300;
-            this.spltContainer.Size = new System.Drawing.Size(996, 415);
+            this.spltContainer.Size = new System.Drawing.Size(996, 271);
             this.spltContainer.SplitterDistance = 606;
             this.spltContainer.TabIndex = 100;
             // 
@@ -191,7 +193,7 @@
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tblMainLayout.Size = new System.Drawing.Size(606, 415);
+            this.tblMainLayout.Size = new System.Drawing.Size(606, 271);
             this.tblMainLayout.TabIndex = 100;
             // 
             // sourCompTabl
@@ -267,7 +269,7 @@
             this.lblUserList.Location = new System.Drawing.Point(3, 90);
             this.lblUserList.Name = "lblUserList";
             this.helpProvider.SetShowHelp(this.lblUserList, true);
-            this.lblUserList.Size = new System.Drawing.Size(124, 185);
+            this.lblUserList.Size = new System.Drawing.Size(124, 41);
             this.lblUserList.TabIndex = 100;
             this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -279,7 +281,7 @@
             this.btnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnStartStop, "This button will start a migration, backup, or restoration and stop any other Sup" +
         "er Grate process.");
-            this.btnStartStop.Location = new System.Drawing.Point(3, 388);
+            this.btnStartStop.Location = new System.Drawing.Point(3, 244);
             this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btnStartStop.Name = "btnStartStop";
             this.helpProvider.SetShowHelp(this.btnStartStop, true);
@@ -355,7 +357,7 @@
             this.pnlLogoBorder.BackColor = System.Drawing.Color.White;
             this.pnlLogoBorder.Controls.Add(this.imgLoadLogo);
             this.pnlLogoBorder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLogoBorder.Location = new System.Drawing.Point(4, 275);
+            this.pnlLogoBorder.Location = new System.Drawing.Point(4, 131);
             this.pnlLogoBorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.pnlLogoBorder.Name = "pnlLogoBorder";
             this.pnlLogoBorder.Padding = new System.Windows.Forms.Padding(1);
@@ -434,7 +436,7 @@
             this.listUsers.Name = "listUsers";
             this.tblMainLayout.SetRowSpan(this.listUsers, 2);
             this.listUsers.ShowGroups = false;
-            this.listUsers.Size = new System.Drawing.Size(470, 289);
+            this.listUsers.Size = new System.Drawing.Size(470, 145);
             this.listUsers.TabIndex = 103;
             this.listUsers.UseCompatibleStateImageBehavior = false;
             this.listUsers.View = System.Windows.Forms.View.Details;
@@ -680,7 +682,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1006, 425);
+            this.ClientSize = new System.Drawing.Size(1006, 281);
             this.Controls.Add(this.spltContainer);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8F);
@@ -714,24 +716,24 @@
         #endregion
 
         private System.Windows.Forms.RichTextBox LogBox;
-        private SuperGrate.Controls.SGProgressBar pbMain;
+        private SuperGrate.Controls.Components.SGProgressBar pbMain;
         private System.Windows.Forms.TableLayoutPanel logTable;
         private System.Windows.Forms.SplitContainer spltContainer;
         private System.Windows.Forms.TableLayoutPanel tblMainLayout;
         private System.Windows.Forms.Label lblSourceComputer;
         private System.Windows.Forms.Label lblDestinationComputer;
         private System.Windows.Forms.Label lblUserList;
-        private System.Windows.Forms.Button btnStartStop;
-        private System.Windows.Forms.Button btnListSource;
-        private System.Windows.Forms.Button btnListStore;
-        private System.Windows.Forms.Button btnDelete;
+        private SuperGrate.Controls.Components.SGButton btnStartStop;
+        private SGButton btnListSource;
+        private SuperGrate.Controls.Components.SGButton btnListStore;
+        private SuperGrate.Controls.Components.SGButton btnDelete;
         private System.Windows.Forms.Panel pnlLogoBorder;
         private System.Windows.Forms.TableLayoutPanel tbleListUsersButtons;
         private System.Windows.Forms.TableLayoutPanel sourCompTabl;
         private System.Windows.Forms.TextBox tbSourceComputer;
-        private System.Windows.Forms.Button btnAFillSrc;
+        private SuperGrate.Controls.Components.SGButton btnAFillSrc;
         private System.Windows.Forms.TableLayoutPanel destCompTabl;
-        private System.Windows.Forms.Button btnAFillDest;
+        private SuperGrate.Controls.Components.SGButton btnAFillDest;
         private System.Windows.Forms.TextBox tbDestinationComputer;
         private System.Windows.Forms.PictureBox imgLoadLogo;
         private System.Windows.Forms.MainMenu MainMenu;
