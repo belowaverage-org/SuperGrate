@@ -114,7 +114,7 @@ namespace SuperGrate
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
             this.helpProvider.SetShowHelp(this.LogBox, true);
-            this.LogBox.Size = new System.Drawing.Size(380, 233);
+            this.LogBox.Size = new System.Drawing.Size(380, 385);
             this.LogBox.TabIndex = 100;
             this.LogBox.Text = "";
             this.LogBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.LogBox_LinkClicked);
@@ -133,14 +133,14 @@ namespace SuperGrate
             this.logTable.RowCount = 2;
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.logTable.Size = new System.Drawing.Size(386, 271);
+            this.logTable.Size = new System.Drawing.Size(386, 423);
             this.logTable.TabIndex = 100;
             // 
             // pbMain
             // 
             this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbMain.ForeColor = System.Drawing.Color.Black;
-            this.pbMain.Location = new System.Drawing.Point(3, 245);
+            this.pbMain.Location = new System.Drawing.Point(3, 397);
             this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pbMain.MarqueeAnimationSpeed = 30;
             this.pbMain.Name = "pbMain";
@@ -164,7 +164,7 @@ namespace SuperGrate
             // 
             this.spltContainer.Panel2.Controls.Add(this.logTable);
             this.spltContainer.Panel2MinSize = 300;
-            this.spltContainer.Size = new System.Drawing.Size(996, 271);
+            this.spltContainer.Size = new System.Drawing.Size(996, 423);
             this.spltContainer.SplitterDistance = 606;
             this.spltContainer.TabIndex = 100;
             // 
@@ -193,7 +193,7 @@ namespace SuperGrate
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tblMainLayout.Size = new System.Drawing.Size(606, 271);
+            this.tblMainLayout.Size = new System.Drawing.Size(606, 423);
             this.tblMainLayout.TabIndex = 100;
             // 
             // sourCompTabl
@@ -269,7 +269,7 @@ namespace SuperGrate
             this.lblUserList.Location = new System.Drawing.Point(3, 90);
             this.lblUserList.Name = "lblUserList";
             this.helpProvider.SetShowHelp(this.lblUserList, true);
-            this.lblUserList.Size = new System.Drawing.Size(124, 41);
+            this.lblUserList.Size = new System.Drawing.Size(124, 193);
             this.lblUserList.TabIndex = 100;
             this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -281,12 +281,13 @@ namespace SuperGrate
             this.btnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnStartStop, "This button will start a migration, backup, or restoration and stop any other Sup" +
         "er Grate process.");
-            this.btnStartStop.Location = new System.Drawing.Point(3, 244);
+            this.btnStartStop.Location = new System.Drawing.Point(3, 396);
             this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btnStartStop.Name = "btnStartStop";
             this.helpProvider.SetShowHelp(this.btnStartStop, true);
             this.btnStartStop.Size = new System.Drawing.Size(601, 24);
             this.btnStartStop.TabIndex = 100;
+            this.btnStartStop.Text = null;
             this.btnStartStop.UseVisualStyleBackColor = true;
             this.btnStartStop.Click += new System.EventHandler(this.BtStartStop_Click);
             // 
@@ -357,7 +358,7 @@ namespace SuperGrate
             this.pnlLogoBorder.BackColor = System.Drawing.Color.White;
             this.pnlLogoBorder.Controls.Add(this.imgLoadLogo);
             this.pnlLogoBorder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLogoBorder.Location = new System.Drawing.Point(4, 131);
+            this.pnlLogoBorder.Location = new System.Drawing.Point(4, 283);
             this.pnlLogoBorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.pnlLogoBorder.Name = "pnlLogoBorder";
             this.pnlLogoBorder.Padding = new System.Windows.Forms.Padding(1);
@@ -436,7 +437,7 @@ namespace SuperGrate
             this.listUsers.Name = "listUsers";
             this.tblMainLayout.SetRowSpan(this.listUsers, 2);
             this.listUsers.ShowGroups = false;
-            this.listUsers.Size = new System.Drawing.Size(470, 145);
+            this.listUsers.Size = new System.Drawing.Size(470, 297);
             this.listUsers.TabIndex = 103;
             this.listUsers.UseCompatibleStateImageBehavior = false;
             this.listUsers.View = System.Windows.Forms.View.Details;
@@ -682,7 +683,7 @@ namespace SuperGrate
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1006, 281);
+            this.ClientSize = new System.Drawing.Size(1006, 433);
             this.Controls.Add(this.spltContainer);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8F);
