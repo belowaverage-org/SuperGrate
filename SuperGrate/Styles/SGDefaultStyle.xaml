@@ -1,10 +1,94 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    >
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+
+    <FontFamily x:Key="Icons">/Resources/#Segoe Fluent Icons</FontFamily>
+    <FontFamily x:Key="Font">/Resources/#Segoe UI</FontFamily>
 
     <Style TargetType="{x:Type Button}">
-        <Setter Property="BorderThickness" Value="5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="BtnBoarder" CornerRadius="4" TextBlock.Foreground="Black" >
+                        <Border.BorderThickness>
+                            <Thickness Top="1" Left="1" Right="1" Bottom="1.5" />
+                        </Border.BorderThickness>
+                        <Border.Background>
+                            <SolidColorBrush />
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <SolidColorBrush Color="#e0e0e0" />
+                        </Border.BorderBrush>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3" To="White" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="Black" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3" To="#f6f6f6" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="Black" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.0" To="#fdfdfd" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation Duration="0:0:0.0" To="#5e5e5e" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3" To="#f5f5f5" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#808080" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid>
+                            <Label x:Name="BtnIcon" FontSize="16" Margin="4 0 4 0" VerticalAlignment="Center" FontFamily="Segoe Fluent Icons" ></Label>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
-    
+
+
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border CornerRadius="4" BorderThickness="1 1 1 1" >
+                        <Border.Background>
+                            <SolidColorBrush x:Name="TbBgColor" />
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <SolidColorBrush x:Name="TbBrdColor" />
+                        </Border.BorderBrush>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3" To="White" Storyboard.TargetName="TbBgColor" Storyboard.TargetProperty="Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="LightGray" Storyboard.TargetName="TbBrdColor" Storyboard.TargetProperty="Color" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Disabled">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3" To="WhiteSmoke" Storyboard.TargetName="TbBgColor" Storyboard.TargetProperty="Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="LightGray" Storyboard.TargetName="TbBrdColor" Storyboard.TargetProperty="Color" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <ScrollViewer Margin="4" x:Name="PART_ContentHost" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>

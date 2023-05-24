@@ -132,6 +132,9 @@
     <Compile Include="Controls\ChangeSetting.Designer.cs">
       <DependentUpon>ChangeSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Components\SGTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ConfirmDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -222,6 +225,8 @@
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\SegoeIcons.ttf" />
+    <EmbeddedResource Include="Resources\SegoeUI.ttf" />
     <None Include="Utilities\SuperGrateProfileDelete.exe" />
   </ItemGroup>
   <ItemGroup>
@@ -323,7 +328,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="Styles\SGDefaultStyle.xaml">
       <SubType>Designer</SubType>
