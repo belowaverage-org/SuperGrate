@@ -33,16 +33,25 @@ namespace SuperGrate
             this.components = new System.ComponentModel.Container();
             this.LogBox = new System.Windows.Forms.RichTextBox();
             this.logTable = new System.Windows.Forms.TableLayoutPanel();
+            this.pbMain = new SuperGrate.Controls.Components.SGProgressBar();
             this.spltContainer = new System.Windows.Forms.SplitContainer();
             this.tblMainLayout = new System.Windows.Forms.TableLayoutPanel();
             this.sourCompTabl = new System.Windows.Forms.TableLayoutPanel();
+            this.tbSourceComputer = new SuperGrate.Controls.Components.SGTextBox();
+            this.btnAFillSrc = new SuperGrate.Controls.Components.SGButton();
             this.lblSourceComputer = new System.Windows.Forms.Label();
             this.lblDestinationComputer = new System.Windows.Forms.Label();
             this.lblUserList = new System.Windows.Forms.Label();
+            this.btnStartStop = new SuperGrate.Controls.Components.SGButton();
             this.tbleListUsersButtons = new System.Windows.Forms.TableLayoutPanel();
+            this.btnListSource = new SuperGrate.Controls.Components.SGButton();
+            this.btnListStore = new SuperGrate.Controls.Components.SGButton();
+            this.btnDelete = new SuperGrate.Controls.Components.SGButton();
             this.pnlLogoBorder = new System.Windows.Forms.Panel();
             this.imgLoadLogo = new System.Windows.Forms.PictureBox();
             this.destCompTabl = new System.Windows.Forms.TableLayoutPanel();
+            this.btnAFillDest = new SuperGrate.Controls.Components.SGButton();
+            this.tbDestinationComputer = new SuperGrate.Controls.Components.SGTextBox();
             this.listUsers = new System.Windows.Forms.ListView();
             this.MainMenu = new System.Windows.Forms.MainMenu(this.components);
             this.miFile = new System.Windows.Forms.MenuItem();
@@ -78,15 +87,6 @@ namespace SuperGrate
             this.miConDelete = new System.Windows.Forms.MenuItem();
             this.miConSeperator = new System.Windows.Forms.MenuItem();
             this.miConProperties = new System.Windows.Forms.MenuItem();
-            this.tbSourceComputer = new SuperGrate.Controls.Components.SGTextBox();
-            this.btnAFillSrc = new SuperGrate.Controls.Components.SGButton();
-            this.btnStartStop = new SuperGrate.Controls.Components.SGButton();
-            this.btnListSource = new SuperGrate.Controls.Components.SGButton();
-            this.btnListStore = new SuperGrate.Controls.Components.SGButton();
-            this.btnDelete = new SuperGrate.Controls.Components.SGButton();
-            this.btnAFillDest = new SuperGrate.Controls.Components.SGButton();
-            this.tbDestinationComputer = new SuperGrate.Controls.Components.SGTextBox();
-            this.pbMain = new SuperGrate.Controls.Components.SGProgressBar();
             this.logTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spltContainer)).BeginInit();
             this.spltContainer.Panel1.SuspendLayout();
@@ -114,7 +114,7 @@ namespace SuperGrate
             this.LogBox.Name = "LogBox";
             this.LogBox.ReadOnly = true;
             this.helpProvider.SetShowHelp(this.LogBox, true);
-            this.LogBox.Size = new System.Drawing.Size(425, 380);
+            this.LogBox.Size = new System.Drawing.Size(385, 386);
             this.LogBox.TabIndex = 100;
             this.LogBox.Text = "";
             this.LogBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.LogBox_LinkClicked);
@@ -134,8 +134,20 @@ namespace SuperGrate
             this.logTable.RowCount = 2;
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.logTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.logTable.Size = new System.Drawing.Size(431, 424);
+            this.logTable.Size = new System.Drawing.Size(391, 430);
             this.logTable.TabIndex = 100;
+            // 
+            // pbMain
+            // 
+            this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbMain.ForeColor = System.Drawing.Color.Black;
+            this.pbMain.Location = new System.Drawing.Point(3, 398);
+            this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pbMain.MarqueeAnimationSpeed = 30;
+            this.pbMain.Name = "pbMain";
+            this.pbMain.Size = new System.Drawing.Size(385, 28);
+            this.pbMain.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.pbMain.TabIndex = 100;
             // 
             // spltContainer
             // 
@@ -154,8 +166,8 @@ namespace SuperGrate
             // 
             this.spltContainer.Panel2.Controls.Add(this.logTable);
             this.spltContainer.Panel2MinSize = 300;
-            this.spltContainer.Size = new System.Drawing.Size(1074, 424);
-            this.spltContainer.SplitterDistance = 639;
+            this.spltContainer.Size = new System.Drawing.Size(974, 430);
+            this.spltContainer.SplitterDistance = 579;
             this.spltContainer.TabIndex = 100;
             // 
             // tblMainLayout
@@ -184,7 +196,7 @@ namespace SuperGrate
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tblMainLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tblMainLayout.Size = new System.Drawing.Size(639, 424);
+            this.tblMainLayout.Size = new System.Drawing.Size(579, 430);
             this.tblMainLayout.TabIndex = 100;
             // 
             // sourCompTabl
@@ -200,8 +212,40 @@ namespace SuperGrate
             this.sourCompTabl.Name = "sourCompTabl";
             this.sourCompTabl.RowCount = 1;
             this.sourCompTabl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.sourCompTabl.Size = new System.Drawing.Size(491, 36);
+            this.sourCompTabl.Size = new System.Drawing.Size(431, 36);
             this.sourCompTabl.TabIndex = 101;
+            // 
+            // tbSourceComputer
+            // 
+            this.tbSourceComputer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbSourceComputer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider.SetHelpString(this.tbSourceComputer, "Enter the source computer hostname. This is where the user profiles to be migrate" +
+        "d / backed up will come from.");
+            this.tbSourceComputer.Location = new System.Drawing.Point(3, 4);
+            this.tbSourceComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
+            this.tbSourceComputer.Multiline = true;
+            this.tbSourceComputer.Name = "tbSourceComputer";
+            this.helpProvider.SetShowHelp(this.tbSourceComputer, true);
+            this.tbSourceComputer.Size = new System.Drawing.Size(390, 28);
+            this.tbSourceComputer.TabIndex = 101;
+            this.tbSourceComputer.TextChanged += new System.EventHandler(this.TbSourceComputer_TextChanged);
+            this.tbSourceComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbSourceDestComputer_KeyDown);
+            // 
+            // btnAFillSrc
+            // 
+            this.btnAFillSrc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAFillSrc.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnAFillSrc, "This button will auto-fill the current computer\'s hostname.");
+            this.btnAFillSrc.Icon = null;
+            this.btnAFillSrc.Location = new System.Drawing.Point(399, 3);
+            this.btnAFillSrc.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
+            this.btnAFillSrc.Name = "btnAFillSrc";
+            this.helpProvider.SetShowHelp(this.btnAFillSrc, true);
+            this.btnAFillSrc.Size = new System.Drawing.Size(30, 30);
+            this.btnAFillSrc.TabIndex = 102;
+            this.btnAFillSrc.Text = "<";
+            this.btnAFillSrc.UseVisualStyleBackColor = true;
+            this.btnAFillSrc.Click += new System.EventHandler(this.BtnAFillSrc_Click);
             // 
             // lblSourceComputer
             // 
@@ -231,9 +275,28 @@ namespace SuperGrate
             this.lblUserList.Location = new System.Drawing.Point(3, 108);
             this.lblUserList.Name = "lblUserList";
             this.helpProvider.SetShowHelp(this.lblUserList, true);
-            this.lblUserList.Size = new System.Drawing.Size(142, 170);
+            this.lblUserList.Size = new System.Drawing.Size(142, 176);
             this.lblUserList.TabIndex = 100;
             this.lblUserList.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnStartStop
+            // 
+            this.tblMainLayout.SetColumnSpan(this.btnStartStop, 2);
+            this.btnStartStop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnStartStop.Enabled = false;
+            this.btnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnStartStop, "This button will start a migration, backup, or restoration and stop any other Sup" +
+        "er Grate process.");
+            this.btnStartStop.Icon = null;
+            this.btnStartStop.Location = new System.Drawing.Point(3, 397);
+            this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
+            this.btnStartStop.Name = "btnStartStop";
+            this.helpProvider.SetShowHelp(this.btnStartStop, true);
+            this.btnStartStop.Size = new System.Drawing.Size(574, 30);
+            this.btnStartStop.TabIndex = 100;
+            this.btnStartStop.Text = null;
+            this.btnStartStop.UseVisualStyleBackColor = true;
+            this.btnStartStop.Click += new System.EventHandler(this.BtStartStop_Click);
             // 
             // tbleListUsersButtons
             // 
@@ -250,15 +313,61 @@ namespace SuperGrate
             this.tbleListUsersButtons.Name = "tbleListUsersButtons";
             this.tbleListUsersButtons.RowCount = 1;
             this.tbleListUsersButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tbleListUsersButtons.Size = new System.Drawing.Size(491, 36);
+            this.tbleListUsersButtons.Size = new System.Drawing.Size(431, 36);
             this.tbleListUsersButtons.TabIndex = 100;
+            // 
+            // btnListSource
+            // 
+            this.btnListSource.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnListSource.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnListSource, "This button will retrieve the list of user profiles from the source computer.");
+            this.btnListSource.Icon = "";
+            this.btnListSource.Location = new System.Drawing.Point(2, 3);
+            this.btnListSource.Margin = new System.Windows.Forms.Padding(2, 3, 3, 3);
+            this.btnListSource.Name = "btnListSource";
+            this.helpProvider.SetShowHelp(this.btnListSource, true);
+            this.btnListSource.Size = new System.Drawing.Size(138, 30);
+            this.btnListSource.TabIndex = 100;
+            this.btnListSource.Text = " List Source";
+            this.btnListSource.Click += new System.EventHandler(this.BtnListSource_Click);
+            // 
+            // btnListStore
+            // 
+            this.btnListStore.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnListStore.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnListStore, "This button will list the user profiles that have already been backed up to the s" +
+        "tore.");
+            this.btnListStore.Icon = "";
+            this.btnListStore.Location = new System.Drawing.Point(146, 3);
+            this.btnListStore.Name = "btnListStore";
+            this.helpProvider.SetShowHelp(this.btnListStore, true);
+            this.btnListStore.Size = new System.Drawing.Size(137, 30);
+            this.btnListStore.TabIndex = 100;
+            this.btnListStore.Text = " List Store";
+            this.btnListStore.Click += new System.EventHandler(this.BtnListStore_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDelete.Enabled = false;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnDelete, "This button will delete user profiles from either the source computer or the stor" +
+        "e.");
+            this.btnDelete.Icon = "";
+            this.btnDelete.Location = new System.Drawing.Point(289, 3);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
+            this.btnDelete.Name = "btnDelete";
+            this.helpProvider.SetShowHelp(this.btnDelete, true);
+            this.btnDelete.Size = new System.Drawing.Size(140, 30);
+            this.btnDelete.TabIndex = 100;
+            this.btnDelete.Text = " Delete";
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // pnlLogoBorder
             // 
-            this.pnlLogoBorder.BackColor = System.Drawing.Color.White;
             this.pnlLogoBorder.Controls.Add(this.imgLoadLogo);
             this.pnlLogoBorder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLogoBorder.Location = new System.Drawing.Point(4, 278);
+            this.pnlLogoBorder.Location = new System.Drawing.Point(4, 284);
             this.pnlLogoBorder.Margin = new System.Windows.Forms.Padding(4, 0, 4, 4);
             this.pnlLogoBorder.Name = "pnlLogoBorder";
             this.pnlLogoBorder.Padding = new System.Windows.Forms.Padding(1);
@@ -267,7 +376,6 @@ namespace SuperGrate
             // 
             // imgLoadLogo
             // 
-            this.imgLoadLogo.BackColor = System.Drawing.Color.White;
             this.imgLoadLogo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imgLoadLogo.Enabled = false;
             this.helpProvider.SetHelpString(this.imgLoadLogo, "This picture illustrates the inner workings of Super Grate. Presented here is an " +
@@ -278,7 +386,7 @@ namespace SuperGrate
             this.imgLoadLogo.Name = "imgLoadLogo";
             this.helpProvider.SetShowHelp(this.imgLoadLogo, true);
             this.imgLoadLogo.Size = new System.Drawing.Size(138, 104);
-            this.imgLoadLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.imgLoadLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.imgLoadLogo.TabIndex = 100;
             this.imgLoadLogo.TabStop = false;
             // 
@@ -295,8 +403,40 @@ namespace SuperGrate
             this.destCompTabl.Name = "destCompTabl";
             this.destCompTabl.RowCount = 1;
             this.destCompTabl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.destCompTabl.Size = new System.Drawing.Size(491, 36);
+            this.destCompTabl.Size = new System.Drawing.Size(431, 36);
             this.destCompTabl.TabIndex = 102;
+            // 
+            // btnAFillDest
+            // 
+            this.btnAFillDest.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAFillDest.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.helpProvider.SetHelpString(this.btnAFillDest, "This button will auto-fill the current computer\'s hostname.");
+            this.btnAFillDest.Icon = null;
+            this.btnAFillDest.Location = new System.Drawing.Point(399, 3);
+            this.btnAFillDest.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
+            this.btnAFillDest.Name = "btnAFillDest";
+            this.helpProvider.SetShowHelp(this.btnAFillDest, true);
+            this.btnAFillDest.Size = new System.Drawing.Size(30, 30);
+            this.btnAFillDest.TabIndex = 103;
+            this.btnAFillDest.Text = "<";
+            this.btnAFillDest.UseVisualStyleBackColor = true;
+            this.btnAFillDest.Click += new System.EventHandler(this.BtnAFillDest_Click);
+            // 
+            // tbDestinationComputer
+            // 
+            this.tbDestinationComputer.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbDestinationComputer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.helpProvider.SetHelpString(this.tbDestinationComputer, "Enter the destination computer hostname. This is where the user profiles will be " +
+        "migrated / restored to.");
+            this.tbDestinationComputer.Location = new System.Drawing.Point(3, 4);
+            this.tbDestinationComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
+            this.tbDestinationComputer.Multiline = true;
+            this.tbDestinationComputer.Name = "tbDestinationComputer";
+            this.helpProvider.SetShowHelp(this.tbDestinationComputer, true);
+            this.tbDestinationComputer.Size = new System.Drawing.Size(390, 28);
+            this.tbDestinationComputer.TabIndex = 102;
+            this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
+            this.tbDestinationComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbSourceDestComputer_KeyDown);
             // 
             // listUsers
             // 
@@ -310,7 +450,7 @@ namespace SuperGrate
             this.listUsers.Name = "listUsers";
             this.tblMainLayout.SetRowSpan(this.listUsers, 2);
             this.listUsers.ShowGroups = false;
-            this.listUsers.Size = new System.Drawing.Size(485, 274);
+            this.listUsers.Size = new System.Drawing.Size(425, 280);
             this.listUsers.TabIndex = 103;
             this.listUsers.UseCompatibleStateImageBehavior = false;
             this.listUsers.View = System.Windows.Forms.View.Details;
@@ -552,153 +692,11 @@ namespace SuperGrate
             this.miConProperties.Text = "Properties";
             this.miConProperties.Click += new System.EventHandler(this.OpenUserProperties_Event);
             // 
-            // tbSourceComputer
-            // 
-            this.tbSourceComputer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbSourceComputer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.helpProvider.SetHelpString(this.tbSourceComputer, "Enter the source computer hostname. This is where the user profiles to be migrate" +
-        "d / backed up will come from.");
-            this.tbSourceComputer.Location = new System.Drawing.Point(3, 4);
-            this.tbSourceComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
-            this.tbSourceComputer.Multiline = true;
-            this.tbSourceComputer.Name = "tbSourceComputer";
-            this.helpProvider.SetShowHelp(this.tbSourceComputer, true);
-            this.tbSourceComputer.Size = new System.Drawing.Size(450, 28);
-            this.tbSourceComputer.TabIndex = 101;
-            this.tbSourceComputer.TextChanged += new System.EventHandler(this.TbSourceComputer_TextChanged);
-            this.tbSourceComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbSourceDestComputer_KeyDown);
-            // 
-            // btnAFillSrc
-            // 
-            this.btnAFillSrc.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAFillSrc.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnAFillSrc, "This button will auto-fill the current computer\'s hostname.");
-            this.btnAFillSrc.Icon = null;
-            this.btnAFillSrc.Location = new System.Drawing.Point(459, 3);
-            this.btnAFillSrc.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
-            this.btnAFillSrc.Name = "btnAFillSrc";
-            this.helpProvider.SetShowHelp(this.btnAFillSrc, true);
-            this.btnAFillSrc.Size = new System.Drawing.Size(30, 30);
-            this.btnAFillSrc.TabIndex = 102;
-            this.btnAFillSrc.Text = "<";
-            this.btnAFillSrc.UseVisualStyleBackColor = true;
-            this.btnAFillSrc.Click += new System.EventHandler(this.BtnAFillSrc_Click);
-            // 
-            // btnStartStop
-            // 
-            this.tblMainLayout.SetColumnSpan(this.btnStartStop, 2);
-            this.btnStartStop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnStartStop.Enabled = false;
-            this.btnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnStartStop, "This button will start a migration, backup, or restoration and stop any other Sup" +
-        "er Grate process.");
-            this.btnStartStop.Icon = null;
-            this.btnStartStop.Location = new System.Drawing.Point(3, 391);
-            this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
-            this.btnStartStop.Name = "btnStartStop";
-            this.helpProvider.SetShowHelp(this.btnStartStop, true);
-            this.btnStartStop.Size = new System.Drawing.Size(634, 30);
-            this.btnStartStop.TabIndex = 100;
-            this.btnStartStop.Text = null;
-            this.btnStartStop.UseVisualStyleBackColor = true;
-            this.btnStartStop.Click += new System.EventHandler(this.BtStartStop_Click);
-            // 
-            // btnListSource
-            // 
-            this.btnListSource.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnListSource.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnListSource, "This button will retrieve the list of user profiles from the source computer.");
-            this.btnListSource.Icon = "";
-            this.btnListSource.Location = new System.Drawing.Point(2, 3);
-            this.btnListSource.Margin = new System.Windows.Forms.Padding(2, 3, 3, 3);
-            this.btnListSource.Name = "btnListSource";
-            this.helpProvider.SetShowHelp(this.btnListSource, true);
-            this.btnListSource.Size = new System.Drawing.Size(158, 30);
-            this.btnListSource.TabIndex = 100;
-            this.btnListSource.Text = " List Source";
-            this.btnListSource.Click += new System.EventHandler(this.BtnListSource_Click);
-            // 
-            // btnListStore
-            // 
-            this.btnListStore.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnListStore.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnListStore, "This button will list the user profiles that have already been backed up to the s" +
-        "tore.");
-            this.btnListStore.Icon = "";
-            this.btnListStore.Location = new System.Drawing.Point(166, 3);
-            this.btnListStore.Name = "btnListStore";
-            this.helpProvider.SetShowHelp(this.btnListStore, true);
-            this.btnListStore.Size = new System.Drawing.Size(157, 30);
-            this.btnListStore.TabIndex = 100;
-            this.btnListStore.Text = " List Store";
-            this.btnListStore.Click += new System.EventHandler(this.BtnListStore_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDelete.Enabled = false;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnDelete, "This button will delete user profiles from either the source computer or the stor" +
-        "e.");
-            this.btnDelete.Icon = "";
-            this.btnDelete.Location = new System.Drawing.Point(329, 3);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
-            this.btnDelete.Name = "btnDelete";
-            this.helpProvider.SetShowHelp(this.btnDelete, true);
-            this.btnDelete.Size = new System.Drawing.Size(160, 30);
-            this.btnDelete.TabIndex = 100;
-            this.btnDelete.Text = " Delete";
-            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
-            // 
-            // btnAFillDest
-            // 
-            this.btnAFillDest.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnAFillDest.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnAFillDest, "This button will auto-fill the current computer\'s hostname.");
-            this.btnAFillDest.Icon = null;
-            this.btnAFillDest.Location = new System.Drawing.Point(459, 3);
-            this.btnAFillDest.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
-            this.btnAFillDest.Name = "btnAFillDest";
-            this.helpProvider.SetShowHelp(this.btnAFillDest, true);
-            this.btnAFillDest.Size = new System.Drawing.Size(30, 30);
-            this.btnAFillDest.TabIndex = 103;
-            this.btnAFillDest.Text = "<";
-            this.btnAFillDest.UseVisualStyleBackColor = true;
-            this.btnAFillDest.Click += new System.EventHandler(this.BtnAFillDest_Click);
-            // 
-            // tbDestinationComputer
-            // 
-            this.tbDestinationComputer.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbDestinationComputer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.helpProvider.SetHelpString(this.tbDestinationComputer, "Enter the destination computer hostname. This is where the user profiles will be " +
-        "migrated / restored to.");
-            this.tbDestinationComputer.Location = new System.Drawing.Point(3, 4);
-            this.tbDestinationComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
-            this.tbDestinationComputer.Multiline = true;
-            this.tbDestinationComputer.Name = "tbDestinationComputer";
-            this.helpProvider.SetShowHelp(this.tbDestinationComputer, true);
-            this.tbDestinationComputer.Size = new System.Drawing.Size(450, 28);
-            this.tbDestinationComputer.TabIndex = 102;
-            this.tbDestinationComputer.TextChanged += new System.EventHandler(this.TbDestinationComputer_TextChanged);
-            this.tbDestinationComputer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TbSourceDestComputer_KeyDown);
-            // 
-            // pbMain
-            // 
-            this.pbMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbMain.ForeColor = System.Drawing.Color.Black;
-            this.pbMain.Location = new System.Drawing.Point(3, 392);
-            this.pbMain.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pbMain.MarqueeAnimationSpeed = 30;
-            this.pbMain.Name = "pbMain";
-            this.pbMain.Size = new System.Drawing.Size(425, 28);
-            this.pbMain.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this.pbMain.TabIndex = 100;
-            // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
-            this.ClientSize = new System.Drawing.Size(1084, 434);
+            this.ClientSize = new System.Drawing.Size(984, 440);
             this.Controls.Add(this.spltContainer);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

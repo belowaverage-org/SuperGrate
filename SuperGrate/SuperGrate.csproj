@@ -284,9 +284,6 @@
     <None Include="Resources\banner.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\working.gif" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\move.png" />
   </ItemGroup>
   <ItemGroup>
