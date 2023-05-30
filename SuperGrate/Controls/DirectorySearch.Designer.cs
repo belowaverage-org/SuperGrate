@@ -55,7 +55,7 @@
             this.lvResults.MultiSelect = false;
             this.lvResults.Name = "lvResults";
             this.lvResults.ShowGroups = false;
-            this.lvResults.Size = new System.Drawing.Size(355, 231);
+            this.lvResults.Size = new System.Drawing.Size(355, 246);
             this.lvResults.TabIndex = 3;
             this.lvResults.UseCompatibleStateImageBehavior = false;
             this.lvResults.View = System.Windows.Forms.View.Details;
@@ -83,7 +83,7 @@
             this.btnSearch.Location = new System.Drawing.Point(260, 14);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(109, 28);
-            this.btnSearch.TabIndex = 4;
+            this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -92,10 +92,10 @@
             // 
             this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSelect.Icon = "";
-            this.btnSelect.Location = new System.Drawing.Point(260, 308);
+            this.btnSelect.Location = new System.Drawing.Point(262, 316);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(109, 36);
-            this.btnSelect.TabIndex = 2;
+            this.btnSelect.Size = new System.Drawing.Size(109, 32);
+            this.btnSelect.TabIndex = 4;
             this.btnSelect.Text = "Select";
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
@@ -104,10 +104,10 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Icon = "";
-            this.btnCancel.Location = new System.Drawing.Point(134, 308);
+            this.btnCancel.Location = new System.Drawing.Point(136, 316);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(109, 36);
-            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Size = new System.Drawing.Size(109, 32);
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);

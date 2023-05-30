@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
@@ -28,6 +29,10 @@ namespace SuperGrate.Controls.Components
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             OnClick(e);
+        }
+        protected override void OnGotFocus(EventArgs e)
+        {
+            Button.Focus();
         }
         public override string Text { 
             get => (string)Button.Content;
