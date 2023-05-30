@@ -236,14 +236,14 @@ namespace SuperGrate
             this.btnAFillSrc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAFillSrc.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnAFillSrc, "This button will auto-fill the current computer\'s hostname.");
-            this.btnAFillSrc.Icon = null;
+            this.btnAFillSrc.Icon = "";
             this.btnAFillSrc.Location = new System.Drawing.Point(399, 3);
             this.btnAFillSrc.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
             this.btnAFillSrc.Name = "btnAFillSrc";
             this.helpProvider.SetShowHelp(this.btnAFillSrc, true);
             this.btnAFillSrc.Size = new System.Drawing.Size(30, 30);
             this.btnAFillSrc.TabIndex = 102;
-            this.btnAFillSrc.Text = "<";
+            this.btnAFillSrc.Text = null;
             this.btnAFillSrc.UseVisualStyleBackColor = true;
             this.btnAFillSrc.Click += new System.EventHandler(this.BtnAFillSrc_Click);
             // 
@@ -287,7 +287,7 @@ namespace SuperGrate
             this.btnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnStartStop, "This button will start a migration, backup, or restoration and stop any other Sup" +
         "er Grate process.");
-            this.btnStartStop.Icon = null;
+            this.btnStartStop.Icon = "";
             this.btnStartStop.Location = new System.Drawing.Point(3, 397);
             this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btnStartStop.Name = "btnStartStop";
@@ -411,14 +411,14 @@ namespace SuperGrate
             this.btnAFillDest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnAFillDest.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnAFillDest, "This button will auto-fill the current computer\'s hostname.");
-            this.btnAFillDest.Icon = null;
+            this.btnAFillDest.Icon = "";
             this.btnAFillDest.Location = new System.Drawing.Point(399, 3);
             this.btnAFillDest.Margin = new System.Windows.Forms.Padding(0, 3, 2, 3);
             this.btnAFillDest.Name = "btnAFillDest";
             this.helpProvider.SetShowHelp(this.btnAFillDest, true);
             this.btnAFillDest.Size = new System.Drawing.Size(30, 30);
             this.btnAFillDest.TabIndex = 103;
-            this.btnAFillDest.Text = "<";
+            this.btnAFillDest.Text = null;
             this.btnAFillDest.UseVisualStyleBackColor = true;
             this.btnAFillDest.Click += new System.EventHandler(this.BtnAFillDest_Click);
             // 

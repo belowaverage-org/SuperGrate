@@ -12,12 +12,13 @@ namespace SuperGrate.Controls.Components
         private System.Windows.Controls.Button Button = new System.Windows.Controls.Button();
         public SGButton()
         {
+            if (LicenseManager.CurrentContext.UsageMode == LicenseUsageMode.Designtime) return;
             ElementHost host = new ElementHost();
             host.Dock = DockStyle.Fill;
             host.Parent = this;
             host.Child = Button;
             Button.Click += Button_Click;
-            if (LicenseManager.CurrentContext.UsageMode == LicenseUsageMode.Runtime) Button.Loaded += Button_Loaded;
+            Button.Loaded += Button_Loaded;
             Misc.ApplyStyles(Button);
         }
         private void Button_Loaded(object sender, System.Windows.RoutedEventArgs e)
@@ -26,11 +27,15 @@ namespace SuperGrate.Controls.Components
         }
         private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.OnClick(e);
+            OnClick(e);
         }
         public override string Text { 
             get => (string)Button.Content;
-            set => Button.Content = value;
+            set
+            {
+                base.Text = value; 
+                Button.Content = value;
+            }
         }
     }
 }

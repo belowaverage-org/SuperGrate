@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace SuperGrate
@@ -43,15 +42,19 @@ namespace SuperGrate
         {
             MainParameters = parameters;
             InitializeComponent();
+            Width = 1000;
+            Height = 500;
             Form = this;
             LoggerBox = LogBox;
             Progress = pbMain;
             listUsers.Tag = new string[0];
             Icon = Properties.Resources.supergrate_ico;
             Text = About.AssemblyTitle;
+            /*
             btnListSource.SetSystemIcon(Properties.Resources.users_ico);
             btnListStore.SetSystemIcon(Properties.Resources.usercheck);
             btnDelete.SetSystemIcon(Properties.Resources.x_ico);
+            */
             miAboutSG.SetMenuItemBitmap(Properties.Resources.info_png);
             miNewInstance.SetMenuItemBitmap(Properties.Resources.move_png);
             miAddRemoveCol.SetMenuItemBitmap(Properties.Resources.columns_png);
@@ -171,7 +174,7 @@ namespace SuperGrate
                 if (value != RunningTask.None)
                 {
                     Logger.UpdateProgress(0);
-                    btnStartStop.Text = " &Stop";
+                    btnStartStop.Text = "Stop";
                     btnStartStop.SetSystemIcon(Properties.Resources.cancel_ico);
                     Cursor = Cursors.AppStarting;
                     Misc.MainMenuSetState(MainMenu, false, new string[] { "&View" });
@@ -195,7 +198,7 @@ namespace SuperGrate
                 else
                 {
                     Logger.UpdateProgress(-1);
-                    btnStartStop.Text = " &Start";
+                    btnStartStop.Text = "Start";
                     btnStartStop.SetSystemIcon(Properties.Resources.go_ico);
                     Cursor = Cursors.Default;
                     Misc.MainMenuSetState(MainMenu, true);
@@ -415,18 +418,22 @@ namespace SuperGrate
             }
         }
         /// <summary>
-        /// This event will fire when the btnBFillDest button is clicked, this will fill the ajacent text box with the current PC name.
+        /// This event will fire when the btnBFillDest button is clicked, open a computer search dialog and fill the results.
         /// </summary>
         private void BtnAFillSrc_Click(object sender, EventArgs e)
         {
-            tbSourceComputer.Text = Environment.MachineName;
+            DirectorySearch ds = new DirectorySearch(tbSourceComputer.Text);
+            ds.ShowDialog(this);
+            tbSourceComputer.Text = ds.SelectedComputer;
         }
         /// <summary>
-        /// This event will fire when the btnAFillDest button is clicked, this will fill the ajacent text box with the current PC name.
+        /// This event will fire when the btnAFillDest button is clicked, open a computer search dialog and fill the results.
         /// </summary>
         private void BtnAFillDest_Click(object sender, EventArgs e)
         {
-            tbDestinationComputer.Text = Environment.MachineName;
+            DirectorySearch ds = new DirectorySearch(tbDestinationComputer.Text);
+            ds.ShowDialog(this);
+            tbDestinationComputer.Text = ds.SelectedComputer;
         }
         /// <summary>
         /// This event will fire if the miExitButton is clicked, and will attempt to close the main form.

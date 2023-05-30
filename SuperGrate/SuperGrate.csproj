@@ -80,6 +80,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem">
       <Private>False</Private>
@@ -141,6 +142,12 @@
     <Compile Include="Controls\ConfirmDialog.Designer.cs">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\DirectorySearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\DirectorySearch.Designer.cs">
+      <DependentUpon>DirectorySearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\License.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +206,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ConfirmDialog.resx">
       <DependentUpon>ConfirmDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\DirectorySearch.resx">
+      <DependentUpon>DirectorySearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\License.resx">
       <DependentUpon>License.cs</DependentUpon>

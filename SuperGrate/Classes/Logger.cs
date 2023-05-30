@@ -23,17 +23,15 @@ namespace SuperGrate
         /// <param name="Raw">Should the text to log be prefixed with a time?</param>
         private static void WriteLog(string Text, Color Color, bool Raw = false)
         {
-            if (!Raw)
-            {
-                Text = DateTime.Now.ToLongTimeString() + "> " + Text;
-                Text += "\n";
-            }
             try
             {
                 Main.Form.Invoke(new Action(() =>
                 {
+                    Main.LoggerBox.SelectionColor = Color.LightGray;
+                    if (!Raw) Main.LoggerBox.AppendText(DateTime.Now.ToLongTimeString() + "> ");
                     Main.LoggerBox.SelectionColor = Color;
                     Main.LoggerBox.AppendText(Text);
+                    if (!Raw) Main.LoggerBox.AppendText("\n");
                     try
                     {
                         Main.LoggerBox.ScrollToCaret();
