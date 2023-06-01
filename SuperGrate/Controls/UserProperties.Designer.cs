@@ -32,7 +32,7 @@
             this.colKey = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.helpProvider = new System.Windows.Forms.HelpProvider();
-            this.btnOK = new System.Windows.Forms.Button();
+            this.btnOK = new SuperGrate.Controls.Components.SGButton();
             this.SuspendLayout();
             // 
             // lvProperties
@@ -49,11 +49,12 @@
             this.helpProvider.SetHelpString(this.lvProperties, "A list of properties for the user you double-clicked a moment ago.");
             this.lvProperties.HideSelection = false;
             this.lvProperties.Location = new System.Drawing.Point(0, 0);
+            this.lvProperties.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.lvProperties.MultiSelect = false;
             this.lvProperties.Name = "lvProperties";
             this.lvProperties.ShowGroups = false;
             this.helpProvider.SetShowHelp(this.lvProperties, true);
-            this.lvProperties.Size = new System.Drawing.Size(200, 68);
+            this.lvProperties.Size = new System.Drawing.Size(327, 145);
             this.lvProperties.TabIndex = 0;
             this.lvProperties.UseCompatibleStateImageBehavior = false;
             this.lvProperties.View = System.Windows.Forms.View.Details;
@@ -72,29 +73,33 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnOK, "Closes the user properties window.");
-            this.btnOK.Location = new System.Drawing.Point(127, 73);
+            this.btnOK.Icon = "";
+            this.btnOK.Location = new System.Drawing.Point(224, 155);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOK.Name = "btnOK";
             this.helpProvider.SetShowHelp(this.btnOK, true);
-            this.btnOK.Size = new System.Drawing.Size(65, 22);
+            this.btnOK.Size = new System.Drawing.Size(91, 28);
             this.btnOK.TabIndex = 1;
-            this.btnOK.Text = " &OK";
+            this.btnOK.Text = " OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
             // UserProperties
             // 
             this.AcceptButton = this.btnOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
             this.CancelButton = this.btnOK;
-            this.ClientSize = new System.Drawing.Size(200, 99);
+            this.ClientSize = new System.Drawing.Size(327, 194);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lvProperties);
             this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HelpButton = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(216, 138);
+            this.MinimumSize = new System.Drawing.Size(249, 153);
             this.Name = "UserProperties";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "User Properties";
@@ -108,6 +113,6 @@
         private System.Windows.Forms.ColumnHeader colKey;
         private System.Windows.Forms.ColumnHeader colValue;
         private System.Windows.Forms.HelpProvider helpProvider;
-        private System.Windows.Forms.Button btnOK;
+        private Components.SGButton btnOK;
     }
 }

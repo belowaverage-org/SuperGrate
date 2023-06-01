@@ -42,8 +42,8 @@ namespace SuperGrate.Controls
             {
                 headWidth += colHeader.Width;
             }
-            Width = headWidth + 20;
-            Height = (17 * Row.Count) + 95;
+            Width = headWidth + 40;
+            Height = (17 * Row.Count) + 150;
             CenterToParent();
         }
     }

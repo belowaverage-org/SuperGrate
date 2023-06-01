@@ -3,50 +3,72 @@
     <FontFamily x:Key="Icons">/Resources/#Segoe Fluent Icons</FontFamily>
     <FontFamily x:Key="Font">/Resources/#Segoe UI</FontFamily>
 
+    <Style x:Key="DefaultFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle StrokeThickness="2" Stroke="#964aa8" RadiusX="4" RadiusY="4" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultFocusVisualStyle}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Name="BtnBoarder" CornerRadius="4" TextBlock.Foreground="Black" >
+                    <Border Name="BtnBorder" CornerRadius="4" TextBlock.Foreground="Black" >
                         <Border.BorderThickness>
-                            <Thickness Top="1" Left="1" Right="1" Bottom="1.5" />
+                            <Thickness Top="1" Left="1" Right="1" Bottom="1" />
                         </Border.BorderThickness>
                         <Border.Background>
                             <SolidColorBrush />
                         </Border.Background>
                         <Border.BorderBrush>
-                            <SolidColorBrush Color="#e0e0e0" />
+                            <LinearGradientBrush EndPoint="0 1">
+                                <GradientStop Color="#e0e0e0" Offset="0.99"></GradientStop>
+                                <GradientStop x:Name="BtnBttmBorder" Color="Gray" Offset="0.99"></GradientStop>
+                            </LinearGradientBrush>
                         </Border.BorderBrush>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
-                                        <ColorAnimation Duration="0:0:0.3" To="White" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="Background.Color" />
-                                        <ColorAnimation Duration="0:0:0.3" To="Black" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                        <ColorAnimation Duration="0:0:0.3" To="White" Storyboard.TargetName="BtnBorder" Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="Black" Storyboard.TargetName="BtnBorder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                        <ColorAnimation Duration="0:0:0.3" To="Black" Storyboard.TargetName="BtnIcon" Storyboard.TargetProperty="Foreground.Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="Gray" Storyboard.TargetName="BtnBttmBorder" Storyboard.TargetProperty="Color" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="MouseOver">
                                     <Storyboard>
-                                        <ColorAnimation Duration="0:0:0.3" To="#f6f6f6" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="Background.Color" />
-                                        <ColorAnimation Duration="0:0:0.3" To="Black" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#f6f6f6" Storyboard.TargetName="BtnBorder" Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="Black" Storyboard.TargetName="BtnBorder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                        <ColorAnimation Duration="0:0:0.3" To="Black" Storyboard.TargetName="BtnIcon" Storyboard.TargetProperty="Foreground.Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="Gray" Storyboard.TargetName="BtnBttmBorder" Storyboard.TargetProperty="Color" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <Storyboard>
-                                        <ColorAnimation Duration="0:0:0.0" To="#fdfdfd" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="Background.Color" />
-                                        <ColorAnimation Duration="0:0:0.0" To="#5e5e5e" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                        <ColorAnimation Duration="0:0:0.0" To="#fdfdfd" Storyboard.TargetName="BtnBorder" Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation Duration="0:0:0.0" To="#5e5e5e" Storyboard.TargetName="BtnBorder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                        <ColorAnimation Duration="0:0:0.0" To="#5e5e5e" Storyboard.TargetName="BtnIcon" Storyboard.TargetProperty="Foreground.Color" />
+                                        <ColorAnimation Duration="0:0:0.0" To="#e0e0e0" Storyboard.TargetName="BtnBttmBorder" Storyboard.TargetProperty="Color" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
-                                        <ColorAnimation Duration="0:0:0.3" To="#f5f5f5" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="Background.Color" />
-                                        <ColorAnimation Duration="0:0:0.3" To="#808080" Storyboard.TargetName="BtnBoarder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#f5f5f5" Storyboard.TargetName="BtnBorder" Storyboard.TargetProperty="Background.Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#808080" Storyboard.TargetName="BtnBorder" Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#808080" Storyboard.TargetName="BtnIcon" Storyboard.TargetProperty="Foreground.Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#e0e0e0" Storyboard.TargetName="BtnBttmBorder" Storyboard.TargetProperty="Color" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
                         <Grid>
-                            <Label x:Name="BtnIcon" FontSize="16" Margin="2 0 0 0" VerticalAlignment="Center" FontFamily="Segoe Fluent Icons" ></Label>
+                            <Label x:Name="BtnIcon" FontSize="16" Margin="2 0 0 0" VerticalAlignment="Center" FontFamily="Segoe Fluent Icons" />
                             <ContentPresenter Margin="14 -2 0 0"  HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
                         </Grid>
                     </Border>
@@ -60,25 +82,52 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border CornerRadius="4" BorderThickness="1 1 1 1" >
+                    <Border x:Name="TbBorder" CornerRadius="4" BorderThickness="1 1 1 1">
                         <Border.Background>
                             <SolidColorBrush x:Name="TbBgColor" />
                         </Border.Background>
                         <Border.BorderBrush>
-                            <SolidColorBrush x:Name="TbBrdColor" />
+                            <LinearGradientBrush EndPoint="0 1">
+                                <GradientStop x:Name="TbTopBorder" Color="#e0e0e0" Offset="0.99"></GradientStop>
+                                <GradientStop x:Name="TbBttmBorder" Color="#111111" Offset="0.99"></GradientStop>
+                            </LinearGradientBrush>
                         </Border.BorderBrush>
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3" To="#fdfdfd" Storyboard.TargetName="TbBgColor" Storyboard.TargetProperty="Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#111111" Storyboard.TargetName="TbBttmBorder" Storyboard.TargetProperty="Color" />
+                                        <DoubleAnimation Duration="0:0:0.3" To="0.99" Storyboard.TargetName="TbTopBorder" Storyboard.TargetProperty="Offset" />
+                                        <DoubleAnimation Duration="0:0:0.3" To="0.99" Storyboard.TargetName="TbBttmBorder" Storyboard.TargetProperty="Offset" />
+                                        <ThicknessAnimation Duration="0:0:0.3" To="1 1 1 1" Storyboard.TargetName="TbBorder" Storyboard.TargetProperty="BorderThickness" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Focused">
+                                    <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3" To="White" Storyboard.TargetName="TbBgColor" Storyboard.TargetProperty="Color" />
-                                        <ColorAnimation Duration="0:0:0.3" To="LightGray" Storyboard.TargetName="TbBrdColor" Storyboard.TargetProperty="Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#964aa8" Storyboard.TargetName="TbBttmBorder" Storyboard.TargetProperty="Color" />
+                                        <DoubleAnimation Duration="0:0:0.3" To="0.93" Storyboard.TargetName="TbTopBorder" Storyboard.TargetProperty="Offset" />
+                                        <DoubleAnimation Duration="0:0:0.3" To="0.93" Storyboard.TargetName="TbBttmBorder" Storyboard.TargetProperty="Offset" />
+                                        <ThicknessAnimation Duration="0:0:0.0" To="1 1 1 2" Storyboard.TargetName="TbBorder" Storyboard.TargetProperty="BorderThickness" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3" To="#fdfdfd" Storyboard.TargetName="TbBgColor" Storyboard.TargetProperty="Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#111111" Storyboard.TargetName="TbBttmBorder" Storyboard.TargetProperty="Color" />
+                                        <DoubleAnimation Duration="0:0:0.3" To="0.99" Storyboard.TargetName="TbTopBorder" Storyboard.TargetProperty="Offset" />
+                                        <DoubleAnimation Duration="0:0:0.3" To="0.99" Storyboard.TargetName="TbBttmBorder" Storyboard.TargetProperty="Offset" />
+                                        <ThicknessAnimation Duration="0:0:0.3" To="1 1 1 1" Storyboard.TargetName="TbBorder" Storyboard.TargetProperty="BorderThickness" />
                                     </Storyboard>
                                 </VisualState>
                                 <VisualState x:Name="Disabled">
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3" To="WhiteSmoke" Storyboard.TargetName="TbBgColor" Storyboard.TargetProperty="Color" />
-                                        <ColorAnimation Duration="0:0:0.3" To="LightGray" Storyboard.TargetName="TbBrdColor" Storyboard.TargetProperty="Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#e0e0e0" Storyboard.TargetName="TbBttmBorder" Storyboard.TargetProperty="Color" />
+                                        <DoubleAnimation Duration="0:0:0.3" To="0.99" Storyboard.TargetName="TbTopBorder" Storyboard.TargetProperty="Offset" />
+                                        <DoubleAnimation Duration="0:0:0.3" To="0.99" Storyboard.TargetName="TbBttmBorder" Storyboard.TargetProperty="Offset" />
+                                        <ThicknessAnimation Duration="0:0:0.3" To="1 1 1 1" Storyboard.TargetName="TbBorder" Storyboard.TargetProperty="BorderThickness" />
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>

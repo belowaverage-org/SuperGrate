@@ -92,7 +92,7 @@
             // 
             this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSelect.Icon = "";
-            this.btnSelect.Location = new System.Drawing.Point(262, 316);
+            this.btnSelect.Location = new System.Drawing.Point(143, 316);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(109, 32);
             this.btnSelect.TabIndex = 4;
@@ -104,7 +104,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Icon = "";
-            this.btnCancel.Location = new System.Drawing.Point(136, 316);
+            this.btnCancel.Location = new System.Drawing.Point(260, 316);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(109, 32);
             this.btnCancel.TabIndex = 5;
@@ -116,11 +116,12 @@
             // 
             this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
             this.tbSearch.Location = new System.Drawing.Point(14, 14);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbSearch.Multiline = true;
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(239, 27);
+            this.tbSearch.Size = new System.Drawing.Size(239, 28);
             this.tbSearch.TabIndex = 0;
             this.tbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSearch_KeyDown);
             // 
