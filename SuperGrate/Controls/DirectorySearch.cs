@@ -36,6 +36,7 @@ namespace SuperGrate.Controls
         {
             tbSearch.Text = Regex.Replace(tbSearch.Text, "[()*]", "");
             if (tbSearch.Text.Length == 0) return;
+            btnSearch.Text = "Searching...";
             lvResults.Items.Clear();
             DS.Filter = "(&(objectClass=computer)(|(name=*" + tbSearch.Text + "*)(description=*" + tbSearch.Text + "*)))";
             List<ListViewItem> lvis = new List<ListViewItem>();
@@ -64,6 +65,7 @@ namespace SuperGrate.Controls
                 lvResults.Focus();
             }
             lvResults.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            btnSearch.Text = "Search";
         }
         /// <summary>
         /// Close the dialog without making a selection.
