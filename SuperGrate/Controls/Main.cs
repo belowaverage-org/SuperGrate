@@ -13,7 +13,7 @@ namespace SuperGrate
 {
     public partial class Main : Form
     {
-        public static Form Form;
+        public static Main Form;
         public static RichTextBox LoggerBox;
         public static ProgressBar Progress;
         public static string SourceComputer;
@@ -166,7 +166,7 @@ namespace SuperGrate
         /// <summary>
         /// This getter/setter will update various controls and variables whenever changed in regards to a running task.
         /// </summary>
-        private RunningTask Running {
+        public RunningTask Running {
             get {
                 return storeRunningTask;
             }

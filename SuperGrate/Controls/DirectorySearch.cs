@@ -36,7 +36,8 @@ namespace SuperGrate.Controls
         {
             tbSearch.Text = Regex.Replace(tbSearch.Text, "[()*]", "");
             if (tbSearch.Text.Length == 0) return;
-            Logger.Verbose("Searching Active Directory for: " + tbSearch.Text + "...");
+            Main.Form.Running = RunningTask.Unknown;
+            Logger.Information("Searching Active Directory for: " + tbSearch.Text + "...");
             btnSearch.Enabled = false;
             btnSearch.Text = "Searching...";
             lvResults.Items.Clear();
@@ -71,11 +72,14 @@ namespace SuperGrate.Controls
                 lvResults.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
                 btnSearch.Text = "Search";
                 btnSearch.Enabled = true;
+                Main.Form.Running = RunningTask.None;
                 Logger.Verbose("Found " + lvis.Count + " results.");
+                Logger.Success("Done.");
             }
             catch (Exception ex)
             {
                 Logger.Exception(ex, "Failed to search Active Directory.");
+                Main.Form.Running = RunningTask.None;
                 btnSearch.Text = "Search";
                 btnSearch.Enabled = true;
             }

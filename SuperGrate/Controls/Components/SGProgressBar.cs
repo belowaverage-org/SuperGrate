@@ -11,7 +11,7 @@ namespace SuperGrate.Controls.Components
         /// Position to use to draw the text.
         /// </summary>
         private Win32Interop.RECT RECT = new Win32Interop.RECT() { 
-            Top = 4,
+            Top = 8,
             Left = 6
         };
         /// <summary>
