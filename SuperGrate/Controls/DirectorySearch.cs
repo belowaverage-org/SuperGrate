@@ -36,36 +36,49 @@ namespace SuperGrate.Controls
         {
             tbSearch.Text = Regex.Replace(tbSearch.Text, "[()*]", "");
             if (tbSearch.Text.Length == 0) return;
+            Logger.Verbose("Searching Active Directory for: " + tbSearch.Text + "...");
+            btnSearch.Enabled = false;
             btnSearch.Text = "Searching...";
             lvResults.Items.Clear();
             DS.Filter = "(&(objectClass=computer)(|(name=*" + tbSearch.Text + "*)(description=*" + tbSearch.Text + "*)))";
             List<ListViewItem> lvis = new List<ListViewItem>();
-            await Task.Run(() =>
+            try
             {
-                SearchResultCollection src = DS.FindAll();
-                foreach (SearchResult sr in src)
+                await Task.Run(() =>
                 {
-                    ListViewItem lvi = new ListViewItem(sr.Properties["name"][0].ToString());
-                    if (sr.Properties["description"].Count == 0)
+                    SearchResultCollection src = DS.FindAll();
+                    foreach (SearchResult sr in src)
                     {
-                        lvi.SubItems.Add("");
+                        ListViewItem lvi = new ListViewItem(sr.Properties["name"][0].ToString());
+                        if (sr.Properties["description"].Count == 0)
+                        {
+                            lvi.SubItems.Add("");
+                        }
+                        else
+                        {
+                            lvi.SubItems.Add(sr.Properties["description"][0].ToString());
+                        }
+                        lvi.SubItems.Add(sr.Properties["distinguishedName"][0].ToString());
+                        lvis.Add(lvi);
                     }
-                    else
-                    {
-                        lvi.SubItems.Add(sr.Properties["description"][0].ToString());
-                    }
-                    lvi.SubItems.Add(sr.Properties["distinguishedName"][0].ToString());
-                    lvis.Add(lvi);
+                });
+                foreach (ListViewItem lvi in lvis) lvResults.Items.Add(lvi);
+                if (lvResults.Items.Count != 0)
+                {
+                    lvResults.Items[0].Selected = true;
+                    lvResults.Focus();
                 }
-            });
-            foreach (ListViewItem lvi in lvis) lvResults.Items.Add(lvi);
-            if (lvResults.Items.Count != 0)
-            {
-                lvResults.Items[0].Selected = true;
-                lvResults.Focus();
+                lvResults.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                btnSearch.Text = "Search";
+                btnSearch.Enabled = true;
+                Logger.Verbose("Found " + lvis.Count + " results.");
             }
-            lvResults.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            btnSearch.Text = "Search";
+            catch (Exception ex)
+            {
+                Logger.Exception(ex, "Failed to search Active Directory.");
+                btnSearch.Text = "Search";
+                btnSearch.Enabled = true;
+            }
         }
         /// <summary>
         /// Close the dialog without making a selection.

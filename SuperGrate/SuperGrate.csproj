@@ -235,8 +235,8 @@
     <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\SegoeIcons.ttf" />
-    <EmbeddedResource Include="Resources\SegoeUI.ttf" />
+    <Resource Include="Resources\SegoeIcons.ttf" />
+    <Resource Include="Resources\SegoeUI.ttf" />
     <None Include="Utilities\SuperGrateProfileDelete.exe" />
   </ItemGroup>
   <ItemGroup>

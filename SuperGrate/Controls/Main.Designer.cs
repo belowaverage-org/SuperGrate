@@ -224,6 +224,7 @@ namespace SuperGrate
             this.tbSourceComputer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.helpProvider.SetHelpString(this.tbSourceComputer, "Enter the source computer hostname. This is where the user profiles to be migrate" +
         "d / backed up will come from.");
+            this.tbSourceComputer.Icon = "";
             this.tbSourceComputer.Location = new System.Drawing.Point(3, 4);
             this.tbSourceComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
             this.tbSourceComputer.Multiline = true;
@@ -432,6 +433,7 @@ namespace SuperGrate
             this.tbDestinationComputer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.helpProvider.SetHelpString(this.tbDestinationComputer, "Enter the destination computer hostname. This is where the user profiles will be " +
         "migrated / restored to.");
+            this.tbDestinationComputer.Icon = "";
             this.tbDestinationComputer.Location = new System.Drawing.Point(3, 4);
             this.tbDestinationComputer.Margin = new System.Windows.Forms.Padding(3, 4, 6, 4);
             this.tbDestinationComputer.Multiline = true;

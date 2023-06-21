@@ -8,6 +8,8 @@ namespace SuperGrate.Controls.Components
 {
     public class SGTextBox : System.Windows.Forms.TextBox
     {
+        [Browsable(true)]
+        public string Icon { get; set; }
         private System.Windows.Controls.TextBox TextBox = new System.Windows.Controls.TextBox();
         public SGTextBox()
         {
@@ -20,7 +22,12 @@ namespace SuperGrate.Controls.Components
             host.Child = TextBox;
             TextBox.TextChanged += TextBox_TextChanged;
             TextBox.KeyDown += TextBox_KeyDown;
+            TextBox.Loaded += Textbox_Loaded;
             Misc.ApplyStyles(TextBox);
+        }
+        private void Textbox_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ((System.Windows.Controls.Label)TextBox.Template.FindName("TbIcon", TextBox)).Content = Icon;
         }
         private void TextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {

@@ -67,21 +67,23 @@ namespace SuperGrate.Controls
             // tbOrigUser
             // 
             this.tbOrigUser.Enabled = false;
-            this.tbOrigUser.Location = new System.Drawing.Point(200, 38);
+            this.tbOrigUser.Icon = "";
+            this.tbOrigUser.Location = new System.Drawing.Point(200, 35);
             this.tbOrigUser.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbOrigUser.Multiline = true;
             this.tbOrigUser.Name = "tbOrigUser";
-            this.tbOrigUser.Size = new System.Drawing.Size(247, 26);
+            this.tbOrigUser.Size = new System.Drawing.Size(247, 30);
             this.tbOrigUser.TabIndex = 2;
             // 
             // tbDestUser
             // 
-            this.tbDestUser.Location = new System.Drawing.Point(200, 84);
+            this.tbDestUser.Icon = "";
+            this.tbDestUser.Location = new System.Drawing.Point(200, 81);
             this.tbDestUser.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbDestUser.MaxLength = 50;
             this.tbDestUser.Multiline = true;
             this.tbDestUser.Name = "tbDestUser";
-            this.tbDestUser.Size = new System.Drawing.Size(247, 26);
+            this.tbDestUser.Size = new System.Drawing.Size(247, 30);
             this.tbDestUser.TabIndex = 3;
             // 
             // lblDescription
@@ -113,7 +115,7 @@ namespace SuperGrate.Controls
             // 
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnSave.Icon = "";
+            this.btnSave.Icon = "";
             this.btnSave.Location = new System.Drawing.Point(279, 9);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";

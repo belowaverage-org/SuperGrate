@@ -117,6 +117,7 @@
             this.tbSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
+            this.tbSearch.Icon = "";
             this.tbSearch.Location = new System.Drawing.Point(14, 14);
             this.tbSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.tbSearch.Multiline = true;
