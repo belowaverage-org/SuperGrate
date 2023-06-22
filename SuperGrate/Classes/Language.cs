@@ -33,20 +33,26 @@ namespace SuperGrate.Classes
                 Logger.Exception(e, "Failed to find language.");
             }
         }
-        public static string GetString(string Language, string Key)
+        public static string GetWithLanguage(string Language, string Key, params string[] Replacements)
         {
             if (!LanguageDocuments.ContainsKey(Language)) LoadLanguage(Language);
             XmlNode node = LanguageDocuments[Language].SelectSingleNode("/SGLanguage/" + Key);
             if (node == null)
             {
-                if (Language != DefaultLanguage) return GetString(DefaultLanguage, Key);
+                if (Language != DefaultLanguage) return Get(DefaultLanguage, Key);
                 return "???";
             }
-            return node.InnerText;
+            string text = node.InnerText;
+            if (Replacements != null)
+            {
+                int index = 0;
+                foreach (string replacement in Replacements) text = text.Replace("{" + index++ + "}", replacement);
+            }
+            return text;
         }
-        public static string GetString(string Key)
+        public static string Get(string Key, params string[] Replacements)
         {
-            return GetString(SelectedLanguage, Key);
+            return GetWithLanguage(SelectedLanguage, Key, Replacements);
         }
         private static bool LanguageIsDefined(string Language)
         {

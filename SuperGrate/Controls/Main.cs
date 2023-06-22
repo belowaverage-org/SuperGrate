@@ -82,8 +82,8 @@ namespace SuperGrate
         {
             TaskbarList = (ITaskbarList3)new TaskbarList();
             TaskbarList.HrInit();
-            Logger.Success("Welcome to " + Application.ProductName + "! v" + Application.ProductVersion);
-            Logger.Information(Language.GetString("EnterSomeInfoToGetStarted"));
+            Logger.Success(Language.Get("WelcomeTo", Application.ProductName, Application.ProductVersion));
+            Logger.Information(Language.Get("EnterSomeInfoToGetStarted"));
             UpdateSecurityProtocolType();
             UpdateFormRestrictions();
             BindHelp(this);
@@ -155,7 +155,7 @@ namespace SuperGrate
                 storeCanceled = value;
                 if (value)
                 {
-                    if (storeRunningTask != RunningTask.None) Logger.Warning("Canceling current task...");
+                    if (storeRunningTask != RunningTask.None) Logger.Warning(Language.Get("CancelingCurrentTask"));
                     if (storeRunningTask == RunningTask.USMT) USMT.Cancel();
                     if (storeRunningTask == RunningTask.RemoteProfileDelete) Misc.CancelRemoteProfileDelete(SourceComputer);
                 }
@@ -172,7 +172,7 @@ namespace SuperGrate
                 if (value != RunningTask.None)
                 {
                     Logger.UpdateProgress(0);
-                    btnStartStop.Text = "Stop";
+                    btnStartStop.Text = Language.Get("Stop");
                     btnStartStop.SetSystemIcon(Properties.Resources.cancel_ico);
                     Cursor = Cursors.AppStarting;
                     Misc.MainMenuSetState(MainMenu, false, new string[] { "&View" });
@@ -196,7 +196,7 @@ namespace SuperGrate
                 else
                 {
                     Logger.UpdateProgress(-1);
-                    btnStartStop.Text = "Start";
+                    btnStartStop.Text = Language.Get("Stop");
                     btnStartStop.SetSystemIcon(Properties.Resources.go_ico);
                     Cursor = Cursors.Default;
                     Misc.MainMenuSetState(MainMenu, true);
@@ -258,7 +258,7 @@ namespace SuperGrate
                     }
                 }
                 Running = RunningTask.None;
-                Logger.Information("Done.");
+                Logger.Information(Language.Get("Done"));
             }
         }
         /// <summary>
@@ -271,7 +271,7 @@ namespace SuperGrate
             miConRename.Visible = false;
             listUsers.SetViewMode(Config.Settings["ULViewMode"]);
             listUsers.SetColumns(ULControl.HeaderRowComputerSource, Config.Settings["ULSourceColumns"]);
-            lblUserList.Text = "Users on Source Computer:";
+            lblUserList.Text = Language.Get("UsersOnSourceComputer");
             CurrentUserRows = await Misc.GetUsersFromHost(tbSourceComputer.Text);
             listUsers.SetRows(CurrentUserRows, CurrentSortColumn[ListSources.SourceComputer], CurrentSortDirection[ListSources.SourceComputer]);
             CurrentListSource = ListSources.SourceComputer;
@@ -285,7 +285,7 @@ namespace SuperGrate
             Running = RunningTask.Unknown;
             miAddRemoveCol.Enabled = true;
             miConRename.Visible = true;
-            lblUserList.Text = "Users in Migration Store:";
+            lblUserList.Text = Language.Get("UsersInMigrationStore");
             listUsers.SetViewMode(Config.Settings["ULViewMode"]);
             listUsers.SetColumns(ULControl.HeaderRowStoreSource, Config.Settings["ULStoreColumns"]);
             CurrentUserRows = await Misc.GetUsersFromStore();
@@ -301,12 +301,12 @@ namespace SuperGrate
             if(Logger.VerboseEnabled)
             {
                 Logger.VerboseEnabled = false;
-                Logger.Information("Verbose mode disabled.");
+                Logger.Information(Language.Get("VerboseModeDisabled"));
             }
             else
             {
                 Logger.VerboseEnabled = true;
-                Logger.Information("Verbose mode enabled.");
+                Logger.Information(Language.Get("VerboseModeEnabled"));
             }
         }
         /// <summary>
@@ -374,11 +374,11 @@ namespace SuperGrate
             ConfirmDialog confirm;
             if (selectedCount == 1)
             {
-                confirm = new ConfirmDialog("Delete User", "Are you sure you want to delete this user?", Properties.Resources.trash_16_32_ico);
+                confirm = new ConfirmDialog(Language.Get("DeleteUser"), Language.Get("AreYouSureDeleteUser"), Properties.Resources.trash_16_32_ico);
             }
             else
             {
-                confirm = new ConfirmDialog("Delete Users", "Are you sure you want to delete these " + selectedCount + " users?", Properties.Resources.trash_16_32_ico);
+                confirm = new ConfirmDialog(Language.Get("DeleteUsers"), Language.Get("AreYouSureDeleteUsers", selectedCount.ToString()), Properties.Resources.trash_16_32_ico);
             }
             confirm.ShowDialog();
             if (confirm.DialogResult != DialogResult.OK) return;
@@ -451,9 +451,9 @@ namespace SuperGrate
             DateTime.Now.ToLongTimeString().Replace(':', '-');
             if (dialogSaveLog.ShowDialog() == DialogResult.OK)
             {
-                Logger.Information("Writing log to: " + dialogSaveLog.FileName + "...");
+                Logger.Information(Language.Get("WritingLogTo", dialogSaveLog.FileName));
                 await Logger.WriteLogToFile(dialogSaveLog.OpenFile());
-                Logger.Success("Log written successfully.");
+                Logger.Success(Language.Get("LogWrittenSuccessfully"));
             }
         }
         /// <summary>
@@ -471,7 +471,7 @@ namespace SuperGrate
             else if(Config.Settings["DumpLogHereOnExit"] != "")
             {
                 e.Cancel = true;
-                Logger.Information("Writing log to: " + Config.Settings["DumpLogHereOnExit"] + "...");
+                Logger.Information(Language.Get("WritingLogTo", Config.Settings["DumpLogHereOnExit"]));
                 string fileName =
                 "SuperGrate_" +
                 Environment.UserName + "_" +
@@ -660,7 +660,7 @@ namespace SuperGrate
                 }
                 else
                 {
-                    Logger.Success("Done!");
+                    Logger.Success(Language.Get("Done"));
                     new UserProperties(template, row).ShowDialog();
                 }
             }
@@ -778,7 +778,7 @@ namespace SuperGrate
                 }
                 else
                 {
-                    Logger.Success("Done!");
+                    Logger.Success(Language.Get("Done"));
                     new RenameStoreUser(row).ShowDialog();
                     btnListStore.PerformClick();
                 }

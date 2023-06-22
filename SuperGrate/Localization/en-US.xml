@@ -1,9 +1,18 @@
 ﻿<SGLanguage DisplayName="English (United States)">
-	<Start>Start</Start>
-	<Stop>Stop</Stop>
-	<UsersOnSourceComputer>Users on source computer:</UsersOnSourceComputer>
-	<UsersInMigrationStore>Users in migration store:</UsersInMigrationStore>
+	<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
+	<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
+	<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
+	<UsersOnSourceComputer>Users on Source Computer:</UsersOnSourceComputer>
+	<UsersInMigrationStore>Users in Migration Store:</UsersInMigrationStore>
 	<VerboseModeDisabled>Verbose mode disabled.</VerboseModeDisabled>
 	<VerboseModeEnabled>Verbose mode enabled.</VerboseModeEnabled>
-	<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
+	<Start>Start</Start>
+	<Stop>Stop</Stop>
+	<Done>Done.</Done>
+	<DeleteUser>Delete User</DeleteUser>
+	<DeleteUsers>Delete Users</DeleteUsers>
+	<AreYouSureDeleteUser>Are you sure you want to delete this user?</AreYouSureDeleteUser>
+	<AreYouSureDeleteUsers>Are you sure you want to delete these {0} users?</AreYouSureDeleteUsers>
+	<WritingLogTo>Writing log to: {0}...</WritingLogTo>
+	<LogWrittenSuccessfully>Log written successfully.</LogWrittenSuccessfully>
 </SGLanguage>
