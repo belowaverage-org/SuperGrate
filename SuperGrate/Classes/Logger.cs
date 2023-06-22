@@ -25,6 +25,7 @@ namespace SuperGrate
         {
             try
             {
+                if (Main.Form == null) return;
                 Main.Form.Invoke(new Action(() =>
                 {
                     Main.LoggerBox.SelectionColor = Color.LightGray;

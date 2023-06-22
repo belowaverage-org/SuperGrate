@@ -1,0 +1,9 @@
+﻿<SGLanguage DisplayName="Pirate">
+	<Start>Start</Start>
+	<Stop>Stop</Stop>
+	<UsersOnSourceComputer>Users on source computer:</UsersOnSourceComputer>
+	<UsersInMigrationStore>Users in migration store:</UsersInMigrationStore>
+	<VerboseModeDisabled>Pirate speak de-activated.</VerboseModeDisabled>
+	<VerboseModeEnabled>Pirate speak activated.</VerboseModeEnabled>
+	<EnterSomeInfoToGetStarted>Yar, fill in the blanks if you dare...</EnterSomeInfoToGetStarted>
+</SGLanguage>

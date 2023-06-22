@@ -12,11 +12,12 @@ namespace SuperGrate
         [STAThread]
         static void Main(string[] parameters)
         {
+            Config.LoadConfig(parameters);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Application_ThreadException;
             Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
-            Application.Run(new Main(parameters));
+            Application.Run(new Main());
         }
         /// <summary>
         /// Thread Exception event for uncaught UI errors.

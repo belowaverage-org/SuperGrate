@@ -1,4 +1,5 @@
-﻿using SuperGrate.ComInterop;
+﻿using SuperGrate.Classes;
+using SuperGrate.ComInterop;
 using SuperGrate.Controls;
 using SuperGrate.UserList;
 using System;
@@ -22,7 +23,6 @@ namespace SuperGrate
         public static ITaskbarList3 TaskbarList;
         private static bool storeCanceled = false;
         private static RunningTask storeRunningTask = RunningTask.None;
-        private readonly string[] MainParameters = null;
         private bool CloseRequested = false;
         private int CloseAttempts = 0;
         private UserRows CurrentUserRows = null;
@@ -38,9 +38,8 @@ namespace SuperGrate
         /// The main form entry point.
         /// </summary>
         /// <param name="parameters">A list of parameters to override XML settings.</param>
-        public Main(string[] parameters)
+        public Main()
         {
-            MainParameters = parameters;
             InitializeComponent();
             Width = 1000;
             Height = 500;
@@ -83,9 +82,8 @@ namespace SuperGrate
         {
             TaskbarList = (ITaskbarList3)new TaskbarList();
             TaskbarList.HrInit();
-            Config.LoadConfig(MainParameters);
             Logger.Success("Welcome to " + Application.ProductName + "! v" + Application.ProductVersion);
-            Logger.Information("Enter some information to get started!");
+            Logger.Information(Language.GetString("EnterSomeInfoToGetStarted"));
             UpdateSecurityProtocolType();
             UpdateFormRestrictions();
             BindHelp(this);

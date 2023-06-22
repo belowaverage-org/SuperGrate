@@ -108,6 +108,7 @@
     <Compile Include="Classes\FileOperations.cs" />
     <Compile Include="Classes\Download.cs" />
     <Compile Include="Classes\FlashWindow.cs" />
+    <Compile Include="Classes\Language.cs" />
     <Compile Include="Classes\Logger.cs" />
     <Compile Include="Classes\Misc.cs" />
     <Compile Include="Classes\Remote.cs" />
@@ -342,7 +343,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Localization\" />
+    <EmbeddedResource Include="Localization\en-US.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\pirate.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

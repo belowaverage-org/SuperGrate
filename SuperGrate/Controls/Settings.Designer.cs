@@ -78,10 +78,10 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnSave, "Saves the configuration to disk.");
             this.btnSave.Icon = "";
-            this.btnSave.Location = new System.Drawing.Point(460, 316);
+            this.btnSave.Location = new System.Drawing.Point(460, 319);
             this.btnSave.Name = "btnSave";
             this.helpProvider.SetShowHelp(this.btnSave, true);
-            this.btnSave.Size = new System.Drawing.Size(109, 34);
+            this.btnSave.Size = new System.Drawing.Size(109, 29);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save to Disk";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -107,10 +107,10 @@
             this.btnRevert.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnRevert, "Re-load the configuration from disk.");
             this.btnRevert.Icon = "";
-            this.btnRevert.Location = new System.Drawing.Point(344, 316);
+            this.btnRevert.Location = new System.Drawing.Point(344, 319);
             this.btnRevert.Name = "btnRevert";
             this.helpProvider.SetShowHelp(this.btnRevert, true);
-            this.btnRevert.Size = new System.Drawing.Size(109, 34);
+            this.btnRevert.Size = new System.Drawing.Size(109, 29);
             this.btnRevert.TabIndex = 3;
             this.btnRevert.Text = "Reload";
             this.btnRevert.UseVisualStyleBackColor = false;
@@ -123,10 +123,10 @@
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.helpProvider.SetHelpString(this.btnApply, "Closes this window.");
             this.btnApply.Icon = "";
-            this.btnApply.Location = new System.Drawing.Point(576, 316);
+            this.btnApply.Location = new System.Drawing.Point(576, 319);
             this.btnApply.Name = "btnApply";
             this.helpProvider.SetShowHelp(this.btnApply, true);
-            this.btnApply.Size = new System.Drawing.Size(109, 34);
+            this.btnApply.Size = new System.Drawing.Size(109, 29);
             this.btnApply.TabIndex = 4;
             this.btnApply.Text = "Close";
             this.btnApply.UseVisualStyleBackColor = false;

@@ -1,0 +1,9 @@
+﻿<SGLanguage DisplayName="English (United States)">
+	<Start>Start</Start>
+	<Stop>Stop</Stop>
+	<UsersOnSourceComputer>Users on source computer:</UsersOnSourceComputer>
+	<UsersInMigrationStore>Users in migration store:</UsersInMigrationStore>
+	<VerboseModeDisabled>Verbose mode disabled.</VerboseModeDisabled>
+	<VerboseModeEnabled>Verbose mode enabled.</VerboseModeEnabled>
+	<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
+</SGLanguage>

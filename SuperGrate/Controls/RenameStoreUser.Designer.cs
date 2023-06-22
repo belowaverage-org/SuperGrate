@@ -103,7 +103,7 @@ namespace SuperGrate.Controls
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCancel.Icon = "";
-            this.btnCancel.Location = new System.Drawing.Point(391, 9);
+            this.btnCancel.Location = new System.Drawing.Point(391, 11);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 30);
@@ -116,7 +116,7 @@ namespace SuperGrate.Controls
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSave.Icon = "";
-            this.btnSave.Location = new System.Drawing.Point(279, 9);
+            this.btnSave.Location = new System.Drawing.Point(279, 11);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 30);
