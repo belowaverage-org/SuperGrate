@@ -1,2 +1,3 @@
 ﻿<SGLanguage DisplayName="Pirate">
+	<WelcomeTo>Yar, welcome to {0}! v{1}</WelcomeTo>
 </SGLanguage>

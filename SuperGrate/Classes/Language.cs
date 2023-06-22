@@ -25,7 +25,7 @@ namespace SuperGrate.Classes
             try
             {
                 XmlDocument document = new XmlDocument();
-                document.Load(Assembly.GetManifestResourceStream("SuperGrate.Localization." + SelectedLanguage + ".xml"));
+                document.Load(Assembly.GetManifestResourceStream("SuperGrate.Localization." + Language + ".xml"));
                 LanguageDocuments.Add(Language, document);
             }
             catch (Exception e)
@@ -39,7 +39,7 @@ namespace SuperGrate.Classes
             XmlNode node = LanguageDocuments[Language].SelectSingleNode("/SGLanguage/" + Key);
             if (node == null)
             {
-                if (Language != DefaultLanguage) return Get(DefaultLanguage, Key);
+                if (Language != DefaultLanguage) return GetWithLanguage(DefaultLanguage, Key, Replacements);
                 return "???";
             }
             string text = node.InnerText;
