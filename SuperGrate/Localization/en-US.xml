@@ -20,7 +20,7 @@
 	<Delete>Delete</Delete>
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
-	<ErrorDownloading>Error downloading: {0}.</ErrorDownloading>
+	<FailedToDownload>Failed to download: {0}.</FailedToDownload>
 	<FailedToGetFolderSize>Failed to get folder size.</FailedToGetFolderSize>
 	<FailedToFindLanguage>Failed to find language.</FailedToFindLanguage>
 	<FailedToResolveSIDViaWMI>Failed to resolve an SID via WMI.</FailedToResolveSIDViaWMI>

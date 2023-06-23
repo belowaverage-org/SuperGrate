@@ -53,7 +53,7 @@ namespace SuperGrate
                 }
                 else
                 {
-                    Logger.Exception(Done.Error, Language.Get("ErrorDownloading", URL));
+                    Logger.Exception(Done.Error, Language.Get("FailedToDownload", URL));
                     return false;
                 }
             });
