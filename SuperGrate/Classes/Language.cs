@@ -46,7 +46,7 @@ namespace SuperGrate.Classes
             }
             catch (Exception e)
             {
-                Logger.Exception(e, "Failed to find language.");
+                Logger.Exception(e, Get("FailedToFindLanguage"));
             }
         }
         /// <summary>

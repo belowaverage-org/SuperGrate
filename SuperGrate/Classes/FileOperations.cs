@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -111,7 +112,7 @@ namespace SuperGrate.IO
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to get folder size!");
+                    Logger.Exception(e, Language.Get("FailedToGetFolderSize"));
                     return 0;
                 }
             });

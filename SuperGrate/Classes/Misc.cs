@@ -1,14 +1,15 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using SuperGrate.IO;
+using SuperGrate.UserList;
+using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using System.IO;
 using System.Management;
-using SuperGrate.UserList;
-using SuperGrate.IO;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
-using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace SuperGrate
 {
@@ -73,7 +74,7 @@ namespace SuperGrate
                 }
                 catch (Exception)
                 {
-                    Logger.Warning("Could not resolve as an SID via WMI!");
+                    Logger.Warning(Language.Get("FailedToResolveSIDViaWMI"));
                     return ID;
                 }
             }
@@ -88,7 +89,7 @@ namespace SuperGrate
                         return NTAccount;
                     }
                 }
-                Logger.Warning("Could not resolve Store GUID!");
+                Logger.Warning(Language.Get("FailedToResolveStoreGUID"));
                 return ID;
             }
         }

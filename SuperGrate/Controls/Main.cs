@@ -49,6 +49,11 @@ namespace SuperGrate
             listUsers.Tag = new string[0];
             Icon = Properties.Resources.supergrate_ico;
             Text = About.AssemblyTitle;
+            btnListSource.Text = Language.Get("ListSource");
+            btnListStore.Text = Language.Get("ListStore");
+            btnDelete.Text = Language.Get("Delete");
+            lblSourceComputer.Text = Language.Get("SourceComputer");
+            lblDestinationComputer.Text = Language.Get("DestinationComputer");
             /*
             btnListSource.SetSystemIcon(Properties.Resources.users_ico);
             btnListStore.SetSystemIcon(Properties.Resources.usercheck);
@@ -196,7 +201,7 @@ namespace SuperGrate
                 else
                 {
                     Logger.UpdateProgress(-1);
-                    btnStartStop.Text = Language.Get("Stop");
+                    btnStartStop.Text = Language.Get("Start");
                     btnStartStop.SetSystemIcon(Properties.Resources.go_ico);
                     Cursor = Cursors.Default;
                     Misc.MainMenuSetState(MainMenu, true);

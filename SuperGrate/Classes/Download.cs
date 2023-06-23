@@ -1,6 +1,7 @@
-﻿using System;
-using System.Net;
+﻿using SuperGrate.Classes;
+using System;
 using System.ComponentModel;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace SuperGrate
@@ -52,7 +53,7 @@ namespace SuperGrate
                 }
                 else
                 {
-                    Logger.Exception(Done.Error, "Error downloading: " + URL + ".");
+                    Logger.Exception(Done.Error, Language.Get("ErrorDownloading", URL));
                     return false;
                 }
             });
