@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using System;
 using System.Management;
 using System.Threading.Tasks;
 
@@ -36,17 +37,17 @@ namespace SuperGrate
                 {
                     if(e.ErrorCode == ManagementStatus.InvalidNamespace)
                     {
-                        Logger.Exception(e, "It appears that the target computer (" + Target + ") has a corrupt WMI installation. Run the command \"winmgmt.exe /resetrepository\" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt");
+                        Logger.Exception(e, Language.Get("FailedToQueryWMI", Target));
                     }
                     else
                     {
-                        Logger.Exception(e, "Failed to run a command on " + Target + ".");
+                        Logger.Exception(e, Language.Get("FailedToRunCommandOn", Target));
                     }
                     return false;
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to run a command on " + Target + ".");
+                    Logger.Exception(e, Language.Get("FailedToRunCommandOn", Target));
                     return false;
                 }
             });
@@ -72,7 +73,7 @@ namespace SuperGrate
             return Task.Run(async () => {
                 try
                 {
-                    Logger.Verbose("Waiting for " + ImageName + " to finish...");
+                    Logger.Verbose(Language.Get("WaitingForProcessToFinish", ImageName));
                     while (true)
                     {
                         ManagementObjectCollection moc = await WMI.Query("SELECT Name FROM Win32_Process WHERE Name = \"" + ImageName + ".exe\"", Target);
@@ -83,7 +84,7 @@ namespace SuperGrate
                 } 
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Something went wrong while waiting for the remote process \"" + ImageName + "\" to finish.");
+                    Logger.Exception(e, Language.Get("FailedToWaitForRemoteProcess", ImageName));
                     return false;
                 }
                 /*

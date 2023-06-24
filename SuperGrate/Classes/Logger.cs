@@ -1,4 +1,5 @@
-﻿using SuperGrate.ComInterop;
+﻿using SuperGrate.Classes;
+using SuperGrate.ComInterop;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -39,7 +40,7 @@ namespace SuperGrate
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine("Ignoring an error when user clicks off of an input into the Log Box.");
+                        Console.WriteLine(Language.Get("FailedToWriteErrorToWindow"));
                     }
                 }));
             }
@@ -64,7 +65,7 @@ namespace SuperGrate
         public static void Information(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.White, Raw);
-            WriteMemoryLog(Text, "INFO");
+            WriteMemoryLog(Text, Language.Get("LoggerPrefixInfo"));
         }
         /// <summary>
         /// Logs a success statement.
@@ -74,7 +75,7 @@ namespace SuperGrate
         public static void Success(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.Green, Raw);
-            WriteMemoryLog(Text, "SUCCESS");
+            WriteMemoryLog(Text, Language.Get("LoggerPrefixSuccess"));
         }
         /// <summary>
         /// Logs a warning.
@@ -84,7 +85,7 @@ namespace SuperGrate
         public static void Warning(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.Yellow, Raw);
-            WriteMemoryLog(Text, "WARNING");
+            WriteMemoryLog(Text, Language.Get("LoggerPrefixWarning"));
         }
         /// <summary>
         /// Logs an error.
@@ -94,7 +95,7 @@ namespace SuperGrate
         public static void Error(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.Red, Raw);
-            WriteMemoryLog(Text, "ERROR");
+            WriteMemoryLog(Text, Language.Get("LoggerPrefixError"));
         }
         /// <summary>
         /// Logs a verbose string. This text is usually hidden by default and only appears in a log file or if verbose mode is enabled.
@@ -107,7 +108,7 @@ namespace SuperGrate
             {
                 WriteLog(Text, Color.Gray, Raw);
             }
-            WriteMemoryLog(Text, "VERBOSE");
+            WriteMemoryLog(Text, Language.Get("LoggerPrefixVerbose"));
         }
         /// <summary>
         /// Logs an exception.
@@ -117,11 +118,11 @@ namespace SuperGrate
         public static void Exception(Exception Exception, string Text)
         {
             Error(Exception.Message);
-            Verbose("ERROR\r" + Exception.StackTrace);
+            Verbose(Language.Get("LoggerPrefixError") + '\r' + Exception.StackTrace);
             if(Exception.InnerException != null)
             {
                 Error(Exception.InnerException.Message);
-                Verbose("ERROR\r" + Exception.InnerException.StackTrace);
+                Verbose(Language.Get("LoggerPrefixError") + '\r' + Exception.InnerException.StackTrace);
             }
             Error(Text);
         }

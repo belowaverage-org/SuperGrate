@@ -25,4 +25,14 @@
 	<FailedToFindLanguage>Failed to find language.</FailedToFindLanguage>
 	<FailedToResolveSIDViaWMI>Failed to resolve an SID via WMI.</FailedToResolveSIDViaWMI>
 	<FailedToResolveStoreGUID>Failed to resolve Store GUID.</FailedToResolveStoreGUID>
+	<FailedToWriteErrorToWindow>Failed to write error message to main window.</FailedToWriteErrorToWindow>
+	<FailedToQueryWMI>"Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command \"winmgmt.exe /resetrepository\" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt"</FailedToQueryWMI>
+	<FailedToRunCommandOn>Failed to run command on {0}.</FailedToRunCommandOn>
+	<FailedToWaitForRemoteProcess>Failed to wait for remote process {0} to finish.</FailedToWaitForRemoteProcess>
+	<WaitingForProcessToFinish>Waiting for {0} to finish...</WaitingForProcessToFinish>
+	<LoggerPrefixInfo>INFO</LoggerPrefixInfo>
+	<LoggerPrefixSuccess>SUCCESS</LoggerPrefixSuccess>
+	<LoggerPrefixWarning>WARNING</LoggerPrefixWarning>
+	<LoggerPrefixError>ERROR</LoggerPrefixError>
+	<LoggerPrefixVerbose>VERBOSE</LoggerPrefixVerbose>
 </SGLanguage>
