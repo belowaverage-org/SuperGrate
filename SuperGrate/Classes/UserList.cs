@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -9,26 +10,26 @@ namespace SuperGrate.UserList
         public static UserRow CurrentHeaderRow = null;
         public static UserRow HeaderRowComputerSource = new UserRow()
         {
-            { ULColumnType.Tag, "Security Identifier" },
-            { ULColumnType.SourceNTAccount, "User Name" },
-            { ULColumnType.LastModified, "Last Modified" },
-            { ULColumnType.FirstCreated, "First Created" },
-            { ULColumnType.ProfilePath, "Profile Path" },
-            { ULColumnType.Size, "Size" }
+            { ULColumnType.Tag, Language.Get("UserListSecurityIdentifier") },
+            { ULColumnType.SourceNTAccount, Language.Get("UserListUserName") },
+            { ULColumnType.LastModified, Language.Get("UserListLastModified") },
+            { ULColumnType.FirstCreated, Language.Get("UserListFirstCreated") },
+            { ULColumnType.ProfilePath, Language.Get("UserListProfilePath") },
+            { ULColumnType.Size, Language.Get("UserListSize") }
         };
         public static UserRow HeaderRowStoreSource = new UserRow()
         {
-            { ULColumnType.Tag, "Store Identifier" },
-            { ULColumnType.SecurityIdentifier, "Security Identifier" },
-            { ULColumnType.SourceNTAccount, "Source User Name" },
-            { ULColumnType.DestinationNTAccount, "Destination User Name" },
-            { ULColumnType.SourceComputer, "Source Computer" },
-            { ULColumnType.DestinationComputer, "Destination Computer" },
-            { ULColumnType.ImportedBy, "Imported By" },
-            { ULColumnType.ImportedOn, "Imported On" },
-            { ULColumnType.ExportedBy, "Exported By" },
-            { ULColumnType.ExportedOn, "Exported On" },
-            { ULColumnType.Size, "Size" }
+            { ULColumnType.Tag, Language.Get("UserListStoreIdentifier") },
+            { ULColumnType.SecurityIdentifier, Language.Get("UserListSecurityIdentifier") },
+            { ULColumnType.SourceNTAccount, Language.Get("UserListSourceUserName") },
+            { ULColumnType.DestinationNTAccount, Language.Get("UserListDestinationUserName") },
+            { ULColumnType.SourceComputer, Language.Get("SourceComputer") },
+            { ULColumnType.DestinationComputer, Language.Get("DestinationComputer") },
+            { ULColumnType.ImportedBy, Language.Get("UserListImportedBy") },
+            { ULColumnType.ImportedOn, Language.Get("UserListImportedOn") },
+            { ULColumnType.ExportedBy, Language.Get("UserListExportedBy") },
+            { ULColumnType.ExportedOn, Language.Get("UserListExportedOn") },
+            { ULColumnType.Size, Language.Get("UserListSize") }
         };
         public static void SetColumns(this ListView Owner, UserRow Row)
         {

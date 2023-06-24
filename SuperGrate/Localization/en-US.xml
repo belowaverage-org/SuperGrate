@@ -26,7 +26,7 @@
 	<FailedToResolveSIDViaWMI>Failed to resolve an SID via WMI.</FailedToResolveSIDViaWMI>
 	<FailedToResolveStoreGUID>Failed to resolve Store GUID.</FailedToResolveStoreGUID>
 	<FailedToWriteErrorToWindow>Failed to write error message to main window.</FailedToWriteErrorToWindow>
-	<FailedToQueryWMI>"Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command \"winmgmt.exe /resetrepository\" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt"</FailedToQueryWMI>
+	<FailedToQueryWMI>Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</FailedToQueryWMI>
 	<FailedToRunCommandOn>Failed to run command on {0}.</FailedToRunCommandOn>
 	<FailedToWaitForRemoteProcess>Failed to wait for remote process {0} to finish.</FailedToWaitForRemoteProcess>
 	<WaitingForProcessToFinish>Waiting for {0} to finish...</WaitingForProcessToFinish>
@@ -35,4 +35,17 @@
 	<LoggerPrefixWarning>WARNING</LoggerPrefixWarning>
 	<LoggerPrefixError>ERROR</LoggerPrefixError>
 	<LoggerPrefixVerbose>VERBOSE</LoggerPrefixVerbose>
+	<UserListSecurityIdentifier>Security identifier</UserListSecurityIdentifier>
+	<UserListUserName>User name</UserListUserName>
+	<UserListLastModified>Last modified</UserListLastModified>
+	<UserListFirstCreated>First created</UserListFirstCreated>
+	<UserListProfilePath>Profile path</UserListProfilePath>
+	<UserListSize>Size</UserListSize>
+	<UserListStoreIdentifier>Store identifier</UserListStoreIdentifier>
+	<UserListSourceUserName>Source user name</UserListSourceUserName>
+	<UserListDestinationUserName>Destination user name</UserListDestinationUserName>
+	<UserListImportedBy>Imported by</UserListImportedBy>
+	<UserListImportedOn>Imported on</UserListImportedOn>
+	<UserListExportedBy>Exported by</UserListExportedBy>
+	<UserListExportedOn>Exported on</UserListExportedOn>
 </SGLanguage>
