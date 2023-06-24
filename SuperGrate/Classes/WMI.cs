@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using System;
 using System.Management;
 using System.Threading.Tasks;
 
@@ -28,7 +29,7 @@ namespace SuperGrate
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to query via WMI.");
+                    Logger.Exception(e, Language.Get("FailedToQueryWMI"));
                     return null;
                 }
             });
@@ -51,7 +52,7 @@ namespace SuperGrate
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to retrieve WMI object.");
+                    Logger.Exception(e, Language.Get("FailedToQueryWMI"));
                     return null;
                 }
             });

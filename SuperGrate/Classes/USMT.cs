@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using SuperGrate.IO;
+using System;
+using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
-using System;
-using SuperGrate.IO;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SuperGrate
 {
