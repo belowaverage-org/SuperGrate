@@ -1,4 +1,4 @@
-﻿<SGLanguage DisplayName="English (United States)">
+﻿<SGLanguagee DisplayName="English (United States)">
 	<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
 	<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
 	<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
@@ -29,6 +29,17 @@
 	<FailedToQueryWMI>Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</FailedToQueryWMI>
 	<FailedToRunCommandOn>Failed to run command on {0}.</FailedToRunCommandOn>
 	<FailedToWaitForRemoteProcess>Failed to wait for remote process {0} to finish.</FailedToWaitForRemoteProcess>
+	<FailedToWatchRemoteLog>Failed to watch remote log file: {0}.</FailedToWatchRemoteLog>
+	<FailedToWriteStoreParameter>Failed to write store parameter: {0}.</FailedToWriteStoreParameter>
+	<FailedToDownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the SuperGrate.xml accordingly.</FailedToDownloadUSMT>
+	<FailedToDetermineTargetArch>Failed to determine target architecture.</FailedToDetermineTargetArch>
+	<FailedToDownloadUserStateTo>Failed to download user state to: {0}.</FailedToDownloadUserStateTo>
+	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
+	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
+	<DownloadingUserStateTo>Downloading user state to: {0}...</DownloadingUserStateTo>
+	<USMTFinished>USMT Finished.</USMTFinished>
+	<CleaningUp>Cleaning up...</CleaningUp>
+	<DecompressingUSMT>Decompressing USMT...</DecompressingUSMT>
 	<WaitingForProcessToFinish>Waiting for {0} to finish...</WaitingForProcessToFinish>
 	<LoggerPrefixInfo>INFO</LoggerPrefixInfo>
 	<LoggerPrefixSuccess>SUCCESS</LoggerPrefixSuccess>
@@ -48,4 +59,4 @@
 	<UserListImportedOn>Imported on</UserListImportedOn>
 	<UserListExportedBy>Exported by</UserListExportedBy>
 	<UserListExportedOn>Exported on</UserListExportedOn>
-</SGLanguage>
+</SGLanguagee>

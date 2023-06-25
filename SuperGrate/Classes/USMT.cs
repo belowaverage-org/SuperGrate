@@ -1,4 +1,5 @@
-﻿using SuperGrate.IO;
+﻿using SuperGrate.Classes;
+using SuperGrate.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -312,7 +313,7 @@ namespace SuperGrate
         private static Task<bool> DownloadFromStore(string GUID)
         {
             return Task.Run(() => {
-                Logger.Information("Downloading user state to: " + Main.DestinationComputer + "...");
+                Logger.Information(Language.Get("DownloadingUserStateTo", Main.DestinationComputer));
                 string Destination = Path.Combine(PayloadPathTarget, "USMT");
                 try
                 {
@@ -321,12 +322,12 @@ namespace SuperGrate
                         Path.Combine(Config.Settings["MigrationStorePath"], GUID, "data"),
                         Path.Combine(Destination, "USMT.MIG")
                     );
-                    Logger.Success("User state successfully transferred.");
+                    Logger.Success(Language.Get("UserStateSuccessfullyTransferred"));
                     return true;
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, "Failed to download state data to: " + Main.DestinationComputer + ".");
+                    Logger.Exception(e, Language.Get("FailedToDownloadUserStateTo", Main.DestinationComputer));
                     return false;
                 }
             });
@@ -341,7 +342,7 @@ namespace SuperGrate
                 try
                 {
                     bool success = true;
-                    Logger.Information("Downloading USMT (" + DetectedArch + ") from the web...");
+                    Logger.Information(Language.Get("DownloadingUSMTFromTheWeb", DetectedArch.ToString()));
                     if (!Directory.Exists(USMTPath))
                     {
                         Directory.CreateDirectory(USMTPath);
@@ -350,28 +351,27 @@ namespace SuperGrate
                     if (DetectedArch == Misc.OSArchitecture.X64)
                     {
                         success = await new Download(Constants.USMTx64URL, dlPath).Start();
-                        if (!success) throw new Exception("Download failure.");
+                        if (!success) throw new Exception(Language.Get("FailedToDownload", Constants.USMTx64URL));
                     }
                     else if (DetectedArch == Misc.OSArchitecture.X86)
                     {
                         success = await new Download(Constants.USMTx86URL, dlPath).Start();
-                        if (!success) throw new Exception("Download failure.");
+                        if (!success) throw new Exception(Language.Get("FailedToDownload", Constants.USMTx86URL));
                     }
                     else
                     {
-                        throw new Exception("Could not determine target architecture.");
+                        throw new Exception(Language.Get("FailedToDetermineTargetArch"));
                     }
-                    Logger.Information("Decompressing USMT...");
+                    Logger.Information(Language.Get("DecompressingUSMT"));
                     ZipFile.ExtractToDirectory(dlPath, USMTPath);
-                    Logger.Information("Cleaning up...");
+                    Logger.Information(Language.Get("CleaningUp"));
                     File.Delete(dlPath);
                     return true;
                 }
                 catch(Exception e)
                 {
-                    Logger.Warning("Removing USMT folder due to failure...");
                     Directory.Delete(USMTPath, true);
-                    Logger.Exception(e, "Failed to automatically download USMT from the web. Please download USMT and update the SuperGrate.xml accordingly.");
+                    Logger.Exception(e, Language.Get("FailedToDownloadUSMT"));
                     return false;
                 }
             });
@@ -394,7 +394,7 @@ namespace SuperGrate
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, "Failed to write parameters to this store object ID: " + ID);
+                    Logger.Exception(e, Language.Get("FailedToWriteStoreParameter", ID));
                     return false;
                 }
             });
@@ -411,7 +411,7 @@ namespace SuperGrate
             Running = false;
             if (result)
             {
-                Logger.Success("USMT Finished.");
+                Logger.Success(Language.Get("USMTFinished"));
             }
             await Task.Delay(3000);
             return result;
@@ -465,7 +465,7 @@ namespace SuperGrate
             }
             catch(Exception e)
             {
-                Logger.Exception(e, "Failed to hook to the log file: " + LogFile + ".");
+                Logger.Exception(e, Language.Get("FailedToWatchRemoteLog", LogFile));
             }
         }
     }
