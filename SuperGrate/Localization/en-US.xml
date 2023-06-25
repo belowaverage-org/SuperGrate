@@ -1,4 +1,4 @@
-﻿<SGLanguagee DisplayName="English (United States)">
+﻿<SGLanguage DisplayName="English (United States)">
 	<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
 	<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
 	<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
@@ -59,4 +59,4 @@
 	<UserListImportedOn>Imported on</UserListImportedOn>
 	<UserListExportedBy>Exported by</UserListExportedBy>
 	<UserListExportedOn>Exported on</UserListExportedOn>
-</SGLanguagee>
+</SGLanguage>
