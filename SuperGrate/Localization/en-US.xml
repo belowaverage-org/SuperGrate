@@ -13,14 +13,14 @@
 	<DeleteUsers>Delete users</DeleteUsers>
 	<AreYouSureDeleteUser>Are you sure you want to delete this user?</AreYouSureDeleteUser>
 	<AreYouSureDeleteUsers>Are you sure you want to delete these {0} users?</AreYouSureDeleteUsers>
-	<WritingLogTo>Writing log to: {0}...</WritingLogTo>
+	<WritingLogTo>Writing log to {0}...</WritingLogTo>
 	<LogWrittenSuccessfully>Log written successfully.</LogWrittenSuccessfully>
 	<ListSource>List source</ListSource>
 	<ListStore>List store</ListStore>
 	<Delete>Delete</Delete>
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
-	<FailedToDownload>Failed to download: {0}.</FailedToDownload>
+	<FailedToDownload>Failed to download from {0}.</FailedToDownload>
 	<FailedToGetFolderSize>Failed to get folder size.</FailedToGetFolderSize>
 	<FailedToFindLanguage>Failed to find language.</FailedToFindLanguage>
 	<FailedToResolveSIDViaWMI>Failed to resolve an SID via WMI.</FailedToResolveSIDViaWMI>
@@ -29,14 +29,23 @@
 	<FailedToQueryWMI>Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</FailedToQueryWMI>
 	<FailedToRunCommandOn>Failed to run command on {0}.</FailedToRunCommandOn>
 	<FailedToWaitForRemoteProcess>Failed to wait for remote process {0} to finish.</FailedToWaitForRemoteProcess>
-	<FailedToWatchRemoteLog>Failed to watch remote log file: {0}.</FailedToWatchRemoteLog>
+	<FailedToWatchRemoteLog>Failed to watch remote log file at {0}.</FailedToWatchRemoteLog>
 	<FailedToWriteStoreParameter>Failed to write store parameter: {0}.</FailedToWriteStoreParameter>
 	<FailedToDownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the SuperGrate.xml accordingly.</FailedToDownloadUSMT>
 	<FailedToDetermineTargetArch>Failed to determine target architecture.</FailedToDetermineTargetArch>
-	<FailedToDownloadUserStateTo>Failed to download user state to: {0}.</FailedToDownloadUserStateTo>
+	<FailedToDownloadUserStateTo>Failed to download user state to {0}.</FailedToDownloadUserStateTo>
+	<FailedToFindUSMTFolderAt>Failed to find USMT folder at {0}.</FailedToFindUSMTFolderAt>
+	<FailedToUploadUSMTTo>Failed to upload USMT to {0}.</FailedToUploadUSMTTo>
+	<FailedToStopUSMTOn>Failed to stop USMT on {0}.</FailedToStopUSMTOn>
+	<FailedToDeleteUSMTOn>Failed to delete USMT on {0}.</FailedToDeleteUSMTOn>
+	<FailedToDeleteUSMTAttempt>Failed to delete USMT, the process may still be running, trying periodically: Attempt {0}/{1}.</FailedToDeleteUSMTAttempt>
+	<FailedToListUsersFrom>Failed to list users from {0}.</FailedToListUsersFrom>
+	<FailedToConnectToViaWMI>Failed to connect to {0} via WMI. Make sure the remote PC is online.</FailedToConnectToViaWMI>
+	<FailedToConnectToViaWMIAccessDenied>Failed to connect to {0} via WMI because access was denied. Make sure your user account has administrative access to the remote PC.</FailedToConnectToViaWMIAccessDenied>
+	<FailedToReadSIDFromStoreID>Failed to read SID from store ID {0}.</FailedToReadSIDFromStoreID>
 	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
 	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
-	<DownloadingUserStateTo>Downloading user state to: {0}...</DownloadingUserStateTo>
+	<DownloadingUserStateTo>Downloading user state to {0}...</DownloadingUserStateTo>
 	<USMTFinished>USMT Finished.</USMTFinished>
 	<CleaningUp>Cleaning up...</CleaningUp>
 	<DecompressingUSMT>Decompressing USMT...</DecompressingUSMT>
@@ -59,4 +68,17 @@
 	<UserListImportedOn>Imported on</UserListImportedOn>
 	<UserListExportedBy>Exported by</UserListExportedBy>
 	<UserListExportedOn>Exported on</UserListExportedOn>
+	<ApplyingUserStateOn>Applying user state {0} on {1}....</ApplyingUserStateOn>
+	<CapturingUserStateOn>Capturing user state {0} on {1}....</CapturingUserStateOn>
+	<UploadingUSMTTo>Uploading USMT to {0}...</UploadingUSMTTo>
+	<USMTUploadedSuccessfully>USMT uploaded successfully.</USMTUploadedSuccessfully>
+	<USMTRemovedSuccessfully>USMT removed successfully.</USMTRemovedSuccessfully>
+	<USMTUploadCanceled>USMT upload canceled.</USMTUploadCanceled>
+	<StoppingUSMTProcessOn>Stopping USMT process on {0}.</StoppingUSMTProcessOn>
+	<USMTProcessStoppedOn>USMT process stopped on {0}.</USMTProcessStoppedOn>
+	<RemovingUSMTFrom>Removing USMT from {0}...</RemovingUSMTFrom>
+	<ListingUsersFrom>Listing users from {0}...</ListingUsersFrom>
+	<CanceledListingUsersFrom>Canceled listing users from {0}.</CanceledListingUsersFrom>
+	<UsersListedSuccessfullyFrom>Users listed successfully from {0}.</UsersListedSuccessfullyFrom>
+	
 </SGLanguage>

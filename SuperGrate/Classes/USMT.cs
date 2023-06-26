@@ -86,12 +86,12 @@ namespace SuperGrate
                         Failed = !await DownloadFromStore(ID);
                         SID = await Misc.GetSIDFromStore(ID);
                         configParams += await BuildLoadStateMUParameter(ID);
-                        Logger.Information("Applying user state: '" + await Misc.GetUserByIdentity(ID) + "' on '" + CurrentTarget + "'...");
+                        Logger.Information(Language.Get("ApplyingUserStateOn", await Misc.GetUserByIdentity(ID), CurrentTarget));
                         if (Canceled || Failed || SID == null) break;
                     }
                     if (Mode == USMTMode.ScanState)
                     {
-                        Logger.Information("Capturing user state: '" + await Misc.GetUserByIdentity(ID, CurrentTarget) + "' on '" + CurrentTarget + "'...");
+                        Logger.Information(Language.Get("CapturingUserStateOn", await Misc.GetUserByIdentity(ID, CurrentTarget), CurrentTarget));
                         SID = ID;
                     }
                     Failed = !await Remote.StartProcess(CurrentTarget,
@@ -141,12 +141,12 @@ namespace SuperGrate
         public static Task<bool> CopyUSMT()
         {
             return Task.Run(async () => {
-                Logger.Information("Uploading USMT to: " + CurrentTarget);
+                Logger.Information(Language.Get("UploadingUSMTTo", CurrentTarget));
                 try
                 {
                     if (!Directory.Exists(USMTPath))
                     {
-                        Logger.Warning("Could not find the USMT folder at: " + USMTPath + ".");
+                        Logger.Warning(Language.Get("FailedToFindUSMTFolderAt", USMTPath));
                         if(!await DownloadUSMTFromWeb())
                         {
                             return false;
@@ -156,18 +156,18 @@ namespace SuperGrate
                         USMTPath,
                         PayloadPathTarget
                     )) {
-                        Logger.Success("USMT uploaded successfully.");
+                        Logger.Success(Language.Get("USMTUploadedSuccessfully"));
                         return true;
                     }
                     else
                     {
-                        Logger.Warning("USMT upload canceled.");
+                        Logger.Warning(Language.Get("USMTUploadCanceled"));
                         return false;
                     }
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, "Error uploading USMT to: " + CurrentTarget);
+                    Logger.Exception(e, Language.Get("FailedToUploadUSMTTo", CurrentTarget));
                     return false;
                 }
             });
@@ -178,16 +178,16 @@ namespace SuperGrate
         public static async void Cancel()
         {
             Canceled = true;
-            Logger.Information("Sending KILL command to USMT...");
+            Logger.Information(Language.Get("StoppingUSMTProcessOn", CurrentTarget));
             await Remote.KillProcess(CurrentTarget, "loadstate.exe");
             await Remote.KillProcess(CurrentTarget, "scanstate.exe");
             if(await Remote.KillProcess(CurrentTarget, "mighost.exe"))
             {
-                Logger.Success("KILL command sent.");
+                Logger.Success(Language.Get("USMTProcessStoppedOn", CurrentTarget));
             }
             else
             {
-                Logger.Error("Failed to send KILL command.");
+                Logger.Error(Language.Get("FailedToStopUSMTOn", CurrentTarget));
             }
         }
         /// <summary>
@@ -199,7 +199,7 @@ namespace SuperGrate
             return Task.Run(async () => {
                 int tries = 0;
                 bool deleted = false;
-                Logger.Information("Removing USMT from: " + CurrentTarget + "...");
+                Logger.Information(Language.Get("RemovingUSMTFrom", CurrentTarget));
                 while (tries <= 30)
                 {
                     try
@@ -214,7 +214,7 @@ namespace SuperGrate
                         Logger.Verbose(e.StackTrace);
                         if (tries % 5 == 0)
                         {
-                            Logger.Warning("Could not delete, USMT might still be running. Attempt " + tries + "/30.");
+                            Logger.Warning(Language.Get("FailedToDeleteUSMT", tries.ToString(), (30).ToString()));
                         }
                         tries++;
                         await Task.Delay(1000);
@@ -222,12 +222,12 @@ namespace SuperGrate
                 }
                 if(deleted)
                 {
-                    Logger.Success("USMT removed successfully.");
+                    Logger.Success(Language.Get("USMTRemovedSuccessfully"));
                     return true;
                 }
                 else
                 {
-                    Logger.Error("Could not delete USMT from: " + CurrentTarget + ".");
+                    Logger.Error(Language.Get("FailedToDeleteUSMTOn", CurrentTarget));
                     return false;
                 }
             });

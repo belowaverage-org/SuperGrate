@@ -1,6 +1,7 @@
 ﻿using SuperGrate.Classes;
 using System;
 using System.Management;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace SuperGrate
@@ -29,7 +30,7 @@ namespace SuperGrate
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FailedToQueryWMI"));
+                    HandleWMIException(e, Host);
                     return null;
                 }
             });
@@ -52,7 +53,7 @@ namespace SuperGrate
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FailedToQueryWMI"));
+                    HandleWMIException(e, Host);
                     return null;
                 }
             });
@@ -72,6 +73,18 @@ namespace SuperGrate
             {
                 return @"\\" + Host + @"\root\cimv2";
             }
+        }
+        public static void HandleWMIException(Exception e, string Host)
+        {
+            if (e.HResult == -2147023174) //RPC server is unavailable.
+            {
+                throw new Exception(Language.Get("FailedToConnectToViaWMI", Host));
+            }
+            if (e.HResult == -2147024891) //Access is denied.
+            {
+                throw new Exception(Language.Get("FailedToConnectToViaWMIAccessDenied", Host));
+            }
+            throw new Exception(Language.Get("FailedToQueryWMI", Host));
         }
     }
 }

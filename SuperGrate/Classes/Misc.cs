@@ -194,7 +194,7 @@ namespace SuperGrate
                 try
                 {
                     UserRows rows = new UserRows();
-                    Logger.Information("Getting list of users on: " + Host + "...");
+                    Logger.Information(Language.Get("ListingUsersFrom", Host));
                     int count = 0;
                     ManagementObjectCollection manObjCol = await WMI.Query("SELECT SID, LocalPath FROM Win32_UserProfile", Host);
                     foreach (ManagementObject mo in manObjCol)
@@ -206,20 +206,15 @@ namespace SuperGrate
                     }
                     if (Main.Canceled)
                     {
-                        Logger.Warning("Listing users was canceled.");
+                        Logger.Warning(Language.Get("CanceledListingUsersFrom", Host));
                         return null;
                     }
-                    Logger.Success("Users listed successfully.");
+                    Logger.Success(Language.Get("UsersListedSuccessfullyFrom", Host));
                     return rows;
-                }
-                catch (System.Security.SecurityException e)
-                {
-                    Logger.Exception(e, "Failed to get a list of users. Please make sure the user \"" + Environment.UserDomainName + "\\" + Environment.UserName + "\" is an administrator on the host: " + Host);
-                    return null;
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to get a list of users. Please make sure that the specified host is valid and online and that you are an administrator of: " + Host);
+                    Logger.Exception(e, Language.Get("FailedToListUsersFrom", Host));
                     return null;
                 }
             });
@@ -241,13 +236,13 @@ namespace SuperGrate
                     }
                     else
                     {
-                        Logger.Error("Failed to get SID from store ID: " + ID);
+                        Logger.Error(Language.Get("FailedToReadSIDFromStoreID"));
                         return null;
                     }
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to get SID from store ID: " + ID);
+                    Logger.Exception(e, Language.Get("FailedToReadSIDFromStoreID"));
                     return null;
                 }
             });

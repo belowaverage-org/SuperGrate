@@ -117,7 +117,14 @@ namespace SuperGrate
         /// <param name="Text">The text to convey with the exception.</param>
         public static void Exception(Exception Exception, string Text)
         {
-            Error(Exception.Message);
+            if (Exception.Message.EndsWith("\r\n"))
+            {
+                Error(Exception.Message.TrimEnd('\r', '\n'));
+            }
+            else
+            {
+                Error(Exception.Message);
+            }
             Verbose(Language.Get("LoggerPrefixError") + '\r' + Exception.StackTrace);
             if(Exception.InnerException != null)
             {
