@@ -43,6 +43,9 @@
 	<FailedToConnectToViaWMI>Failed to connect to {0} via WMI. Make sure the remote PC is online.</FailedToConnectToViaWMI>
 	<FailedToConnectToViaWMIAccessDenied>Failed to connect to {0} via WMI because access was denied. Make sure your user account has administrative access to the remote PC.</FailedToConnectToViaWMIAccessDenied>
 	<FailedToReadSIDFromStoreID>Failed to read SID from store ID {0}.</FailedToReadSIDFromStoreID>
+	<FailedToReadUserFromStoreID>Failed to read user from store ID {0}.</FailedToReadUserFromStoreID>
+	<FailedToDeleteUserFromTheStore>Failed to delete {0} from the store.</FailedToDeleteUserFromTheStore>
+	<FailedToDeleteUserFrom>Failed to delete {0} from {1}.</FailedToDeleteUserFrom>
 	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
 	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
 	<DownloadingUserStateTo>Downloading user state to {0}...</DownloadingUserStateTo>
@@ -80,5 +83,10 @@
 	<ListingUsersFrom>Listing users from {0}...</ListingUsersFrom>
 	<CanceledListingUsersFrom>Canceled listing users from {0}.</CanceledListingUsersFrom>
 	<UsersListedSuccessfullyFrom>Users listed successfully from {0}.</UsersListedSuccessfullyFrom>
-	
+	<FoundUser>Found user {0}.</FoundUser>
+	<DeletingUserFromTheStore>Deleting {0} from the store...</DeletingUserFromTheStore>
+	<UserSuccessfullyDeletedFromTheStore>User {0} successfully deleted from the store.</UserSuccessfullyDeletedFromTheStore>
+	<CopyingUserDeleteAgentToRemotePC>Copying user delete agent to remote PC {0}...</CopyingUserDeleteAgentToRemotePC>
+	<RemovingUserDeleteAgentFromRemotePC>Removing user delete agent from remote PC {0}...</RemovingUserDeleteAgentFromRemotePC>
+	<DeletingUserFrom>Deleting {0} from {1}...</DeletingUserFrom>
 </SGLanguage>

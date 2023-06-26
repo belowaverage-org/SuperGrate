@@ -293,7 +293,7 @@ namespace SuperGrate
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to get user from store, ID: " + ID);
+                    Logger.Exception(e, Language.Get("FailedToReadUserFromStoreID", ID));
                     return null;
                 }
             });
@@ -306,10 +306,10 @@ namespace SuperGrate
         {
             return Task.Run(async () =>
             {
+                string StorePath = Config.Settings["MigrationStorePath"];
                 try
-                {
-                    string StorePath = Config.Settings["MigrationStorePath"];
-                    Logger.Information("Listing users from store: " + StorePath + "...");
+                { 
+                    Logger.Information(Language.Get("ListingUsersFrom", StorePath));
                     UserRows rows = new UserRows();
                     int count = 0;
                     DirectoryInfo[] directories = new DirectoryInfo(StorePath).GetDirectories();
@@ -318,19 +318,19 @@ namespace SuperGrate
                         UserRow row = await GetUserFromStore(ULControl.CurrentHeaderRow, directory.Name);
                         if (row == null)
                         {
-                            Logger.Warning("Skipping ID: " + directory.Name);
+                            Logger.Warning(Language.Get("FailedToReadUserFromStoreID", directory.Name));
                             continue;
                         }
                         rows.Add(row);
                         Logger.UpdateProgress((int)(((float)++count / directories.Length) * 100));
-                        Logger.Verbose("Found: " + row[ULColumnType.SourceNTAccount]);
+                        Logger.Verbose(Language.Get("FoundUser", row[ULColumnType.SourceNTAccount]));
                     }
-                    Logger.Success("Users listed successfully.");
+                    Logger.Success(Language.Get("UsersListedSuccessfullyFrom", StorePath));
                     return rows;
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to list users from store.");
+                    Logger.Exception(e, Language.Get("FailedToListUsersFrom", StorePath));
                     return null;
                 }
             });
@@ -347,15 +347,15 @@ namespace SuperGrate
                 foreach (string ID in IDs)
                 {
                     string name = await GetUserByIdentity(ID);
-                    Logger.Information("Deleting '" + name + "' from the Store...");
+                    Logger.Information(Language.Get("DeletingUserFromTheStore", name));
                     try
                     {
                         Directory.Delete(Path.Combine(Config.Settings["MigrationStorePath"], ID), true);
-                        Logger.Success("'" + name + "' successfully deleted from the Store.");
+                        Logger.Success(Language.Get("UserSuccessfullyDeletedFromTheStore", name));
                     }
                     catch (Exception e)
                     {
-                        Logger.Exception(e, "Failed to delete '" + name + "' from the store.");
+                        Logger.Exception(e, Language.Get("FailedToDeleteUserFromTheStore", name));
                     }
                 }
             });
@@ -373,7 +373,7 @@ namespace SuperGrate
             {
                 try
                 {
-                    Logger.Information("Sending Profile Delete Daemon...");
+                    Logger.Information(Language.Get("CopyingUserDeleteAgentToRemotePC", Host));
                     string exePath = Path.Combine(GetBestPathToC(Host), @"ProgramData\SuperGratePD.exe");
                     FileStream SuperGratePD = File.OpenWrite(exePath);
                     SuperGratePD.Write(
@@ -387,7 +387,7 @@ namespace SuperGrate
                     {
                         if (ShouldCancelRemoteProfileDelete) break;
                         string name = await GetUserByIdentity(SID, Host);
-                        Logger.Information("Deleting '" + name + "' from " + Host + "...");
+                        Logger.Information(Language.Get("DeletingUserFrom", name, Host));
                         await Remote.StartProcess(
                             Host,
                             @"C:\ProgramData\SuperGratePD.exe " + SID,
@@ -396,13 +396,13 @@ namespace SuperGrate
                         Logger.UpdateProgress((int)((++count - 0.5) / SIDs.Length * 100));
                         await Remote.WaitForProcessExit(Host, "SuperGratePD");
                     }
-                    Logger.Information("Removing Daemon...");
+                    Logger.Information(Language.Get("RemovingUserDeleteAgentFromRemotePC", Host));
                     File.Delete(exePath);
-                    Logger.Success("Done.");
+                    Logger.Success(Language.Get("Done"));
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to delete user(s) from target: " + Host + ".");
+                    Logger.Exception(e, Language.Get("FailedToDeleteUserFrom", Host));
                 }
             });
         }
