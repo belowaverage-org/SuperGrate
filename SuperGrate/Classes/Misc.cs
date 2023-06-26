@@ -413,14 +413,14 @@ namespace SuperGrate
         public static async void CancelRemoteProfileDelete(string Host)
         {
             ShouldCancelRemoteProfileDelete = true;
-            Logger.Information("Sending KILL command to remote target...");
+            Logger.Information(Language.Get("StoppingUserDeleteAgentOnRemotePC", Host));
             if (await Remote.KillProcess(Host, "SuperGratePD.exe"))
             {
-                Logger.Success("KILL command sent.");
+                Logger.Success(Language.Get("UserDeleteAgentHasBeenStoppedOn", Host));
             }
             else
             {
-                Logger.Error("Failed to send KILL command.");
+                Logger.Error(Language.Get("FailedToStopUserDeleteAgentOn", Host));
             }
         }
         /// <summary>
@@ -430,7 +430,7 @@ namespace SuperGrate
         /// <returns>CPU architecture.</returns>
         public static Task<OSArchitecture> GetRemoteArch(string Host)
         {
-            Logger.Information("Reading OS Architecture...");
+            Logger.Information(Language.Get("GatheringOSArchitectureOn", Host));
             return Task.Run(async () => {
                 try
                 {
@@ -439,13 +439,13 @@ namespace SuperGrate
                         string rawArch = (string)manObj["OSArchitecture"];
                         OSArchitecture arch = OSArchitecture.X86;
                         if (rawArch.Contains("64")) arch = OSArchitecture.X64;
-                        Logger.Information("OS Architecture is: " + arch + ".");
+                        Logger.Information(Language.Get("TheOSArchitectureOnIs", Host, arch.ToString()));
                         return arch;
                     }
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to read the OS Architecture from host: " + Host + ".");
+                    Logger.Exception(e, Language.Get("FailedToGatherOSArchitectureOn", Host));
                 }
                 return OSArchitecture.Unknown;
             });

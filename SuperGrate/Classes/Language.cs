@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace SuperGrate.Classes
@@ -79,6 +80,10 @@ namespace SuperGrate.Classes
             {
                 int index = 0;
                 foreach (string replacement in Replacements) text = text.Replace("{" + index++ + "}", replacement);
+            }
+            foreach (Match match in Regex.Matches(text, "{([a-z,A-Z]*)}"))
+            {
+                text = text.Replace(match.Value, GetWithLanguage(Language, match.Groups[1].Value));
             }
             return text;
         }

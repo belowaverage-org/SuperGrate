@@ -255,13 +255,13 @@ namespace SuperGrate
                     }
                     if (srcUser != "" && dstUser != "")
                     {
-                        Logger.Information("'" + srcUser + "' will be applied as '" + dstUser + "'.");
+                        Logger.Information(Language.Get("UserWillBeAppliedAs", srcUser, dstUser));
                         return " /mu:" + srcUser + ":" + dstUser;
                     }
                 }
-                catch(Exception)
+                catch(Exception e)
                 {
-                    Logger.Warning("Failed to build MU parameter.");
+                    Logger.Exception(e, Language.Get("FailedToGenerateMUParameter"));
                 }
                 return parameter;
             });
@@ -313,7 +313,7 @@ namespace SuperGrate
         private static Task<bool> DownloadFromStore(string GUID)
         {
             return Task.Run(() => {
-                Logger.Information(Language.Get("DownloadingUserStateTo", Main.DestinationComputer));
+                Logger.Information(Language.Get("TransferringUserStateTo", Main.DestinationComputer));
                 string Destination = Path.Combine(PayloadPathTarget, "USMT");
                 try
                 {
@@ -327,7 +327,7 @@ namespace SuperGrate
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FailedToDownloadUserStateTo", Main.DestinationComputer));
+                    Logger.Exception(e, Language.Get("FailedToTransferUserStateTo", Main.DestinationComputer));
                     return false;
                 }
             });
@@ -360,7 +360,7 @@ namespace SuperGrate
                     }
                     else
                     {
-                        throw new Exception(Language.Get("FailedToDetermineTargetArch"));
+                        throw new Exception(Language.Get("OSArchitectureIsNotSupported", DetectedArch.ToString()));
                     }
                     Logger.Information(Language.Get("DecompressingUSMT"));
                     ZipFile.ExtractToDirectory(dlPath, USMTPath);

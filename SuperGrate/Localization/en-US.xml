@@ -32,8 +32,7 @@
 	<FailedToWatchRemoteLog>Failed to watch remote log file at {0}.</FailedToWatchRemoteLog>
 	<FailedToWriteStoreParameter>Failed to write store parameter: {0}.</FailedToWriteStoreParameter>
 	<FailedToDownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the SuperGrate.xml accordingly.</FailedToDownloadUSMT>
-	<FailedToDetermineTargetArch>Failed to determine target architecture.</FailedToDetermineTargetArch>
-	<FailedToDownloadUserStateTo>Failed to download user state to {0}.</FailedToDownloadUserStateTo>
+	<FailedToTransferUserStateTo>Failed to transfer user state to {0}.</FailedToTransferUserStateTo>
 	<FailedToFindUSMTFolderAt>Failed to find USMT folder at {0}.</FailedToFindUSMTFolderAt>
 	<FailedToUploadUSMTTo>Failed to upload USMT to {0}.</FailedToUploadUSMTTo>
 	<FailedToStopUSMTOn>Failed to stop USMT on {0}.</FailedToStopUSMTOn>
@@ -46,9 +45,13 @@
 	<FailedToReadUserFromStoreID>Failed to read user from store ID {0}.</FailedToReadUserFromStoreID>
 	<FailedToDeleteUserFromTheStore>Failed to delete {0} from the store.</FailedToDeleteUserFromTheStore>
 	<FailedToDeleteUserFrom>Failed to delete {0} from {1}.</FailedToDeleteUserFrom>
+	<FailedToStopUserDeleteAgentOn>Failed to stop user delete agent on {0}.</FailedToStopUserDeleteAgentOn>
+	<FailedToGatherOSArchitectureOn>Failed to gather OS architecture on {0}.</FailedToGatherOSArchitectureOn>
+	<FailedToGenerateMUParameter>Failed to generate MU parameter for USMT.</FailedToGenerateMUParameter>
 	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
 	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
-	<DownloadingUserStateTo>Downloading user state to {0}...</DownloadingUserStateTo>
+	<TransferringUserStateTo>Transferring user state to {0}...</TransferringUserStateTo>
+	<OSArchitectureIsNotSupported>The OS architecture {0} is not supported.</OSArchitectureIsNotSupported>
 	<USMTFinished>USMT Finished.</USMTFinished>
 	<CleaningUp>Cleaning up...</CleaningUp>
 	<DecompressingUSMT>Decompressing USMT...</DecompressingUSMT>
@@ -89,4 +92,9 @@
 	<CopyingUserDeleteAgentToRemotePC>Copying user delete agent to remote PC {0}...</CopyingUserDeleteAgentToRemotePC>
 	<RemovingUserDeleteAgentFromRemotePC>Removing user delete agent from remote PC {0}...</RemovingUserDeleteAgentFromRemotePC>
 	<DeletingUserFrom>Deleting {0} from {1}...</DeletingUserFrom>
+	<StoppingUserDeleteAgentOnRemotePC>Stopping user delete agent on {0}...</StoppingUserDeleteAgentOnRemotePC>
+	<UserDeleteAgentHasBeenStoppedOn>User delete agent has been stopped on {0}.</UserDeleteAgentHasBeenStoppedOn>
+	<GatheringOSArchitectureOn>Gathering OS architecture on {0}...</GatheringOSArchitectureOn>
+	<TheOSArchitectureOnIs>The OS architecture on {0} is {1}.</TheOSArchitectureOnIs>
+	<UserWillBeAppliedAs>User {0} will be applied as {1}.</UserWillBeAppliedAs>
 </SGLanguage>
