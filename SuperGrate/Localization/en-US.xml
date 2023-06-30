@@ -18,6 +18,7 @@
 	<ListSource>List source</ListSource>
 	<ListStore>List store</ListStore>
 	<Delete>Delete</Delete>
+	<Store>store</Store>
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
 	<FailedToDownload>Failed to download from {0}.</FailedToDownload>
@@ -48,6 +49,7 @@
 	<FailedToStopUserDeleteAgentOn>Failed to stop user delete agent on {0}.</FailedToStopUserDeleteAgentOn>
 	<FailedToGatherOSArchitectureOn>Failed to gather OS architecture on {0}.</FailedToGatherOSArchitectureOn>
 	<FailedToGenerateMUParameter>Failed to generate MU parameter for USMT.</FailedToGenerateMUParameter>
+	<FailedToRetrieveHostnameFrom>Failed to retrieve hostname from {0}.</FailedToRetrieveHostnameFrom>
 	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
 	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
 	<TransferringUserStateTo>Transferring user state to {0}...</TransferringUserStateTo>
@@ -97,4 +99,8 @@
 	<GatheringOSArchitectureOn>Gathering OS architecture on {0}...</GatheringOSArchitectureOn>
 	<TheOSArchitectureOnIs>The OS architecture on {0} is {1}.</TheOSArchitectureOnIs>
 	<UserWillBeAppliedAs>User {0} will be applied as {1}.</UserWillBeAppliedAs>
+	<SkippedSIDUser>Skipped {0} {1}.</SkippedSIDUser>
+	<SkippedUnknownSID>Skipped unknown SID {0}.</SkippedUnknownSID>
+	<SkippedSIDMissingProfile>Skipped SID without a profile directory on the remote PC {0}.</SkippedSIDMissingProfile>
+	<CalculatingProfileSizeFor>Calculating profile size for {0}...</CalculatingProfileSizeFor>
 </SGLanguage>

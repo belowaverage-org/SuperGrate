@@ -110,12 +110,12 @@ namespace SuperGrate
                 Logger.Verbose("Found: " + user);
                 if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out bool setting) && setting && (Regex.IsMatch(SID, @"^S-1-5-[0-9]+$")))
                 {
-                    Logger.Verbose("Skipped: " + SID + ": " + user + ".");
+                    Logger.Verbose(Language.Get("SkippedSIDUser", SID, user));
                     return null;
                 }
                 if (bool.TryParse(Config.Settings["HideUnknownSIDs"], out setting) && setting && SID == user)
                 {
-                    Logger.Verbose("Skipped unknown SID: " + SID + ".");
+                    Logger.Verbose(Language.Get("SkippedUnknownSID", SID));
                     return null;
                 }
                 row[ULColumnType.Tag] = SID;
@@ -131,7 +131,7 @@ namespace SuperGrate
                 ) {
                     if (UserObject.GetPropertyValue("LocalPath") == null)
                     {
-                        Logger.Verbose("Skipped SID with no profile directory: " + SID + ".");
+                        Logger.Verbose(Language.Get("SkippedSIDMissingProfile", SID));
                         return null;
                     }
                     string profilePath = UserObject.GetPropertyValue("LocalPath").ToString().Replace(@"C:\", GetBestPathToC(Host));
@@ -141,7 +141,7 @@ namespace SuperGrate
                     }
                     if (row.ContainsKey(ULColumnType.Size))
                     {
-                        Logger.Information("Calculating profile size for: " + user + "...");
+                        Logger.Information(Language.Get("CalculatingProfileSizeFor", user));
                         double size = await FileOperations.GetFolderSize(profilePath);
                         row[ULColumnType.Size] = size.ToString();
                     }
@@ -177,7 +177,7 @@ namespace SuperGrate
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, "Failed to get computer name from: " + Host);
+                    Logger.Exception(e, Language.Get("FailedToRetrieveHostnameFrom", Host));
                     return null;
                 }
             });

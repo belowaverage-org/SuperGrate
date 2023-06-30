@@ -277,7 +277,7 @@ namespace SuperGrate
             string lGUID = Guid.NewGuid().ToString();
             GUID = lGUID;
             return Task.Run(async () => {
-                Logger.Information("Uploading user state to the Store...");
+                Logger.Information(Language.Get("TransferringUserStateTo", Language.Get("Store")));
                 string Destination = Path.Combine(Config.Settings["MigrationStorePath"], lGUID);
                 try
                 {
@@ -291,7 +291,7 @@ namespace SuperGrate
                         Path.Combine(Path.Combine(PayloadPathTarget, @"USMT\USMT.MIG")),
                         Path.Combine(Destination, "data")
                     );
-                    Logger.Success("User state successfully uploaded.");
+                    Logger.Success(Language.Get("UserStateSuccessfullyTransferred"));
                     return true;
                 }
                 catch(Exception e)
@@ -300,7 +300,7 @@ namespace SuperGrate
                     {
                         Directory.Delete(Destination, true);
                     }
-                    Logger.Exception(e, "Failed to upload user state to the Store.");
+                    Logger.Exception(e, Language.Get("FailedToTransferUserStateTo", Language.Get("Store")));
                     return false;
                 }
             });
