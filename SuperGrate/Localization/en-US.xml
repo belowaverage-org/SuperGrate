@@ -1,4 +1,4 @@
-﻿<SGLanguagee DisplayName="English (United States)">
+﻿<SGLanguage DisplayName="English (United States)">
 	<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
 	<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
 	<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
@@ -106,4 +106,4 @@
 	<SkippedSIDMissingProfile>Skipped SID without a profile directory on the remote PC {0}.</SkippedSIDMissingProfile>
 	<CalculatingProfileSizeFor>Calculating profile size for {0}...</CalculatingProfileSizeFor>
 	<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
-</SGLanguagee>
+</SGLanguage>
