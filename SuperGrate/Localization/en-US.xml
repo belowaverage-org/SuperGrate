@@ -1,4 +1,4 @@
-﻿<SGLanguage DisplayName="English (United States)">
+﻿<SGLanguagee DisplayName="English (United States)">
 	<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
 	<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
 	<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
@@ -9,6 +9,7 @@
 	<Start>Start</Start>
 	<Stop>Stop</Stop>
 	<Done>Done.</Done>
+	<Canceled>Canceled.</Canceled>
 	<DeleteUser>Delete user</DeleteUser>
 	<DeleteUsers>Delete users</DeleteUsers>
 	<AreYouSureDeleteUser>Are you sure you want to delete this user?</AreYouSureDeleteUser>
@@ -50,6 +51,7 @@
 	<FailedToGatherOSArchitectureOn>Failed to gather OS architecture on {0}.</FailedToGatherOSArchitectureOn>
 	<FailedToGenerateMUParameter>Failed to generate MU parameter for USMT.</FailedToGenerateMUParameter>
 	<FailedToRetrieveHostnameFrom>Failed to retrieve hostname from {0}.</FailedToRetrieveHostnameFrom>
+	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
 	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
 	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
 	<TransferringUserStateTo>Transferring user state to {0}...</TransferringUserStateTo>
@@ -103,4 +105,5 @@
 	<SkippedUnknownSID>Skipped unknown SID {0}.</SkippedUnknownSID>
 	<SkippedSIDMissingProfile>Skipped SID without a profile directory on the remote PC {0}.</SkippedSIDMissingProfile>
 	<CalculatingProfileSizeFor>Calculating profile size for {0}...</CalculatingProfileSizeFor>
-</SGLanguage>
+	<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
+</SGLanguagee>

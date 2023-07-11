@@ -635,7 +635,7 @@ namespace SuperGrate
             if(listUsers.SelectedItems.Count == 1)
             {
                 Running = RunningTask.Unknown;
-                Logger.Information("Retrieving user properties...");
+                Logger.Information(Language.Get("GatheringUserProperties"));
                 UserRow row = null;
                 UserRow template = null;
                 if (CurrentListSource == ListSources.MigrationStore)
@@ -655,13 +655,13 @@ namespace SuperGrate
                 if (Canceled)
                 {
                     Running = RunningTask.None;
-                    Logger.Information("Canceled.");
+                    Logger.Information(Language.Get("Canceled"));
                     return;
                 }
                 Running = RunningTask.None;
                 if (row == null)
                 {
-                    Logger.Error("Failed to retrieve user data!");
+                    Logger.Error(Language.Get("FailedToGatherUserProperties"));
                 }
                 else
                 {
@@ -769,7 +769,7 @@ namespace SuperGrate
             if (listUsers.SelectedItems.Count == 1)
             {
                 Running = RunningTask.Unknown;
-                Logger.Information("Retrieving user properties...");
+                Logger.Information(Language.Get("GatheringUserProperties"));
                 string storeID = (string)listUsers.SelectedItems[0].Tag;
                 UserRow row = await Misc.GetUserFromStore(new UserRow() {
                     { ULColumnType.Tag, "Store ID" },
@@ -779,7 +779,7 @@ namespace SuperGrate
                 Running = RunningTask.None;
                 if (row == null)
                 {
-                    Logger.Error("Could not retrieve user properties!");
+                    Logger.Error(Language.Get("FailedToGatherUserProperties"));
                 }
                 else
                 {
