@@ -28,7 +28,7 @@ namespace SuperGrate.Classes
         {
             get
             {
-                if (Config.Settings["Language"] != "" && LanguageIsDefined(Config.Settings["Language"])) return Config.Settings["Language"];
+                if (Config.Settings != null && Config.Settings["Language"] != "" && LanguageIsDefined(Config.Settings["Language"])) return Config.Settings["Language"];
                 if (LanguageIsDefined(System.Globalization.CultureInfo.CurrentCulture.Name)) return System.Globalization.CultureInfo.CurrentCulture.Name;
                 return DefaultLanguage;
             }

@@ -120,4 +120,20 @@
 	<SuperGrateXMLIsMissingKey>SuperGrate.xml is missing {0}.</SuperGrateXMLIsMissingKey>
 	<SuperGrateXMLLoaded>SuperGrate.xml loaded.</SuperGrateXMLLoaded>
 	<SuperGrateXMLLoadedButIsUsingDefaults>Config loaded, but is using default values for the missing elements. You can fix this warning by saving the current settings.</SuperGrateXMLLoadedButIsUsingDefaults>
+	<ConfigCommentUSMTPath>The UNC or direct path to the USMT directory. (E.g: .\USMT\X64)</ConfigCommentUSMTPath>
+	<ConfigCommentPayloadPath>Local path on source computer where Super Grate will run USMT from. (E.g: C:\SuperGrate)</ConfigCommentPayloadPath>
+	<ConfigCommentMigrationStorePath>The UNC or direct path to the USMT migration store. (E.g: \\ba-share\s$ or .\STORE)</ConfigCommentMigrationStorePath>
+	<ConfigCommentScanLoadStateParams>ScanState.exe and LoadState.exe CLI parameters. (See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax)</ConfigCommentScanLoadStateParams>
+	<ConfigCommentAutoDeleteFromStore>Delete the user from the migration store after a restore? (Store to destination)</ConfigCommentAutoDeleteFromStore>
+	<ConfigCommentAutoDeleteFromSource>Delete the user from the source computer after a backup? (Source to store)</ConfigCommentAutoDeleteFromSource>
+	<ConfigCommentHideBuiltInAccounts>Prevent NT AUTHORITY and NT SERVICE accounts from being listed?</ConfigCommentHideBuiltInAccounts>
+	<ConfigCommentHideUnknownSIDs>Prevent unknown accounts from being listed?</ConfigCommentHideUnknownSIDs>
+	<ConfigCommentDumpLogHere>Write log to disk on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)</ConfigCommentDumpLogHere>
+	<ConfigCommentULColumns>List of columns to display for the source or store users.</ConfigCommentULColumns>
+	<ConfigCommentULViewMode>User list view mode. (E.g: Large (0) / Small Icon (2), List (3), Details (1) and Tile (4))</ConfigCommentULViewMode>
+	<ConfigCommentSourceComputer>Default source computer at startup.</ConfigCommentSourceComputer>
+	<ConfigCommentDestinationComputer>Default destination computer at startup.</ConfigCommentDestinationComputer>
+	<ConfigCommentTabView>Default tab view at startup (E.g: Source, Store or None)</ConfigCommentTabView>
+	<ConfigCommentSecurityProtocol>Security protocol version (Restart required) (E.g: SystemDefault, Ssl3, Tls, Tls11, Tls12 or Tls13)</ConfigCommentSecurityProtocol>
+	<ConfigCommentLanguage>Language. (E.g: en-US)</ConfigCommentLanguage>
 </SGLanguage>

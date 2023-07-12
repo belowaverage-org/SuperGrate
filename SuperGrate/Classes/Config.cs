@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace SuperGrate
@@ -12,43 +13,58 @@ namespace SuperGrate
         /// Template XML and settings loaded into memory.
         /// </summary>
         public static Dictionary<string, string> Settings = new Dictionary<string, string>() {
-            {"XComment9", @"The UNC or Direct path to the USMT directory. (E.g: .\USMT\X64)"},
+            {"ConfigCommentUSMTPath", string.Empty},
             {"USMTPathX64", @".\USMT\X64"},
             {"USMTPathX86", @".\USMT\X86"},
-            {"XComment5", @"Local path on source computer where Super Grate will run USMT from. (E.g: C:\SuperGrate)"},
+            {"ConfigCommentPayloadPath", string.Empty},
             {"SuperGratePayloadPath", @"C:\SuperGrate"},
-            {"XComment1", @"The UNC or Direct path to the USMT Migration Store (E.g: \\ba-share\s$ or .\STORE)"},
+            {"ConfigCommentMigrationStorePath", string.Empty},
             {"MigrationStorePath", @".\STORE"},
-            {"XComment2", "ScanState.exe & LoadState.exe CLI Parameters. See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax "},
+            {"ConfigCommentScanLoadStateParams", string.Empty},
             {"ScanStateParameters", "/config:Config_AppsAndSettings.xml /i:MigUser.xml /i:MigSgAdditional.xml /c /r:3 /o"},
             {"LoadStateParameters", "/config:Config_AppsAndSettings.xml /i:MigUser.xml /i:MigSgAdditional.xml /c /r:3 /lac /lae"},
-            {"XComment3", "Delete the user from the migration store after a restore? (store to destination)"},
+            {"ConfigCommentAutoDeleteFromStore", string.Empty},
             {"AutoDeleteFromStore", "false"},
-            {"XComment8", "Delete the user from the source computer after a backup? (source to store)"},
+            {"ConfigCommentAutoDeleteFromSource", string.Empty},
             {"AutoDeleteFromSource", "false"},
-            {"XComment4", "Prevent NT AUTHORITY & NT SERVICE accounts from being listed?"},
+            {"ConfigCommentHideBuiltInAccounts", string.Empty},
             {"HideBuiltInAccounts", "true"},
-            {"XComment7", "Prevent unknown accounts from being listed?"},
+            {"ConfigCommentHideUnknownSIDs", string.Empty},
             {"HideUnknownSIDs", "false"},
-            {"XComment6", @"Write log to disk on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)"},
+            {"ConfigCommentDumpLogHere", string.Empty},
             {"DumpLogHereOnExit", @".\LOGS"},
-            {"XComment10", @"List of columns to display for the Source or Store users."},
+            {"ConfigCommentULColumns", string.Empty},
             {"ULSourceColumns", "0,3,9"},
             {"ULStoreColumns", "0,1,5,6,4"},
-            {"XComment11", @"User List View Mode: Large (0) / Small Icon (2), List (3), Details (1) and Tile (4)."},
+            {"ConfigCommentULViewMode", string.Empty},
             {"ULViewMode", "1"},
-            {"XComment13", @"Default source computer at startup."},
-            {"SourceComputer", ""},
-            {"XComment14", @"Default destination computer at startup."},
-            {"DestinationComputer", ""},
-            {"XComment17", @"Default tab view at startup: Source, Store, None."},
+            {"ConfigCommentSourceComputer", string.Empty},
+            {"SourceComputer", string.Empty},
+            {"ConfigCommentDestinationComputer", string.Empty},
+            {"DestinationComputer", string.Empty},
+            {"ConfigCommentTabView", string.Empty},
             {"TabView", "None"},
-            {"XComment12", @"Security Protocol Version (Restart Required): SystemDefault, Ssl3, Tls, Tls11, Tls12, Tls13."},
+            {"ConfigCommentSecurityProtocol", string.Empty},
             {"SecurityProtocol", "Tls12"},
-            {"XComment15", @"Language. (E.g: en-US)"},
-            {"Language", ""}
+            {"ConfigCommentLanguage", string.Empty},
+            {"Language", string.Empty}
         };
         public static Dictionary<string, string> DefaultSettings = Settings;
+        /// <summary>
+        /// Load the language into the XML comments.
+        /// </summary>
+        public static void LoadLanguage()
+        {
+            string[] keys = DefaultSettings.Keys.ToArray();
+            foreach (string key in keys)
+            {
+                if (key.StartsWith("ConfigComment"))
+                {
+                    Settings[key] = Language.Get(key);
+                    DefaultSettings[key] = Language.Get(key);
+                }
+            }
+        }
         /// <summary>
         /// Saves the config in memory to the XML file.
         /// </summary>
@@ -58,7 +74,7 @@ namespace SuperGrate
             XElement root = new XElement("SuperGrate");
             foreach(KeyValuePair<string, string> setting in Settings)
             {
-                if(setting.Key.StartsWith("XComment"))
+                if(setting.Key.StartsWith("ConfigComment"))
                 {
                     root.Add(new XComment(setting.Value));
                 }
@@ -117,7 +133,7 @@ namespace SuperGrate
                 }
                 foreach(KeyValuePair<string, string> setting in Settings)
                 {
-                    if (!setting.Key.StartsWith("XComment"))
+                    if (!setting.Key.StartsWith("ConfigComment"))
                     {
                         XElement element = root.Element(setting.Key);
                         if (element == null)
@@ -152,7 +168,7 @@ namespace SuperGrate
                     if (parameter.StartsWith("/") || parameter.StartsWith("-") && parameter.Contains(":"))
                     {
                         string[] param_parts = parameter.Substring(1).Split(':');
-                        if (param_parts[0].StartsWith("XComment")) continue;
+                        if (param_parts[0].StartsWith("ConfigComment")) continue;
                         if (!Settings.ContainsKey(param_parts[0])) continue;
                         Settings[param_parts[0]] = param_parts[1];
                     }

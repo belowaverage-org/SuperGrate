@@ -13,6 +13,7 @@ namespace SuperGrate
         static void Main(string[] parameters)
         {
             Config.LoadConfig(parameters);
+            Config.LoadLanguage();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.ThreadException += Application_ThreadException;

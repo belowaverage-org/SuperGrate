@@ -31,7 +31,7 @@ namespace SuperGrate.Controls
             InitialQuery = Query;
         }
         /// <summary>
-        /// Perform a directory search (asyncronously), and show the results in the List View.
+        /// Perform a directory search (asynchronously), and show the results in the List View.
         /// </summary>
         private async void btnSearch_Click(object sender, EventArgs e)
         {
