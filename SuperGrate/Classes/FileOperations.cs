@@ -71,7 +71,7 @@ namespace SuperGrate.IO
             return !USMT.Canceled;
         }
         /// <summary>
-        /// Recursivley calculates a folders size.
+        /// Recursively calculates a folders size.
         /// </summary>
         /// <param name="Directory">The path to the folder.</param>
         /// <returns>A task with a double. The double represents the number of bytes calculated.</returns>
@@ -80,7 +80,7 @@ namespace SuperGrate.IO
             return GetFolderSize(new DirectoryInfo(Directory));
         }
         /// <summary>
-        /// Recursivley calculates a folders size.
+        /// Recursively calculates a folders size.
         /// </summary>
         /// <param name="Directory">The directory info object of the folder.</param>
         /// <returns>A task with a double. The double represents the number of bytes calculated.</returns>
@@ -112,7 +112,7 @@ namespace SuperGrate.IO
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FailedToGetFolderSize"));
+                    Logger.Exception(e, Language.Get("FileOperations/Log/Failed/GetFolderSize"));
                     return 0;
                 }
             });

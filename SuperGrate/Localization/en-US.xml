@@ -22,12 +22,8 @@
 	<Store>store</Store>
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
-	<FailedToDownload>Failed to download from {0}.</FailedToDownload>
-	<FailedToGetFolderSize>Failed to get folder size.</FailedToGetFolderSize>
-	<FailedToFindLanguage>Failed to find language.</FailedToFindLanguage>
 	<FailedToResolveSIDViaWMI>Failed to resolve an SID via WMI.</FailedToResolveSIDViaWMI>
 	<FailedToResolveStoreGUID>Failed to resolve Store GUID.</FailedToResolveStoreGUID>
-	<FailedToWriteErrorToWindow>Failed to write error message to main window.</FailedToWriteErrorToWindow>
 	<FailedToQueryWMI>Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</FailedToQueryWMI>
 	<FailedToRunCommandOn>Failed to run command on {0}.</FailedToRunCommandOn>
 	<FailedToWaitForRemoteProcess>Failed to wait for remote process {0} to finish.</FailedToWaitForRemoteProcess>
@@ -53,7 +49,6 @@
 	<FailedToRetrieveHostnameFrom>Failed to retrieve hostname from {0}.</FailedToRetrieveHostnameFrom>
 	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
 	<FailedToSearchActiveDirectory>Failed to search active directory.</FailedToSearchActiveDirectory>
-	<FailedToWriteLogToDisk>Failed to write log to disk.</FailedToWriteLogToDisk>
 	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
 	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
 	<TransferringUserStateTo>Transferring user state to {0}...</TransferringUserStateTo>
@@ -62,11 +57,6 @@
 	<CleaningUp>Cleaning up...</CleaningUp>
 	<DecompressingUSMT>Decompressing USMT...</DecompressingUSMT>
 	<WaitingForProcessToFinish>Waiting for {0} to finish...</WaitingForProcessToFinish>
-	<LoggerPrefixInfo>INFO</LoggerPrefixInfo>
-	<LoggerPrefixSuccess>SUCCESS</LoggerPrefixSuccess>
-	<LoggerPrefixWarning>WARNING</LoggerPrefixWarning>
-	<LoggerPrefixError>ERROR</LoggerPrefixError>
-	<LoggerPrefixVerbose>VERBOSE</LoggerPrefixVerbose>
 	<UserListSecurityIdentifier>Security identifier</UserListSecurityIdentifier>
 	<UserListUserName>User name</UserListUserName>
 	<UserListLastModified>Last modified</UserListLastModified>
@@ -145,5 +135,41 @@
 				<Language>Language. (E.g: en-US)</Language>
 			</Comment>
 		</Config>
+		<Download>
+			<Log>
+				<Failed>
+					<Download>Failed to download from {0}.</Download>
+				</Failed>
+			</Log>
+		</Download>
+		<FileOperations>
+			<Log>
+				<Failed>
+					<GetFolderSize>Failed to get folder size.</GetFolderSize>
+				</Failed>
+			</Log>
+		</FileOperations>
+		<Language>
+			<Log>
+				<Failed>
+					<FindLanguage>Failed to find language.</FindLanguage>
+				</Failed>
+			</Log>
+		</Language>
+		<Logger>
+			<Prefix>
+				<Info>INFO</Info>
+				<Success>SUCCESS</Success>
+				<Warning>WARNING</Warning>
+				<Error>ERROR</Error>
+				<Verbose>VERBOSE</Verbose>
+			</Prefix>
+			<Log>
+				<Failed>
+					<WriteErrorToWindow>Failed to write error message to main window.</WriteErrorToWindow>
+					<WriteLogToDisk>Failed to write log to disk.</WriteLogToDisk>
+				</Failed>
+			</Log>
+		</Logger>
 	</Classes>
 </SGLanguage>

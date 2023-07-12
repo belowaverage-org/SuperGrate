@@ -40,7 +40,7 @@ namespace SuperGrate
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine(Language.Get("FailedToWriteErrorToWindow"));
+                        Console.WriteLine(Language.Get("Classes/Logger/Log/Failed/WriteErrorToWindow"));
                     }
                 }));
             }
@@ -65,7 +65,7 @@ namespace SuperGrate
         public static void Information(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.White, Raw);
-            WriteMemoryLog(Text, Language.Get("LoggerPrefixInfo"));
+            WriteMemoryLog(Text, Language.Get("Classes/Logger/Prefix/Info"));
         }
         /// <summary>
         /// Logs a success statement.
@@ -75,7 +75,7 @@ namespace SuperGrate
         public static void Success(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.Green, Raw);
-            WriteMemoryLog(Text, Language.Get("LoggerPrefixSuccess"));
+            WriteMemoryLog(Text, Language.Get("Classes/Logger/Prefix/Success"));
         }
         /// <summary>
         /// Logs a warning.
@@ -85,7 +85,7 @@ namespace SuperGrate
         public static void Warning(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.Yellow, Raw);
-            WriteMemoryLog(Text, Language.Get("LoggerPrefixWarning"));
+            WriteMemoryLog(Text, Language.Get("Classes/Logger/Prefix/Warning"));
         }
         /// <summary>
         /// Logs an error.
@@ -95,7 +95,7 @@ namespace SuperGrate
         public static void Error(string Text, bool Raw = false)
         {
             WriteLog(Text, Color.Red, Raw);
-            WriteMemoryLog(Text, Language.Get("LoggerPrefixError"));
+            WriteMemoryLog(Text, Language.Get("Classes/Logger/Prefix/Error"));
         }
         /// <summary>
         /// Logs a verbose string. This text is usually hidden by default and only appears in a log file or if verbose mode is enabled.
@@ -108,7 +108,7 @@ namespace SuperGrate
             {
                 WriteLog(Text, Color.Gray, Raw);
             }
-            WriteMemoryLog(Text, Language.Get("LoggerPrefixVerbose"));
+            WriteMemoryLog(Text, Language.Get("Classes/Logger/Prefix/Verbose"));
         }
         /// <summary>
         /// Logs an exception.
@@ -125,11 +125,11 @@ namespace SuperGrate
             {
                 Error(Exception.Message);
             }
-            Verbose(Language.Get("LoggerPrefixError") + '\r' + Exception.StackTrace);
+            Verbose(Language.Get("Classes/Logger/Prefix/Error") + '\r' + Exception.StackTrace);
             if(Exception.InnerException != null)
             {
                 Error(Exception.InnerException.Message);
-                Verbose(Language.Get("LoggerPrefixError") + '\r' + Exception.InnerException.StackTrace);
+                Verbose(Language.Get("Classes/Logger/Prefix/Error") + '\r' + Exception.InnerException.StackTrace);
             }
             Error(Text);
         }
@@ -183,7 +183,7 @@ namespace SuperGrate
             } 
             catch(Exception e)
             {
-                Exception(e, Language.Get("FailedToWriteLogToDisk"));
+                Exception(e, Language.Get("Classes/Logger/Log/Failed/WriteLogToDisk"));
                 return null;
             }
         }
