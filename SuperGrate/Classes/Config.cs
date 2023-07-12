@@ -13,40 +13,40 @@ namespace SuperGrate
         /// Template XML and settings loaded into memory.
         /// </summary>
         public static Dictionary<string, string> Settings = new Dictionary<string, string>() {
-            {"ConfigCommentUSMTPath", string.Empty},
+            {"Config/Comment/USMTPath", string.Empty},
             {"USMTPathX64", @".\USMT\X64"},
             {"USMTPathX86", @".\USMT\X86"},
-            {"ConfigCommentPayloadPath", string.Empty},
+            {"Config/Comment/PayloadPath", string.Empty},
             {"SuperGratePayloadPath", @"C:\SuperGrate"},
-            {"ConfigCommentMigrationStorePath", string.Empty},
+            {"Config/Comment/MigrationStorePath", string.Empty},
             {"MigrationStorePath", @".\STORE"},
-            {"ConfigCommentScanLoadStateParams", string.Empty},
+            {"Config/Comment/ScanLoadStateParams", string.Empty},
             {"ScanStateParameters", "/config:Config_AppsAndSettings.xml /i:MigUser.xml /i:MigSgAdditional.xml /c /r:3 /o"},
             {"LoadStateParameters", "/config:Config_AppsAndSettings.xml /i:MigUser.xml /i:MigSgAdditional.xml /c /r:3 /lac /lae"},
-            {"ConfigCommentAutoDeleteFromStore", string.Empty},
+            {"Config/Comment/AutoDeleteFromStore", string.Empty},
             {"AutoDeleteFromStore", "false"},
-            {"ConfigCommentAutoDeleteFromSource", string.Empty},
+            {"Config/Comment/AutoDeleteFromSource", string.Empty},
             {"AutoDeleteFromSource", "false"},
-            {"ConfigCommentHideBuiltInAccounts", string.Empty},
+            {"Config/Comment/HideBuiltInAccounts", string.Empty},
             {"HideBuiltInAccounts", "true"},
-            {"ConfigCommentHideUnknownSIDs", string.Empty},
+            {"Config/Comment/HideUnknownSIDs", string.Empty},
             {"HideUnknownSIDs", "false"},
-            {"ConfigCommentDumpLogHere", string.Empty},
+            {"Config/Comment/DumpLogHere", string.Empty},
             {"DumpLogHereOnExit", @".\LOGS"},
-            {"ConfigCommentULColumns", string.Empty},
+            {"Config/Comment/ULColumns", string.Empty},
             {"ULSourceColumns", "0,3,9"},
             {"ULStoreColumns", "0,1,5,6,4"},
-            {"ConfigCommentULViewMode", string.Empty},
+            {"Config/Comment/ULViewMode", string.Empty},
             {"ULViewMode", "1"},
-            {"ConfigCommentSourceComputer", string.Empty},
+            {"Config/Comment/SourceComputer", string.Empty},
             {"SourceComputer", string.Empty},
-            {"ConfigCommentDestinationComputer", string.Empty},
+            {"Config/Comment/DestinationComputer", string.Empty},
             {"DestinationComputer", string.Empty},
-            {"ConfigCommentTabView", string.Empty},
+            {"Config/Comment/TabView", string.Empty},
             {"TabView", "None"},
-            {"ConfigCommentSecurityProtocol", string.Empty},
+            {"Config/Comment/SecurityProtocol", string.Empty},
             {"SecurityProtocol", "Tls12"},
-            {"ConfigCommentLanguage", string.Empty},
+            {"Config/Comment/Language", string.Empty},
             {"Language", string.Empty}
         };
         public static Dictionary<string, string> DefaultSettings = Settings;
@@ -58,7 +58,7 @@ namespace SuperGrate
             string[] keys = DefaultSettings.Keys.ToArray();
             foreach (string key in keys)
             {
-                if (key.StartsWith("ConfigComment"))
+                if (key.StartsWith("Config/Comment"))
                 {
                     Settings[key] = Language.Get(key);
                     DefaultSettings[key] = Language.Get(key);
@@ -70,11 +70,11 @@ namespace SuperGrate
         /// </summary>
         public static void SaveConfig()
         {
-            Logger.Information(Language.Get("GeneratingSuperGrateXML"));
+            Logger.Information(Language.Get("Config/GeneratingXML"));
             XElement root = new XElement("SuperGrate");
             foreach(KeyValuePair<string, string> setting in Settings)
             {
-                if(setting.Key.StartsWith("ConfigComment"))
+                if(setting.Key.StartsWith("Config/Comment"))
                 {
                     root.Add(new XComment(setting.Value));
                 }
@@ -90,7 +90,7 @@ namespace SuperGrate
             }
             catch(Exception e)
             {
-                Logger.Exception(e, Language.Get("FailedToSaveConfigurationToDisk"));
+                Logger.Exception(e, Language.Get("Config/Failed/SaveConfigurationToDisk"));
             }
         }
         /// <summary>
@@ -133,13 +133,13 @@ namespace SuperGrate
                 }
                 foreach(KeyValuePair<string, string> setting in Settings)
                 {
-                    if (!setting.Key.StartsWith("ConfigComment"))
+                    if (!setting.Key.StartsWith("Config/Comment"))
                     {
                         XElement element = root.Element(setting.Key);
                         if (element == null)
                         {
                             success = false;
-                            Logger.Warning(Language.Get("SuperGrateXMLIsMissingKey", setting.Key));
+                            Logger.Warning(Language.Get("Config/XMLIsMissingKey", setting.Key));
                         }
                         else
                         {
@@ -150,16 +150,16 @@ namespace SuperGrate
                 Settings = xmlSettings;
                 if(success)
                 {
-                    Logger.Success(Language.Get("SuperGrateXMLLoaded"));
+                    Logger.Success(Language.Get("Config/XMLLoaded"));
                 }
                 else
                 {
-                    Logger.Warning(Language.Get("SuperGrateXMLLoadedButIsUsingDefaults"));
+                    Logger.Warning(Language.Get("Config/XMLLoadedButIsUsingDefaults"));
                 }
             }
             catch(Exception e)
             {
-                Logger.Exception(e, Language.Get("FailedToLoadConfiguration"));
+                Logger.Exception(e, Language.Get("Config/Failed/LoadConfiguration"));
             }
             if (parameters != null && parameters.Length > 0)
             {
@@ -168,7 +168,7 @@ namespace SuperGrate
                     if (parameter.StartsWith("/") || parameter.StartsWith("-") && parameter.Contains(":"))
                     {
                         string[] param_parts = parameter.Substring(1).Split(':');
-                        if (param_parts[0].StartsWith("ConfigComment")) continue;
+                        if (param_parts[0].StartsWith("Config/Comment")) continue;
                         if (!Settings.ContainsKey(param_parts[0])) continue;
                         Settings[param_parts[0]] = param_parts[1];
                     }

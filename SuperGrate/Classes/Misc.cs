@@ -26,7 +26,7 @@ namespace SuperGrate
         /// <returns>True if is this machine, false if otherwise.</returns>
         public static bool IsHostThisMachine(string Host)
         {
-            if (Host == "127.0.0.1" || Host == "::1" || Host.ToLower() == "localhost") return true;
+            if (Host == "127.0.0.1" || Host == "::1" || Host.ToLower() == "localhost" || Host == ".") return true;
             if (Host.ToLower() == Environment.MachineName.ToLower())
             {
                 return true;
