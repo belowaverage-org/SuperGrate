@@ -36,7 +36,7 @@ namespace SuperGrate.Controls
             ListViewGroup lastGroup = null;
             foreach (KeyValuePair<string, string> setting in Config.Settings)
             {
-                if (setting.Key.Contains("Config/Comment"))
+                if (setting.Key.Contains("Classes/Config/Comment"))
                 {
                     lastGroup = new ListViewGroup(setting.Value);
                     settingsList.Groups.Add(lastGroup);
