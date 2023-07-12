@@ -54,6 +54,8 @@
 	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
 	<FailedToSearchActiveDirectory>Failed to search active directory.</FailedToSearchActiveDirectory>
 	<FailedToWriteLogToDisk>Failed to write log to disk.</FailedToWriteLogToDisk>
+	<FailedToSaveConfigurationToDisk>Failed to save SuperGrate.xml to disk.</FailedToSaveConfigurationToDisk>
+	<FailedToLoadConfiguration>Failed to load SuperGrate.xml.</FailedToLoadConfiguration>
 	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
 	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
 	<TransferringUserStateTo>Transferring user state to {0}...</TransferringUserStateTo>
@@ -114,4 +116,8 @@
 	<Search>Search</Search>
 	<ThisProgramIsAttemptingToClose>This program is attempting to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
 	<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
+	<GeneratingSuperGrateXML>Generating SuperGrate.xml...</GeneratingSuperGrateXML>
+	<SuperGrateXMLIsMissingKey>SuperGrate.xml is missing {0}.</SuperGrateXMLIsMissingKey>
+	<SuperGrateXMLLoaded>SuperGrate.xml loaded.</SuperGrateXMLLoaded>
+	<SuperGrateXMLLoadedButIsUsingDefaults>Config loaded, but is using default values for the missing elements. You can fix this warning by saving the current settings.</SuperGrateXMLLoadedButIsUsingDefaults>
 </SGLanguage>

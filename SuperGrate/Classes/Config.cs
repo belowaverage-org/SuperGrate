@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
@@ -53,7 +54,7 @@ namespace SuperGrate
         /// </summary>
         public static void SaveConfig()
         {
-            Logger.Information("Generating SuperGrate.xml...");
+            Logger.Information(Language.Get("GeneratingSuperGrateXML"));
             XElement root = new XElement("SuperGrate");
             foreach(KeyValuePair<string, string> setting in Settings)
             {
@@ -69,11 +70,11 @@ namespace SuperGrate
             try
             {
                 new XDocument(root).Save(@".\SuperGrate.xml");
-                Logger.Success("Saved.");
+                Logger.Success(Language.Get("Done"));
             }
             catch(Exception e)
             {
-                Logger.Exception(e, "Failed to save the configuration!");
+                Logger.Exception(e, Language.Get("FailedToSaveConfigurationToDisk"));
             }
         }
         /// <summary>
@@ -122,7 +123,7 @@ namespace SuperGrate
                         if (element == null)
                         {
                             success = false;
-                            Logger.Warning("SuperGrate.xml is missing: " + setting.Key + "!");
+                            Logger.Warning(Language.Get("SuperGrateXMLIsMissingKey", setting.Key));
                         }
                         else
                         {
@@ -133,16 +134,16 @@ namespace SuperGrate
                 Settings = xmlSettings;
                 if(success)
                 {
-                    Logger.Success("Config loaded!");
+                    Logger.Success(Language.Get("SuperGrateXMLLoaded"));
                 }
                 else
                 {
-                    Logger.Warning("Config loaded, but is using default values for the missing elements. Fix this warning by opening the \"settings\" menu and clicking \"Save to Disk\".");
+                    Logger.Warning(Language.Get("SuperGrateXMLLoadedButIsUsingDefaults"));
                 }
             }
             catch(Exception e)
             {
-                Logger.Exception(e, "Error when loading the Super Grate config file! SuperGrate.xml");
+                Logger.Exception(e, Language.Get("FailedToLoadConfiguration"));
             }
             if (parameters != null && parameters.Length > 0)
             {
