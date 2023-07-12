@@ -495,10 +495,10 @@ namespace SuperGrate
                 }
                 catch(Exception exc)
                 {
-                    Logger.Exception(exc, "Failed to write log file to disk.");
+                    Logger.Exception(exc, Language.Get("FailedToWriteLogToDisk"));
                 }
             }
-            Logger.Warning("Super Grate is exiting. Attempt: " + CloseAttempts + "/3.");
+            Logger.Warning(Language.Get("ThisProgramIsAttemptingToClose", CloseAttempts.ToString(), "3"));
         }
         /// <summary>
         /// This event will fire when the miAbout menu item is clicked, and will open the about dialog box.
@@ -772,9 +772,9 @@ namespace SuperGrate
                 Logger.Information(Language.Get("GatheringUserProperties"));
                 string storeID = (string)listUsers.SelectedItems[0].Tag;
                 UserRow row = await Misc.GetUserFromStore(new UserRow() {
-                    { ULColumnType.Tag, "Store ID" },
-                    { ULColumnType.SourceNTAccount, "Source User Name" },
-                    { ULColumnType.DestinationNTAccount, "Destination User Name" }
+                    { ULColumnType.Tag, string.Empty },
+                    { ULColumnType.SourceNTAccount, string.Empty },
+                    { ULColumnType.DestinationNTAccount, string.Empty }
                 }, storeID);
                 Running = RunningTask.None;
                 if (row == null)

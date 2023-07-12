@@ -394,7 +394,7 @@ namespace SuperGrate
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FailedToWriteStoreParameter", ID));
+                    Logger.Exception(e, Language.Get("FailedToWriteStoreParameterTo", ID));
                     return false;
                 }
             });

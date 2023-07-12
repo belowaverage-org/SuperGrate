@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using SuperGrate.UserList;
 using System.Threading.Tasks;
 using System;
+using SuperGrate.Classes;
 
 namespace SuperGrate.Controls
 {
@@ -24,16 +25,17 @@ namespace SuperGrate.Controls
             try
             {
                 Enabled = false;
-                Logger.Information("Saving data to migration store...");
-                string Destination = Path.Combine(Config.Settings["MigrationStorePath"], StoreID);
+                Logger.Information(Language.Get("SavingDataToMigrationStore"));
+                string destination = Path.Combine(Config.Settings["MigrationStorePath"], StoreID);
+                string destinationUser = tbDestUser.Text;
                 await Task.Run(() => {
-                    File.WriteAllText(Path.Combine(Destination, "targetntaccount"), tbDestUser.Text);
+                    File.WriteAllText(Path.Combine(destination, "targetntaccount"), destinationUser);
                 });
-                Logger.Success("Done!");
+                Logger.Success(Language.Get("Done"));
             }
             catch(Exception exc)
             {
-                Logger.Exception(exc, "Failed to save to the migration store!");
+                Logger.Exception(exc, Language.Get("FailedToWriteStoreParameterTo", StoreID));
             }
         }
     }

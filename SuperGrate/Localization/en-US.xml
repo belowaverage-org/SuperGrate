@@ -32,7 +32,7 @@
 	<FailedToRunCommandOn>Failed to run command on {0}.</FailedToRunCommandOn>
 	<FailedToWaitForRemoteProcess>Failed to wait for remote process {0} to finish.</FailedToWaitForRemoteProcess>
 	<FailedToWatchRemoteLog>Failed to watch remote log file at {0}.</FailedToWatchRemoteLog>
-	<FailedToWriteStoreParameter>Failed to write store parameter: {0}.</FailedToWriteStoreParameter>
+	<FailedToWriteStoreParameterTo>Failed to write store parameter(s) to {0}.</FailedToWriteStoreParameterTo>
 	<FailedToDownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the SuperGrate.xml accordingly.</FailedToDownloadUSMT>
 	<FailedToTransferUserStateTo>Failed to transfer user state to {0}.</FailedToTransferUserStateTo>
 	<FailedToFindUSMTFolderAt>Failed to find USMT folder at {0}.</FailedToFindUSMTFolderAt>
@@ -52,6 +52,8 @@
 	<FailedToGenerateMUParameter>Failed to generate MU parameter for USMT.</FailedToGenerateMUParameter>
 	<FailedToRetrieveHostnameFrom>Failed to retrieve hostname from {0}.</FailedToRetrieveHostnameFrom>
 	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
+	<FailedToSearchActiveDirectory>Failed to search active directory.</FailedToSearchActiveDirectory>
+	<FailedToWriteLogToDisk>Failed to write log to disk.</FailedToWriteLogToDisk>
 	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
 	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
 	<TransferringUserStateTo>Transferring user state to {0}...</TransferringUserStateTo>
@@ -91,6 +93,7 @@
 	<CanceledListingUsersFrom>Canceled listing users from {0}.</CanceledListingUsersFrom>
 	<UsersListedSuccessfullyFrom>Users listed successfully from {0}.</UsersListedSuccessfullyFrom>
 	<FoundUser>Found user {0}.</FoundUser>
+	<FoundComputers>Found {0} computers.</FoundComputers>
 	<DeletingUserFromTheStore>Deleting {0} from the store...</DeletingUserFromTheStore>
 	<UserSuccessfullyDeletedFromTheStore>User {0} successfully deleted from the store.</UserSuccessfullyDeletedFromTheStore>
 	<CopyingUserDeleteAgentToRemotePC>Copying user delete agent to remote PC {0}...</CopyingUserDeleteAgentToRemotePC>
@@ -106,4 +109,9 @@
 	<SkippedSIDMissingProfile>Skipped SID without a profile directory on the remote PC {0}.</SkippedSIDMissingProfile>
 	<CalculatingProfileSizeFor>Calculating profile size for {0}...</CalculatingProfileSizeFor>
 	<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
+	<SearchingActiveDirectoryFor>Searching active directory for {0}...</SearchingActiveDirectoryFor>
+	<Searching>Searching...</Searching>
+	<Search>Search</Search>
+	<ThisProgramIsAttemptingToClose>This program is attempting to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
+	<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
 </SGLanguage>

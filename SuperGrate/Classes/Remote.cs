@@ -87,28 +87,6 @@ namespace SuperGrate
                     Logger.Exception(e, Language.Get("FailedToWaitForRemoteProcess", ImageName));
                     return false;
                 }
-                /*
-                bool Running = true;
-                Logger.Verbose("Waiting for " + ImageName + " to finish...");
-                try
-                {
-                    while (Running)
-                    {
-                        if (Process.GetProcessesByName(ImageName, Target).Length == 0)
-                        {
-                            Running = false;
-                            break;
-                        }
-                        await Task.Delay(500);
-                    }
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Logger.Exception(e, "Failed to check if " + ImageName + " is still running.");
-                    return false;
-                }
-                */
             });
         }
     }

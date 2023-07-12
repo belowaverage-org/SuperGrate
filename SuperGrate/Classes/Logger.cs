@@ -169,15 +169,23 @@ namespace SuperGrate
         /// <returns>An async task.</returns>
         public static Task WriteLogToFile(Stream fs)
         {
-            return Task.Run(() => {
-                StreamWriter sw = new StreamWriter(fs);
-                foreach(string line in Log)
-                {
-                    sw.WriteLine(line);
-                }
-                sw.Flush();
-                sw.Close();
-            });
+            try
+            {
+                return Task.Run(() => {
+                    StreamWriter sw = new StreamWriter(fs);
+                    foreach (string line in Log)
+                    {
+                        sw.WriteLine(line);
+                    }
+                    sw.Flush();
+                    sw.Close();
+                });
+            } 
+            catch(Exception e)
+            {
+                Exception(e, Language.Get("FailedToWriteLogToDisk"));
+                return null;
+            }
         }
     }
 }

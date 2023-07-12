@@ -1,4 +1,5 @@
-﻿using SuperGrate.Properties;
+﻿using SuperGrate.Classes;
+using SuperGrate.Properties;
 using System;
 using System.Collections.Generic;
 using System.DirectoryServices;
@@ -37,9 +38,9 @@ namespace SuperGrate.Controls
             tbSearch.Text = Regex.Replace(tbSearch.Text, "[()*]", "");
             if (tbSearch.Text.Length == 0) return;
             Main.Form.Running = RunningTask.Unknown;
-            Logger.Information("Searching Active Directory for: " + tbSearch.Text + "...");
+            Logger.Information(Language.Get("SearchingActiveDirectoryFor", tbSearch.Text));
             btnSearch.Enabled = false;
-            btnSearch.Text = "Searching...";
+            btnSearch.Text = Language.Get("Searching");
             lvResults.Items.Clear();
             DS.Filter = "(&(objectClass=computer)(|(name=*" + tbSearch.Text + "*)(description=*" + tbSearch.Text + "*)))";
             List<ListViewItem> lvis = new List<ListViewItem>();
@@ -70,17 +71,17 @@ namespace SuperGrate.Controls
                     lvResults.Focus();
                 }
                 lvResults.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                btnSearch.Text = "Search";
+                btnSearch.Text = Language.Get("Search");
                 btnSearch.Enabled = true;
                 Main.Form.Running = RunningTask.None;
-                Logger.Verbose("Found " + lvis.Count + " results.");
-                Logger.Success("Done.");
+                Logger.Verbose(Language.Get("FoundComputers", lvis.Count.ToString()));
+                Logger.Success(Language.Get("Done"));
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex, "Failed to search Active Directory.");
+                Logger.Exception(ex, Language.Get("FailedToSearchActiveDirectory"));
                 Main.Form.Running = RunningTask.None;
-                btnSearch.Text = "Search";
+                btnSearch.Text = Language.Get("Search");
                 btnSearch.Enabled = true;
             }
         }
