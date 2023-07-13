@@ -96,4 +96,140 @@
         </role>
     </component>
 
+    <!-- This component migrates all user data except specified exclusions -->
+    <component type="Documents" context="User">
+        <displayName>Documents</displayName>
+        <role role="Data">
+            <rules>
+                <include filter="MigXmlHelper.IgnoreIrrelevantLinks()">
+                    <objectSet>
+                        <script>MigXmlHelper.GenerateDocPatterns ("FALSE","TRUE","FALSE")</script>
+                    </objectSet>
+                </include>
+                <exclude filter='MigXmlHelper.IgnoreIrrelevantLinks()'>
+                    <objectSet>
+                        <script>MigXmlHelper.GenerateDocPatterns ("FALSE","FALSE","FALSE")</script>
+                    </objectSet>
+                </exclude>
+                <exclude>
+                    <objectSet>
+            
+                    </objectSet>
+                </exclude>
+                <contentModify script="MigXmlHelper.MergeShellLibraries('TRUE','TRUE')">
+                    <objectSet>
+                        <pattern type="File">*[*.library-ms]</pattern>
+                    </objectSet>
+                </contentModify>
+                <merge script="MigXmlHelper.SourcePriority()">
+                    <objectSet>
+                        <pattern type="File">*[*.library-ms]</pattern>
+                    </objectSet>
+                </merge>
+            </rules>
+        </role>
+    </component>
+
+            <!-- This component migrates all user app data -->
+            <component type="Documents" context="User">
+                <displayName>App Data</displayName>
+                <paths>
+                    <path type="File">%CSIDL_APPDATA%</path>
+                </paths>
+                <role role="Data">
+                    <detects>
+                        <detect>
+                            <condition>MigXmlHelper.DoesObjectExist("File","%CSIDL_APPDATA%")</condition>
+                        </detect>
+                    </detects>
+                    <rules>
+                        <include filter='MigXmlHelper.IgnoreIrrelevantLinks()'>
+                            <objectSet>
+                                <pattern type="File">%CSIDL_APPDATA%\* [*]</pattern>
+                            </objectSet>
+                        </include>
+                        <merge script='MigXmlHelper.DestinationPriority()'>
+                            <objectSet>
+                                <pattern type="File">%CSIDL_APPDATA%\* [*]</pattern>
+                            </objectSet>
+                        </merge>
+                    </rules>
+                </role>
+            </component>
+
+            <!-- This component migrates all user local app data -->
+            <component type="Documents" context="User">
+                <displayName>Local App Data</displayName>
+                <paths>
+                    <path type="File">%CSIDL_LOCAL_APPDATA%</path>
+                </paths>
+                <role role="Data">
+                    <detects>
+                        <detect>
+                            <condition>MigXmlHelper.DoesObjectExist("File","%CSIDL_LOCAL_APPDATA%")</condition>
+                        </detect>
+                    </detects>
+                    <rules>
+                        <include filter='MigXmlHelper.IgnoreIrrelevantLinks()'>
+                            <objectSet>
+                                <pattern type="File">%CSIDL_LOCAL_APPDATA%\* [*]</pattern>
+                            </objectSet>
+                        </include>
+                        <merge script='MigXmlHelper.DestinationPriority()'>
+                            <objectSet>
+                                <pattern type="File">%CSIDL_LOCAL_APPDATA%\* [*]</pattern>
+                            </objectSet>
+                        </merge>
+                    </rules>
+                </role>
+            </component>
+
+            <!-- This component migrates wallpaper settings -->
+            <component type="System" context="User">
+                <displayName>Wallpapers</displayName>
+                <role role="Settings">
+                    <rules>
+                        <include>
+                            <objectSet>
+                                <pattern type="Registry">HKCU\Control Panel\Desktop [Pattern]</pattern>
+                                <pattern type="Registry">HKCU\Control Panel\Desktop [PatternUpgrade]</pattern>
+                                <pattern type="Registry">HKCU\Control Panel\Desktop [TileWallpaper]</pattern>
+                                <pattern type="Registry">HKCU\Control Panel\Desktop [WallPaper]</pattern>
+                                <pattern type="Registry">HKCU\Control Panel\Desktop [WallpaperStyle]</pattern>
+                                <pattern type="Registry">HKCU\Software\Microsoft\Windows\CurrentVersion\Themes [SetupVersion]</pattern>
+                                <pattern type="Registry">HKCU\Software\Microsoft\Internet Explorer\Desktop\General [BackupWallpaper]</pattern>
+                                <pattern type="Registry">HKCU\Software\Microsoft\Internet Explorer\Desktop\General [TileWallpaper]</pattern>
+                                <pattern type="Registry">HKCU\Software\Microsoft\Internet Explorer\Desktop\General [Wallpaper]</pattern>
+                                <pattern type="Registry">HKCU\Software\Microsoft\Internet Explorer\Desktop\General [WallpaperFileTime]</pattern>
+                                <pattern type="Registry">HKCU\Software\Microsoft\Internet Explorer\Desktop\General [WallpaperLocalFileTime]</pattern>
+                                <pattern type="Registry">HKCU\Software\Microsoft\Internet Explorer\Desktop\General [WallpaperStyle]</pattern>
+                                <content filter="MigXmlHelper.ExtractSingleFile(NULL, NULL)">
+                                    <objectSet>
+                                        <pattern type="Registry">HKCU\Control Panel\Desktop [WallPaper]</pattern>
+                                        <pattern type="Registry">HKCU\Software\Microsoft\Internet Explorer\Desktop\General [BackupWallpaper]</pattern>
+                                        <pattern type="Registry">HKCU\Software\Microsoft\Internet Explorer\Desktop\General [Wallpaper]</pattern>
+                                    </objectSet>
+                                </content>
+                            </objectSet>
+                        </include>
+                    </rules>
+                </role>
+            </component>
+
+            <!-- This component migrates wallpaper files -->
+            <component type="Documents" context="System">
+                <displayName>Move JPG and BMP</displayName>
+                <role role="Data">
+                    <rules>
+                        <include>
+                            <objectSet>
+                                <pattern type="File"> %windir% [*.bmp]</pattern>
+                                <pattern type="File"> %windir%\web\wallpaper [*.jpg]</pattern>
+                                <pattern type="File"> %windir%\web\wallpaper [*.bmp]</pattern>
+                            </objectSet>
+                        </include>
+                    </rules>
+                </role>
+            </component>
+
 </migration>
