@@ -29,7 +29,7 @@ namespace SuperGrate.Controls
             string lastComment = "";
             foreach (KeyValuePair<string, string> setting in Config.Settings)
             {
-                if (setting.Key.Contains("Classes/Config/Comment")) lastComment = setting.Value;
+                if (setting.Key.Contains("Class/Config/Comment")) lastComment = setting.Value;
                 if (setting.Key == Setting)
                 {
                     tbValue.Text = setting.Value;

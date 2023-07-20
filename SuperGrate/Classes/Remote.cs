@@ -37,17 +37,17 @@ namespace SuperGrate
                 {
                     if(e.ErrorCode == ManagementStatus.InvalidNamespace)
                     {
-                        Logger.Exception(e, Language.Get("Classes/Remote/Log/Failed/QueryWMI", Target));
+                        Logger.Exception(e, Language.Get("Class/Remote/Log/Failed/QueryWMI", Target));
                     }
                     else
                     {
-                        Logger.Exception(e, Language.Get("Classes/Remote/Log/Failed/RunCommandOn", Target));
+                        Logger.Exception(e, Language.Get("Class/Remote/Log/Failed/RunCommandOn", Target));
                     }
                     return false;
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("Classes/Remote/Log/Failed/RunCommandOn", Target));
+                    Logger.Exception(e, Language.Get("Class/Remote/Log/Failed/RunCommandOn", Target));
                     return false;
                 }
             });
@@ -73,7 +73,7 @@ namespace SuperGrate
             return Task.Run(async () => {
                 try
                 {
-                    Logger.Verbose(Language.Get("Classes/Remote/Log/WaitingForProcessToFinish", ImageName));
+                    Logger.Verbose(Language.Get("Class/Remote/Log/WaitingForProcessToFinish", ImageName));
                     while (true)
                     {
                         ManagementObjectCollection moc = await WMI.Query("SELECT Name FROM Win32_Process WHERE Name = \"" + ImageName + ".exe\"", Target);
@@ -84,7 +84,7 @@ namespace SuperGrate
                 } 
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("Classes/Remote/Log/Failed/WaitForRemoteProcess", ImageName));
+                    Logger.Exception(e, Language.Get("Class/Remote/Log/Failed/WaitForRemoteProcess", ImageName));
                     return false;
                 }
             });

@@ -74,7 +74,7 @@ namespace SuperGrate
                 }
                 catch (Exception)
                 {
-                    Logger.Warning(Language.Get("Classes/Misc/Log/Failed/ResolveSIDViaWMI"));
+                    Logger.Warning(Language.Get("Class/Misc/Log/Failed/ResolveSIDViaWMI"));
                     return ID;
                 }
             }
@@ -89,7 +89,7 @@ namespace SuperGrate
                         return NTAccount;
                     }
                 }
-                Logger.Warning(Language.Get("Classes/Misc/Log/Failed/ResolveStoreGUID"));
+                Logger.Warning(Language.Get("Class/Misc/Log/Failed/ResolveStoreGUID"));
                 return ID;
             }
         }
@@ -107,15 +107,15 @@ namespace SuperGrate
             {
                 UserRow row = new UserRow(TemplateRow);
                 string user = await GetUserByIdentity(SID, Host);
-                Logger.Verbose(Language.Get("Classes/Misc/Log/FoundUser", user));
+                Logger.Verbose(Language.Get("Class/Misc/Log/FoundUser", user));
                 if (bool.TryParse(Config.Settings["HideBuiltInAccounts"], out bool setting) && setting && (Regex.IsMatch(SID, @"^S-1-5-[0-9]+$")))
                 {
-                    Logger.Verbose(Language.Get("Classes/Misc/Log/SkippedSIDUser", SID, user));
+                    Logger.Verbose(Language.Get("Class/Misc/Log/SkippedSIDUser", SID, user));
                     return null;
                 }
                 if (bool.TryParse(Config.Settings["HideUnknownSIDs"], out setting) && setting && SID == user)
                 {
-                    Logger.Verbose(Language.Get("Classes/Misc/Log/SkippedUnknownSID", SID));
+                    Logger.Verbose(Language.Get("Class/Misc/Log/SkippedUnknownSID", SID));
                     return null;
                 }
                 row[ULColumnType.Tag] = SID;
@@ -131,7 +131,7 @@ namespace SuperGrate
                 ) {
                     if (UserObject.GetPropertyValue("LocalPath") == null)
                     {
-                        Logger.Verbose(Language.Get("Classes/Misc/Log/SkippedSIDMissingProfile", SID));
+                        Logger.Verbose(Language.Get("Class/Misc/Log/SkippedSIDMissingProfile", SID));
                         return null;
                     }
                     string profilePath = UserObject.GetPropertyValue("LocalPath").ToString().Replace(@"C:\", GetBestPathToC(Host));
@@ -141,7 +141,7 @@ namespace SuperGrate
                     }
                     if (row.ContainsKey(ULColumnType.Size))
                     {
-                        Logger.Information(Language.Get("Classes/Misc/Log/CalculatingProfileSizeFor", user));
+                        Logger.Information(Language.Get("Class/Misc/Log/CalculatingProfileSizeFor", user));
                         double size = await FileOperations.GetFolderSize(profilePath);
                         row[ULColumnType.Size] = size.ToString();
                     }
@@ -177,7 +177,7 @@ namespace SuperGrate
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("Classes/Misc/Log/Failed/RetrieveHostnameFrom", Host));
+                    Logger.Exception(e, Language.Get("Class/Misc/Log/Failed/RetrieveHostnameFrom", Host));
                     return null;
                 }
             });
@@ -194,7 +194,7 @@ namespace SuperGrate
                 try
                 {
                     UserRows rows = new UserRows();
-                    Logger.Information(Language.Get("Classes/Misc/Log/ListingUsersFrom", Host));
+                    Logger.Information(Language.Get("Class/Misc/Log/ListingUsersFrom", Host));
                     int count = 0;
                     ManagementObjectCollection manObjCol = await WMI.Query("SELECT SID, LocalPath FROM Win32_UserProfile", Host);
                     foreach (ManagementObject mo in manObjCol)
@@ -206,15 +206,15 @@ namespace SuperGrate
                     }
                     if (Main.Canceled)
                     {
-                        Logger.Warning(Language.Get("Classes/Misc/Log/CanceledListingUsersFrom", Host));
+                        Logger.Warning(Language.Get("Class/Misc/Log/CanceledListingUsersFrom", Host));
                         return null;
                     }
-                    Logger.Success(Language.Get("Classes/Misc/Log/UsersListedSuccessfullyFrom", Host));
+                    Logger.Success(Language.Get("Class/Misc/Log/UsersListedSuccessfullyFrom", Host));
                     return rows;
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("Classes/Misc/Log/Failed/ListUsersFrom", Host));
+                    Logger.Exception(e, Language.Get("Class/Misc/Log/Failed/ListUsersFrom", Host));
                     return null;
                 }
             });
@@ -236,13 +236,13 @@ namespace SuperGrate
                     }
                     else
                     {
-                        Logger.Error(Language.Get("Classes/Misc/Log/Failed/ReadSIDFromStoreID"));
+                        Logger.Error(Language.Get("Class/Misc/Log/Failed/ReadSIDFromStoreID"));
                         return null;
                     }
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("Classes/Misc/Log/Failed/ReadSIDFromStoreID"));
+                    Logger.Exception(e, Language.Get("Class/Misc/Log/Failed/ReadSIDFromStoreID"));
                     return null;
                 }
             });
@@ -293,7 +293,7 @@ namespace SuperGrate
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("Classes/Misc/Log/Failed/ReadUserFromStoreID", ID));
+                    Logger.Exception(e, Language.Get("Class/Misc/Log/Failed/ReadUserFromStoreID", ID));
                     return null;
                 }
             });
@@ -309,7 +309,7 @@ namespace SuperGrate
                 string StorePath = Config.Settings["MigrationStorePath"];
                 try
                 { 
-                    Logger.Information(Language.Get("Classes/Misc/Log/ListingUsersFrom", StorePath));
+                    Logger.Information(Language.Get("Class/Misc/Log/ListingUsersFrom", StorePath));
                     UserRows rows = new UserRows();
                     int count = 0;
                     DirectoryInfo[] directories = new DirectoryInfo(StorePath).GetDirectories();
@@ -318,19 +318,19 @@ namespace SuperGrate
                         UserRow row = await GetUserFromStore(ULControl.CurrentHeaderRow, directory.Name);
                         if (row == null)
                         {
-                            Logger.Warning(Language.Get("Classes/Misc/Log/Failed/ReadUserFromStoreID", directory.Name));
+                            Logger.Warning(Language.Get("Class/Misc/Log/Failed/ReadUserFromStoreID", directory.Name));
                             continue;
                         }
                         rows.Add(row);
                         Logger.UpdateProgress((int)(((float)++count / directories.Length) * 100));
-                        Logger.Verbose(Language.Get("Classes/Misc/Log/FoundUser", row[ULColumnType.SourceNTAccount]));
+                        Logger.Verbose(Language.Get("Class/Misc/Log/FoundUser", row[ULColumnType.SourceNTAccount]));
                     }
-                    Logger.Success(Language.Get("Classes/Misc/Log/UsersListedSuccessfullyFrom", StorePath));
+                    Logger.Success(Language.Get("Class/Misc/Log/UsersListedSuccessfullyFrom", StorePath));
                     return rows;
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("Classes/Misc/Log/Failed/ListUsersFrom", StorePath));
+                    Logger.Exception(e, Language.Get("Class/Misc/Log/Failed/ListUsersFrom", StorePath));
                     return null;
                 }
             });
@@ -347,15 +347,15 @@ namespace SuperGrate
                 foreach (string ID in IDs)
                 {
                     string name = await GetUserByIdentity(ID);
-                    Logger.Information(Language.Get("Classes/Misc/Log/DeletingUserFromTheStore", name));
+                    Logger.Information(Language.Get("Class/Misc/Log/DeletingUserFromTheStore", name));
                     try
                     {
                         Directory.Delete(Path.Combine(Config.Settings["MigrationStorePath"], ID), true);
-                        Logger.Success(Language.Get("Classes/Misc/Log/UserSuccessfullyDeletedFromTheStore", name));
+                        Logger.Success(Language.Get("Class/Misc/Log/UserSuccessfullyDeletedFromTheStore", name));
                     }
                     catch (Exception e)
                     {
-                        Logger.Exception(e, Language.Get("Classes/Misc/Log/Failed/DeleteUserFromTheStore", name));
+                        Logger.Exception(e, Language.Get("Class/Misc/Log/Failed/DeleteUserFromTheStore", name));
                     }
                 }
             });
@@ -373,7 +373,7 @@ namespace SuperGrate
             {
                 try
                 {
-                    Logger.Information(Language.Get("Classes/Misc/Log/CopyingUserDeleteAgentToRemotePC", Host));
+                    Logger.Information(Language.Get("Class/Misc/Log/CopyingUserDeleteAgentToRemotePC", Host));
                     string exePath = Path.Combine(GetBestPathToC(Host), @"ProgramData\SuperGratePD.exe");
                     FileStream SuperGratePD = File.OpenWrite(exePath);
                     SuperGratePD.Write(
@@ -387,7 +387,7 @@ namespace SuperGrate
                     {
                         if (ShouldCancelRemoteProfileDelete) break;
                         string name = await GetUserByIdentity(SID, Host);
-                        Logger.Information(Language.Get("Classes/Misc/Log/DeletingUserFrom", name, Host));
+                        Logger.Information(Language.Get("Class/Misc/Log/DeletingUserFrom", name, Host));
                         await Remote.StartProcess(
                             Host,
                             @"C:\ProgramData\SuperGratePD.exe " + SID,
@@ -396,13 +396,13 @@ namespace SuperGrate
                         Logger.UpdateProgress((int)((++count - 0.5) / SIDs.Length * 100));
                         await Remote.WaitForProcessExit(Host, "SuperGratePD");
                     }
-                    Logger.Information(Language.Get("Classes/Misc/Log/RemovingUserDeleteAgentFromRemotePC", Host));
+                    Logger.Information(Language.Get("Class/Misc/Log/RemovingUserDeleteAgentFromRemotePC", Host));
                     File.Delete(exePath);
                     Logger.Success(Language.Get("Done"));
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("Classes/Misc/Log/Failed/DeleteUserFrom", Host));
+                    Logger.Exception(e, Language.Get("Class/Misc/Log/Failed/DeleteUserFrom", Host));
                 }
             });
         }
@@ -413,14 +413,14 @@ namespace SuperGrate
         public static async void CancelRemoteProfileDelete(string Host)
         {
             ShouldCancelRemoteProfileDelete = true;
-            Logger.Information(Language.Get("Classes/Misc/Log/StoppingUserDeleteAgentOnRemotePC", Host));
+            Logger.Information(Language.Get("Class/Misc/Log/StoppingUserDeleteAgentOnRemotePC", Host));
             if (await Remote.KillProcess(Host, "SuperGratePD.exe"))
             {
-                Logger.Success(Language.Get("Classes/Misc/Log/UserDeleteAgentHasBeenStoppedOn", Host));
+                Logger.Success(Language.Get("Class/Misc/Log/UserDeleteAgentHasBeenStoppedOn", Host));
             }
             else
             {
-                Logger.Error(Language.Get("Classes/Misc/Log/Failed/StopUserDeleteAgentOn", Host));
+                Logger.Error(Language.Get("Class/Misc/Log/Failed/StopUserDeleteAgentOn", Host));
             }
         }
         /// <summary>
@@ -430,7 +430,7 @@ namespace SuperGrate
         /// <returns>CPU architecture.</returns>
         public static Task<OSArchitecture> GetRemoteArch(string Host)
         {
-            Logger.Information(Language.Get("Classes/Misc/Log/GatheringOSArchitectureOn", Host));
+            Logger.Information(Language.Get("Class/Misc/Log/GatheringOSArchitectureOn", Host));
             return Task.Run(async () => {
                 try
                 {
@@ -439,13 +439,13 @@ namespace SuperGrate
                         string rawArch = (string)manObj["OSArchitecture"];
                         OSArchitecture arch = OSArchitecture.X86;
                         if (rawArch.Contains("64")) arch = OSArchitecture.X64;
-                        Logger.Information(Language.Get("Classes/Misc/Log/TheOSArchitectureOnIs", Host, arch.ToString()));
+                        Logger.Information(Language.Get("Class/Misc/Log/TheOSArchitectureOnIs", Host, arch.ToString()));
                         return arch;
                     }
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("Classes/Misc/Log/Failed/GatherOSArchitectureOn", Host));
+                    Logger.Exception(e, Language.Get("Class/Misc/Log/Failed/GatherOSArchitectureOn", Host));
                 }
                 return OSArchitecture.Unknown;
             });

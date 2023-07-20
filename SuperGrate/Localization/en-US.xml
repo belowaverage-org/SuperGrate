@@ -47,19 +47,7 @@
 	<CleaningUp>Cleaning up...</CleaningUp>
 	<DecompressingUSMT>Decompressing USMT...</DecompressingUSMT>
 	
-	<UserListSecurityIdentifier>Security identifier</UserListSecurityIdentifier>
-	<UserListUserName>User name</UserListUserName>
-	<UserListLastModified>Last modified</UserListLastModified>
-	<UserListFirstCreated>First created</UserListFirstCreated>
-	<UserListProfilePath>Profile path</UserListProfilePath>
-	<UserListSize>Size</UserListSize>
-	<UserListStoreIdentifier>Store identifier</UserListStoreIdentifier>
-	<UserListSourceUserName>Source user name</UserListSourceUserName>
-	<UserListDestinationUserName>Destination user name</UserListDestinationUserName>
-	<UserListImportedBy>Imported by</UserListImportedBy>
-	<UserListImportedOn>Imported on</UserListImportedOn>
-	<UserListExportedBy>Exported by</UserListExportedBy>
-	<UserListExportedOn>Exported on</UserListExportedOn>
+	
 	<ApplyingUserStateOn>Applying user state {0} on {1}....</ApplyingUserStateOn>
 	<CapturingUserStateOn>Capturing user state {0} on {1}....</CapturingUserStateOn>
 	<UploadingUSMTTo>Uploading USMT to {0}...</UploadingUSMTTo>
@@ -77,7 +65,7 @@
 	<Search>Search</Search>
 	<ThisProgramIsAttemptingToClose>This program is attempting to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
 	<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
-	<Classes>
+	<Class>
 		<Config>
 			<Log>
 				<GeneratingXML>Generating SuperGrate.xml...</GeneratingXML>
@@ -187,5 +175,22 @@
 				</Failed>
 			</Log>
 		</Remote>
-	</Classes>
+		<UserList>
+			<Column>
+				<SecurityIdentifier>Security identifier</SecurityIdentifier>
+				<UserName>User name</UserName>
+				<LastModified>Last modified</LastModified>
+				<FirstCreated>First created</FirstCreated>
+				<ProfilePath>Profile path</ProfilePath>
+				<Size>Size</Size>
+				<StoreIdentifier>Store identifier</StoreIdentifier>
+				<SourceUserName>Source user name</SourceUserName>
+				<DestinationUserName>Destination user name</DestinationUserName>
+				<ImportedBy>Imported by</ImportedBy>
+				<ImportedOn>Imported on</ImportedOn>
+				<ExportedBy>Exported by</ExportedBy>
+				<ExportedOn>Exported on</ExportedOn>
+			</Column>
+		</UserList>
+	</Class>
 </SGLanguage>

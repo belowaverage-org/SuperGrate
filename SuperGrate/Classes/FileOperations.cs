@@ -112,7 +112,7 @@ namespace SuperGrate.IO
                 }
                 catch (Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FileOperations/Log/Failed/GetFolderSize"));
+                    Logger.Exception(e, Language.Get("Class/FileOperations/Log/Failed/GetFolderSize"));
                     return 0;
                 }
             });
