@@ -22,8 +22,6 @@
 	<Store>store</Store>
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
-	<FailedToResolveSIDViaWMI>Failed to resolve an SID via WMI.</FailedToResolveSIDViaWMI>
-	<FailedToResolveStoreGUID>Failed to resolve Store GUID.</FailedToResolveStoreGUID>
 	<FailedToQueryWMI>Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</FailedToQueryWMI>
 	<FailedToRunCommandOn>Failed to run command on {0}.</FailedToRunCommandOn>
 	<FailedToWaitForRemoteProcess>Failed to wait for remote process {0} to finish.</FailedToWaitForRemoteProcess>
@@ -36,17 +34,9 @@
 	<FailedToStopUSMTOn>Failed to stop USMT on {0}.</FailedToStopUSMTOn>
 	<FailedToDeleteUSMTOn>Failed to delete USMT on {0}.</FailedToDeleteUSMTOn>
 	<FailedToDeleteUSMTAttempt>Failed to delete USMT, the process may still be running, trying periodically: Attempt {0}/{1}.</FailedToDeleteUSMTAttempt>
-	<FailedToListUsersFrom>Failed to list users from {0}.</FailedToListUsersFrom>
 	<FailedToConnectToViaWMI>Failed to connect to {0} via WMI. Make sure the remote PC is online.</FailedToConnectToViaWMI>
 	<FailedToConnectToViaWMIAccessDenied>Failed to connect to {0} via WMI because access was denied. Make sure your user account has administrative access to the remote PC.</FailedToConnectToViaWMIAccessDenied>
-	<FailedToReadSIDFromStoreID>Failed to read SID from store ID {0}.</FailedToReadSIDFromStoreID>
-	<FailedToReadUserFromStoreID>Failed to read user from store ID {0}.</FailedToReadUserFromStoreID>
-	<FailedToDeleteUserFromTheStore>Failed to delete {0} from the store.</FailedToDeleteUserFromTheStore>
-	<FailedToDeleteUserFrom>Failed to delete {0} from {1}.</FailedToDeleteUserFrom>
-	<FailedToStopUserDeleteAgentOn>Failed to stop user delete agent on {0}.</FailedToStopUserDeleteAgentOn>
-	<FailedToGatherOSArchitectureOn>Failed to gather OS architecture on {0}.</FailedToGatherOSArchitectureOn>
 	<FailedToGenerateMUParameter>Failed to generate MU parameter for USMT.</FailedToGenerateMUParameter>
-	<FailedToRetrieveHostnameFrom>Failed to retrieve hostname from {0}.</FailedToRetrieveHostnameFrom>
 	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
 	<FailedToSearchActiveDirectory>Failed to search active directory.</FailedToSearchActiveDirectory>
 	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
@@ -79,25 +69,8 @@
 	<StoppingUSMTProcessOn>Stopping USMT process on {0}.</StoppingUSMTProcessOn>
 	<USMTProcessStoppedOn>USMT process stopped on {0}.</USMTProcessStoppedOn>
 	<RemovingUSMTFrom>Removing USMT from {0}...</RemovingUSMTFrom>
-	<ListingUsersFrom>Listing users from {0}...</ListingUsersFrom>
-	<CanceledListingUsersFrom>Canceled listing users from {0}.</CanceledListingUsersFrom>
-	<UsersListedSuccessfullyFrom>Users listed successfully from {0}.</UsersListedSuccessfullyFrom>
-	<FoundUser>Found user {0}.</FoundUser>
 	<FoundComputers>Found {0} computers.</FoundComputers>
-	<DeletingUserFromTheStore>Deleting {0} from the store...</DeletingUserFromTheStore>
-	<UserSuccessfullyDeletedFromTheStore>User {0} successfully deleted from the store.</UserSuccessfullyDeletedFromTheStore>
-	<CopyingUserDeleteAgentToRemotePC>Copying user delete agent to remote PC {0}...</CopyingUserDeleteAgentToRemotePC>
-	<RemovingUserDeleteAgentFromRemotePC>Removing user delete agent from remote PC {0}...</RemovingUserDeleteAgentFromRemotePC>
-	<DeletingUserFrom>Deleting {0} from {1}...</DeletingUserFrom>
-	<StoppingUserDeleteAgentOnRemotePC>Stopping user delete agent on {0}...</StoppingUserDeleteAgentOnRemotePC>
-	<UserDeleteAgentHasBeenStoppedOn>User delete agent has been stopped on {0}.</UserDeleteAgentHasBeenStoppedOn>
-	<GatheringOSArchitectureOn>Gathering OS architecture on {0}...</GatheringOSArchitectureOn>
-	<TheOSArchitectureOnIs>The OS architecture on {0} is {1}.</TheOSArchitectureOnIs>
 	<UserWillBeAppliedAs>User {0} will be applied as {1}.</UserWillBeAppliedAs>
-	<SkippedSIDUser>Skipped {0} {1}.</SkippedSIDUser>
-	<SkippedUnknownSID>Skipped unknown SID {0}.</SkippedUnknownSID>
-	<SkippedSIDMissingProfile>Skipped SID without a profile directory on the remote PC {0}.</SkippedSIDMissingProfile>
-	<CalculatingProfileSizeFor>Calculating profile size for {0}...</CalculatingProfileSizeFor>
 	<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
 	<SearchingActiveDirectoryFor>Searching active directory for {0}...</SearchingActiveDirectoryFor>
 	<Searching>Searching...</Searching>
@@ -171,5 +144,38 @@
 				</Failed>
 			</Log>
 		</Logger>
+		<Misc>
+			<Log>
+				<FoundUser>Found user {0}.</FoundUser>
+				<SkippedSIDUser>Skipped {0} {1}.</SkippedSIDUser>
+				<SkippedUnknownSID>Skipped unknown SID {0}.</SkippedUnknownSID>
+				<SkippedSIDMissingProfile>Skipped SID without a profile directory on the remote PC {0}.</SkippedSIDMissingProfile>
+				<CalculatingProfileSizeFor>Calculating profile size for {0}...</CalculatingProfileSizeFor>
+				<ListingUsersFrom>Listing users from {0}...</ListingUsersFrom>
+				<CanceledListingUsersFrom>Canceled listing users from {0}.</CanceledListingUsersFrom>
+				<UsersListedSuccessfullyFrom>Users listed successfully from {0}.</UsersListedSuccessfullyFrom>
+				<DeletingUserFromTheStore>Deleting {0} from the store...</DeletingUserFromTheStore>
+				<DeletingUserFrom>Deleting {0} from {1}...</DeletingUserFrom>
+				<UserSuccessfullyDeletedFromTheStore>User {0} successfully deleted from the store.</UserSuccessfullyDeletedFromTheStore>
+				<CopyingUserDeleteAgentToRemotePC>Copying user delete agent to remote PC {0}...</CopyingUserDeleteAgentToRemotePC>
+				<RemovingUserDeleteAgentFromRemotePC>Removing user delete agent from remote PC {0}...</RemovingUserDeleteAgentFromRemotePC>
+				<StoppingUserDeleteAgentOnRemotePC>Stopping user delete agent on {0}...</StoppingUserDeleteAgentOnRemotePC>
+				<UserDeleteAgentHasBeenStoppedOn>User delete agent has been stopped on {0}.</UserDeleteAgentHasBeenStoppedOn>
+				<GatheringOSArchitectureOn>Gathering OS architecture on {0}...</GatheringOSArchitectureOn>
+				<TheOSArchitectureOnIs>The OS architecture on {0} is {1}.</TheOSArchitectureOnIs>
+				<Failed>
+					<ResolveSIDViaWMI>Failed to resolve an SID via WMI.</ResolveSIDViaWMI>
+					<ResolveStoreGUID>Failed to resolve Store GUID.</ResolveStoreGUID>
+					<RetrieveHostnameFrom>Failed to retrieve hostname from {0}.</RetrieveHostnameFrom>
+					<ListUsersFrom>Failed to list users from {0}.</ListUsersFrom>
+					<ReadSIDFromStoreID>Failed to read SID from store ID {0}.</ReadSIDFromStoreID>
+					<ReadUserFromStoreID>Failed to read user from store ID {0}.</ReadUserFromStoreID>
+					<DeleteUserFromTheStore>Failed to delete {0} from the store.</DeleteUserFromTheStore>
+					<DeleteUserFrom>Failed to delete {0} from {1}.</DeleteUserFrom>
+					<StopUserDeleteAgentOn>Failed to stop user delete agent on {0}.</StopUserDeleteAgentOn>
+					<GatherOSArchitectureOn>Failed to gather OS architecture on {0}.</GatherOSArchitectureOn>
+				</Failed>
+			</Log>
+		</Misc>
 	</Classes>
 </SGLanguage>
