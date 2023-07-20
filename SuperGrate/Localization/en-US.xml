@@ -22,9 +22,6 @@
 	<Store>store</Store>
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
-	
-	
-	
 	<FailedToWatchRemoteLog>Failed to watch remote log file at {0}.</FailedToWatchRemoteLog>
 	<FailedToWriteStoreParameterTo>Failed to write store parameter(s) to {0}.</FailedToWriteStoreParameterTo>
 	<FailedToDownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the SuperGrate.xml accordingly.</FailedToDownloadUSMT>
@@ -46,8 +43,6 @@
 	<USMTFinished>USMT Finished.</USMTFinished>
 	<CleaningUp>Cleaning up...</CleaningUp>
 	<DecompressingUSMT>Decompressing USMT...</DecompressingUSMT>
-	
-	
 	<ApplyingUserStateOn>Applying user state {0} on {1}....</ApplyingUserStateOn>
 	<CapturingUserStateOn>Capturing user state {0} on {1}....</CapturingUserStateOn>
 	<UploadingUSMTTo>Uploading USMT to {0}...</UploadingUSMTTo>
@@ -190,6 +185,8 @@
 				<ImportedOn>Imported on</ImportedOn>
 				<ExportedBy>Exported by</ExportedBy>
 				<ExportedOn>Exported on</ExportedOn>
+				<SourceComputer>{SourceComputer}</SourceComputer>
+				<DestinationComputer>{DestinationComputer}</DestinationComputer>
 			</Column>
 		</UserList>
 	</Class>
