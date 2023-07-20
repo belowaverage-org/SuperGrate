@@ -22,9 +22,9 @@
 	<Store>store</Store>
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
-	<FailedToQueryWMI>Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</FailedToQueryWMI>
-	<FailedToRunCommandOn>Failed to run command on {0}.</FailedToRunCommandOn>
-	<FailedToWaitForRemoteProcess>Failed to wait for remote process {0} to finish.</FailedToWaitForRemoteProcess>
+	
+	
+	
 	<FailedToWatchRemoteLog>Failed to watch remote log file at {0}.</FailedToWatchRemoteLog>
 	<FailedToWriteStoreParameterTo>Failed to write store parameter(s) to {0}.</FailedToWriteStoreParameterTo>
 	<FailedToDownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the SuperGrate.xml accordingly.</FailedToDownloadUSMT>
@@ -46,7 +46,7 @@
 	<USMTFinished>USMT Finished.</USMTFinished>
 	<CleaningUp>Cleaning up...</CleaningUp>
 	<DecompressingUSMT>Decompressing USMT...</DecompressingUSMT>
-	<WaitingForProcessToFinish>Waiting for {0} to finish...</WaitingForProcessToFinish>
+	
 	<UserListSecurityIdentifier>Security identifier</UserListSecurityIdentifier>
 	<UserListUserName>User name</UserListUserName>
 	<UserListLastModified>Last modified</UserListLastModified>
@@ -177,5 +177,15 @@
 				</Failed>
 			</Log>
 		</Misc>
+		<Remote>
+			<Log>
+				<WaitingForProcessToFinish>Waiting for {0} to finish...</WaitingForProcessToFinish>
+				<Failed>
+					<QueryWMI>Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
+					<RunCommandOn>Failed to run command on {0}.</RunCommandOn>
+					<WaitForRemoteProcess>Failed to wait for remote process {0} to finish.</WaitForRemoteProcess>
+				</Failed>
+			</Log>
+		</Remote>
 	</Classes>
 </SGLanguage>
