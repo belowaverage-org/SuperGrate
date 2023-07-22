@@ -86,12 +86,12 @@ namespace SuperGrate
                         Failed = !await DownloadFromStore(ID);
                         SID = await Misc.GetSIDFromStore(ID);
                         configParams += await BuildLoadStateMUParameter(ID);
-                        Logger.Information(Language.Get("ApplyingUserStateOn", await Misc.GetUserByIdentity(ID), CurrentTarget));
+                        Logger.Information(Language.Get("Class/USMT/Log/ApplyingUserStateOn", await Misc.GetUserByIdentity(ID), CurrentTarget));
                         if (Canceled || Failed || SID == null) break;
                     }
                     if (Mode == USMTMode.ScanState)
                     {
-                        Logger.Information(Language.Get("CapturingUserStateOn", await Misc.GetUserByIdentity(ID, CurrentTarget), CurrentTarget));
+                        Logger.Information(Language.Get("Class/USMT/Log/CapturingUserStateOn", await Misc.GetUserByIdentity(ID, CurrentTarget), CurrentTarget));
                         SID = ID;
                     }
                     Failed = !await Remote.StartProcess(CurrentTarget,
@@ -141,12 +141,12 @@ namespace SuperGrate
         public static Task<bool> CopyUSMT()
         {
             return Task.Run(async () => {
-                Logger.Information(Language.Get("UploadingUSMTTo", CurrentTarget));
+                Logger.Information(Language.Get("Class/USMT/Log/UploadingUSMTTo", CurrentTarget));
                 try
                 {
                     if (!Directory.Exists(USMTPath))
                     {
-                        Logger.Warning(Language.Get("FailedToFindUSMTFolderAt", USMTPath));
+                        Logger.Warning(Language.Get("Class/USMT/Log/Failed/FindUSMTFolderAt", USMTPath));
                         if(!await DownloadUSMTFromWeb())
                         {
                             return false;
@@ -156,18 +156,18 @@ namespace SuperGrate
                         USMTPath,
                         PayloadPathTarget
                     )) {
-                        Logger.Success(Language.Get("USMTUploadedSuccessfully"));
+                        Logger.Success(Language.Get("Class/USMT/Log/USMTUploadedSuccessfully"));
                         return true;
                     }
                     else
                     {
-                        Logger.Warning(Language.Get("USMTUploadCanceled"));
+                        Logger.Warning(Language.Get("Class/USMT/Log/USMTUploadCanceled"));
                         return false;
                     }
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FailedToUploadUSMTTo", CurrentTarget));
+                    Logger.Exception(e, Language.Get("Class/USMT/Log/Failed/UploadUSMTTo", CurrentTarget));
                     return false;
                 }
             });
@@ -178,16 +178,16 @@ namespace SuperGrate
         public static async void Cancel()
         {
             Canceled = true;
-            Logger.Information(Language.Get("StoppingUSMTProcessOn", CurrentTarget));
+            Logger.Information(Language.Get("Class/USMT/Log/StoppingUSMTProcessOn", CurrentTarget));
             await Remote.KillProcess(CurrentTarget, "loadstate.exe");
             await Remote.KillProcess(CurrentTarget, "scanstate.exe");
             if(await Remote.KillProcess(CurrentTarget, "mighost.exe"))
             {
-                Logger.Success(Language.Get("USMTProcessStoppedOn", CurrentTarget));
+                Logger.Success(Language.Get("Class/USMT/Log/USMTProcessStoppedOn", CurrentTarget));
             }
             else
             {
-                Logger.Error(Language.Get("FailedToStopUSMTOn", CurrentTarget));
+                Logger.Error(Language.Get("Class/USMT/Log/Failed/StopUSMTOn", CurrentTarget));
             }
         }
         /// <summary>
@@ -199,7 +199,7 @@ namespace SuperGrate
             return Task.Run(async () => {
                 int tries = 0;
                 bool deleted = false;
-                Logger.Information(Language.Get("RemovingUSMTFrom", CurrentTarget));
+                Logger.Information(Language.Get("Class/USMT/Log/RemovingUSMTFrom", CurrentTarget));
                 while (tries <= 30)
                 {
                     try
@@ -214,7 +214,7 @@ namespace SuperGrate
                         Logger.Verbose(e.StackTrace);
                         if (tries % 5 == 0)
                         {
-                            Logger.Warning(Language.Get("FailedToDeleteUSMT", tries.ToString(), (30).ToString()));
+                            Logger.Warning(Language.Get("Class/USMT/Log/Failed/DeleteUSMTAttempt", tries.ToString(), (30).ToString()));
                         }
                         tries++;
                         await Task.Delay(1000);
@@ -222,12 +222,12 @@ namespace SuperGrate
                 }
                 if(deleted)
                 {
-                    Logger.Success(Language.Get("USMTRemovedSuccessfully"));
+                    Logger.Success(Language.Get("Class/USMT/Log/USMTRemovedSuccessfully"));
                     return true;
                 }
                 else
                 {
-                    Logger.Error(Language.Get("FailedToDeleteUSMTOn", CurrentTarget));
+                    Logger.Error(Language.Get("Class/USMT/Log/Failed/DeleteUSMTOn", CurrentTarget));
                     return false;
                 }
             });
@@ -255,13 +255,13 @@ namespace SuperGrate
                     }
                     if (srcUser != "" && dstUser != "")
                     {
-                        Logger.Information(Language.Get("UserWillBeAppliedAs", srcUser, dstUser));
+                        Logger.Information(Language.Get("Class/USMT/Log/UserWillBeAppliedAs", srcUser, dstUser));
                         return " /mu:" + srcUser + ":" + dstUser;
                     }
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FailedToGenerateMUParameter"));
+                    Logger.Exception(e, Language.Get("Class/USMT/Log/Failed/GenerateMUParameter"));
                 }
                 return parameter;
             });
@@ -277,7 +277,7 @@ namespace SuperGrate
             string lGUID = Guid.NewGuid().ToString();
             GUID = lGUID;
             return Task.Run(async () => {
-                Logger.Information(Language.Get("TransferringUserStateTo", Language.Get("Store")));
+                Logger.Information(Language.Get("Class/USMT/Log/TransferringUserStateTo", Language.Get("Store")));
                 string Destination = Path.Combine(Config.Settings["MigrationStorePath"], lGUID);
                 try
                 {
@@ -291,7 +291,7 @@ namespace SuperGrate
                         Path.Combine(Path.Combine(PayloadPathTarget, @"USMT\USMT.MIG")),
                         Path.Combine(Destination, "data")
                     );
-                    Logger.Success(Language.Get("UserStateSuccessfullyTransferred"));
+                    Logger.Success(Language.Get("Class/USMT/Log/UserStateSuccessfullyTransferred"));
                     return true;
                 }
                 catch(Exception e)
@@ -300,7 +300,7 @@ namespace SuperGrate
                     {
                         Directory.Delete(Destination, true);
                     }
-                    Logger.Exception(e, Language.Get("FailedToTransferUserStateTo", Language.Get("Store")));
+                    Logger.Exception(e, Language.Get("Class/USMT/Log/Failed/TransferUserStateTo", Language.Get("Store")));
                     return false;
                 }
             });
@@ -313,7 +313,7 @@ namespace SuperGrate
         private static Task<bool> DownloadFromStore(string GUID)
         {
             return Task.Run(() => {
-                Logger.Information(Language.Get("TransferringUserStateTo", Main.DestinationComputer));
+                Logger.Information(Language.Get("Class/USMT/Log/TransferringUserStateTo", Main.DestinationComputer));
                 string Destination = Path.Combine(PayloadPathTarget, "USMT");
                 try
                 {
@@ -322,12 +322,12 @@ namespace SuperGrate
                         Path.Combine(Config.Settings["MigrationStorePath"], GUID, "data"),
                         Path.Combine(Destination, "USMT.MIG")
                     );
-                    Logger.Success(Language.Get("UserStateSuccessfullyTransferred"));
+                    Logger.Success(Language.Get("Class/USMT/Log/UserStateSuccessfullyTransferred"));
                     return true;
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FailedToTransferUserStateTo", Main.DestinationComputer));
+                    Logger.Exception(e, Language.Get("Class/USMT/Log/Failed/TransferUserStateTo", Main.DestinationComputer));
                     return false;
                 }
             });
@@ -342,7 +342,7 @@ namespace SuperGrate
                 try
                 {
                     bool success = true;
-                    Logger.Information(Language.Get("DownloadingUSMTFromTheWeb", DetectedArch.ToString()));
+                    Logger.Information(Language.Get("Class/USMT/Log/DownloadingUSMTFromTheWeb", DetectedArch.ToString()));
                     if (!Directory.Exists(USMTPath))
                     {
                         Directory.CreateDirectory(USMTPath);
@@ -351,27 +351,27 @@ namespace SuperGrate
                     if (DetectedArch == Misc.OSArchitecture.X64)
                     {
                         success = await new Download(Constants.USMTx64URL, dlPath).Start();
-                        if (!success) throw new Exception(Language.Get("FailedToDownload", Constants.USMTx64URL));
+                        if (!success) throw new Exception(Language.Get("Class/Download/Log/Failed/Download", Constants.USMTx64URL));
                     }
                     else if (DetectedArch == Misc.OSArchitecture.X86)
                     {
                         success = await new Download(Constants.USMTx86URL, dlPath).Start();
-                        if (!success) throw new Exception(Language.Get("FailedToDownload", Constants.USMTx86URL));
+                        if (!success) throw new Exception(Language.Get("Class/Download/Log/Failed/Download", Constants.USMTx86URL));
                     }
                     else
                     {
-                        throw new Exception(Language.Get("OSArchitectureIsNotSupported", DetectedArch.ToString()));
+                        throw new Exception(Language.Get("Class/USMT/Log/Failed/OSArchitectureIsNotSupported", DetectedArch.ToString()));
                     }
-                    Logger.Information(Language.Get("DecompressingUSMT"));
+                    Logger.Information(Language.Get("Class/USMT/Log/DecompressingUSMT"));
                     ZipFile.ExtractToDirectory(dlPath, USMTPath);
-                    Logger.Information(Language.Get("CleaningUp"));
+                    Logger.Information(Language.Get("Class/USMT/Log/CleaningUpUSMT"));
                     File.Delete(dlPath);
                     return true;
                 }
                 catch(Exception e)
                 {
                     Directory.Delete(USMTPath, true);
-                    Logger.Exception(e, Language.Get("FailedToDownloadUSMT"));
+                    Logger.Exception(e, Language.Get("Class/USMT/Log/Failed/DownloadUSMT"));
                     return false;
                 }
             });
@@ -394,7 +394,7 @@ namespace SuperGrate
                 }
                 catch(Exception e)
                 {
-                    Logger.Exception(e, Language.Get("FailedToWriteStoreParameterTo", ID));
+                    Logger.Exception(e, Language.Get("Class/USMT/Log/Failed/WriteStoreParameterTo", ID));
                     return false;
                 }
             });
@@ -411,7 +411,7 @@ namespace SuperGrate
             Running = false;
             if (result)
             {
-                Logger.Success(Language.Get("USMTFinished"));
+                Logger.Success(Language.Get("Class/USMT/Log/USMTFinished"));
             }
             await Task.Delay(3000);
             return result;
@@ -465,7 +465,7 @@ namespace SuperGrate
             }
             catch(Exception e)
             {
-                Logger.Exception(e, Language.Get("FailedToWatchRemoteLog", LogFile));
+                Logger.Exception(e, Language.Get("Class/USMT/Log/Failed/WatchRemoteLog", LogFile));
             }
         }
     }

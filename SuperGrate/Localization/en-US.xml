@@ -22,38 +22,38 @@
 	<Store>store</Store>
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
-	<FailedToWatchRemoteLog>Failed to watch remote log file at {0}.</FailedToWatchRemoteLog>
-	<FailedToWriteStoreParameterTo>Failed to write store parameter(s) to {0}.</FailedToWriteStoreParameterTo>
-	<FailedToDownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the SuperGrate.xml accordingly.</FailedToDownloadUSMT>
-	<FailedToTransferUserStateTo>Failed to transfer user state to {0}.</FailedToTransferUserStateTo>
-	<FailedToFindUSMTFolderAt>Failed to find USMT folder at {0}.</FailedToFindUSMTFolderAt>
+	
+	
+	
+	
+	
 	<FailedToUploadUSMTTo>Failed to upload USMT to {0}.</FailedToUploadUSMTTo>
-	<FailedToStopUSMTOn>Failed to stop USMT on {0}.</FailedToStopUSMTOn>
-	<FailedToDeleteUSMTOn>Failed to delete USMT on {0}.</FailedToDeleteUSMTOn>
-	<FailedToDeleteUSMTAttempt>Failed to delete USMT, the process may still be running, trying periodically: Attempt {0}/{1}.</FailedToDeleteUSMTAttempt>
+	
+	
+	
 	<FailedToConnectToViaWMI>Failed to connect to {0} via WMI. Make sure the remote PC is online.</FailedToConnectToViaWMI>
 	<FailedToConnectToViaWMIAccessDenied>Failed to connect to {0} via WMI because access was denied. Make sure your user account has administrative access to the remote PC.</FailedToConnectToViaWMIAccessDenied>
-	<FailedToGenerateMUParameter>Failed to generate MU parameter for USMT.</FailedToGenerateMUParameter>
+	
 	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
 	<FailedToSearchActiveDirectory>Failed to search active directory.</FailedToSearchActiveDirectory>
-	<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
-	<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
-	<TransferringUserStateTo>Transferring user state to {0}...</TransferringUserStateTo>
-	<OSArchitectureIsNotSupported>The OS architecture {0} is not supported.</OSArchitectureIsNotSupported>
-	<USMTFinished>USMT Finished.</USMTFinished>
-	<CleaningUp>Cleaning up...</CleaningUp>
-	<DecompressingUSMT>Decompressing USMT...</DecompressingUSMT>
-	<ApplyingUserStateOn>Applying user state {0} on {1}....</ApplyingUserStateOn>
-	<CapturingUserStateOn>Capturing user state {0} on {1}....</CapturingUserStateOn>
-	<UploadingUSMTTo>Uploading USMT to {0}...</UploadingUSMTTo>
-	<USMTUploadedSuccessfully>USMT uploaded successfully.</USMTUploadedSuccessfully>
-	<USMTRemovedSuccessfully>USMT removed successfully.</USMTRemovedSuccessfully>
-	<USMTUploadCanceled>USMT upload canceled.</USMTUploadCanceled>
-	<StoppingUSMTProcessOn>Stopping USMT process on {0}.</StoppingUSMTProcessOn>
-	<USMTProcessStoppedOn>USMT process stopped on {0}.</USMTProcessStoppedOn>
-	<RemovingUSMTFrom>Removing USMT from {0}...</RemovingUSMTFrom>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<FoundComputers>Found {0} computers.</FoundComputers>
-	<UserWillBeAppliedAs>User {0} will be applied as {1}.</UserWillBeAppliedAs>
+	
 	<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
 	<SearchingActiveDirectoryFor>Searching active directory for {0}...</SearchingActiveDirectoryFor>
 	<Searching>Searching...</Searching>
@@ -189,5 +189,37 @@
 				<DestinationComputer>{DestinationComputer}</DestinationComputer>
 			</Column>
 		</UserList>
+		<USMT>
+			<Log>
+				<ApplyingUserStateOn>Applying user state {0} on {1}....</ApplyingUserStateOn>
+				<CapturingUserStateOn>Capturing user state {0} on {1}....</CapturingUserStateOn>
+				<UploadingUSMTTo>Uploading USMT to {0}...</UploadingUSMTTo>
+				<USMTUploadedSuccessfully>USMT uploaded successfully.</USMTUploadedSuccessfully>
+				<USMTUploadCanceled>USMT upload canceled.</USMTUploadCanceled>
+				<StoppingUSMTProcessOn>Stopping USMT process on {0}.</StoppingUSMTProcessOn>
+				<USMTProcessStoppedOn>USMT process stopped on {0}.</USMTProcessStoppedOn>
+				<RemovingUSMTFrom>Removing USMT from {0}...</RemovingUSMTFrom>
+				<USMTRemovedSuccessfully>USMT removed successfully.</USMTRemovedSuccessfully>
+				<UserWillBeAppliedAs>User {0} will be applied as {1}.</UserWillBeAppliedAs>
+				<TransferringUserStateTo>Transferring user state to {0}...</TransferringUserStateTo>
+				<UserStateSuccessfullyTransferred>User state successfully transferred.</UserStateSuccessfullyTransferred>
+				<DownloadingUSMTFromTheWeb>Downloading USMT {0} from the web...</DownloadingUSMTFromTheWeb>
+				<DecompressingUSMT>Decompressing USMT...</DecompressingUSMT>
+				<CleaningUpUSMT>Cleaning up USMT...</CleaningUpUSMT>
+				<USMTFinished>USMT Finished.</USMTFinished>
+				<Failed>
+					<FindUSMTFolderAt>Failed to find USMT folder at {0}.</FindUSMTFolderAt>
+					<StopUSMTOn>Failed to stop USMT on {0}.</StopUSMTOn>
+					<DeleteUSMTOn>Failed to delete USMT on {0}.</DeleteUSMTOn>
+					<DeleteUSMTAttempt>Failed to delete USMT, the process may still be running, trying periodically: Attempt {0}/{1}.</DeleteUSMTAttempt>
+					<GenerateMUParameter>Failed to generate MU parameter for USMT.</GenerateMUParameter>
+					<TransferUserStateTo>Failed to transfer user state to {0}.</TransferUserStateTo>
+					<DownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the SuperGrate.xml accordingly.</DownloadUSMT>
+					<OSArchitectureIsNotSupported>The OS architecture {0} is not supported.</OSArchitectureIsNotSupported>
+					<WriteStoreParameterTo>Failed to write store parameter(s) to {0}.</WriteStoreParameterTo>
+					<WatchRemoteLog>Failed to watch remote log file at {0}.</WatchRemoteLog>
+				</Failed>
+			</Log>
+		</USMT>
 	</Class>
 </SGLanguage>
