@@ -37,7 +37,7 @@ namespace SuperGrate
                 {
                     if(e.ErrorCode == ManagementStatus.InvalidNamespace)
                     {
-                        Logger.Exception(e, Language.Get("Class/Remote/Log/Failed/QueryWMI", Target));
+                        Logger.Exception(e, Language.Get("Class/WMI/Log/Failed/QueryWMI", Target));
                     }
                     else
                     {

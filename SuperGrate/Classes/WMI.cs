@@ -78,13 +78,13 @@ namespace SuperGrate
         {
             if (e.HResult == -2147023174) //RPC server is unavailable.
             {
-                throw new Exception(Language.Get("FailedToConnectToViaWMI", Host));
+                throw new Exception(Language.Get("Class/WMI/Log/Failed/ConnectToViaWMI", Host));
             }
             if (e.HResult == -2147024891) //Access is denied.
             {
-                throw new Exception(Language.Get("FailedToConnectToViaWMIAccessDenied", Host));
+                throw new Exception(Language.Get("Class/WMI/Log/Failed/ConnectToViaWMIAccessDenied", Host));
             }
-            throw new Exception(Language.Get("FailedToQueryWMI", Host));
+            throw new Exception(Language.Get("Class/WMI/Log/Failed/QueryWMI", Host));
         }
     }
 }

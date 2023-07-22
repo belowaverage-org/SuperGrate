@@ -27,12 +27,11 @@
 	
 	
 	
-	<FailedToUploadUSMTTo>Failed to upload USMT to {0}.</FailedToUploadUSMTTo>
 	
 	
 	
-	<FailedToConnectToViaWMI>Failed to connect to {0} via WMI. Make sure the remote PC is online.</FailedToConnectToViaWMI>
-	<FailedToConnectToViaWMIAccessDenied>Failed to connect to {0} via WMI because access was denied. Make sure your user account has administrative access to the remote PC.</FailedToConnectToViaWMIAccessDenied>
+	
+	
 	
 	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
 	<FailedToSearchActiveDirectory>Failed to search active directory.</FailedToSearchActiveDirectory>
@@ -164,7 +163,6 @@
 			<Log>
 				<WaitingForProcessToFinish>Waiting for {0} to finish...</WaitingForProcessToFinish>
 				<Failed>
-					<QueryWMI>Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
 					<RunCommandOn>Failed to run command on {0}.</RunCommandOn>
 					<WaitForRemoteProcess>Failed to wait for remote process {0} to finish.</WaitForRemoteProcess>
 				</Failed>
@@ -218,8 +216,18 @@
 					<OSArchitectureIsNotSupported>The OS architecture {0} is not supported.</OSArchitectureIsNotSupported>
 					<WriteStoreParameterTo>Failed to write store parameter(s) to {0}.</WriteStoreParameterTo>
 					<WatchRemoteLog>Failed to watch remote log file at {0}.</WatchRemoteLog>
+					<UploadUSMTTo>Failed to upload USMT to {0}.</UploadUSMTTo>
 				</Failed>
 			</Log>
 		</USMT>
+		<WMI>
+			<Log>
+				<Failed>
+					<QueryWMI>Failed to query WMI, {0} might have a corrupt WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target PC to resolve this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
+					<ConnectToViaWMI>Failed to connect to {0} via WMI. Make sure the remote PC is online.</ConnectToViaWMI>
+					<ConnectToViaWMIAccessDenied>Failed to connect to {0} via WMI because access was denied. Make sure your user account has administrative access to the remote PC.</ConnectToViaWMIAccessDenied>
+				</Failed>
+			</Log>
+		</WMI>
 	</Class>
 </SGLanguage>
