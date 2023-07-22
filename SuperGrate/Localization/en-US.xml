@@ -9,6 +9,7 @@
 	<Start>Start</Start>
 	<Stop>Stop</Stop>
 	<Done>Done.</Done>
+	<OK>OK</OK>
 	<Canceled>Canceled.</Canceled>
 	<DeleteUser>Delete user</DeleteUser>
 	<DeleteUsers>Delete users</DeleteUsers>
@@ -22,37 +23,9 @@
 	<Store>store</Store>
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
 	<FailedToSearchActiveDirectory>Failed to search active directory.</FailedToSearchActiveDirectory>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<FoundComputers>Found {0} computers.</FoundComputers>
-	
 	<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
 	<SearchingActiveDirectoryFor>Searching active directory for {0}...</SearchingActiveDirectoryFor>
 	<Searching>Searching...</Searching>
@@ -230,4 +203,12 @@
 			</Log>
 		</WMI>
 	</Class>
+	<Control>
+		<About>
+			<About>About {0}</About>
+			<Version>Version {0}</Version>
+			<License>License</License>
+			<GitHub>GitHub</GitHub>
+		</About>
+	</Control>
 </SGLanguage>

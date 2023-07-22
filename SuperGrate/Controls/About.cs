@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using SuperGrate.Classes;
+using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -11,14 +12,17 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.info_ico;
-            Text = string.Format("About {0}", AssemblyTitle);
+            Text = Language.Get("Control/About/About", AssemblyTitle);
             labelProductName.Text = AssemblyProduct;
-            labelVersion.Text = string.Format("Version {0}", AssemblyVersion);
+            labelVersion.Text = Language.Get("Control/About/Version", AssemblyVersion);
             labelCopyright.Text = AssemblyCopyright;
             labelCompanyName.Text = AssemblyCompany;
             textBoxDescription.Text = AssemblyDescription;
             pbLogo.Image = Properties.Resources.supergrate_ico.ToBitmapAlpha(48, 48);
             okButton.SetSystemIcon(Properties.Resources.check_ico);
+            llLicense.Text = Language.Get("Control/About/License");
+            llGitHub.Text = Language.Get("Control/About/GitHub");
+            okButton.Text = Language.Get("OK");
         }
 
         #region Assembly Attribute Accessors

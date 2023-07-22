@@ -39,14 +39,13 @@ namespace SuperGrate.Controls.Components
             {
                 if (Style == ProgressBarStyle.Marquee)
                 {
-                    DrawText("Working...");
+                    //DrawText("Working...");
                     return;
                 }
                 if (Value == 100 || Value == 0) return;
                 DrawText((((float)Value / (float)Maximum) * 100).ToString() + "%");
             }
         }
-
         private void InitializeComponent()
         {
             this.SuspendLayout();
