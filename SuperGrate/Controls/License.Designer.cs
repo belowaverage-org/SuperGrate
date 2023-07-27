@@ -43,7 +43,6 @@
             this.rtbLicense.ShowSelectionMargin = true;
             this.rtbLicense.Size = new System.Drawing.Size(512, 496);
             this.rtbLicense.TabIndex = 0;
-            this.rtbLicense.Text = "";
             this.rtbLicense.WordWrap = false;
             this.rtbLicense.ZoomFactor = 1.3F;
             this.rtbLicense.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbLicense_LinkClicked);
@@ -56,7 +55,6 @@
             this.Controls.Add(this.rtbLicense);
             this.Name = "License";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Super Grate - LICENSE";
             this.Load += new System.EventHandler(this.License_Load);
             this.ResumeLayout(false);
 

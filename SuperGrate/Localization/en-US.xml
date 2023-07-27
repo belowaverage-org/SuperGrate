@@ -1,35 +1,8 @@
 ﻿<SGLanguage DisplayName="English (United States)">
-	<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
-	<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
-	<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
-	<UsersOnSourceComputer>Users on source computer:</UsersOnSourceComputer>
-	<UsersInMigrationStore>Users in migration store:</UsersInMigrationStore>
-	<VerboseModeDisabled>Verbose mode disabled.</VerboseModeDisabled>
-	<VerboseModeEnabled>Verbose mode enabled.</VerboseModeEnabled>
-	<Start>Start</Start>
-	<Stop>Stop</Stop>
 	<Done>Done.</Done>
 	<OK>OK</OK>
 	<Cancel>Cancel</Cancel>
-	<Canceled>Canceled.</Canceled>
-	<DeleteUser>Delete user</DeleteUser>
-	<DeleteUsers>Delete users</DeleteUsers>
-	<AreYouSureDeleteUser>Are you sure you want to delete this user?</AreYouSureDeleteUser>
-	<AreYouSureDeleteUsers>Are you sure you want to delete these {0} users?</AreYouSureDeleteUsers>
-	<WritingLogTo>Writing log to {0}...</WritingLogTo>
-	<LogWrittenSuccessfully>Log written successfully.</LogWrittenSuccessfully>
-	<ListSource>List source</ListSource>
-	<ListStore>List store</ListStore>
-	<Delete>Delete</Delete>
 	<Store>store</Store>
-	<SourceComputer>Source computer</SourceComputer>
-	<DestinationComputer>Destination computer</DestinationComputer>
-	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
-	
-	
-	<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
-	<ThisProgramIsAttemptingToClose>This program is attempting to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
-	<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
 	<Class>
 		<Config>
 			<Log>
@@ -154,8 +127,8 @@
 				<ImportedOn>Imported on</ImportedOn>
 				<ExportedBy>Exported by</ExportedBy>
 				<ExportedOn>Exported on</ExportedOn>
-				<SourceComputer>{SourceComputer}</SourceComputer>
-				<DestinationComputer>{DestinationComputer}</DestinationComputer>
+				<SourceComputer>Source computer</SourceComputer>
+				<DestinationComputer>Destination computer</DestinationComputer>
 			</Column>
 		</UserList>
 		<USMT>
@@ -238,5 +211,39 @@
 				</Failed>
 			</Log>
 		</DirectorySearch>
+		<License>
+			<License>license</License>
+		</License>
+		<Main>
+			<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
+			<ListSource>List source</ListSource>
+			<ListStore>List store</ListStore>
+			<SourceComputer>Source computer</SourceComputer>
+			<DestinationComputer>Destination computer</DestinationComputer>
+			<Start>Start</Start>
+			<Stop>Stop</Stop>
+			<UsersOnSourceComputer>Users on source computer:</UsersOnSourceComputer>
+			<UsersInMigrationStore>Users in migration store:</UsersInMigrationStore>
+			<DeleteUser>Delete user</DeleteUser>
+			<DeleteUsers>Delete users</DeleteUsers>
+			<AreYouSureDeleteUser>Are you sure you want to delete this user?</AreYouSureDeleteUser>
+			<AreYouSureDeleteUsers>Are you sure you want to delete these {0} users?</AreYouSureDeleteUsers>
+			<Delete>Delete</Delete>
+			<Log>
+				<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
+				<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
+				<VerboseModeDisabled>Verbose mode disabled.</VerboseModeDisabled>
+				<VerboseModeEnabled>Verbose mode enabled.</VerboseModeEnabled>
+				<WritingLogTo>Writing log to {0}...</WritingLogTo>
+				<LogWrittenSuccessfully>Log written successfully.</LogWrittenSuccessfully>
+				<ThisProgramIsAttemptingToClose>This program is attempting to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
+				<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
+				<Canceled>Canceled.</Canceled>
+				<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
+				<Failed>
+					<GatherUserProperties>Failed to gather user properties.</GatherUserProperties>
+				</Failed>
+			</Log>
+		</Main>
 	</Control>
 </SGLanguage>

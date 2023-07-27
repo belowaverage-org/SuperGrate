@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace SuperGrate.Classes
 {
-    internal static class Language
+    public static class Language
     {
         /// <summary>
         /// The default language type Super Grate uses if the specified language isn't found.

@@ -25,7 +25,7 @@ namespace SuperGrate.Controls
             try
             {
                 Enabled = false;
-                Logger.Information(Language.Get("SavingDataToMigrationStore"));
+                Logger.Information(Language.Get("Control/Main/Log/SavingDataToMigrationStore"));
                 string destination = Path.Combine(Config.Settings["MigrationStorePath"], StoreID);
                 string destinationUser = tbDestUser.Text;
                 await Task.Run(() => {
@@ -35,7 +35,7 @@ namespace SuperGrate.Controls
             }
             catch(Exception exc)
             {
-                Logger.Exception(exc, Language.Get("FailedToWriteStoreParameterTo", StoreID));
+                Logger.Exception(exc, Language.Get("Class/USMT/Log/Failed/WriteStoreParameterTo", StoreID));
             }
         }
     }

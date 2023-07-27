@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using System;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Forms;
@@ -11,6 +12,8 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.check_ico;
+            Height = Screen.FromControl(this).WorkingArea.Height;
+            Text = Application.ProductName + " " + Language.Get("Control/License/License");
         }
         private void License_Load(object sender, EventArgs e)
         {
