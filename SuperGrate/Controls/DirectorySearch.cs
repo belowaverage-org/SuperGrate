@@ -29,6 +29,13 @@ namespace SuperGrate.Controls
             Icon = Resources.check_ico;
             tbSearch.Focus();
             InitialQuery = Query;
+            chDisplayName.Text = Language.Get("Control/DirectorySearch/Name");
+            chDescription.Text = Language.Get("Control/DirectorySearch/Description");
+            chOU.Text = Language.Get("Control/DirectorySearch/OrganizationalUnit");
+            btnSearch.Text = Language.Get("Control/DirectorySearch/Search");
+            Text = Language.Get("Control/DirectorySearch/SelectAComputer");
+            btnSelect.Text = Language.Get("OK");
+            btnCancel.Text = Language.Get("Cancel");
         }
         /// <summary>
         /// Perform a directory search (asynchronously), and show the results in the List View.
@@ -38,9 +45,9 @@ namespace SuperGrate.Controls
             tbSearch.Text = Regex.Replace(tbSearch.Text, "[()*]", "");
             if (tbSearch.Text.Length == 0) return;
             Main.Form.Running = RunningTask.Unknown;
-            Logger.Information(Language.Get("SearchingActiveDirectoryFor", tbSearch.Text));
+            Logger.Information(Language.Get("Control/DirectorySearch/Log/SearchingActiveDirectoryFor", tbSearch.Text));
             btnSearch.Enabled = false;
-            btnSearch.Text = Language.Get("Searching");
+            btnSearch.Text = Language.Get("Control/DirectorySearch/Searching");
             lvResults.Items.Clear();
             DS.Filter = "(&(objectClass=computer)(|(name=*" + tbSearch.Text + "*)(description=*" + tbSearch.Text + "*)))";
             List<ListViewItem> lvis = new List<ListViewItem>();
@@ -71,17 +78,17 @@ namespace SuperGrate.Controls
                     lvResults.Focus();
                 }
                 lvResults.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                btnSearch.Text = Language.Get("Search");
+                btnSearch.Text = Language.Get("Control/DirectorySearch/Search");
                 btnSearch.Enabled = true;
                 Main.Form.Running = RunningTask.None;
-                Logger.Verbose(Language.Get("FoundComputers", lvis.Count.ToString()));
+                Logger.Verbose(Language.Get("Control/DirectorySearch/Log/FoundComputers", lvis.Count.ToString()));
                 Logger.Success(Language.Get("Done"));
             }
             catch (Exception ex)
             {
-                Logger.Exception(ex, Language.Get("FailedToSearchActiveDirectory"));
+                Logger.Exception(ex, Language.Get("Control/DirectorySearch/Log/Failed/SearchActiveDirectory"));
                 Main.Form.Running = RunningTask.None;
-                btnSearch.Text = Language.Get("Search");
+                btnSearch.Text = Language.Get("Control/DirectorySearch/Search");
                 btnSearch.Enabled = true;
             }
         }

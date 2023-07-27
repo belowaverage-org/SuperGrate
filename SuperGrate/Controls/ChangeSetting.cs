@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -19,13 +20,17 @@ namespace SuperGrate.Controls
             btnSave.SetSystemIcon(Properties.Resources.check_ico);
             btnRestoreDefault.SetSystemIcon(Properties.Resources.reload_ico);
             Setting = SettingToChange;
+            Text = Language.Get("Control/ChangeSetting/ChangeSetting");
+            btnRestoreDefault.Text = Language.Get("Control/ChangeSetting/Default");
+            btnSave.Text = Language.Get("OK");
+            btnCancel.Text = Language.Get("Cancel");
         }
         /// <summary>
         /// This event will fire when the changeSetting form has loaded. The method will fill in the selected information into the form's controls.
         /// </summary>
         private void ChangeSetting_Load(object sender, EventArgs e)
         {
-            Text += Setting;
+            Text += " " + Setting;
             string lastComment = "";
             foreach (KeyValuePair<string, string> setting in Config.Settings)
             {
@@ -36,7 +41,11 @@ namespace SuperGrate.Controls
                     break;
                 };
             }
-            tbComment.Text = lastComment + "\r\n\r\n" + "Default Value: " + Config.DefaultSettings[Setting];
+            tbComment.Text = 
+            lastComment +
+            "\r\n\r\n" +
+            Language.Get("Control/ChangeSetting/DefaultValue") + " " +
+            Config.DefaultSettings[Setting];
         }
         /// <summary>
         /// This event will fire when the btnSave button is clicked. The method will apply the setting to the session.

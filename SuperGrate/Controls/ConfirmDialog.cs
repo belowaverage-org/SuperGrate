@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using SuperGrate.Classes;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SuperGrate.Controls
@@ -16,6 +17,8 @@ namespace SuperGrate.Controls
             InitializeComponent();
             btnAccept.SetSystemIcon(Properties.Resources.check_ico);
             btnCancel.SetSystemIcon(Properties.Resources.cancel_ico);
+            btnAccept.Text = Language.Get("OK");
+            btnCancel.Text = Language.Get("Cancel");
             if (DialogDescription == null) DialogDescription = DialogTitle;
             if (DialogIcon == null)
             {

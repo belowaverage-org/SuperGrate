@@ -10,6 +10,7 @@
 	<Stop>Stop</Stop>
 	<Done>Done.</Done>
 	<OK>OK</OK>
+	<Cancel>Cancel</Cancel>
 	<Canceled>Canceled.</Canceled>
 	<DeleteUser>Delete user</DeleteUser>
 	<DeleteUsers>Delete users</DeleteUsers>
@@ -24,12 +25,9 @@
 	<SourceComputer>Source computer</SourceComputer>
 	<DestinationComputer>Destination computer</DestinationComputer>
 	<FailedToGatherUserProperties>Failed to gather user properties.</FailedToGatherUserProperties>
-	<FailedToSearchActiveDirectory>Failed to search active directory.</FailedToSearchActiveDirectory>
-	<FoundComputers>Found {0} computers.</FoundComputers>
+	
+	
 	<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
-	<SearchingActiveDirectoryFor>Searching active directory for {0}...</SearchingActiveDirectoryFor>
-	<Searching>Searching...</Searching>
-	<Search>Search</Search>
 	<ThisProgramIsAttemptingToClose>This program is attempting to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
 	<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
 	<Class>
@@ -210,5 +208,35 @@
 			<License>License</License>
 			<GitHub>GitHub</GitHub>
 		</About>
+		<ChangeColumns>
+			<AddRemoveColumns>Add/remove columns</AddRemoveColumns>
+			<Add>Add -&gt;</Add>
+			<Remove>&lt;- Remove</Remove>
+			<MoveUp>Move up</MoveUp>
+			<MoveDown>Move down</MoveDown>
+			<RestoreDefaults>Restore defaults</RestoreDefaults>
+			<AvailableColumns>Available columns:</AvailableColumns>
+			<DisplayedColumns>Displayed columns:</DisplayedColumns>
+		</ChangeColumns>
+		<ChangeSetting>
+			<Default>Default</Default>
+			<ChangeSetting>Change setting:</ChangeSetting>
+			<DefaultValue>Default value:</DefaultValue>
+		</ChangeSetting>
+		<DirectorySearch>
+			<Name>Name</Name>
+			<Description>Description</Description>
+			<OrganizationalUnit>Organizational unit</OrganizationalUnit>
+			<Search>Search</Search>
+			<SelectAComputer>Select a computer</SelectAComputer>
+			<Searching>Searching...</Searching>
+			<Log>
+				<SearchingActiveDirectoryFor>Searching active directory for {0}...</SearchingActiveDirectoryFor>
+				<FoundComputers>Found {0} computers.</FoundComputers>
+				<Failed>
+					<SearchActiveDirectory>Failed to search active directory.</SearchActiveDirectory>
+				</Failed>
+			</Log>
+		</DirectorySearch>
 	</Control>
 </SGLanguage>

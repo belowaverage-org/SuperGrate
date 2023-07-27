@@ -63,17 +63,14 @@
             // 
             // chDisplayName
             // 
-            this.chDisplayName.Text = "Name";
             this.chDisplayName.Width = 100;
             // 
             // chDescription
             // 
-            this.chDescription.Text = "Description";
             this.chDescription.Width = 100;
             // 
             // chOU
             // 
-            this.chOU.Text = "Organizational Unit";
             this.chOU.Width = 150;
             // 
             // btnSearch
@@ -84,7 +81,6 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(109, 28);
             this.btnSearch.TabIndex = 2;
-            this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -96,7 +92,6 @@
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(109, 32);
             this.btnSelect.TabIndex = 4;
-            this.btnSelect.Text = "Select";
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
@@ -108,7 +103,6 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(109, 32);
             this.btnCancel.TabIndex = 5;
-            this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -145,7 +139,6 @@
             this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "DirectorySearch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Select a computer";
             this.Load += new System.EventHandler(this.DirectorySearch_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

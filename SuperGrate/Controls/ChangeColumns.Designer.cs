@@ -49,7 +49,6 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 21);
             this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "A&dd ->";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.BtnAddRemove_Click);
             // 
@@ -60,7 +59,6 @@
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(88, 21);
             this.btnRemove.TabIndex = 1;
-            this.btnRemove.Text = "<- &Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.BtnAddRemove_Click);
             // 
@@ -97,7 +95,6 @@
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(118, 21);
             this.btnMoveUp.TabIndex = 4;
-            this.btnMoveUp.Text = "M&ove Up";
             this.btnMoveUp.UseVisualStyleBackColor = true;
             this.btnMoveUp.Click += new System.EventHandler(this.BtnMoveUp_Click);
             // 
@@ -108,7 +105,6 @@
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size(118, 21);
             this.btnMoveDown.TabIndex = 5;
-            this.btnMoveDown.Text = "Mo&ve Down";
             this.btnMoveDown.UseVisualStyleBackColor = true;
             this.btnMoveDown.Click += new System.EventHandler(this.BtnMoveDown_Click);
             // 
@@ -119,7 +115,6 @@
             this.btnRestoreDefaults.Name = "btnRestoreDefaults";
             this.btnRestoreDefaults.Size = new System.Drawing.Size(118, 21);
             this.btnRestoreDefaults.TabIndex = 6;
-            this.btnRestoreDefaults.Text = "Re&store Defaults";
             this.btnRestoreDefaults.UseVisualStyleBackColor = true;
             this.btnRestoreDefaults.Click += new System.EventHandler(this.BtnRestoreDefaults_Click);
             // 
@@ -131,7 +126,6 @@
             this.lblAvail.Name = "lblAvail";
             this.lblAvail.Size = new System.Drawing.Size(102, 13);
             this.lblAvail.TabIndex = 9;
-            this.lblAvail.Text = "&Available columns:";
             // 
             // lblDispl
             // 
@@ -141,7 +135,6 @@
             this.lblDispl.Name = "lblDispl";
             this.lblDispl.Size = new System.Drawing.Size(106, 13);
             this.lblDispl.TabIndex = 10;
-            this.lblDispl.Text = "Display&ed columns:";
             // 
             // lblLine
             // 
@@ -159,7 +152,6 @@
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(73, 21);
             this.btnOk.TabIndex = 7;
-            this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
@@ -171,7 +163,6 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(73, 21);
             this.btnCancel.TabIndex = 8;
-            this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
@@ -196,12 +187,11 @@
             this.Controls.Add(this.btnAdd);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.HelpButton = true;
+            this.HelpButton = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChangeColumns";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Add/Remove Columns";
             this.Load += new System.EventHandler(this.ChangeColumns_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

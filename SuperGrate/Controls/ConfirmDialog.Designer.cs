@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCancel = new SuperGrate.Controls.Components.SGButton();
-            this.btnAccept = new SuperGrate.Controls.Components.SGButton();
+            this.btnCancel = new Controls.Components.SGButton();
+            this.btnAccept = new Controls.Components.SGButton();
             this.pnlWhite = new System.Windows.Forms.Panel();
             this.lblDescription = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();
@@ -48,7 +48,6 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(103, 28);
             this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnAccept
@@ -62,7 +61,6 @@
             this.btnAccept.Name = "btnAccept";
             this.btnAccept.Size = new System.Drawing.Size(103, 28);
             this.btnAccept.TabIndex = 1;
-            this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
             // 
             // pnlWhite
@@ -88,7 +86,6 @@
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(316, 67);
             this.lblDescription.TabIndex = 1;
-            this.lblDescription.Text = "Description goes here...";
             this.lblDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pbIcon
@@ -119,7 +116,6 @@
             this.MinimizeBox = false;
             this.Name = "ConfirmDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Title text goes here...";
             this.pnlWhite.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbIcon)).EndInit();
             this.ResumeLayout(false);

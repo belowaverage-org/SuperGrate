@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -12,6 +13,16 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.columns_ico;
+            Text = Language.Get("Control/ChangeColumns/AddRemoveColumns");
+            btnAdd.Text = Language.Get("Control/ChangeColumns/Add");
+            btnRemove.Text = Language.Get("Control/ChangeColumns/Remove");
+            btnMoveUp.Text = Language.Get("Control/ChangeColumns/MoveUp");
+            btnMoveDown.Text = Language.Get("Control/ChangeColumns/MoveDown");
+            btnRestoreDefaults.Text = Language.Get("Control/ChangeColumns/RestoreDefaults");
+            lblAvail.Text = Language.Get("Control/ChangeColumns/AvailableColumns");
+            lblDispl.Text = Language.Get("Control/ChangeColumns/DisplayedColumns");
+            btnOk.Text = Language.Get("OK");
+            btnCancel.Text = Language.Get("Cancel");
         }
         private void ChangeColumns_Load(object sender, EventArgs e)
         {
