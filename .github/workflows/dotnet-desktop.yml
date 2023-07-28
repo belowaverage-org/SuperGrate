@@ -17,16 +17,16 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v1.0.2
+      uses: microsoft/setup-msbuild@v1.3.1
 
     - name: Build 32
-      run: MSBuild SuperGrate.sln -t:Rebuild -p:Configuration=Release
+      run: MSBuild SuperGrate.sln -t:Restore -t:Rebuild -p:Configuration=Release
        
     - name: Build 64
-      run: MSBuild SuperGrate.sln -t:Rebuild -p:Configuration=Release_64
+      run: MSBuild SuperGrate.sln -t:Restore -t:Rebuild -p:Configuration=Release_64
       
     - name: Upload
-      uses: actions/upload-artifact@v3.1.0
+      uses: actions/upload-artifact@v3.1.2
       with:
         path: |
               .\SuperGrate\bin\Release\SuperGrate.exe
