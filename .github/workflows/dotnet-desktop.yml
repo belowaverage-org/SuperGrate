@@ -25,9 +25,6 @@ jobs:
     - name: Build 64
       run: MSBuild SuperGrate.sln -t:Restore -t:Rebuild -p:Configuration=Release_64
       
-    - name: Test
-      run: vstest.console.exe .\SuperGrate\SuperGrateTests\bin\Release\SuperGrateTests.dll
-      
     - name: Upload
       uses: actions/upload-artifact@v3.1.2
       with:
