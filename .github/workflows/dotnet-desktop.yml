@@ -21,6 +21,12 @@ jobs:
 
     - name: Build 32
       run: MSBuild SuperGrate.sln -t:Restore -t:Rebuild -p:Configuration=Release
+      
+    - name: Upload
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        path: |
+              .\SuperGrate\bin\Release\SuperGrate.exe
        
     - name: Build 64
       run: MSBuild SuperGrate.sln -t:Restore -t:Rebuild -p:Configuration=Release_64
@@ -29,5 +35,4 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         path: |
-              .\SuperGrate\bin\Release\SuperGrate.exe
               .\SuperGrate\bin\Release_64\SuperGrate.exe
