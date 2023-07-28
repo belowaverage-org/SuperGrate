@@ -1,23 +1,36 @@
 ﻿<SGLanguage DisplayName="English (United States)">
-	<Done>Done.</Done>
-	<OK>OK</OK>
-	<Cancel>Cancel</Cancel>
-	<Store>store</Store>
+	<Shared>
+		<SuperGrate>Super Grate</SuperGrate>
+		<OK>OK</OK>
+		<Cancel>Cancel</Cancel>
+		<Start>Start</Start>
+		<Delete>Delete</Delete>
+		<SourceComputer>Source computer</SourceComputer>
+		<DestinationComputer>Destination computer</DestinationComputer>
+		<Log>
+			<Done>Done.</Done>
+			<SuperGrateXML>SuperGrate.xml</SuperGrateXML>
+			<Failed>
+				<WriteStoreParameterTo>Failed to write store parameter(s) to {0}.</WriteStoreParameterTo>
+			</Failed>
+		</Log>
+	</Shared>
 	<Class>
 		<Config>
 			<Log>
-				<GeneratingXML>Generating SuperGrate.xml...</GeneratingXML>
-				<XMLIsMissingKey>SuperGrate.xml is missing {0}.</XMLIsMissingKey>
-				<XMLLoaded>SuperGrate.xml loaded.</XMLLoaded>
+				<GeneratingXML>Generating {Shared/Log/SuperGrateXML}...</GeneratingXML>
+				<XMLIsMissingKey>{Shared/Log/SuperGrateXML} is missing {0}.</XMLIsMissingKey>
+				<XMLLoaded>{Shared/Log/SuperGrateXML} loaded.</XMLLoaded>
 				<XMLLoadedButIsUsingDefaults>Config loaded, but is using default values for the missing elements. You can fix this warning by saving the current settings.</XMLLoadedButIsUsingDefaults>
+				<Done>{Shared/Log/Done}</Done>
 				<Failed>
-					<SaveConfigurationToDisk>Failed to save SuperGrate.xml to disk.</SaveConfigurationToDisk>
-					<LoadConfiguration>Failed to load SuperGrate.xml.</LoadConfiguration>
+					<SaveConfigurationToDisk>Failed to save {Shared/Log/SuperGrateXML} to disk.</SaveConfigurationToDisk>
+					<LoadConfiguration>Failed to load {Shared/Log/SuperGrateXML}.</LoadConfiguration>
 				</Failed>
 			</Log>
 			<Comment>
 				<USMTPath>The UNC or direct path to the USMT directory. (E.g: .\USMT\X64)</USMTPath>
-				<PayloadPath>Local path on source computer where Super Grate will run USMT from. (E.g: C:\SuperGrate)</PayloadPath>
+				<PayloadPath>Local path on source computer where {Shared/SuperGrate} will run USMT from. (E.g: C:\SuperGrate)</PayloadPath>
 				<MigrationStorePath>The UNC or direct path to the USMT migration store. (E.g: \\ba-share\s$ or .\STORE)</MigrationStorePath>
 				<ScanLoadStateParams>ScanState.exe and LoadState.exe CLI parameters. (See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax)</ScanLoadStateParams>
 				<AutoDeleteFromStore>Delete the user from the migration store after a restore? (Store to destination)</AutoDeleteFromStore>
@@ -89,6 +102,7 @@
 				<UserDeleteAgentHasBeenStoppedOn>User delete agent has been stopped on {0}.</UserDeleteAgentHasBeenStoppedOn>
 				<GatheringOSArchitectureOn>Gathering OS architecture on {0}...</GatheringOSArchitectureOn>
 				<TheOSArchitectureOnIs>The OS architecture on {0} is {1}.</TheOSArchitectureOnIs>
+				<Done>{Shared/Log/Done}</Done>
 				<Failed>
 					<ResolveSIDViaWMI>Failed to resolve an SID via WMI.</ResolveSIDViaWMI>
 					<ResolveStoreGUID>Failed to resolve Store GUID.</ResolveStoreGUID>
@@ -127,8 +141,8 @@
 				<ImportedOn>Imported on</ImportedOn>
 				<ExportedBy>Exported by</ExportedBy>
 				<ExportedOn>Exported on</ExportedOn>
-				<SourceComputer>Source computer</SourceComputer>
-				<DestinationComputer>Destination computer</DestinationComputer>
+				<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+				<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
 			</Column>
 		</UserList>
 		<USMT>
@@ -156,9 +170,9 @@
 					<DeleteUSMTAttempt>Failed to delete USMT, the process may still be running, trying periodically: Attempt {0}/{1}.</DeleteUSMTAttempt>
 					<GenerateMUParameter>Failed to generate MU parameter for USMT.</GenerateMUParameter>
 					<TransferUserStateTo>Failed to transfer user state to {0}.</TransferUserStateTo>
-					<DownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the SuperGrate.xml accordingly.</DownloadUSMT>
+					<DownloadUSMT>Failed to automatically download USMT from the web, please download USMT and update the {Shared/Log/SuperGrateXML} accordingly.</DownloadUSMT>
 					<OSArchitectureIsNotSupported>The OS architecture {0} is not supported.</OSArchitectureIsNotSupported>
-					<WriteStoreParameterTo>Failed to write store parameter(s) to {0}.</WriteStoreParameterTo>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
 					<WatchRemoteLog>Failed to watch remote log file at {0}.</WatchRemoteLog>
 					<UploadUSMTTo>Failed to upload USMT to {0}.</UploadUSMTTo>
 				</Failed>
@@ -180,6 +194,7 @@
 			<Version>Version {0}</Version>
 			<License>License</License>
 			<GitHub>GitHub</GitHub>
+			<OK>{Shared/OK}</OK>
 		</About>
 		<ChangeColumns>
 			<AddRemoveColumns>Add/remove columns</AddRemoveColumns>
@@ -190,12 +205,20 @@
 			<RestoreDefaults>Restore defaults</RestoreDefaults>
 			<AvailableColumns>Available columns:</AvailableColumns>
 			<DisplayedColumns>Displayed columns:</DisplayedColumns>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
 		</ChangeColumns>
 		<ChangeSetting>
 			<Default>Default</Default>
 			<ChangeSetting>Change setting:</ChangeSetting>
 			<DefaultValue>Default value:</DefaultValue>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
 		</ChangeSetting>
+		<ConfirmDialog>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ConfirmDialog>
 		<DirectorySearch>
 			<Name>Name</Name>
 			<Description>Description</Description>
@@ -203,9 +226,12 @@
 			<Search>Search</Search>
 			<SelectAComputer>Select a computer</SelectAComputer>
 			<Searching>Searching...</Searching>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
 			<Log>
 				<SearchingActiveDirectoryFor>Searching active directory for {0}...</SearchingActiveDirectoryFor>
 				<FoundComputers>Found {0} computers.</FoundComputers>
+				<Done>{Shared/Log/Done}</Done>
 				<Failed>
 					<SearchActiveDirectory>Failed to search active directory.</SearchActiveDirectory>
 				</Failed>
@@ -214,13 +240,22 @@
 		<License>
 			<License>license</License>
 		</License>
+		<RenameStoreUser>
+			<Log>
+				<Done>{Shared/Log/Done}</Done>
+				<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
+				<Failed>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
+				</Failed>
+			</Log>
+		</RenameStoreUser>
 		<Main>
 			<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
 			<ListSource>List source</ListSource>
 			<ListStore>List store</ListStore>
-			<SourceComputer>Source computer</SourceComputer>
-			<DestinationComputer>Destination computer</DestinationComputer>
-			<Start>Start</Start>
+			<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+			<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
+			<Start>{Shared/Start}</Start>
 			<Stop>Stop</Stop>
 			<UsersOnSourceComputer>Users on source computer:</UsersOnSourceComputer>
 			<UsersInMigrationStore>Users in migration store:</UsersInMigrationStore>
@@ -228,7 +263,30 @@
 			<DeleteUsers>Delete users</DeleteUsers>
 			<AreYouSureDeleteUser>Are you sure you want to delete this user?</AreYouSureDeleteUser>
 			<AreYouSureDeleteUsers>Are you sure you want to delete these {0} users?</AreYouSureDeleteUsers>
-			<Delete>Delete</Delete>
+			<Delete>{Shared/Delete}</Delete>
+			<Menu>
+				<File>File</File>
+				<NewInstance>New instance</NewInstance>
+				<Settings>Settings...</Settings>
+				<SaveLog>Save log...</SaveLog>
+				<Exit>Exit</Exit>
+				<View>View</View>
+				<AddRemoveColumns>Add/remove columns...</AddRemoveColumns>
+				<LargeIcons>Large icons</LargeIcons>
+				<SmallIcons>Small icons</SmallIcons>
+				<List>List</List>
+				<Detail>Detail</Detail>
+				<Tile>Tile</Tile>
+				<Help>Help</Help>
+				<OnlineDocumentation>Online documentation</OnlineDocumentation>
+				<OnlineIssues>Online issues</OnlineIssues>
+				<OnlineUpdates>Online updates</OnlineUpdates>
+				<AboutSuperGrate>About {Shared/SuperGrate}</AboutSuperGrate>
+				<SetDestinationUserName>Set destination user name...</SetDestinationUserName>
+				<Properties>Properties</Properties>
+				<Start>{Shared/Start}</Start>
+				<Delete>{Shared/Delete}</Delete>
+			</Menu>
 			<Log>
 				<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
 				<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
@@ -239,7 +297,7 @@
 				<ThisProgramIsAttemptingToClose>This program is attempting to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
 				<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
 				<Canceled>Canceled.</Canceled>
-				<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
+				<Done>{Shared/Log/Done}</Done>
 				<Failed>
 					<GatherUserProperties>Failed to gather user properties.</GatherUserProperties>
 				</Failed>

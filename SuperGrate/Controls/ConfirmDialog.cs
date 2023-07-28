@@ -17,8 +17,8 @@ namespace SuperGrate.Controls
             InitializeComponent();
             btnAccept.SetSystemIcon(Properties.Resources.check_ico);
             btnCancel.SetSystemIcon(Properties.Resources.cancel_ico);
-            btnAccept.Text = Language.Get("OK");
-            btnCancel.Text = Language.Get("Cancel");
+            btnAccept.Text = Language.Get("Control/ConfirmDialog/OK");
+            btnCancel.Text = Language.Get("Control/ConfirmDialog/Cancel");
             if (DialogDescription == null) DialogDescription = DialogTitle;
             if (DialogIcon == null)
             {

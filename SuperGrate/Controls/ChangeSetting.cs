@@ -22,8 +22,8 @@ namespace SuperGrate.Controls
             Setting = SettingToChange;
             Text = Language.Get("Control/ChangeSetting/ChangeSetting");
             btnRestoreDefault.Text = Language.Get("Control/ChangeSetting/Default");
-            btnSave.Text = Language.Get("OK");
-            btnCancel.Text = Language.Get("Cancel");
+            btnSave.Text = Language.Get("Control/ChangeSetting/OK");
+            btnCancel.Text = Language.Get("Control/ChangeSetting/Cancel");
         }
         /// <summary>
         /// This event will fire when the changeSetting form has loaded. The method will fill in the selected information into the form's controls.

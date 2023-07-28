@@ -34,8 +34,8 @@ namespace SuperGrate.Controls
             chOU.Text = Language.Get("Control/DirectorySearch/OrganizationalUnit");
             btnSearch.Text = Language.Get("Control/DirectorySearch/Search");
             Text = Language.Get("Control/DirectorySearch/SelectAComputer");
-            btnSelect.Text = Language.Get("OK");
-            btnCancel.Text = Language.Get("Cancel");
+            btnSelect.Text = Language.Get("Control/DirectorySearch/OK");
+            btnCancel.Text = Language.Get("Control/DirectorySearch/Cancel");
         }
         /// <summary>
         /// Perform a directory search (asynchronously), and show the results in the List View.
@@ -82,7 +82,7 @@ namespace SuperGrate.Controls
                 btnSearch.Enabled = true;
                 Main.Form.Running = RunningTask.None;
                 Logger.Verbose(Language.Get("Control/DirectorySearch/Log/FoundComputers", lvis.Count.ToString()));
-                Logger.Success(Language.Get("Done"));
+                Logger.Success(Language.Get("Control/DirectorySearch/Log/Done"));
             }
             catch (Exception ex)
             {

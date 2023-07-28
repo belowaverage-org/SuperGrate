@@ -25,17 +25,17 @@ namespace SuperGrate.Controls
             try
             {
                 Enabled = false;
-                Logger.Information(Language.Get("Control/Main/Log/SavingDataToMigrationStore"));
+                Logger.Information(Language.Get("Control/RenameStoreUser/Log/SavingDataToMigrationStore"));
                 string destination = Path.Combine(Config.Settings["MigrationStorePath"], StoreID);
                 string destinationUser = tbDestUser.Text;
                 await Task.Run(() => {
                     File.WriteAllText(Path.Combine(destination, "targetntaccount"), destinationUser);
                 });
-                Logger.Success(Language.Get("Done"));
+                Logger.Success(Language.Get("Control/RenameStoreUser/Log/Done"));
             }
             catch(Exception exc)
             {
-                Logger.Exception(exc, Language.Get("Class/USMT/Log/Failed/WriteStoreParameterTo", StoreID));
+                Logger.Exception(exc, Language.Get("Control/RenameStoreUser/Log/Failed/WriteStoreParameterTo", StoreID));
             }
         }
     }

@@ -22,7 +22,7 @@ namespace SuperGrate.Controls
             okButton.SetSystemIcon(Properties.Resources.check_ico);
             llLicense.Text = Language.Get("Control/About/License");
             llGitHub.Text = Language.Get("Control/About/GitHub");
-            okButton.Text = Language.Get("OK");
+            okButton.Text = Language.Get("Control/About/OK");
         }
 
         #region Assembly Attribute Accessors

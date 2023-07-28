@@ -21,8 +21,8 @@ namespace SuperGrate.Controls
             btnRestoreDefaults.Text = Language.Get("Control/ChangeColumns/RestoreDefaults");
             lblAvail.Text = Language.Get("Control/ChangeColumns/AvailableColumns");
             lblDispl.Text = Language.Get("Control/ChangeColumns/DisplayedColumns");
-            btnOk.Text = Language.Get("OK");
-            btnCancel.Text = Language.Get("Cancel");
+            btnOk.Text = Language.Get("Control/ChangeColumns/OK");
+            btnCancel.Text = Language.Get("Control/ChangeColumns/Cancel");
         }
         private void ChangeColumns_Load(object sender, EventArgs e)
         {

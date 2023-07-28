@@ -398,7 +398,7 @@ namespace SuperGrate
                     }
                     Logger.Information(Language.Get("Class/Misc/Log/RemovingUserDeleteAgentFromRemotePC", Host));
                     File.Delete(exePath);
-                    Logger.Success(Language.Get("Done"));
+                    Logger.Success(Language.Get("Class/Misc/Log/Done"));
                 }
                 catch (Exception e)
                 {

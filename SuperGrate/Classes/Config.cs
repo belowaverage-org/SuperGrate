@@ -86,7 +86,7 @@ namespace SuperGrate
             try
             {
                 new XDocument(root).Save(@".\SuperGrate.xml");
-                Logger.Success(Language.Get("Done"));
+                Logger.Success(Language.Get("Class/Config/Log/Done"));
             }
             catch(Exception e)
             {

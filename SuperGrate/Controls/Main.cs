@@ -54,6 +54,27 @@ namespace SuperGrate
             btnDelete.Text = Language.Get("Control/Main/Delete");
             lblSourceComputer.Text = Language.Get("Control/Main/SourceComputer");
             lblDestinationComputer.Text = Language.Get("Control/Main/DestinationComputer");
+            miFile.Text = Language.Get("Control/Main/Menu/File");
+            miNewInstance.Text = Language.Get("Control/Main/Menu/NewInstance");
+            miSettings.Text = Language.Get("Control/Main/Menu/Settings");
+            miSaveLog.Text = Language.Get("Control/Main/Menu/SaveLog");
+            miExitButton.Text = Language.Get("Control/Main/Menu/Exit");
+            miView.Text = Language.Get("Control/Main/Menu/View");
+            miAddRemoveCol.Text = Language.Get("Control/Main/Menu/AddRemoveColumns");
+            miViewLarge.Text = Language.Get("Control/Main/Menu/LargeIcons");
+            miViewSmall.Text = Language.Get("Control/Main/Menu/SmallIcons");
+            miViewList.Text = Language.Get("Control/Main/Menu/List");
+            miViewDetail.Text = Language.Get("Control/Main/Menu/Detail");
+            miViewTile.Text = Language.Get("Control/Main/Menu/Tile");
+            miHelp.Text = Language.Get("Control/Main/Menu/Help");
+            miDocumentation.Text = Language.Get("Control/Main/Menu/OnlineDocumentation");
+            miIssues.Text = Language.Get("Control/Main/Menu/OnlineIssues");
+            miUpdateCheck.Text = Language.Get("Control/Main/Menu/OnlineUpdates");
+            miAboutSG.Text = Language.Get("Control/Main/Menu/AboutSuperGrate");
+            miConStart.Text = Language.Get("Control/Main/Menu/Start");
+            miConDelete.Text = Language.Get("Control/Main/Menu/Delete");
+            miConProperties.Text = Language.Get("Control/Main/Menu/Properties");
+            miConRename.Text = Language.Get("Control/Main/Menu/SetDestinationUserName");
             /*
             btnListSource.SetSystemIcon(Properties.Resources.users_ico);
             btnListStore.SetSystemIcon(Properties.Resources.usercheck);
@@ -263,7 +284,7 @@ namespace SuperGrate
                     }
                 }
                 Running = RunningTask.None;
-                Logger.Information(Language.Get("Done"));
+                Logger.Information(Language.Get("Control/Main/Log/Done"));
             }
         }
         /// <summary>
@@ -548,6 +569,7 @@ namespace SuperGrate
         /// <summary>
         /// This event will fire when the miHelpButton menu item is clicked, and will toggle the help on hover function in the main window.
         /// </summary>
+        /*
         private void MiHelpButton_Click(object sender, EventArgs e)
         {
             if (Cursor == Cursors.Help)
@@ -561,6 +583,7 @@ namespace SuperGrate
                 Cursor = Cursors.Help;
             }
         }
+        */
         /// <summary>
         /// This event will fire when the miNewInstance menu item is clicked and will start a new instance of Super Grate.
         /// </summary>
@@ -665,7 +688,7 @@ namespace SuperGrate
                 }
                 else
                 {
-                    Logger.Success(Language.Get("Done"));
+                    Logger.Success(Language.Get("Control/Main/Log/Done"));
                     new UserProperties(template, row).ShowDialog();
                 }
             }
@@ -783,7 +806,7 @@ namespace SuperGrate
                 }
                 else
                 {
-                    Logger.Success(Language.Get("Done"));
+                    Logger.Success(Language.Get("Control/Main/Log/Done"));
                     new RenameStoreUser(row).ShowDialog();
                     btnListStore.PerformClick();
                 }
