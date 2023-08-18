@@ -343,7 +343,7 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Localization\en-US.xml" />
+    <EmbeddedResource Include="Localization\en.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\pirate.xml" />

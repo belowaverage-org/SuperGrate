@@ -1,4 +1,4 @@
-﻿<SGLanguage DisplayName="English (United States)">
+﻿<SGLanguage DisplayName="English">
 	<Shared>
 		<SuperGrate>Super Grate</SuperGrate>
 		<OK>OK</OK>
@@ -46,7 +46,7 @@
 				<DestinationComputer>Default destination computer at startup.</DestinationComputer>
 				<TabView>Default tab view at startup (E.g: Source, Store or None)</TabView>
 				<SecurityProtocol>Security protocol version (Restart required) (E.g: SystemDefault, Ssl3, Tls, Tls11, Tls12 or Tls13)</SecurityProtocol>
-				<Language>Language. (E.g: en-US)</Language>
+				<Language>Language. (E.g: en)</Language>
 			</Comment>
 		</Config>
 		<Download>

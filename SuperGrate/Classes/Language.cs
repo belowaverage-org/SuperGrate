@@ -12,7 +12,7 @@ namespace SuperGrate.Classes
         /// <summary>
         /// The default language type Super Grate uses if the specified language isn't found.
         /// </summary>
-        private const string DefaultLanguage = "en-US";
+        private const string DefaultLanguage = "en";
         /// <summary>
         /// A list of SGLanguage XML documents that is loaded into memory.
         /// </summary>
@@ -28,8 +28,19 @@ namespace SuperGrate.Classes
         {
             get
             {
-                if (Config.Settings != null && Config.Settings["Language"] != "" && LanguageIsDefined(Config.Settings["Language"])) return Config.Settings["Language"];
-                if (LanguageIsDefined(System.Globalization.CultureInfo.CurrentCulture.Name)) return System.Globalization.CultureInfo.CurrentCulture.Name;
+                string language;
+                string languageSplit;
+                if (Config.Settings != null && Config.Settings["Language"] != "")
+                {
+                    language = Config.Settings["Language"];
+                    languageSplit = language.Split('-')[0];
+                    if (LanguageIsDefined(language)) return language;
+                    if (LanguageIsDefined(languageSplit)) return languageSplit;
+                }
+                language = System.Globalization.CultureInfo.CurrentCulture.Name;
+                languageSplit = language.Split('-')[0];
+                if (LanguageIsDefined(language)) return language;
+                if (LanguageIsDefined(languageSplit)) return languageSplit;
                 return DefaultLanguage;
             }
         }
