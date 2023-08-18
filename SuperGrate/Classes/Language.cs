@@ -83,7 +83,7 @@ namespace SuperGrate.Classes
             }
             foreach (Match match in Regex.Matches(text, "{([a-z,A-Z,/]*)}"))
             {
-                text = text.Replace(match.Value, GetWithLanguage(Language, match.Groups[1].Value));
+                text = text.Replace(match.Value, GetWithLanguage(SelectedLanguage, match.Groups[1].Value));
             }
             return text;
         }

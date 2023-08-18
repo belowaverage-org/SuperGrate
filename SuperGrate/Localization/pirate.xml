@@ -1,2 +1,104 @@
-﻿<SGLanguage DisplayName="Pirate">
+﻿<SGLanguage DisplayName="Pirate (United States)">
+	<Shared>
+		<SuperGrate>Booty mover</SuperGrate>
+		<OK>Yar</OK>
+		<Cancel>Abort</Cancel>
+		<Start>Set sail</Start>
+		<Delete>Set a-blaze</Delete>
+		<SourceComputer>Booty to plunder</SourceComputer>
+		<DestinationComputer>Where yee bury the treasure?</DestinationComputer>
+		<Log>
+			<Done>Settled.</Done>
+		</Log>
+	</Shared>
+	<Control>
+		<ConfirmDialog>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ConfirmDialog>
+		<DirectorySearch>
+			<Name>Name</Name>
+			<Description>Description</Description>
+			<OrganizationalUnit>Organizational unit</OrganizationalUnit>
+			<Search>Search</Search>
+			<SelectAComputer>Select a computer</SelectAComputer>
+			<Searching>Searching...</Searching>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+			<Log>
+				<SearchingActiveDirectoryFor>Searching active directory for {0}...</SearchingActiveDirectoryFor>
+				<FoundComputers>Found {0} computers.</FoundComputers>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<SearchActiveDirectory>Failed to search active directory.</SearchActiveDirectory>
+				</Failed>
+			</Log>
+		</DirectorySearch>
+		<License>
+			<License>license</License>
+		</License>
+		<RenameStoreUser>
+			<Log>
+				<Done>{Shared/Log/Done}</Done>
+				<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
+				<Failed>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
+				</Failed>
+			</Log>
+		</RenameStoreUser>
+		<Main>
+			<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
+			<ListSource>List source</ListSource>
+			<ListStore>List store</ListStore>
+			<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+			<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
+			<Start>{Shared/Start}</Start>
+			<Stop>Stop</Stop>
+			<UsersOnSourceComputer>Users on source computer:</UsersOnSourceComputer>
+			<UsersInMigrationStore>Users in migration store:</UsersInMigrationStore>
+			<DeleteUser>Delete user</DeleteUser>
+			<DeleteUsers>Delete users</DeleteUsers>
+			<AreYouSureDeleteUser>Are you sure you want to delete this user?</AreYouSureDeleteUser>
+			<AreYouSureDeleteUsers>Are you sure you want to delete these {0} users?</AreYouSureDeleteUsers>
+			<Delete>{Shared/Delete}</Delete>
+			<Menu>
+				<File>File</File>
+				<NewInstance>New instance</NewInstance>
+				<Settings>Settings...</Settings>
+				<SaveLog>Save log...</SaveLog>
+				<Exit>Exit</Exit>
+				<View>View</View>
+				<AddRemoveColumns>Add/remove columns...</AddRemoveColumns>
+				<LargeIcons>Large icons</LargeIcons>
+				<SmallIcons>Small icons</SmallIcons>
+				<List>List</List>
+				<Detail>Detail</Detail>
+				<Tile>Tile</Tile>
+				<Help>Help</Help>
+				<OnlineDocumentation>Online documentation</OnlineDocumentation>
+				<OnlineIssues>Online issues</OnlineIssues>
+				<OnlineUpdates>Online updates</OnlineUpdates>
+				<AboutSuperGrate>About {Shared/SuperGrate}</AboutSuperGrate>
+				<SetDestinationUserName>Set destination user name...</SetDestinationUserName>
+				<Properties>Properties</Properties>
+				<Start>{Shared/Start}</Start>
+				<Delete>{Shared/Delete}</Delete>
+			</Menu>
+			<Log>
+				<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
+				<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
+				<VerboseModeDisabled>Verbose mode disabled.</VerboseModeDisabled>
+				<VerboseModeEnabled>Verbose mode enabled.</VerboseModeEnabled>
+				<WritingLogTo>Writing log to {0}...</WritingLogTo>
+				<LogWrittenSuccessfully>Log written successfully.</LogWrittenSuccessfully>
+				<ThisProgramIsAttemptingToClose>This program is attempting to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
+				<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
+				<Canceled>Canceled.</Canceled>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<GatherUserProperties>Failed to gather user properties.</GatherUserProperties>
+				</Failed>
+			</Log>
+		</Main>
+	</Control>
 </SGLanguage>
