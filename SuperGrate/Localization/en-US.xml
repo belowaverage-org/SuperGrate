@@ -7,6 +7,8 @@
 		<Delete>Delete</Delete>
 		<SourceComputer>Source computer</SourceComputer>
 		<DestinationComputer>Destination computer</DestinationComputer>
+		<SourceUserName>Source user name</SourceUserName>
+		<DestinationUserName>Destination user name</DestinationUserName>
 		<Log>
 			<Done>Done.</Done>
 			<SuperGrateXML>SuperGrate.xml</SuperGrateXML>
@@ -135,8 +137,8 @@
 				<ProfilePath>Profile path</ProfilePath>
 				<Size>Size</Size>
 				<StoreIdentifier>Store identifier</StoreIdentifier>
-				<SourceUserName>Source user name</SourceUserName>
-				<DestinationUserName>Destination user name</DestinationUserName>
+				<SourceUserName>{Shared/SourceUserName}</SourceUserName>
+				<DestinationUserName>{Shared/DestinationUserName}</DestinationUserName>
 				<ImportedBy>Imported by</ImportedBy>
 				<ImportedOn>Imported on</ImportedOn>
 				<ExportedBy>Exported by</ExportedBy>
@@ -241,6 +243,12 @@
 			<License>license</License>
 		</License>
 		<RenameStoreUser>
+			<SetDestinationUserName>Set destination user name</SetDestinationUserName>
+			<UseThisDialog>Use this dialog to specify a &quot;destination user name&quot; when restoring a profile from the &quot;store&quot;</UseThisDialog>
+			<SourceUserName>{Shared/SourceUserName}</SourceUserName>
+			<DestinationUserName>{Shared/DestinationUserName}</DestinationUserName>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
 			<Log>
 				<Done>{Shared/Log/Done}</Done>
 				<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>

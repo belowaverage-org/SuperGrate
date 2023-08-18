@@ -14,11 +14,17 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.settings_ico;
+            Text = Language.Get("Control/RenameStoreUser/SetDestinationUserName");
             btnSave.SetSystemIcon(Properties.Resources.check_ico);
+            btnSave.Text = Language.Get("Control/RenameStoreUser/OK");
             btnCancel.SetSystemIcon(Properties.Resources.cancel_ico);
+            btnCancel.Text = Language.Get("Control/RenameStoreUser/Cancel");
             StoreID = Row[ULColumnType.Tag];
             tbOrigUser.Text = Row[ULColumnType.SourceNTAccount];
             tbDestUser.Text = Row[ULColumnType.DestinationNTAccount];
+            lblDescription.Text = Language.Get("Control/RenameStoreUser/UseThisDialog");
+            lblOrigName.Text = Language.Get("Control/RenameStoreUser/SourceUserName");
+            lblDestName.Text = Language.Get("Control/RenameStoreUser/DestinationUserName");
         }
         private async void btnSave_Click(object sender, EventArgs e)
         {

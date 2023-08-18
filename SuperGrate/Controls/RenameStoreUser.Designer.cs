@@ -49,9 +49,8 @@ namespace SuperGrate.Controls
             this.lblOrigName.Location = new System.Drawing.Point(29, 43);
             this.lblOrigName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOrigName.Name = "lblOrigName";
-            this.lblOrigName.Size = new System.Drawing.Size(107, 15);
+            this.lblOrigName.Size = new System.Drawing.Size(0, 15);
             this.lblOrigName.TabIndex = 0;
-            this.lblOrigName.Text = "Source User Name:";
             // 
             // lblDestName
             // 
@@ -60,9 +59,8 @@ namespace SuperGrate.Controls
             this.lblDestName.Location = new System.Drawing.Point(29, 89);
             this.lblDestName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDestName.Name = "lblDestName";
-            this.lblDestName.Size = new System.Drawing.Size(131, 15);
+            this.lblDestName.Size = new System.Drawing.Size(0, 15);
             this.lblDestName.TabIndex = 1;
-            this.lblDestName.Text = "Destination User Name:";
             // 
             // tbOrigUser
             // 
@@ -88,15 +86,12 @@ namespace SuperGrate.Controls
             // 
             // lblDescription
             // 
-            this.lblDescription.AutoSize = true;
             this.lblDescription.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.lblDescription.Location = new System.Drawing.Point(26, 23);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(359, 30);
+            this.lblDescription.Size = new System.Drawing.Size(435, 39);
             this.lblDescription.TabIndex = 4;
-            this.lblDescription.Text = "Use this dialog to specify a \"destination user name\" when restoring\r\na profile fr" +
-    "om the \"store\".";
             // 
             // btnCancel
             // 
@@ -108,7 +103,7 @@ namespace SuperGrate.Controls
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 30);
             this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = null;
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnSave
@@ -121,7 +116,7 @@ namespace SuperGrate.Controls
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 30);
             this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "OK";
+            this.btnSave.Text = null;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -139,7 +134,6 @@ namespace SuperGrate.Controls
             this.gb1.Size = new System.Drawing.Size(477, 138);
             this.gb1.TabIndex = 7;
             this.gb1.TabStop = false;
-            this.gb1.Text = "User Name - Properties";
             // 
             // panel1
             // 
@@ -170,12 +164,10 @@ namespace SuperGrate.Controls
             this.MinimizeBox = false;
             this.Name = "RenameStoreUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Set Destination User Name";
             this.gb1.ResumeLayout(false);
             this.gb1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
