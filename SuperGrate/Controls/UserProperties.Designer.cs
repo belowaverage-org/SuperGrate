@@ -46,7 +46,6 @@
             this.colValue});
             this.lvProperties.FullRowSelect = true;
             this.lvProperties.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.helpProvider.SetHelpString(this.lvProperties, "A list of properties for the user you double-clicked a moment ago.");
             this.lvProperties.HideSelection = false;
             this.lvProperties.Location = new System.Drawing.Point(0, 0);
             this.lvProperties.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -72,7 +71,6 @@
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnOK, "Closes the user properties window.");
             this.btnOK.Icon = "";
             this.btnOK.Location = new System.Drawing.Point(224, 157);
             this.btnOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -80,7 +78,6 @@
             this.helpProvider.SetShowHelp(this.btnOK, true);
             this.btnOK.Size = new System.Drawing.Size(91, 26);
             this.btnOK.TabIndex = 1;
-            this.btnOK.Text = " OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
             // UserProperties
@@ -102,7 +99,6 @@
             this.MinimumSize = new System.Drawing.Size(249, 153);
             this.Name = "UserProperties";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "User Properties";
             this.ResumeLayout(false);
 
         }

@@ -1,4 +1,5 @@
-﻿using SuperGrate.UserList;
+﻿using SuperGrate.Classes;
+using SuperGrate.UserList;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -15,7 +16,9 @@ namespace SuperGrate.Controls
         {
             InitializeComponent();
             Icon = Properties.Resources.user_ico;
+            Text = Language.Get("Control/UserProperties/UserProperties");
             btnOK.SetSystemIcon(Properties.Resources.check_ico);
+            btnOK.Text = Language.Get("Control/UserProperties/OK");
             foreach (KeyValuePair<ULColumnType, string> property in Row)
             {
                 string value = ULControl.ConvertColumnValue(property);

@@ -49,13 +49,10 @@
             this.Value});
             this.settingsList.FullRowSelect = true;
             this.settingsList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.helpProvider.SetHelpString(this.settingsList, "List of settings / parameters for Super Grate. Double click any setting to change" +
-        " its value.");
             this.settingsList.HideSelection = false;
             this.settingsList.Location = new System.Drawing.Point(0, 0);
             this.settingsList.MultiSelect = false;
             this.settingsList.Name = "settingsList";
-            this.helpProvider.SetShowHelp(this.settingsList, true);
             this.settingsList.Size = new System.Drawing.Size(694, 308);
             this.settingsList.TabIndex = 0;
             this.settingsList.UseCompatibleStateImageBehavior = false;
@@ -64,26 +61,21 @@
             // 
             // Setting
             // 
-            this.Setting.Text = "Setting";
             this.Setting.Width = 113;
             // 
             // Value
             // 
-            this.Value.Text = "Value";
             this.Value.Width = 525;
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnSave, "Saves the configuration to disk.");
             this.btnSave.Icon = "";
             this.btnSave.Location = new System.Drawing.Point(460, 319);
             this.btnSave.Name = "btnSave";
-            this.helpProvider.SetShowHelp(this.btnSave, true);
             this.btnSave.Size = new System.Drawing.Size(109, 29);
             this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "Save to Disk";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
@@ -99,20 +91,17 @@
             this.lblHint.Name = "lblHint";
             this.lblHint.Size = new System.Drawing.Size(375, 20);
             this.lblHint.TabIndex = 2;
-            this.lblHint.Text = "Double Click a setting to change its value.";
             // 
             // btnRevert
             // 
             this.btnRevert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRevert.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnRevert, "Re-load the configuration from disk.");
             this.btnRevert.Icon = "";
             this.btnRevert.Location = new System.Drawing.Point(344, 319);
             this.btnRevert.Name = "btnRevert";
             this.helpProvider.SetShowHelp(this.btnRevert, true);
             this.btnRevert.Size = new System.Drawing.Size(109, 29);
             this.btnRevert.TabIndex = 3;
-            this.btnRevert.Text = "Reload";
             this.btnRevert.UseVisualStyleBackColor = false;
             this.btnRevert.Click += new System.EventHandler(this.btnRevert_Click);
             // 
@@ -121,14 +110,11 @@
             this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApply.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.helpProvider.SetHelpString(this.btnApply, "Closes this window.");
             this.btnApply.Icon = "";
             this.btnApply.Location = new System.Drawing.Point(576, 319);
             this.btnApply.Name = "btnApply";
-            this.helpProvider.SetShowHelp(this.btnApply, true);
             this.btnApply.Size = new System.Drawing.Size(109, 29);
             this.btnApply.TabIndex = 4;
-            this.btnApply.Text = "Close";
             this.btnApply.UseVisualStyleBackColor = false;
             // 
             // Settings
@@ -152,7 +138,6 @@
             this.MinimumSize = new System.Drawing.Size(553, 257);
             this.Name = "Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
             this.ResumeLayout(false);
 

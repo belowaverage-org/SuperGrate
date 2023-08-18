@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperGrate.Classes;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,10 +14,17 @@ namespace SuperGrate.Controls
         public Settings()
         {
             InitializeComponent();
+            Text = Language.Get("Control/Settings/Settings");
             Icon = Properties.Resources.settings_ico;
             btnSave.SetSystemIcon(Properties.Resources.save_ico);
+            btnSave.Text = Language.Get("Control/Settings/SaveToDisk");
             btnRevert.SetSystemIcon(Properties.Resources.reload_ico);
+            btnRevert.Text = Language.Get("Control/Settings/Reload");
             btnApply.SetSystemIcon(Properties.Resources.x_ico);
+            btnApply.Text = Language.Get("Control/Settings/Close");
+            lblHint.Text = Language.Get("Control/Settings/DoubleClickToChangeValue");
+            Setting.Text = Language.Get("Control/Settings/Setting");
+            Value.Text = Language.Get("Control/Settings/Value");
         }
         /// <summary>
         /// This event fires when the settings form loads. The method calls RefreshSettings.
@@ -60,7 +68,7 @@ namespace SuperGrate.Controls
             RefreshSettings();
             string text = btnRevert.Text;
             btnRevert.SetSystemIcon(Properties.Resources.check_ico);
-            btnRevert.Text = " Loaded!";
+            btnRevert.Text = Language.Get("Control/Settings/Loaded");
             await Task.Delay(1000);
             btnRevert.SetSystemIcon(Properties.Resources.reload_ico);
             btnRevert.Text = text;
@@ -93,7 +101,7 @@ namespace SuperGrate.Controls
             Config.SaveConfig();
             string text = btnSave.Text;
             btnSave.SetSystemIcon(Properties.Resources.check_ico);
-            btnSave.Text = " Saved!";
+            btnSave.Text = Language.Get("Control/Settings/Saved");
             await Task.Delay(1000);
             btnSave.SetSystemIcon(Properties.Resources.save_ico);
             btnSave.Text = text;

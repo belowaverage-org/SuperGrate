@@ -249,6 +249,21 @@
 				</Failed>
 			</Log>
 		</RenameStoreUser>
+		<Settings>
+			<Settings>Settings</Settings>
+			<Reload>Reload</Reload>
+			<SaveToDisk>Save to disk</SaveToDisk>
+			<Close>Close</Close>
+			<DoubleClickToChangeValue>Double click a setting to change its value</DoubleClickToChangeValue>
+			<Loaded>Loaded</Loaded>
+			<Saved>Saved</Saved>
+			<Setting>Setting</Setting>
+			<Value>Value</Value>
+		</Settings>
+		<UserProperties>
+			<UserProperties>User properties</UserProperties>
+			<OK>{Shared/OK}</OK>
+		</UserProperties>
 		<Main>
 			<WelcomeTo>Welcome to {0}! v{1}</WelcomeTo>
 			<ListSource>List source</ListSource>

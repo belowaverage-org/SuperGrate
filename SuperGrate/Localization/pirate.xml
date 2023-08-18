@@ -1,17 +1,220 @@
-﻿<SGLanguage DisplayName="Pirate (United States)">
+﻿<SGLanguage DisplayName="English (United States)">
 	<Shared>
-		<SuperGrate>Booty mover</SuperGrate>
-		<OK>Yar</OK>
-		<Cancel>Abort</Cancel>
-		<Start>Set sail</Start>
-		<Delete>Set a-blaze</Delete>
-		<SourceComputer>Booty to plunder</SourceComputer>
-		<DestinationComputer>Where yee bury the treasure?</DestinationComputer>
+		<SuperGrate>Legendary Grate</SuperGrate>
+		<OK>Aye Aye</OK>
+		<Cancel>Abandon Ship</Cancel>
+		<Start>Set Sail</Start>
+		<Delete>Scuttle</Delete>
+		<SourceComputer>Source Ship</SourceComputer>
+		<DestinationComputer>Treasure Destination</DestinationComputer>
 		<Log>
-			<Done>Settled.</Done>
+			<Done>Done, me hearties.</Done>
+			<SuperGrateXML>LegendaryGrate.xml</SuperGrateXML>
+			<Failed>
+				<WriteStoreParameterTo>Failed to pen down store parameter(s) to {0}.</WriteStoreParameterTo>
+			</Failed>
 		</Log>
 	</Shared>
+	<Class>
+		<Config>
+			<Log>
+				<GeneratingXML>Craftin' {Shared/Log/SuperGrateXML}...</GeneratingXML>
+				<XMLIsMissingKey>{Shared/Log/SuperGrateXML} be missin' {0}.</XMLIsMissingKey>
+				<XMLLoaded>{Shared/Log/SuperGrateXML} loaded.</XMLLoaded>
+				<XMLLoadedButIsUsingDefaults>Config loaded, but be usin' default values fer the missing elements. Ye can fix this warnin' by savin' the current settings.</XMLLoadedButIsUsingDefaults>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<SaveConfigurationToDisk>Failed to stash {Shared/Log/SuperGrateXML} to the disk.</SaveConfigurationToDisk>
+					<LoadConfiguration>Failed to load {Shared/Log/SuperGrateXML}.</LoadConfiguration>
+				</Failed>
+			</Log>
+			<Comment>
+				<USMTPath>The UNC or direct path to the USMT treasure trove. (E.g: .\USMT\X64)</USMTPath>
+				<PayloadPath>Local path on source ship where {Shared/SuperGrate} will be runnin' USMT from. (E.g: C:\LegendaryGrate)</PayloadPath>
+				<MigrationStorePath>The UNC or direct path to the USMT migration treasure hoard. (E.g: \\ba-share\s$ or .\STORE)</MigrationStorePath>
+				<ScanLoadStateParams>ScanState.exe and LoadState.exe CLI parameters. (See: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax)</ScanLoadStateParams>
+				<AutoDeleteFromStore>Delete the scallywag from the migration store after a restore? (Store to destination)</AutoDeleteFromStore>
+				<AutoDeleteFromSource>Delete the scallywag from the source ship after a backup? (Source to store)</AutoDeleteFromSource>
+				<HideBuiltInAccounts>Keep away NT AUTHORITY and NT SERVICE accounts from bein' listed?</HideBuiltInAccounts>
+				<HideUnknownSIDs>Keep away unknown accounts from bein' listed?</HideUnknownSIDs>
+				<DumpLogHere>Drop log to the chest on exit. (Leave blank to disable) (E.g: \\ba-share\s$\Logs or .\Logs)</DumpLogHere>
+				<ULColumns>List of columns to flash for the source or store crew members.</ULColumns>
+				<ULViewMode>Crew list view mode. (E.g: Large (0) / Small Icon (2), List (3), Details (1), and Tile (4))</ULViewMode>
+				<SourceComputer>Default source ship at weigh anchor.</SourceComputer>
+				<DestinationComputer>Default destination ship at weigh anchor.</DestinationComputer>
+				<TabView>Default tab view at weigh anchor (E.g: Source, Store, or None)</TabView>
+				<SecurityProtocol>Security protocol version (Restart required) (E.g: SystemDefault, Ssl3, Tls, Tls11, Tls12, or Tls13)</SecurityProtocol>
+				<Language>Tongue. (E.g: en-US)</Language>
+			</Comment>
+		</Config>
+		<Download>
+			<Log>
+				<Failed>
+					<Download>Failed to haul in from {0}.</Download>
+				</Failed>
+			</Log>
+		</Download>
+		<FileOperations>
+			<Log>
+				<Failed>
+					<GetFolderSize>Failed to reckon folder size.</GetFolderSize>
+				</Failed>
+			</Log>
+		</FileOperations>
+		<Language>
+			<Log>
+				<Failed>
+					<FindLanguage>Failed to find the pirate code.</FindLanguage>
+				</Failed>
+			</Log>
+		</Language>
+		<Logger>
+			<Prefix>
+				<Info>INFO</Info>
+				<Success>SUCCESS</Success>
+				<Warning>WARNING</Warning>
+				<Error>ERROR</Error>
+				<Verbose>VERBOSE</Verbose>
+			</Prefix>
+			<Log>
+				<Failed>
+					<WriteErrorToWindow>Failed to carve error message to the main ship's window.</WriteErrorToWindow>
+					<WriteLogToDisk>Failed to scratch the log to the ship's logs.</WriteLogToDisk>
+				</Failed>
+			</Log>
+		</Logger>
+		<Misc>
+			<Log>
+				<FoundUser>Found scallywag {0}.</FoundUser>
+				<SkippedSIDUser>Skipped {0} {1}.</SkippedSIDUser>
+				<SkippedUnknownSID>Skipped unknown landlubber {0}.</SkippedUnknownSID>
+				<SkippedSIDMissingProfile>Skipped scallywag without a hideout directory on the remote ship {0}.</SkippedSIDMissingProfile>
+				<CalculatingProfileSizeFor>Calculatin' hideout size for {0}...</CalculatingProfileSizeFor>
+				<ListingUsersFrom>Listin' scallywags from {0}...</ListingUsersFrom>
+				<CanceledListingUsersFrom>Canceled listin' scallywags from {0}.</CanceledListingUsersFrom>
+				<UsersListedSuccessfullyFrom>Scallywags listed successfully from {0}.</UsersListedSuccessfullyFrom>
+				<DeletingUserFromTheStore>Deletin' {0} from the store...</DeletingUserFromTheStore>
+				<DeletingUserFrom>Deletin' {0} from {1}...</DeletingUserFrom>
+				<UserSuccessfullyDeletedFromTheStore>Scallywag {0} successfully deleted from the store.</UserSuccessfullyDeletedFromTheStore>
+				<CopyingUserDeleteAgentToRemotePC>Coppin' scallywag delete agent to remote ship {0}...</CopyingUserDeleteAgentToRemotePC>
+				<RemovingUserDeleteAgentFromRemotePC>Removin' scallywag delete agent from remote ship {0}...</RemovingUserDeleteAgentFromRemotePC>
+				<StoppingUserDeleteAgentOnRemotePC>Stoppin' scallywag delete agent on {0}...</StoppingUserDeleteAgentOnRemotePC>
+				<UserDeleteAgentHasBeenStoppedOn>Scallywag delete agent has been stopped on {0}.</UserDeleteAgentHasBeenStoppedOn>
+				<GatheringOSArchitectureOn>Gatherin' OS architecture on {0}...</GatheringOSArchitectureOn>
+				<TheOSArchitectureOnIs>The OS architecture on {0} be {1}.</TheOSArchitectureOnIs>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<ResolveSIDViaWMI>Failed to resolve an SID via WMI.</ResolveSIDViaWMI>
+					<ResolveStoreGUID>Failed to resolve Store GUID.</ResolveStoreGUID>
+					<RetrieveHostnameFrom>Failed to fetch hostname from {0}.</RetrieveHostnameFrom>
+					<ListUsersFrom>Failed to list scallywags from {0}.</ListUsersFrom>
+					<ReadSIDFromStoreID>Failed to read SID from store ID {0}.</ReadSIDFromStoreID>
+					<ReadUserFromStoreID>Failed to read scallywag from store ID {0}.</ReadUserFromStoreID>
+					<DeleteUserFromTheStore>Failed to delete {0} from the store.</DeleteUserFromTheStore>
+					<DeleteUserFrom>Failed to delete {0} from {1}.</DeleteUserFrom>
+					<StopUserDeleteAgentOn>Failed to stop scallywag delete agent on {0}.</StopUserDeleteAgentOn>
+					<GatherOSArchitectureOn>Failed to gather OS architecture on {0}.</GatherOSArchitectureOn>
+				</Failed>
+			</Log>
+		</Misc>
+		<Remote>
+			<Log>
+				<WaitingForProcessToFinish>Waitin' for {0} to finish...</WaitingForProcessToFinish>
+				<Failed>
+					<RunCommandOn>Failed to run command on {0}.</RunCommandOn>
+					<WaitForRemoteProcess>Failed to wait for remote process {0} to finish.</WaitForRemoteProcess>
+				</Failed>
+			</Log>
+		</Remote>
+		<UserList>
+			<Column>
+				<SecurityIdentifier>Security identifier</SecurityIdentifier>
+				<UserName>Scallywag name</UserName>
+				<LastModified>Last modified</LastModified>
+				<FirstCreated>First created</FirstCreated>
+				<ProfilePath>Hideout path</ProfilePath>
+				<Size>Size</Size>
+				<StoreIdentifier>Store identifier</StoreIdentifier>
+				<SourceUserName>Source scallywag name</SourceUserName>
+				<DestinationUserName>Destination scallywag name</DestinationUserName>
+				<ImportedBy>Imported by</ImportedBy>
+				<ImportedOn>Imported on</ImportedOn>
+				<ExportedBy>Exported by</ExportedBy>
+				<ExportedOn>Exported on</ExportedOn>
+				<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+				<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
+			</Column>
+		</UserList>
+		<USMT>
+			<Log>
+				<ApplyingUserStateOn>Applyin' scallywag state {0} on {1}....</ApplyingUserStateOn>
+				<CapturingUserStateOn>Capturin' scallywag state {0} on {1}....</CapturingUserStateOn>
+				<UploadingUSMTTo>Haulin' USMT to {0}...</UploadingUSMTTo>
+				<USMTUploadedSuccessfully>USMT hauled in successfully.</USMTUploadedSuccessfully>
+				<USMTUploadCanceled>USMT haul canceled.</USMTUploadCanceled>
+				<StoppingUSMTProcessOn>Stoppin' USMT process on {0}.</StoppingUSMTProcessOn>
+				<USMTProcessStoppedOn>USMT process stopped on {0}.</USMTProcessStoppedOn>
+				<RemovingUSMTFrom>Removin' USMT from {0}...</RemovingUSMTFrom>
+				<USMTRemovedSuccessfully>USMT removed successfully.</USMTRemovedSuccessfully>
+				<UserWillBeAppliedAs>Scallywag {0} will be applied as {1}.</UserWillBeAppliedAs>
+				<TransferringUserStateTo>Transferrin' scallywag state to {0}...</TransferringUserStateTo>
+				<UserStateSuccessfullyTransferred>Scallywag state successfully transferred.</UserStateSuccessfullyTransferred>
+				<DownloadingUSMTFromTheWeb>Downloadin' USMT {0} from the web...</DownloadingUSMTFromTheWeb>
+				<DecompressingUSMT>Decompressin' USMT...</DecompressingUSMT>
+				<CleaningUpUSMT>Cleanin' up USMT...</CleaningUpUSMT>
+				<USMTFinished>USMT Finished.</USMTFinished>
+				<Failed>
+					<FindUSMTFolderAt>Failed to find USMT folder at {0}.</FindUSMTFolderAt>
+					<StopUSMTOn>Failed to stop USMT on {0}.</StopUSMTOn>
+					<DeleteUSMTOn>Failed to delete USMT on {0}.</DeleteUSMTOn>
+					<DeleteUSMTAttempt>Failed to delete USMT, the process may still be runnin', tryin' periodically: Attempt {0}/{1}.</DeleteUSMTAttempt>
+					<GenerateMUParameter>Failed to generate MU parameter for USMT.</GenerateMUParameter>
+					<TransferUserStateTo>Failed to transfer scallywag state to {0}.</TransferUserStateTo>
+					<DownloadUSMT>Failed to automatically haul in USMT from the web, please haul in USMT and update the {Shared/Log/SuperGrateXML} accordingly.</DownloadUSMT>
+					<OSArchitectureIsNotSupported>The OS architecture {0} be not supported.</OSArchitectureIsNotSupported>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
+					<WatchRemoteLog>Failed to watch remote log ship at {0}.</WatchRemoteLog>
+					<UploadUSMTTo>Failed to haul in USMT to {0}.</UploadUSMTTo>
+				</Failed>
+			</Log>
+		</USMT>
+		<WMI>
+			<Log>
+				<Failed>
+					<QueryWMI>Failed to query WMI, {0} might have a cursed WMI installation. Try to run the command "winmgmt.exe /resetrepository" on the target ship to resolve this matter. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
+					<ConnectToViaWMI>Failed to connect to {0} via WMI. Make sure the remote ship be online.</ConnectToViaWMI>
+					<ConnectToViaWMIAccessDenied>Failed to connect to {0} via WMI because access be denied. Make sure yer user account has admiral access to the remote ship.</ConnectToViaWMIAccessDenied>
+				</Failed>
+			</Log>
+		</WMI>
+	</Class>
 	<Control>
+		<About>
+			<About>About {0}</About>
+			<Version>Version {0}</Version>
+			<License>License</License>
+			<GitHub>GitHub</GitHub>
+			<OK>{Shared/OK}</OK>
+		</About>
+		<ChangeColumns>
+			<AddRemoveColumns>Add/remove columns</AddRemoveColumns>
+			<Add>Add -&gt;</Add>
+			<Remove>&lt;- Remove</Remove>
+			<MoveUp>Move up</MoveUp>
+			<MoveDown>Move down</MoveDown>
+			<RestoreDefaults>Restore defaults</RestoreDefaults>
+			<AvailableColumns>Available columns:</AvailableColumns>
+			<DisplayedColumns>Displayed columns:</DisplayedColumns>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ChangeColumns>
+		<ChangeSetting>
+			<Default>Default</Default>
+			<ChangeSetting>Change settin':</ChangeSetting>
+			<DefaultValue>Default value:</DefaultValue>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ChangeSetting>
 		<ConfirmDialog>
 			<OK>{Shared/OK}</OK>
 			<Cancel>{Shared/Cancel}</Cancel>
@@ -21,13 +224,13 @@
 			<Description>Description</Description>
 			<OrganizationalUnit>Organizational unit</OrganizationalUnit>
 			<Search>Search</Search>
-			<SelectAComputer>Select a computer</SelectAComputer>
-			<Searching>Searching...</Searching>
+			<SelectAComputer>Select a ship</SelectAComputer>
+			<Searching>Searchin'...</Searching>
 			<OK>{Shared/OK}</OK>
 			<Cancel>{Shared/Cancel}</Cancel>
 			<Log>
-				<SearchingActiveDirectoryFor>Searching active directory for {0}...</SearchingActiveDirectoryFor>
-				<FoundComputers>Found {0} computers.</FoundComputers>
+				<SearchingActiveDirectoryFor>Searchin' active directory for {0}...</SearchingActiveDirectoryFor>
+				<FoundComputers>Found {0} ships.</FoundComputers>
 				<Done>{Shared/Log/Done}</Done>
 				<Failed>
 					<SearchActiveDirectory>Failed to search active directory.</SearchActiveDirectory>
@@ -40,7 +243,7 @@
 		<RenameStoreUser>
 			<Log>
 				<Done>{Shared/Log/Done}</Done>
-				<SavingDataToMigrationStore>Saving user data to migration store...</SavingDataToMigrationStore>
+				<SavingDataToMigrationStore>Savin' user data to migration store...</SavingDataToMigrationStore>
 				<Failed>
 					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
 				</Failed>
@@ -54,12 +257,12 @@
 			<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
 			<Start>{Shared/Start}</Start>
 			<Stop>Stop</Stop>
-			<UsersOnSourceComputer>Users on source computer:</UsersOnSourceComputer>
-			<UsersInMigrationStore>Users in migration store:</UsersInMigrationStore>
-			<DeleteUser>Delete user</DeleteUser>
-			<DeleteUsers>Delete users</DeleteUsers>
-			<AreYouSureDeleteUser>Are you sure you want to delete this user?</AreYouSureDeleteUser>
-			<AreYouSureDeleteUsers>Are you sure you want to delete these {0} users?</AreYouSureDeleteUsers>
+			<UsersOnSourceComputer>Scallywags on source ship:</UsersOnSourceComputer>
+			<UsersInMigrationStore>Scallywags in migration store:</UsersInMigrationStore>
+			<DeleteUser>Delete scallywag</DeleteUser>
+			<DeleteUsers>Delete scallywags</DeleteUsers>
+			<AreYouSureDeleteUser>Be ye sure ye want to delete this scallywag?</AreYouSureDeleteUser>
+			<AreYouSureDeleteUsers>Be ye sure ye want to delete these {0} scallywags?</AreYouSureDeleteUsers>
 			<Delete>{Shared/Delete}</Delete>
 			<Menu>
 				<File>File</File>
@@ -79,20 +282,20 @@
 				<OnlineIssues>Online issues</OnlineIssues>
 				<OnlineUpdates>Online updates</OnlineUpdates>
 				<AboutSuperGrate>About {Shared/SuperGrate}</AboutSuperGrate>
-				<SetDestinationUserName>Set destination user name...</SetDestinationUserName>
+				<SetDestinationUserName>Set destination scallywag name...</SetDestinationUserName>
 				<Properties>Properties</Properties>
 				<Start>{Shared/Start}</Start>
 				<Delete>{Shared/Delete}</Delete>
 			</Menu>
 			<Log>
 				<EnterSomeInfoToGetStarted>Enter some information to get started!</EnterSomeInfoToGetStarted>
-				<CancelingCurrentTask>Canceling current task...</CancelingCurrentTask>
+				<CancelingCurrentTask>Cancelin' current task...</CancelingCurrentTask>
 				<VerboseModeDisabled>Verbose mode disabled.</VerboseModeDisabled>
 				<VerboseModeEnabled>Verbose mode enabled.</VerboseModeEnabled>
-				<WritingLogTo>Writing log to {0}...</WritingLogTo>
+				<WritingLogTo>Writin' log to {0}...</WritingLogTo>
 				<LogWrittenSuccessfully>Log written successfully.</LogWrittenSuccessfully>
-				<ThisProgramIsAttemptingToClose>This program is attempting to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
-				<GatheringUserProperties>Gathering user properties...</GatheringUserProperties>
+				<ThisProgramIsAttemptingToClose>This program be attemptin' to close, attempt {0}/{1}.</ThisProgramIsAttemptingToClose>
+				<GatheringUserProperties>Gatherin' user properties...</GatheringUserProperties>
 				<Canceled>Canceled.</Canceled>
 				<Done>{Shared/Log/Done}</Done>
 				<Failed>
