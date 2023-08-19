@@ -148,5 +148,63 @@
         </Setter>
     </Style>
 
+    <Style x:Key="{x:Type ProgressBar}" TargetType="{x:Type ProgressBar}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ProgressBar}">
+                    <Border CornerRadius="4">
+                        <Border.BorderThickness>
+                            <Thickness Top="1" Left="1" Right="1" Bottom="1" />
+                        </Border.BorderThickness>
+                        <Border.Background>
+                            <SolidColorBrush />
+                        </Border.Background>
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0 1">
+                                <GradientStop Color="#e0e0e0" Offset="0.99"></GradientStop>
+                                <GradientStop x:Name="BtnBttmBorder" Color="Gray" Offset="0.99"></GradientStop>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                        <Grid>
+                            <Grid.OpacityMask>
+                                <VisualBrush Visual="{Binding ElementName=Mask}" />
+                            </Grid.OpacityMask>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Determinate" />
+                                    <VisualState x:Name="Indeterminate">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="00:00:00" Storyboard.TargetName="PART_Indicator" Storyboard.TargetProperty="Background">
+                                                <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <SolidColorBrush>transparent</SolidColorBrush>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="Mask" RadiusX="2" RadiusY="2" Fill="White" />
+                            <Border x:Name="PART_Track" />
+                            <Border x:Name="PART_Indicator" HorizontalAlignment="Left" Background="orange">
+                                <Grid x:Name="Animation">
+                                    <Rectangle x:Name="PART_GlowRect" Width="100" HorizontalAlignment="Left" Fill="green" Margin="-100,0,0,0" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground">
+            <Setter.Value>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="blue" Offset="0" />
+                    <!--<GradientStop Color="red" Offset="1" />-->
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

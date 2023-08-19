@@ -1,6 +1,7 @@
 ﻿using SuperGrate.Classes;
 using SuperGrate.ComInterop;
 using SuperGrate.Controls;
+using SuperGrate.Controls.Components;
 using SuperGrate.UserList;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace SuperGrate
     {
         public static Main Form;
         public static RichTextBox LoggerBox;
-        public static ProgressBar Progress;
+        public static SGProgressBar Progress;
         public static string SourceComputer;
         public static string DestinationComputer;
         public static ListSources CurrentListSource = ListSources.Unknown;

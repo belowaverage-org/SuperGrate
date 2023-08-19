@@ -1,56 +1,43 @@
-﻿using System;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
+using System.Windows.Forms.Integration;
 
 namespace SuperGrate.Controls.Components
 {
     public class SGProgressBar : ProgressBar
     {
-        private IntPtr HDC;
-
-        /// <summary>
-        /// Position to use to draw the text.
-        /// </summary>
-        private Win32Interop.RECT RECT = new Win32Interop.RECT() { 
-            Top = 8,
-            Left = 6
-        };
-        /// <summary>
-        /// Draws specified text over the ProgressBar control.
-        /// </summary>
-        /// <param name="Text">Text to draw.</param>
-        private void DrawText(string Text)
+        private System.Windows.Controls.ProgressBar ProgressBar = new System.Windows.Controls.ProgressBar();
+        public SGProgressBar()
         {
-            Win32Interop.DrawText(HDC, Text, -1, RECT, Win32Interop.DTFormat.DT_NOCLIP | Win32Interop.DTFormat.DT_BOTTOM);
+            if (LicenseManager.CurrentContext.UsageMode == LicenseUsageMode.Designtime) return;
+            ElementHost host = new ElementHost();
+            host.Dock = DockStyle.Fill;
+            host.Parent = this;
+            host.Child = ProgressBar;
+            Misc.ApplyStyles(ProgressBar);
         }
-        /// <summary>
-        /// WndProc Override. Drawing text over top existing ProgressBar control.
-        /// </summary>
-        protected override void WndProc(ref Message m)
+        public new int Value
         {
-            base.WndProc(ref m);
-            if (m.Msg == 1)
+            get
             {
-                HDC = Win32Interop.GetDC(Handle);
-                Win32Interop.SetBkMode(HDC, Win32Interop.BkMode.Transparent);
-                IntPtr sfo = Win32Interop.GetStockObject(Win32Interop.StockLogicalObjects.ANSI_VAR_FONT);
-                Win32Interop.SelectObject(HDC, sfo);
+                return (int)ProgressBar.Value;
             }
-            if (m.Msg == 15)
+            set
             {
-                if (Style == ProgressBarStyle.Marquee)
-                {
-                    //DrawText("Working...");
-                    return;
-                }
-                if (Value == 100 || Value == 0) return;
-                DrawText((((float)Value / (float)Maximum) * 100).ToString() + "%");
+                ProgressBar.Value = value;
             }
         }
-        private void InitializeComponent()
+        public new ProgressBarStyle Style
         {
-            this.SuspendLayout();
-            this.ResumeLayout(false);
-
+            get
+            {
+                if (ProgressBar.IsIndeterminate) return ProgressBarStyle.Marquee;
+                return ProgressBarStyle.Continuous;
+            }
+            set
+            {
+                ProgressBar.IsIndeterminate = (value == ProgressBarStyle.Marquee);
+            }
         }
     }
 }
