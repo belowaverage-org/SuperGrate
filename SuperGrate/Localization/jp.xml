@@ -1,0 +1,330 @@
+﻿<SGLanguage DisplayName="英語">
+	<Shared>
+		<SuperGrate>Super Grate</SuperGrate>
+		<OK>OK</OK>
+		<Cancel>キャンセル</Cancel>
+		<Start>開始</Start>
+		<Delete>削除</Delete>
+		<SourceComputer>ソースコンピュータ</SourceComputer>
+		<DestinationComputer>宛先コンピュータ</DestinationComputer>
+		<SourceUserName>ソースユーザ名</SourceUserName>
+		<DestinationUserName>宛先ユーザ名</DestinationUserName>
+		<Log>
+			<Done>完了。</Done>
+			<SuperGrateXML>SuperGrate.xml</SuperGrateXML>
+			<Failed>
+				<WriteStoreParameterTo>{0} へのストアパラメータの書き込みに失敗しました。</WriteStoreParameterTo>
+			</Failed>
+		</Log>
+	</Shared>
+	<Class>
+		<Config>
+			<Log>
+				<GeneratingXML>{Shared/Log/GeneratingXML}</GeneratingXML>
+				<XMLIsMissingKey>{Shared/Log/SuperGrateXML} に {0} が不足しています。</XMLIsMissingKey>
+				<XMLLoaded>{Shared/Log/SuperGrateXML} が読み込まれました。</XMLLoaded>
+				<XMLLoadedButIsUsingDefaults>設定が読み込まれましたが、不足している要素のためにデフォルト値が使用されています。現在の設定を保存することで、この警告を修正できます。</XMLLoadedButIsUsingDefaults>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<SaveConfigurationToDisk>{Shared/Log/Failed/SaveConfigurationToDisk}</SaveConfigurationToDisk>
+					<LoadConfiguration>{Shared/Log/Failed/LoadConfiguration}</LoadConfiguration>
+				</Failed>
+			</Log>
+			<Comment>
+				<USMTPath>USMT ディレクトリへの UNC または直接パス。 (例: .\USMT\X64)</USMTPath>
+				<PayloadPath>{Shared/SuperGrate} が USMT を実行するソースコンピュータ上のローカルパス。 (例: C:\SuperGrate)</PayloadPath>
+				<MigrationStorePath>USMT マイグレーションストアへの UNC または直接パス。 (例: \\ba-share\s$ または .\STORE)</MigrationStorePath>
+				<ScanLoadStateParams>ScanState.exe および LoadState.exe CLI パラメータ。 (参照: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax)</ScanLoadStateParams>
+				<AutoDeleteFromStore>復元後にマイグレーションストアからユーザを削除しますか？ (ストアから宛先へ)</AutoDeleteFromStore>
+				<AutoDeleteFromSource>バックアップ後にソースコンピュータからユーザを削除しますか？ (ソースからストアへ)</AutoDeleteFromSource>
+				<HideBuiltInAccounts>NT AUTHORITY および NT SERVICE アカウントの一覧表示を防ぎますか？</HideBuiltInAccounts>
+				<HideUnknownSIDs>不明なアカウントの一覧表示を防ぎますか？</HideUnknownSIDs>
+				<DumpLogHere>終了時にログをディスクに書き込む (無効にするには空白のままで)。 (例: \\ba-share\s$\Logs または .\Logs)</DumpLogHere>
+				<ULColumns>ソースまたはストアユーザの表示に使用する列のリスト。</ULColumns>
+				<ULViewMode>ユーザリストの表示モード。 (例: Large (0) / Small Icon (2), List (3), Details (1), Tile (4))</ULViewMode>
+				<SourceComputer>起動時のデフォルトソースコンピュータ。</SourceComputer>
+				<DestinationComputer>起動時のデフォルト宛先コンピュータ。</DestinationComputer>
+				<TabView>起動時のデフォルトタブ表示 (例: Source、Store、または None)</TabView>
+				<SecurityProtocol>セキュリティプロトコルのバージョン (再起動が必要) (例: SystemDefault、Ssl3、Tls、Tls11、Tls12、Tls13)</SecurityProtocol>
+				<Language>言語。 (例: en)</Language>
+			</Comment>
+		</Config>
+		<Download>
+			<Log>
+				<Failed>
+					<Download>{0} からのダウンロードに失敗しました。</Download>
+				</Failed>
+			</Log>
+		</Download>
+		<FileOperations>
+			<Log>
+				<Failed>
+					<GetFolderSize>フォルダサイズの取得に失敗しました。</GetFolderSize>
+				</Failed>
+			</Log>
+		</FileOperations>
+		<Language>
+			<Log>
+				<Failed>
+					<FindLanguage>言語の検索に失敗しました。</FindLanguage>
+				</Failed>
+			</Log>
+		</Language>
+		<Logger>
+			<Prefix>
+				<Info>情報</Info>
+				<Success>成功</Success>
+				<Warning>警告</Warning>
+				<Error>エラー</Error>
+				<Verbose>詳細</Verbose>
+			</Prefix>
+			<Log>
+				<Failed>
+					<WriteErrorToWindow>エラーメッセージの書き込みに失敗しました。</WriteErrorToWindow>
+					<WriteLogToDisk>ログのディスクへの書き込みに失敗しました。</WriteLogToDisk>
+				</Failed>
+			</Log>
+		</Logger>
+		<Misc>
+			<Log>
+				<FoundUser>ユーザ {0} が見つかりました。</FoundUser>
+				<SkippedSIDUser>{0} {1} をスキップしました。</SkippedSIDUser>
+				<SkippedUnknownSID>不明な SID {0} をスキップしました。</SkippedUnknownSID>
+				<SkippedSIDMissingProfile>リモートPC {0} にプロファイルディレクトリのない SID をスキップしました。</SkippedSIDMissingProfile>
+				<CalculatingProfileSizeFor>{0} のプロファイルサイズを計算しています...</CalculatingProfileSizeFor>
+				<ListingUsersFrom>{0} からユーザを一覧表示しています...</ListingUsersFrom>
+				<CanceledListingUsersFrom>{0} からのユーザの一覧表示をキャンセルしました。</CanceledListingUsersFrom>
+				<UsersListedSuccessfullyFrom>{0} からのユーザ一覧表示が成功しました。</UsersListedSuccessfullyFrom>
+				<DeletingUserFromTheStore>ストアから {0} を削除しています...</DeletingUserFromTheStore>
+				<DeletingUserFrom>{1} から {0} を削除しています...</DeletingUserFrom>
+				<UserSuccessfullyDeletedFromTheStore>ユーザ {0} はストアから正常に削除されました。</UserSuccessfullyDeletedFromTheStore>
+				<CopyingUserDeleteAgentToRemotePC>ユーザ削除エージェントをリモートPC {0} にコピーしています...</CopyingUserDeleteAgentToRemotePC>
+				<RemovingUserDeleteAgentFromRemotePC>ユーザ削除エージェントをリモートPC {0} から削除しています...</RemovingUserDeleteAgentFromRemotePC>
+				<StoppingUserDeleteAgentOnRemotePC>ユーザ削除エージェントをリモートPC {0} で停止しています...</StoppingUserDeleteAgentOnRemotePC>
+				<UserDeleteAgentHasBeenStoppedOn>ユーザ削除エージェントは {0} で停止されました。</UserDeleteAgentHasBeenStoppedOn>
+				<GatheringOSArchitectureOn>{0} でOSアーキテクチャを収集しています...</GatheringOSArchitectureOn>
+				<TheOSArchitectureOnIs>{0} のOSアーキテクチャは {1} です。</TheOSArchitectureOnIs>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<ResolveSIDViaWMI>WMIを使用してSIDを解決できませんでした。</ResolveSIDViaWMI>
+					<ResolveStoreGUID>ストアGUIDを解決できませんでした。</ResolveStoreGUID>
+					<RetrieveHostnameFrom>{0} からホスト名の取得に失敗しました。</RetrieveHostnameFrom>
+					<ListUsersFrom>{0} からのユーザ一覧の取得に失敗しました。</ListUsersFrom>
+					<ReadSIDFromStoreID>ストアID {0} からSIDの読み取りに失敗しました。</ReadSIDFromStoreID>
+					<ReadUserFromStoreID>ストアID {0} からユーザの読み取りに失敗しました。</ReadUserFromStoreID>
+					<DeleteUserFromTheStore>ストアから {0} の削除に失敗しました。</DeleteUserFromTheStore>
+					<DeleteUserFrom>{1} から {0} の削除に失敗しました。</DeleteUserFrom>
+					<StopUserDeleteAgentOn>{0} でユーザ削除エージェントの停止に失敗しました。</StopUserDeleteAgentOn>
+					<GatherOSArchitectureOn>{0} でOSアーキテクチャの収集に失敗しました。</GatherOSArchitectureOn>
+				</Failed>
+			</Log>
+		</Misc>
+		<Remote>
+			<Log>
+				<WaitingForProcessToFinish>{0} の終了を待っています...</WaitingForProcessToFinish>
+				<Failed>
+					<RunCommandOn>{0} でコマンドの実行に失敗しました。</RunCommandOn>
+					<WaitForRemoteProcess>{0} の終了待ちに失敗しました。</WaitForRemoteProcess>
+				</Failed>
+			</Log>
+		</Remote>
+		<UserList>
+			<Column>
+				<SecurityIdentifier>セキュリティ識別子</SecurityIdentifier>
+				<UserName>ユーザ名</UserName>
+				<LastModified>最終更新</LastModified>
+				<FirstCreated>最初に作成</FirstCreated>
+				<ProfilePath>プロファイルパス</ProfilePath>
+				<Size>サイズ</Size>
+				<StoreIdentifier>ストア識別子</StoreIdentifier>
+				<SourceUserName>{Shared/SourceUserName}</SourceUserName>
+				<DestinationUserName>{Shared/DestinationUserName}</DestinationUserName>
+				<ImportedBy>インポートしたユーザ</ImportedBy>
+				<ImportedOn>インポート日時</ImportedOn>
+				<ExportedBy>エクスポートしたユーザ</ExportedBy>
+				<ExportedOn>エクスポート日時</ExportedOn>
+				<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+				<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
+			</Column>
+		</UserList>
+		<USMT>
+			<Log>
+				<ApplyingUserStateOn>{1} でユーザ状態 {0} を適用しています...</ApplyingUserStateOn>
+				<CapturingUserStateOn>{1} でユーザ状態 {0} をキャプチャしています...</CapturingUserStateOn>
+				<UploadingUSMTTo>{0} に USMT をアップロードしています...</UploadingUSMTTo>
+				<USMTUploadedSuccessfully>USMT のアップロードが成功しました。</USMTUploadedSuccessfully>
+				<USMTUploadCanceled>USMT のアップロードがキャンセルされました。</USMTUploadCanceled>
+				<StoppingUSMTProcessOn>{0} で USMT プロセスを停止しています...</StoppingUSMTProcessOn>
+				<USMTProcessStoppedOn>{0} で USMT プロセスが停止しました。</USMTProcessStoppedOn>
+				<RemovingUSMTFrom>{0} から USMT を削除しています...</RemovingUSMTFrom>
+				<USMTRemovedSuccessfully>USMT の削除が成功しました。</USMTRemovedSuccessfully>
+				<UserWillBeAppliedAs>ユーザ {0} は {1} として適用されます。</UserWillBeAppliedAs>
+				<TransferringUserStateTo>{0} にユーザ状態を転送しています...</TransferringUserStateTo>
+				<UserStateSuccessfullyTransferred>ユーザ状態の転送が成功しました。</UserStateSuccessfullyTransferred>
+				<DownloadingUSMTFromTheWeb>USMT {0} をウェブからダウンロードしています...</DownloadingUSMTFromTheWeb>
+				<DecompressingUSMT>USMT の展開中...</DecompressingUSMT>
+				<CleaningUpUSMT>USMT のクリーンアップ中...</CleaningUpUSMT>
+				<USMTFinished>USMT が完了しました。</USMTFinished>
+				<Failed>
+					<FindUSMTFolderAt>{0} で USMT フォルダが見つかりませんでした。</FindUSMTFolderAt>
+					<StopUSMTOn>{0} で USMT の停止に失敗しました。</StopUSMTOn>
+					<DeleteUSMTOn>{0} で USMT の削除に失敗しました。</DeleteUSMTOn>
+					<DeleteUSMTAttempt>USMT の削除に失敗しました。プロセスがまだ実行中の可能性があります。定期的に試行しています: 試行 {0}/{1}。</DeleteUSMTAttempt>
+					<GenerateMUParameter>USMT の MU パラメータの生成に失敗しました。</GenerateMUParameter>
+					<TransferUserStateTo>{0} へのユーザ状態の転送に失敗しました。</TransferUserStateTo>
+					<DownloadUSMT>ウェブから USMT を自動的にダウンロードできませんでした。USMT をダウンロードして {Shared/Log/SuperGrateXML} を更新してください。</DownloadUSMT>
+					<OSArchitectureIsNotSupported>OS アーキテクチャ {0} はサポートされていません。</OSArchitectureIsNotSupported>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
+					<WatchRemoteLog>{0} でリモートログファイルの監視に失敗しました。</WatchRemoteLog>
+					<UploadUSMTTo>{0} への USMT のアップロードに失敗しました。</UploadUSMTTo>
+				</Failed>
+			</Log>
+		</USMT>
+		<WMI>
+			<Log>
+				<Failed>
+					<QueryWMI>WMI のクエリに失敗しました。{0} は破損した WMI インストールを持っているかもしれません。この問題を解決するには、対象のPCでコマンド "winmgmt.exe /resetrepository" を実行してみてください。https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
+					<ConnectToViaWMI>{0} への WMI 接続に失敗しました。リモートPCがオンラインであることを確認してください。</ConnectToViaWMI>
+					<ConnectToViaWMIAccessDenied>{0} への WMI 接続に失敗しました。アクセスが拒否されました。ユーザアカウントがリモートPCに管理者アクセス権限を持っていることを確認してください。</ConnectToViaWMIAccessDenied>
+				</Failed>
+			</Log>
+		</WMI>
+	</Class>
+	<Control>
+		<About>
+			<About>{0} について</About>
+			<Version>バージョン {0}</Version>
+			<License>ライセンス</License>
+			<GitHub>GitHub</GitHub>
+			<OK>{Shared/OK}</OK>
+		</About>
+		<ChangeColumns>
+			<AddRemoveColumns>列の追加/削除</AddRemoveColumns>
+			<Add>追加 -&gt;</Add>
+			<Remove>&lt;- 削除</Remove>
+			<MoveUp>上に移動</MoveUp>
+			<MoveDown>下に移動</MoveDown>
+			<RestoreDefaults>デフォルトに戻す</RestoreDefaults>
+			<AvailableColumns>使用可能な列:</AvailableColumns>
+			<DisplayedColumns>表示される列:</DisplayedColumns>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ChangeColumns>
+		<ChangeSetting>
+			<Default>デフォルト</Default>
+			<ChangeSetting>設定の変更:</ChangeSetting>
+			<DefaultValue>デフォルト値:</DefaultValue>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ChangeSetting>
+		<ConfirmDialog>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ConfirmDialog>
+		<DirectorySearch>
+			<Name>名前</Name>
+			<Description>説明</Description>
+			<OrganizationalUnit>組織単位</OrganizationalUnit>
+			<Search>検索</Search>
+			<SelectAComputer>コンピュータを選択</SelectAComputer>
+			<Searching>検索中...</Searching>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+			<Log>
+				<SearchingActiveDirectoryFor>{0} の Active Directory を検索しています...</SearchingActiveDirectoryFor>
+				<FoundComputers>{0} 台のコンピュータが見つかりました。</FoundComputers>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<SearchActiveDirectory>Active Directory の検索に失敗しました。</SearchActiveDirectory>
+				</Failed>
+			</Log>
+		</DirectorySearch>
+		<License>
+			<License>ライセンス</License>
+		</License>
+		<RenameStoreUser>
+			<SetDestinationUserName>宛先ユーザ名の設定</SetDestinationUserName>
+			<UseThisDialog>このダイアログを使用して、"ストア" からプロファイルを復元する際に "宛先ユーザ名" を指定します</UseThisDialog>
+			<SourceUserName>{Shared/SourceUserName}</SourceUserName>
+			<DestinationUserName>{Shared/DestinationUserName}</DestinationUserName>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+			<Log>
+				<Done>{Shared/Log/Done}</Done>
+				<SavingDataToMigrationStore>ユーザデータを移行ストアに保存しています...</SavingDataToMigrationStore>
+				<Failed>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
+				</Failed>
+			</Log>
+		</RenameStoreUser>
+		<Settings>
+			<Settings>設定</Settings>
+			<Reload>リロード</Reload>
+			<SaveToDisk>ディスクに保存</SaveToDisk>
+			<Close>閉じる</Close>
+			<DoubleClickToChangeValue>値を変更するには設定をダブルクリックしてください</DoubleClickToChangeValue>
+			<Loaded>ロード済み</Loaded>
+			<Saved>保存済み</Saved>
+			<Setting>設定</Setting>
+			<Value>値</Value>
+		</Settings>
+		<UserProperties>
+			<UserProperties>ユーザのプロパティ</UserProperties>
+			<OK>{Shared/OK}</OK>
+		</UserProperties>
+		<Main>
+			<WelcomeTo>{0} へようこそ！ v{1}</WelcomeTo>
+			<ListSource>ソースのリスト表示</ListSource>
+			<ListStore>ストアのリスト表示</ListStore>
+			<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+			<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
+			<Start>{Shared/Start}</Start>
+			<Stop>停止</Stop>
+			<UsersOnSourceComputer>ソースコンピュータのユーザ:</UsersOnSourceComputer>
+			<UsersInMigrationStore>移行ストアのユーザ:</UsersInMigrationStore>
+			<DeleteUser>ユーザの削除</DeleteUser>
+			<DeleteUsers>複数のユーザの削除</DeleteUsers>
+			<AreYouSureDeleteUser>このユーザを削除してもよろしいですか？</AreYouSureDeleteUser>
+			<AreYouSureDeleteUsers>これら {0} 人のユーザを削除してもよろしいですか？</AreYouSureDeleteUsers>
+			<Delete>{Shared/Delete}</Delete>
+			<Menu>
+				<File>ファイル</File>
+				<NewInstance>新しいインスタンス</NewInstance>
+				<Settings>設定...</Settings>
+				<SaveLog>ログの保存...</SaveLog>
+				<Exit>終了</Exit>
+				<View>表示</View>
+				<AddRemoveColumns>列の追加/削除...</AddRemoveColumns>
+				<LargeIcons>大きなアイコン</LargeIcons>
+				<SmallIcons>小さなアイコン</SmallIcons>
+				<List>リスト</List>
+				<Detail>詳細</Detail>
+				<Tile>タイル</Tile>
+				<Help>ヘルプ</Help>
+				<OnlineDocumentation>オンラインドキュメント</OnlineDocumentation>
+				<OnlineIssues>オンラインの問題</OnlineIssues>
+				<OnlineUpdates>オンラインの更新</OnlineUpdates>
+				<AboutSuperGrate>{Shared/Control/AboutSuperGrate}</AboutSuperGrate>
+				<SetDestinationUserName>宛先ユーザ名の設定...</SetDestinationUserName>
+				<Properties>プロパティ</Properties>
+				<Start>{Shared/Start}</Start>
+				<Delete>{Shared/Delete}</Delete>
+			</Menu>
+			<Log>
+				<EnterSomeInfoToGetStarted>始めるには情報を入力してください！</EnterSomeInfoToGetStarted>
+				<CancelingCurrentTask>現在のタスクをキャンセルしています...</CancelingCurrentTask>
+				<VerboseModeDisabled>冗長モードが無効になりました。</VerboseModeDisabled>
+				<VerboseModeEnabled>冗長モードが有効になりました。</VerboseModeEnabled>
+				<WritingLogTo>{0} へログを書き込んでいます...</WritingLogTo>
+				<LogWrittenSuccessfully>ログが正常に書き込まれました。</LogWrittenSuccessfully>
+				<ThisProgramIsAttemptingToClose>このプログラムは閉じようとしています、試行 {0}/{1}。</ThisProgramIsAttemptingToClose>
+				<GatheringUserProperties>ユーザのプロパティを収集しています...</GatheringUserProperties>
+				<Canceled>キャンセルしました。</Canceled>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<GatherUserProperties>ユーザのプロパティの収集に失敗しました。</GatherUserProperties>
+				</Failed>
+			</Log>
+		</Main>
+	</Control>
+</SGLanguage>
