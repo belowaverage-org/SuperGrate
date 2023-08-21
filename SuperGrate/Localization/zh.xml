@@ -1,0 +1,331 @@
+﻿<SGLanguage DisplayName="中文">
+	<Shared>
+		<SuperGrate>超级棒</SuperGrate>
+		<OK>确定</OK>
+		<Cancel>取消</Cancel>
+		<Start>开始</Start>
+		<Delete>删除</Delete>
+		<SourceComputer>源计算机</SourceComputer>
+		<DestinationComputer>目标计算机</DestinationComputer>
+		<SourceUserName>源用户名</SourceUserName>
+		<DestinationUserName>目标用户名</DestinationUserName>
+		<Log>
+			<Done>完成。</Done>
+			<SuperGrateXML>SuperGrate.xml</SuperGrateXML>
+			<Failed>
+				<WriteStoreParameterTo>无法将参数写入 {0}。</WriteStoreParameterTo>
+			</Failed>
+		</Log>
+	</Shared>
+	<Class>
+		<Config>
+			<Log>
+				<GeneratingXML>生成 {Shared/Log/SuperGrateXML} 中...</GeneratingXML>
+				<XMLIsMissingKey>{Shared/Log/SuperGrateXML} 缺少 {0}。</XMLIsMissingKey>
+				<XMLLoaded>已加载 {Shared/Log/SuperGrateXML}。</XMLLoaded>
+				<XMLLoadedButIsUsingDefaults>配置已加载，但对于缺少的元素，正在使用默认值。您可以通过保存当前设置来修复此警告。</XMLLoadedButIsUsingDefaults>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<SaveConfigurationToDisk>无法将 {Shared/Log/SuperGrateXML} 保存到磁盘。</SaveConfigurationToDisk>
+					<LoadConfiguration>无法加载 {Shared/Log/SuperGrateXML}。</LoadConfiguration>
+				</Failed>
+			</Log>
+			<Comment>
+				<USMTPath>USMT 目录的 UNC 或直接路径。 (例如: .\USMT\X64)</USMTPath>
+				<PayloadPath>源计算机上运行 {Shared/SuperGrate} 的 USMT 的本地路径。 (例如: C:\SuperGrate)</PayloadPath>
+				<MigrationStorePath>USMT 迁移存储的 UNC 或直接路径。 (例如: \\ba-share\s$ 或 .\STORE)</MigrationStorePath>
+				<ScanLoadStateParams>ScanState.exe 和 LoadState.exe 命令行参数。 (参见: https://docs.microsoft.com/en-us/windows/deployment/usmt/usmt-command-line-syntax)</ScanLoadStateParams>
+				<AutoDeleteFromStore>在还原后从迁移存储中删除用户？ (从源到存储)</AutoDeleteFromStore>
+				<AutoDeleteFromSource>在备份后从源计算机中删除用户？ (从源到存储)</AutoDeleteFromSource>
+				<HideBuiltInAccounts>是否防止列出 NT AUTHORITY 和 NT SERVICE 帐户？</HideBuiltInAccounts>
+				<HideUnknownSIDs>是否防止列出未知帐户？</HideUnknownSIDs>
+				<DumpLogHere>在退出时将日志写入磁盘。 (留空以禁用) (例如: \\ba-share\s$\Logs 或 .\Logs)</DumpLogHere>
+				<ULColumns>源或存储用户的显示列列表。</ULColumns>
+				<ULViewMode>用户列表视图模式。 (例如: 大图标 (0) / 小图标 (2), 列表 (3), 详细信息 (1) 和 平铺 (4))</ULViewMode>
+				<SourceComputer>启动时的默认源计算机。</SourceComputer>
+				<DestinationComputer>启动时的默认目标计算机。</DestinationComputer>
+				<TabView>启动时的默认选项卡视图 (例如: 源、存储或无)</TabView>
+				<SecurityProtocol>安全协议版本 (需要重新启动) (例如: SystemDefault, Ssl3, Tls, Tls11, Tls12 或 Tls13)</SecurityProtocol>
+				<Language>语言。 (例如: en)</Language>
+			</Comment>
+		</Config>
+		<Download>
+			<Log>
+				<Failed>
+					<Download>从 {0} 下载失败。</Download>
+				</Failed>
+			</Log>
+		</Download>
+		<FileOperations>
+			<Log>
+				<Failed>
+					<GetFolderSize>获取文件夹大小失败。</GetFolderSize>
+				</Failed>
+			</Log>
+		</FileOperations>
+		<Language>
+			<Log>
+				<Failed>
+					<FindLanguage>查找语言失败。</FindLanguage>
+				</Failed>
+			</Log>
+		</Language>
+		<Logger>
+			<Prefix>
+				<Info>信息</Info>
+				<Success>成功</Success>
+				<Warning>警告</Warning>
+				<Error>错误</Error>
+				<Verbose>详细信息</Verbose>
+			</Prefix>
+			<Log>
+				<Failed>
+					<WriteErrorToWindow>无法将错误消息写入主窗口。</WriteErrorToWindow>
+					<WriteLogToDisk>无法将日志写入磁盘。</WriteLogToDisk>
+				</Failed>
+			</Log>
+		</Logger>
+		<Misc>
+			<Log>
+				<FoundUser>找到用户 {0}。</FoundUser>
+				<SkippedSIDUser>跳过 {0} {1}。</SkippedSIDUser>
+				<SkippedUnknownSID>跳过未知 SID {0}。</SkippedUnknownSID>
+				<SkippedSIDMissingProfile>跳过没有远程计算机 {0} 上的个人资料目录的 SID。</SkippedSIDMissingProfile>
+				<CalculatingProfileSizeFor>正在计算 {0} 的个人资料大小...</CalculatingProfileSizeFor>
+				<ListingUsersFrom>正在列出 {0} 的用户...</ListingUsersFrom>
+				<CanceledListingUsersFrom>已取消从 {0} 列出用户。</CanceledListingUsersFrom>
+				<UsersListedSuccessfullyFrom>成功从 {0} 列出用户。</UsersListedSuccessfullyFrom>
+				<DeletingUserFromTheStore>正在从存储中删除 {0}...</DeletingUserFromTheStore>
+				<DeletingUserFrom>正在从 {1} 删除 {0}...</DeletingUserFrom>
+				<UserSuccessfullyDeletedFromTheStore>用户 {0} 已成功从存储中删除。</UserSuccessfullyDeletedFromTheStore>
+				<CopyingUserDeleteAgentToRemotePC>正在将用户删除代理复制到远程计算机 {0}...</CopyingUserDeleteAgentToRemotePC>
+				<RemovingUserDeleteAgentFromRemotePC>正在从远程计算机 {0} 删除用户删除代理...</RemovingUserDeleteAgentFromRemotePC>
+				<StoppingUserDeleteAgentOnRemotePC>正在停止远程计算机 {0} 上的用户删除代理...</StoppingUserDeleteAgentOnRemotePC>
+				<UserDeleteAgentHasBeenStoppedOn>用户删除代理已停止在 {0} 上。</UserDeleteAgentHasBeenStoppedOn>
+				<GatheringOSArchitectureOn>正在获取 {0} 的操作系统架构...</GatheringOSArchitectureOn>
+				<TheOSArchitectureOnIs>{0} 的操作系统架构是 {1}。</TheOSArchitectureOnIs>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<ResolveSIDViaWMI>通过 WMI 解析 SID 失败。</ResolveSIDViaWMI>
+					<ResolveStoreGUID>解析存储 GUID 失败。</ResolveStoreGUID>
+					<RetrieveHostnameFrom>从 {0} 检索主机名失败。</RetrieveHostnameFrom>
+					<ListUsersFrom>从 {0} 列出用户失败。</ListUsersFrom>
+					<ReadSIDFromStoreID>从存储 ID {0} 读取 SID 失败。</ReadSIDFromStoreID>
+					<ReadUserFromStoreID>从存储 ID {0} 读取用户失败。</ReadUserFromStoreID>
+					<DeleteUserFromTheStore>从存储中删除 {0} 失败。</DeleteUserFromTheStore>
+					<DeleteUserFrom>从 {1} 删除 {0} 失败。</DeleteUserFrom>
+					<StopUserDeleteAgentOn>停止 {0} 上的用户删除代理失败。</StopUserDeleteAgentOn>
+					<GatherOSArchitectureOn>获取 {0} 的操作系统架构失败。</GatherOSArchitectureOn>
+				</Failed>
+			</Log>
+		</Misc>
+		<Remote>
+			<Log>
+				<WaitingForProcessToFinish>等待 {0} 完成...</WaitingForProcessToFinish>
+				<Failed>
+					<RunCommandOn>在 {0} 上运行命令失败。</RunCommandOn>
+					<WaitForRemoteProcess>等待远程进程 {0} 完成失败。</WaitForRemoteProcess>
+				</Failed>
+			</Log>
+		</Remote>
+		<UserList>
+			<Column>
+				<SecurityIdentifier>安全标识符</SecurityIdentifier>
+				<UserName>用户名</UserName>
+				<LastModified>最后修改</LastModified>
+				<FirstCreated>首次创建</FirstCreated>
+				<ProfilePath>个人资料路径</ProfilePath>
+				<Size>大小</Size>
+				<StoreIdentifier>存储标识符</StoreIdentifier>
+				<SourceUserName>{Shared/SourceUserName}</SourceUserName>
+				<DestinationUserName>{Shared/DestinationUserName}</DestinationUserName>
+				<ImportedBy>导入者</ImportedBy>
+				<ImportedOn>导入时间</ImportedOn>
+				<ExportedBy>导出者</ExportedBy>
+				<ExportedOn>导出时间</ExportedOn>
+				<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+				<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
+			</Column>
+		</UserList>
+		<USMT>
+			<Log>
+				<ApplyingUserStateOn>正在应用 {0} 的用户状态于 {1}....</ApplyingUserStateOn>
+				<CapturingUserStateOn>正在捕获 {0} 的用户状态于 {1}....</CapturingUserStateOn>
+				<UploadingUSMTTo>正在上传 USMT 到 {0}...</UploadingUSMTTo>
+				<USMTUploadedSuccessfully>USMT 上传成功。</USMTUploadedSuccessfully>
+				<USMTUploadCanceled>已取消 USMT 上传。</USMTUploadCanceled>
+				<StoppingUSMTProcessOn>正在停止 {0} 上的 USMT 进程。</StoppingUSMTProcessOn>
+				<USMTProcessStoppedOn>USMT 进程已在 {0} 上停止。</USMTProcessStoppedOn>
+				<RemovingUSMTFrom>正在从 {0} 删除 USMT...</RemovingUSMTFrom>
+				<USMTRemovedSuccessfully>USMT 成功删除。</USMTRemovedSuccessfully>
+				<UserWillBeAppliedAs>用户 {0} 将以 {1} 应用。</UserWillBeAppliedAs>
+				<TransferringUserStateTo>正在将用户状态传输到 {0}...</TransferringUserStateTo>
+				<UserStateSuccessfullyTransferred>用户状态成功传输。</UserStateSuccessfullyTransferred>
+				<DownloadingUSMTFromTheWeb>正在从网络下载 USMT {0}...</DownloadingUSMTFromTheWeb>
+				<DecompressingUSMT>正在解压缩 USMT...</DecompressingUSMT>
+				<CleaningUpUSMT>正在清理 USMT...</CleaningUpUSMT>
+				<USMTFinished>USMT 完成。</USMTFinished>
+				<Failed>
+					<FindUSMTFolderAt>无法在 {0} 处找到 USMT 文件夹。</FindUSMTFolderAt>
+					<StopUSMTOn>在 {0} 上停止 USMT 失败。</StopUSMTOn>
+					<DeleteUSMTOn>从 {0} 删除 USMT 失败。</DeleteUSMTOn>
+					<DeleteUSMTAttempt>删除 USMT 失败，进程可能仍在运行，尝试定期操作: 尝试 {0}/{1}。</DeleteUSMTAttempt>
+					<GenerateMUParameter>生成 USMT 的 MU 参数失败。</GenerateMUParameter>
+					<TransferUserStateTo>传输用户状态到 {0} 失败。</TransferUserStateTo>
+					<DownloadUSMT>自动从网络下载 USMT 失败，请手动下载 USMT 并相应地更新 {Shared/Log/SuperGrateXML}。</DownloadUSMT>
+					<OSArchitectureIsNotSupported>操作系统架构 {0} 不受支持。</OSArchitectureIsNotSupported>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
+					<WatchRemoteLog>无法在 {0} 处监视远程日志文件。</WatchRemoteLog>
+					<UploadUSMTTo>上传 USMT 到 {0} 失败。</UploadUSMTTo>
+				</Failed>
+			</Log>
+		</USMT>
+		<WMI>
+			<Log>
+				<Failed>
+					<QueryWMI>查询 WMI 失败，{0} 可能存在损坏的 WMI 安装。请尝试在目标 PC 上运行命令 "winmgmt.exe /resetrepository" 解决此问题。https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
+					<ConnectToViaWMI>通过 WMI 连接到 {0} 失败。确保远程计算机在线。</ConnectToViaWMI>
+					<ConnectToViaWMIAccessDenied>通过 WMI 连接到 {0} 失败，因为访问被拒绝。确保您的用户帐户在远程计算机上具有管理员权限。</ConnectToViaWMIAccessDenied>
+				</Failed>
+			</Log>
+		</WMI>
+	</Class>
+	<Control>
+		<!-- ... Previous sections ... -->
+		<About>
+			<About>关于 {0}</About>
+			<Version>版本 {0}</Version>
+			<License>许可</License>
+			<GitHub>GitHub</GitHub>
+			<OK>{Shared/OK}</OK>
+		</About>
+		<ChangeColumns>
+			<AddRemoveColumns>添加/移除列</AddRemoveColumns>
+			<Add>添加 -&gt;</Add>
+			<Remove>&lt;- 移除</Remove>
+			<MoveUp>上移</MoveUp>
+			<MoveDown>下移</MoveDown>
+			<RestoreDefaults>恢复默认值</RestoreDefaults>
+			<AvailableColumns>可用列：</AvailableColumns>
+			<DisplayedColumns>显示的列：</DisplayedColumns>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ChangeColumns>
+		<ChangeSetting>
+			<Default>默认</Default>
+			<ChangeSetting>更改设置：</ChangeSetting>
+			<DefaultValue>默认值：</DefaultValue>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ChangeSetting>
+		<ConfirmDialog>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ConfirmDialog>
+		<DirectorySearch>
+			<Name>名称</Name>
+			<Description>描述</Description>
+			<OrganizationalUnit>组织单位</OrganizationalUnit>
+			<Search>搜索</Search>
+			<SelectAComputer>选择计算机</SelectAComputer>
+			<Searching>正在搜索...</Searching>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+			<Log>
+				<SearchingActiveDirectoryFor>正在搜索 {0} 的活动目录...</SearchingActiveDirectoryFor>
+				<FoundComputers>找到 {0} 台计算机。</FoundComputers>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<SearchActiveDirectory>搜索活动目录失败。</SearchActiveDirectory>
+				</Failed>
+			</Log>
+		</DirectorySearch>
+		<License>
+			<License>许可</License>
+		</License>
+		<RenameStoreUser>
+			<SetDestinationUserName>设置目标用户名</SetDestinationUserName>
+			<UseThisDialog>使用此对话框在从 "存储" 恢复配置文件时指定 "目标用户名"</UseThisDialog>
+			<SourceUserName>{Shared/SourceUserName}</SourceUserName>
+			<DestinationUserName>{Shared/DestinationUserName}</DestinationUserName>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+			<Log>
+				<Done>{Shared/Log/Done}</Done>
+				<SavingDataToMigrationStore>正在保存用户数据至迁移存储...</SavingDataToMigrationStore>
+				<Failed>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
+				</Failed>
+			</Log>
+		</RenameStoreUser>
+		<Settings>
+			<Settings>设置</Settings>
+			<Reload>重新加载</Reload>
+			<SaveToDisk>保存至磁盘</SaveToDisk>
+			<Close>关闭</Close>
+			<DoubleClickToChangeValue>双击设置以更改其值</DoubleClickToChangeValue>
+			<Loaded>已加载</Loaded>
+			<Saved>已保存</Saved>
+			<Setting>设置</Setting>
+			<Value>值</Value>
+		</Settings>
+		<UserProperties>
+			<UserProperties>用户属性</UserProperties>
+			<OK>{Shared/OK}</OK>
+		</UserProperties>
+		<Main>
+			<WelcomeTo>欢迎使用 {0}！ 版本 {1}</WelcomeTo>
+			<ListSource>列出源</ListSource>
+			<ListStore>列出存储</ListStore>
+			<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+			<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
+			<Start>{Shared/Start}</Start>
+			<Stop>停止</Stop>
+			<UsersOnSourceComputer>源计算机上的用户：</UsersOnSourceComputer>
+			<UsersInMigrationStore>迁移存储中的用户：</UsersInMigrationStore>
+			<DeleteUser>删除用户</DeleteUser>
+			<DeleteUsers>删除用户</DeleteUsers>
+			<AreYouSureDeleteUser>您确定要删除此用户吗？</AreYouSureDeleteUser>
+			<AreYouSureDeleteUsers>您确定要删除这 {0} 个用户吗？</AreYouSureDeleteUsers>
+			<Delete>{Shared/Delete}</Delete>
+			<Menu>
+				<File>文件</File>
+				<NewInstance>新实例</NewInstance>
+				<Settings>设置...</Settings>
+				<SaveLog>保存日志...</SaveLog>
+				<Exit>退出</Exit>
+				<View>查看</View>
+				<AddRemoveColumns>添加/移除列...</AddRemoveColumns>
+				<LargeIcons>大图标</LargeIcons>
+				<SmallIcons>小图标</SmallIcons>
+				<List>列表</List>
+				<Detail>详细</Detail>
+				<Tile>平铺</Tile>
+				<Help>帮助</Help>
+				<OnlineDocumentation>在线文档</OnlineDocumentation>
+				<OnlineIssues>在线问题</OnlineIssues>
+				<OnlineUpdates>在线更新</OnlineUpdates>
+				<AboutSuperGrate>关于 {Shared/SuperGrate}</AboutSuperGrate>
+				<SetDestinationUserName>设置目标用户名...</SetDestinationUserName>
+				<Properties>属性</Properties>
+				<Start>{Shared/Start}</Start>
+				<Delete>{Shared/Delete}</Delete>
+			</Menu>
+			<Log>
+				<EnterSomeInfoToGetStarted>输入一些信息开始使用！</EnterSomeInfoToGetStarted>
+				<CancelingCurrentTask>正在取消当前任务...</CancelingCurrentTask>
+				<VerboseModeDisabled>已禁用详细模式。</VerboseModeDisabled>
+				<VerboseModeEnabled>已启用详细模式。</VerboseModeEnabled>
+				<WritingLogTo>正在将日志写入 {0}...</WritingLogTo>
+				<LogWrittenSuccessfully>日志已成功写入。</LogWrittenSuccessfully>
+				<ThisProgramIsAttemptingToClose>此程序正在尝试关闭，尝试 {0}/{1}。</ThisProgramIsAttemptingToClose>
+				<GatheringUserProperties>正在收集用户属性...</GatheringUserProperties>
+				<Canceled>已取消。</Canceled>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<GatherUserProperties>收集用户属性失败。</GatherUserProperties>
+				</Failed>
+			</Log>
+		</Main>
+	</Control>
+</SGLanguage>
