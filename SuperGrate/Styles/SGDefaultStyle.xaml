@@ -162,34 +162,44 @@
                         <Border.BorderBrush>
                             <LinearGradientBrush EndPoint="0 1">
                                 <GradientStop Color="#e0e0e0" Offset="0.99"></GradientStop>
-                                <GradientStop x:Name="BtnBttmBorder" Color="Gray" Offset="0.99"></GradientStop>
+                                <GradientStop x:Name="BtnBttmBorder" Color="gray" Offset="0.99"></GradientStop>
                             </LinearGradientBrush>
                         </Border.BorderBrush>
-                        <Grid>
-                            <Grid.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=Mask}" />
-                            </Grid.OpacityMask>
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Determinate" />
-                                    <VisualState x:Name="Indeterminate">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Duration="00:00:00" Storyboard.TargetName="PART_Indicator" Storyboard.TargetProperty="Background">
-                                                <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                    <DiscreteObjectKeyFrame.Value>
-                                                        <SolidColorBrush>transparent</SolidColorBrush>
-                                                    </DiscreteObjectKeyFrame.Value>
-                                                </DiscreteObjectKeyFrame>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Rectangle x:Name="Mask" RadiusX="2" RadiusY="2" Fill="White" />
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Determinate" >
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3" To="#FFFC67FF" Storyboard.TargetName="Gradient1" Storyboard.TargetProperty="Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="#FF5AE9F3" Storyboard.TargetName="Gradient2" Storyboard.TargetProperty="Color" />
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Indeterminate" >
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3" To="Transparent" Storyboard.TargetName="Gradient1" Storyboard.TargetProperty="Color" />
+                                        <ColorAnimation Duration="0:0:0.3" To="Transparent" Storyboard.TargetName="Gradient2" Storyboard.TargetProperty="Color" />
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Grid Clip="{Binding RenderedGeometry, ElementName=Clip}">
+                            <Rectangle x:Name="Clip" RadiusX="3" RadiusY="3" />
                             <Border x:Name="PART_Track" />
-                            <Border x:Name="PART_Indicator" HorizontalAlignment="Left" Background="orange">
+                            <Border x:Name="PART_Indicator" HorizontalAlignment="Left">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                                        <GradientStop x:Name="Gradient1" Color="#FFFC67FF" Offset="0"/>
+                                        <GradientStop x:Name="Gradient2" Color="#FF5AE9F3" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
                                 <Grid x:Name="Animation">
-                                    <Rectangle x:Name="PART_GlowRect" Width="100" HorizontalAlignment="Left" Fill="green" Margin="-100,0,0,0" />
+                                    <Rectangle x:Name="PART_GlowRect" Width="300" HorizontalAlignment="Left" Margin="-100,0,0,0" >
+                                        <Rectangle.Fill>
+                                            <LinearGradientBrush>
+                                                <GradientStop Color="Transparent" Offset="0"/>
+                                                <GradientStop Color="#55ffffff" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Rectangle.Fill>
+                                    </Rectangle>
                                 </Grid>
                             </Border>
                         </Grid>
@@ -199,9 +209,9 @@
         </Setter>
         <Setter Property="Foreground">
             <Setter.Value>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="blue" Offset="0" />
-                    <!--<GradientStop Color="red" Offset="1" />-->
+                <LinearGradientBrush EndPoint="1,1" StartPoint="0,0">
+                    <GradientStop Color="#FFFC67FF" Offset="0"/>
+                    <GradientStop Color="#FF5AE9F3" Offset="1"/>
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
