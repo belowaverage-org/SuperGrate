@@ -72,11 +72,11 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnOK.Icon = "";
-            this.btnOK.Location = new System.Drawing.Point(224, 157);
+            this.btnOK.Location = new System.Drawing.Point(200, 155);
             this.btnOK.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnOK.Name = "btnOK";
             this.helpProvider.SetShowHelp(this.btnOK, true);
-            this.btnOK.Size = new System.Drawing.Size(91, 26);
+            this.btnOK.Size = new System.Drawing.Size(120, 30);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = null;
             this.btnOK.UseVisualStyleBackColor = true;

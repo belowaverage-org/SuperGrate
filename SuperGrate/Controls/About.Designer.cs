@@ -183,10 +183,10 @@
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.okButton.Location = new System.Drawing.Point(221, 4);
+            this.okButton.Location = new System.Drawing.Point(204, 4);
             this.okButton.Margin = new System.Windows.Forms.Padding(0, 0, 2, 2);
             this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 24);
+            this.okButton.Size = new System.Drawing.Size(92, 24);
             this.okButton.TabIndex = 24;
             // 
             // pbLogo
