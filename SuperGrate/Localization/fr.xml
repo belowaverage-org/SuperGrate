@@ -1,0 +1,330 @@
+﻿<SGLanguage DisplayName="Français">
+	<Shared>
+		<SuperGrate>Super Grate</SuperGrate>
+		<OK>OK</OK>
+		<Cancel>Annuler</Cancel>
+		<Start>Démarrer</Start>
+		<Delete>Supprimer</Delete>
+		<SourceComputer>Ordinateur source</SourceComputer>
+		<DestinationComputer>Ordinateur de destination</DestinationComputer>
+		<SourceUserName>Nom d'utilisateur source</SourceUserName>
+		<DestinationUserName>Nom d'utilisateur de destination</DestinationUserName>
+		<Log>
+			<Done>Terminé.</Done>
+			<SuperGrateXML>SuperGrate.xml</SuperGrateXML>
+			<Failed>
+				<WriteStoreParameterTo>Échec de l'écriture des paramètres du magasin dans {0}.</WriteStoreParameterTo>
+			</Failed>
+		</Log>
+	</Shared>
+	<Class>
+		<Config>
+			<Log>
+				<GeneratingXML>Génération de {Shared/Log/SuperGrateXML}...</GeneratingXML>
+				<XMLIsMissingKey>{Shared/Log/SuperGrateXML} ne contient pas {0}.</XMLIsMissingKey>
+				<XMLLoaded>{Shared/Log/SuperGrateXML} chargé.</XMLLoaded>
+				<XMLLoadedButIsUsingDefaults>Configuration chargée, mais utilise des valeurs par défaut pour les éléments manquants. Vous pouvez corriger cet avertissement en enregistrant les paramètres actuels.</XMLLoadedButIsUsingDefaults>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<SaveConfigurationToDisk>Échec de l'enregistrement de {Shared/Log/SuperGrateXML} sur le disque.</SaveConfigurationToDisk>
+					<LoadConfiguration>Échec du chargement de {Shared/Log/SuperGrateXML}.</LoadConfiguration>
+				</Failed>
+			</Log>
+			<Comment>
+				<USMTPath>Le chemin UNC ou direct vers le répertoire USMT. (Ex. : .\USMT\X64)</USMTPath>
+				<PayloadPath>Chemin local sur l'ordinateur source où {Shared/SuperGrate} exécutera USMT. (Ex. : C:\SuperGrate)</PayloadPath>
+				<MigrationStorePath>Le chemin UNC ou direct vers le magasin de migration USMT. (Ex. : \\ba-share\s$ ou .\STORE)</MigrationStorePath>
+				<ScanLoadStateParams>Paramètres CLI de ScanState.exe et LoadState.exe. (Voir : https://docs.microsoft.com/fr-fr/windows/deployment/usmt/usmt-command-line-syntax)</ScanLoadStateParams>
+				<AutoDeleteFromStore>Supprimer l'utilisateur du magasin de migration après une restauration ? (Magasin vers destination)</AutoDeleteFromStore>
+				<AutoDeleteFromSource>Supprimer l'utilisateur de l'ordinateur source après une sauvegarde ? (Source vers magasin)</AutoDeleteFromSource>
+				<HideBuiltInAccounts>Empêcher les comptes NT AUTHORITY et NT SERVICE d'être répertoriés ?</HideBuiltInAccounts>
+				<HideUnknownSIDs>Empêcher les comptes inconnus d'être répertoriés ?</HideUnknownSIDs>
+				<DumpLogHere>Écrire le journal sur le disque à la sortie. (Laissez vide pour désactiver) (Ex. : \\ba-share\s$\Logs ou .\Logs)</DumpLogHere>
+				<ULColumns>Liste des colonnes à afficher pour les utilisateurs source ou magasin.</ULColumns>
+				<ULViewMode>Mode d'affichage de la liste d'utilisateurs. (Ex. : Grandes icônes (0) / Petite icône (2), Liste (3), Détails (1) et Tuile (4))</ULViewMode>
+				<SourceComputer>Ordinateur source par défaut au démarrage.</SourceComputer>
+				<DestinationComputer>Ordinateur de destination par défaut au démarrage.</DestinationComputer>
+				<TabView>Vue d'onglet par défaut au démarrage (Ex. : Source, Magasin ou Aucun)</TabView>
+				<SecurityProtocol>Version du protocole de sécurité (Redémarrage requis) (Ex. : SystemDefault, Ssl3, Tls, Tls11, Tls12 ou Tls13)</SecurityProtocol>
+				<Language>Langue. (Ex. : fr)</Language>
+			</Comment>
+		</Config>
+		<Download>
+			<Log>
+				<Failed>
+					<Download>Échec du téléchargement à partir de {0}.</Download>
+				</Failed>
+			</Log>
+		</Download>
+		<FileOperations>
+			<Log>
+				<Failed>
+					<GetFolderSize>Échec de la récupération de la taille du dossier.</GetFolderSize>
+				</Failed>
+			</Log>
+		</FileOperations>
+		<Language>
+			<Log>
+				<Failed>
+					<FindLanguage>Échec de la recherche de la langue.</FindLanguage>
+				</Failed>
+			</Log>
+		</Language>
+		<Logger>
+			<Prefix>
+				<Info>INFO</Info>
+				<Success>SUCCÈS</Success>
+				<Warning>AVERTISSEMENT</Warning>
+				<Error>ERREUR</Error>
+				<Verbose>VERBEUX</Verbose>
+			</Prefix>
+			<Log>
+				<Failed>
+					<WriteErrorToWindow>Échec de l'écriture du message d'erreur dans la fenêtre principale.</WriteErrorToWindow>
+					<WriteLogToDisk>Échec de l'écriture du journal sur le disque.</WriteLogToDisk>
+				</Failed>
+			</Log>
+		</Logger>
+		<Misc>
+			<Log>
+				<FoundUser>Utilisateur trouvé : {0}.</FoundUser>
+				<SkippedSIDUser>Passé en revue {0} {1}.</SkippedSIDUser>
+				<SkippedUnknownSID>Passé en revue l'identifiant SID inconnu {0}.</SkippedUnknownSID>
+				<SkippedSIDMissingProfile>Passé en revue SID sans répertoire de profil sur l'ordinateur distant {0}.</SkippedSIDMissingProfile>
+				<CalculatingProfileSizeFor>Calcul de la taille du profil pour {0} en cours...</CalculatingProfileSizeFor>
+				<ListingUsersFrom>Listing des utilisateurs à partir de {0}...</ListingUsersFrom>
+				<CanceledListingUsersFrom>Annulation de la liste des utilisateurs à partir de {0}.</CanceledListingUsersFrom>
+				<UsersListedSuccessfullyFrom>Utilisateurs listés avec succès à partir de {0}.</UsersListedSuccessfullyFrom>
+				<DeletingUserFromTheStore>Suppression de {0} depuis le magasin en cours...</DeletingUserFromTheStore>
+				<DeletingUserFrom>Suppression de {0} depuis {1} en cours...</DeletingUserFrom>
+				<UserSuccessfullyDeletedFromTheStore>Utilisateur {0} supprimé avec succès depuis le magasin.</UserSuccessfullyDeletedFromTheStore>
+				<CopyingUserDeleteAgentToRemotePC>Copie de l'agent de suppression d'utilisateur vers l'ordinateur distant {0} en cours...</CopyingUserDeleteAgentToRemotePC>
+				<RemovingUserDeleteAgentFromRemotePC>Suppression de l'agent de suppression d'utilisateur de l'ordinateur distant {0} en cours...</RemovingUserDeleteAgentFromRemotePC>
+				<StoppingUserDeleteAgentOnRemotePC>Arrêt de l'agent de suppression d'utilisateur sur {0} en cours...</StoppingUserDeleteAgentOnRemotePC>
+				<UserDeleteAgentHasBeenStoppedOn>L'agent de suppression d'utilisateur a été arrêté sur {0}.</UserDeleteAgentHasBeenStoppedOn>
+				<GatheringOSArchitectureOn>Collecte de l'architecture du système d'exploitation sur {0} en cours...</GatheringOSArchitectureOn>
+				<TheOSArchitectureOnIs>L'architecture du système d'exploitation sur {0} est {1}.</TheOSArchitectureOnIs>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<ResolveSIDViaWMI>Échec de la résolution d'un SID via WMI.</ResolveSIDViaWMI>
+					<ResolveStoreGUID>Échec de la résolution du GUID du magasin.</ResolveStoreGUID>
+					<RetrieveHostnameFrom>Échec de la récupération du nom d'hôte depuis {0}.</RetrieveHostnameFrom>
+					<ListUsersFrom>Échec de la liste des utilisateurs depuis {0}.</ListUsersFrom>
+					<ReadSIDFromStoreID>Échec de la lecture du SID depuis l'ID du magasin {0}.</ReadSIDFromStoreID>
+					<ReadUserFromStoreID>Échec de la lecture de l'utilisateur depuis l'ID du magasin {0}.</ReadUserFromStoreID>
+					<DeleteUserFromTheStore>Échec de la suppression de {0} depuis le magasin.</DeleteUserFromTheStore>
+					<DeleteUserFrom>Échec de la suppression de {0} depuis {1}.</DeleteUserFrom>
+					<StopUserDeleteAgentOn>Échec de l'arrêt de l'agent de suppression d'utilisateur sur {0}.</StopUserDeleteAgentOn>
+					<GatherOSArchitectureOn>Échec de la collecte de l'architecture du système d'exploitation sur {0}.</GatherOSArchitectureOn>
+				</Failed>
+			</Log>
+		</Misc>
+		<Remote>
+			<Log>
+				<WaitingForProcessToFinish>En attente de la fin du processus {0}...</WaitingForProcessToFinish>
+				<Failed>
+					<RunCommandOn>Échec de l'exécution de la commande sur {0}.</RunCommandOn>
+					<WaitForRemoteProcess>Échec de l'attente de la fin du processus distant {0}.</WaitForRemoteProcess>
+				</Failed>
+			</Log>
+		</Remote>
+		<UserList>
+			<Column>
+				<SecurityIdentifier>Identifiant de sécurité</SecurityIdentifier>
+				<UserName>Nom d'utilisateur</UserName>
+				<LastModified>Dernière modification</LastModified>
+				<FirstCreated>Première création</FirstCreated>
+				<ProfilePath>Chemin du profil</ProfilePath>
+				<Size>Taille</Size>
+				<StoreIdentifier>Identifiant du magasin</StoreIdentifier>
+				<SourceUserName>{Shared/SourceUserName}</SourceUserName>
+				<DestinationUserName>{Shared/DestinationUserName}</DestinationUserName>
+				<ImportedBy>Importé par</ImportedBy>
+				<ImportedOn>Importé le</ImportedOn>
+				<ExportedBy>Exporté par</ExportedBy>
+				<ExportedOn>Exporté le</ExportedOn>
+				<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+				<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
+			</Column>
+		</UserList>
+		<USMT>
+			<Log>
+				<ApplyingUserStateOn>Application de l'état de l'utilisateur {0} sur {1} en cours...</ApplyingUserStateOn>
+				<CapturingUserStateOn>Capture de l'état de l'utilisateur {0} sur {1} en cours...</CapturingUserStateOn>
+				<UploadingUSMTTo>Chargement de l'USMT vers {0} en cours...</UploadingUSMTTo>
+				<USMTUploadedSuccessfully>USMT chargé avec succès.</USMTUploadedSuccessfully>
+				<USMTUploadCanceled>Chargement de l'USMT annulé.</USMTUploadCanceled>
+				<StoppingUSMTProcessOn>Arrêt du processus USMT sur {0} en cours...</StoppingUSMTProcessOn>
+				<USMTProcessStoppedOn>Processus USMT arrêté sur {0}.</USMTProcessStoppedOn>
+				<RemovingUSMTFrom>Suppression de l'USMT depuis {0} en cours...</RemovingUSMTFrom>
+				<USMTRemovedSuccessfully>USMT supprimé avec succès.</USMTRemovedSuccessfully>
+				<UserWillBeAppliedAs>L'utilisateur {0} sera appliqué en tant que {1}.</UserWillBeAppliedAs>
+				<TransferringUserStateTo>Transfert de l'état de l'utilisateur vers {0} en cours...</TransferringUserStateTo>
+				<UserStateSuccessfullyTransferred>État de l'utilisateur transféré avec succès.</UserStateSuccessfullyTransferred>
+				<DownloadingUSMTFromTheWeb>Téléchargement de l'USMT {0} depuis le web en cours...</DownloadingUSMTFromTheWeb>
+				<DecompressingUSMT>Décompression de l'USMT en cours...</DecompressingUSMT>
+				<CleaningUpUSMT>Nettoyage de l'USMT en cours...</CleaningUpUSMT>
+				<USMTFinished>USMT terminé.</USMTFinished>
+				<Failed>
+					<FindUSMTFolderAt>Échec de la recherche du dossier USMT à {0}.</FindUSMTFolderAt>
+					<StopUSMTOn>Échec de l'arrêt de l'USMT sur {0}.</StopUSMTOn>
+					<DeleteUSMTOn>Échec de la suppression de l'USMT sur {0}.</DeleteUSMTOn>
+					<DeleteUSMTAttempt>Échec de la suppression de l'USMT, le processus est peut-être toujours en cours, nouvelle tentative périodique : Tentative {0}/{1}.</DeleteUSMTAttempt>
+					<GenerateMUParameter>Échec de la génération du paramètre MU pour l'USMT.</GenerateMUParameter>
+					<TransferUserStateTo>Échec du transfert de l'état de l'utilisateur vers {0}.</TransferUserStateTo>
+					<DownloadUSMT>Échec du téléchargement automatique de l'USMT depuis le web, veuillez télécharger l'USMT et mettre à jour le {Shared/Log/SuperGrateXML} en conséquence.</DownloadUSMT>
+					<OSArchitectureIsNotSupported>L'architecture du système d'exploitation {0} n'est pas prise en charge.</OSArchitectureIsNotSupported>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
+					<WatchRemoteLog>Échec de la surveillance du fichier journal distant à {0}.</WatchRemoteLog>
+					<UploadUSMTTo>Échec du chargement de l'USMT vers {0}.</UploadUSMTTo>
+				</Failed>
+			</Log>
+		</USMT>
+		<WMI>
+			<Log>
+				<Failed>
+					<QueryWMI>Échec de la requête WMI, {0} pourrait avoir une installation WMI corrompue. Essayez d'exécuter la commande "winmgmt.exe /resetrepository" sur le PC cible pour résoudre ce problème. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
+					<ConnectToViaWMI>Échec de la connexion à {0} via WMI. Assurez-vous que l'ordinateur distant est en ligne.</ConnectToViaWMI>
+					<ConnectToViaWMIAccessDenied>Échec de la connexion à {0} via WMI en raison d'un accès refusé. Assurez-vous que votre compte d'utilisateur dispose d'un accès administratif à l'ordinateur distant.</ConnectToViaWMIAccessDenied>
+				</Failed>
+			</Log>
+		</WMI>
+	</Class>
+	<Control>
+		<About>
+			<About>À propos de {0}</About>
+			<Version>Version {0}</Version>
+			<License>Licence</License>
+			<GitHub>GitHub</GitHub>
+			<OK>{Shared/OK}</OK>
+		</About>
+		<ChangeColumns>
+			<AddRemoveColumns>Ajouter/supprimer des colonnes</AddRemoveColumns>
+			<Add>Ajouter -&gt;</Add>
+			<Remove>&lt;- Supprimer</Remove>
+			<MoveUp>Déplacer vers le haut</MoveUp>
+			<MoveDown>Déplacer vers le bas</MoveDown>
+			<RestoreDefaults>Restaurer les valeurs par défaut</RestoreDefaults>
+			<AvailableColumns>Colonnes disponibles :</AvailableColumns>
+			<DisplayedColumns>Colonnes affichées :</DisplayedColumns>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ChangeColumns>
+		<ChangeSetting>
+			<Default>Défaut</Default>
+			<ChangeSetting>Modifier le paramètre :</ChangeSetting>
+			<DefaultValue>Valeur par défaut :</DefaultValue>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ChangeSetting>
+		<ConfirmDialog>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+		</ConfirmDialog>
+		<DirectorySearch>
+			<Name>Nom</Name>
+			<Description>Description</Description>
+			<OrganizationalUnit>Unité organisationnelle</OrganizationalUnit>
+			<Search>Rechercher</Search>
+			<SelectAComputer>Sélectionner un ordinateur</SelectAComputer>
+			<Searching>Recherche en cours...</Searching>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+			<Log>
+				<SearchingActiveDirectoryFor>Recherche dans l'annuaire actif pour {0} en cours...</SearchingActiveDirectoryFor>
+				<FoundComputers>{0} ordinateurs trouvés.</FoundComputers>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<SearchActiveDirectory>Échec de la recherche dans l'annuaire actif.</SearchActiveDirectory>
+				</Failed>
+			</Log>
+		</DirectorySearch>
+		<License>
+			<License>Licence</License>
+		</License>
+		<RenameStoreUser>
+			<SetDestinationUserName>Définir le nom d'utilisateur de destination</SetDestinationUserName>
+			<UseThisDialog>Utilisez cette boîte de dialogue pour spécifier un "nom d'utilisateur de destination" lors de la restauration d'un profil à partir du "stockage"</UseThisDialog>
+			<SourceUserName>{Shared/SourceUserName}</SourceUserName>
+			<DestinationUserName>{Shared/DestinationUserName}</DestinationUserName>
+			<OK>{Shared/OK}</OK>
+			<Cancel>{Shared/Cancel}</Cancel>
+			<Log>
+				<Done>{Shared/Log/Done}</Done>
+				<SavingDataToMigrationStore>Enregistrement des données de l'utilisateur dans le stockage de migration...</SavingDataToMigrationStore>
+				<Failed>
+					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
+				</Failed>
+			</Log>
+		</RenameStoreUser>
+		<Settings>
+			<Settings>Paramètres</Settings>
+			<Reload>Recharger</Reload>
+			<SaveToDisk>Sauvegarder</SaveToDisk>
+			<Close>Fermer</Close>
+			<DoubleClickToChangeValue>Double-cliquez sur un paramètre pour changer sa valeur</DoubleClickToChangeValue>
+			<Loaded>Chargé</Loaded>
+			<Saved>Enregistré</Saved>
+			<Setting>Paramètre</Setting>
+			<Value>Valeur</Value>
+		</Settings>
+		<UserProperties>
+			<UserProperties>Propriétés de l'utilisateur</UserProperties>
+			<OK>{Shared/OK}</OK>
+		</UserProperties>
+		<Main>
+			<WelcomeTo>Bienvenue dans {0} ! v{1}</WelcomeTo>
+			<ListSource>Liste source</ListSource>
+			<ListStore>Liste stockage</ListStore>
+			<SourceComputer>{Shared/SourceComputer}</SourceComputer>
+			<DestinationComputer>{Shared/DestinationComputer}</DestinationComputer>
+			<Start>{Shared/Start}</Start>
+			<Stop>Arrêter</Stop>
+			<UsersOnSourceComputer>Utilisateurs sur l'ordinateur source :</UsersOnSourceComputer>
+			<UsersInMigrationStore>Utilisateurs dans le stockage de migration :</UsersInMigrationStore>
+			<DeleteUser>Supprimer l'utilisateur</DeleteUser>
+			<DeleteUsers>Supprimer les utilisateurs</DeleteUsers>
+			<AreYouSureDeleteUser>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</AreYouSureDeleteUser>
+			<AreYouSureDeleteUsers>Êtes-vous sûr de vouloir supprimer ces {0} utilisateurs ?</AreYouSureDeleteUsers>
+			<Delete>{Shared/Delete}</Delete>
+			<Menu>
+				<File>Fichier</File>
+				<NewInstance>Nouvelle instance</NewInstance>
+				<Settings>Paramètres...</Settings>
+				<SaveLog>Enregistrer le journal...</SaveLog>
+				<Exit>Quitter</Exit>
+				<View>Affichage</View>
+				<AddRemoveColumns>Ajouter/supprimer des colonnes...</AddRemoveColumns>
+				<LargeIcons>Grands icônes</LargeIcons>
+				<SmallIcons>Petits icônes</SmallIcons>
+				<List>Liste</List>
+				<Detail>Détail</Detail>
+				<Tile>Mosaïque</Tile>
+				<Help>Aide</Help>
+				<OnlineDocumentation>Documentation en ligne</OnlineDocumentation>
+				<OnlineIssues>Problèmes en ligne</OnlineIssues>
+				<OnlineUpdates>Mises à jour en ligne</OnlineUpdates>
+				<AboutSuperGrate>À propos de {Shared/SuperGrate}</AboutSuperGrate>
+				<SetDestinationUserName>Définir le nom d'utilisateur de destination...</SetDestinationUserName>
+				<Properties>Propriétés</Properties>
+				<Start>{Shared/Start}</Start>
+				<Delete>{Shared/Delete}</Delete>
+			</Menu>
+			<Log>
+				<EnterSomeInfoToGetStarted>Entrez des informations pour commencer !</EnterSomeInfoToGetStarted>
+				<CancelingCurrentTask>Annulation de la tâche en cours...</CancelingCurrentTask>
+				<VerboseModeDisabled>Mode verbeux désactivé.</VerboseModeDisabled>
+				<VerboseModeEnabled>Mode verbeux activé.</VerboseModeEnabled>
+				<WritingLogTo>Écriture du journal dans {0} en cours...</WritingLogTo>
+				<LogWrittenSuccessfully>Journal écrit avec succès.</LogWrittenSuccessfully>
+				<ThisProgramIsAttemptingToClose>Ce programme tente de se fermer, tentative {0}/{1}.</ThisProgramIsAttemptingToClose>
+				<GatheringUserProperties>Collecte des propriétés de l'utilisateur en cours...</GatheringUserProperties>
+				<Canceled>Annulé.</Canceled>
+				<Done>{Shared/Log/Done}</Done>
+				<Failed>
+					<GatherUserProperties>Échec de la collecte des propriétés de l'utilisateur.</GatherUserProperties>
+				</Failed>
+			</Log>
+		</Main>
+	</Control>
+</SGLanguage>

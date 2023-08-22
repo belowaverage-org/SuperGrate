@@ -357,6 +357,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Localization\zh.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\fr.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
