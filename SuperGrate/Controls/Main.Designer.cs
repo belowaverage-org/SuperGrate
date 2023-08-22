@@ -275,7 +275,6 @@ namespace SuperGrate
             this.btnStartStop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnStartStop.Enabled = false;
             this.btnStartStop.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnStartStop.Icon = "";
             this.btnStartStop.Location = new System.Drawing.Point(3, 313);
             this.btnStartStop.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btnStartStop.Name = "btnStartStop";

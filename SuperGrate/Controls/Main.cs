@@ -200,7 +200,7 @@ namespace SuperGrate
                 {
                     Logger.UpdateProgress(0);
                     btnStartStop.Text = Language.Get("Control/Main/Stop");
-                    btnStartStop.SetSystemIcon(Properties.Resources.cancel_ico);
+                    btnStartStop.Icon = "";
                     Cursor = Cursors.AppStarting;
                     Misc.MainMenuSetState(MainMenu, false, new string[] { "&View" });
                     storeRunningTask = value;
@@ -224,7 +224,7 @@ namespace SuperGrate
                 {
                     Logger.UpdateProgress(-1);
                     btnStartStop.Text = Language.Get("Control/Main/Start");
-                    btnStartStop.SetSystemIcon(Properties.Resources.go_ico);
+                    btnStartStop.Icon = "";
                     Cursor = Cursors.Default;
                     Misc.MainMenuSetState(MainMenu, true);
                     storeRunningTask = value;
