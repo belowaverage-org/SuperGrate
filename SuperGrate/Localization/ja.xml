@@ -304,7 +304,7 @@
 				<OnlineDocumentation>オンラインドキュメント</OnlineDocumentation>
 				<OnlineIssues>オンラインの問題</OnlineIssues>
 				<OnlineUpdates>オンラインの更新</OnlineUpdates>
-				<AboutSuperGrate>{Shared/Control/AboutSuperGrate}</AboutSuperGrate>
+				<AboutSuperGrate>{Shared/SuperGrate}について</AboutSuperGrate>
 				<SetDestinationUserName>宛先ユーザ名の設定...</SetDestinationUserName>
 				<Properties>プロパティ</Properties>
 				<Start>{Shared/Start}</Start>
