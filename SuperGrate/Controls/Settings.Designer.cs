@@ -53,7 +53,7 @@
             this.settingsList.Location = new System.Drawing.Point(0, 0);
             this.settingsList.MultiSelect = false;
             this.settingsList.Name = "settingsList";
-            this.settingsList.Size = new System.Drawing.Size(694, 308);
+            this.settingsList.Size = new System.Drawing.Size(784, 302);
             this.settingsList.TabIndex = 0;
             this.settingsList.UseCompatibleStateImageBehavior = false;
             this.settingsList.View = System.Windows.Forms.View.Details;
@@ -72,10 +72,11 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSave.Icon = "";
-            this.btnSave.Location = new System.Drawing.Point(460, 319);
+            this.btnSave.Location = new System.Drawing.Point(489, 318);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(109, 29);
+            this.btnSave.Size = new System.Drawing.Size(140, 30);
             this.btnSave.TabIndex = 1;
+            this.btnSave.Text = null;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
@@ -84,24 +85,25 @@
             this.lblHint.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblHint.AutoEllipsis = true;
-            this.lblHint.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.lblHint.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHint.ForeColor = System.Drawing.Color.DimGray;
-            this.lblHint.Location = new System.Drawing.Point(10, 325);
+            this.lblHint.Location = new System.Drawing.Point(10, 305);
             this.lblHint.Name = "lblHint";
-            this.lblHint.Size = new System.Drawing.Size(375, 20);
+            this.lblHint.Size = new System.Drawing.Size(327, 55);
             this.lblHint.TabIndex = 2;
+            this.lblHint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnRevert
             // 
             this.btnRevert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRevert.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnRevert.Icon = "";
-            this.btnRevert.Location = new System.Drawing.Point(344, 319);
+            this.btnRevert.Location = new System.Drawing.Point(343, 318);
             this.btnRevert.Name = "btnRevert";
             this.helpProvider.SetShowHelp(this.btnRevert, true);
-            this.btnRevert.Size = new System.Drawing.Size(109, 29);
+            this.btnRevert.Size = new System.Drawing.Size(140, 30);
             this.btnRevert.TabIndex = 3;
+            this.btnRevert.Text = null;
             this.btnRevert.UseVisualStyleBackColor = false;
             this.btnRevert.Click += new System.EventHandler(this.btnRevert_Click);
             // 
@@ -111,10 +113,11 @@
             this.btnApply.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnApply.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnApply.Icon = "";
-            this.btnApply.Location = new System.Drawing.Point(576, 319);
+            this.btnApply.Location = new System.Drawing.Point(635, 318);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(109, 29);
+            this.btnApply.Size = new System.Drawing.Size(140, 30);
             this.btnApply.TabIndex = 4;
+            this.btnApply.Text = null;
             this.btnApply.UseVisualStyleBackColor = false;
             // 
             // Settings
@@ -124,7 +127,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(249)))), ((int)(((byte)(249)))));
             this.CancelButton = this.btnApply;
-            this.ClientSize = new System.Drawing.Size(694, 357);
+            this.ClientSize = new System.Drawing.Size(784, 361);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnRevert);
             this.Controls.Add(this.lblHint);
@@ -135,7 +138,7 @@
             this.HelpButton = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(553, 257);
+            this.MinimumSize = new System.Drawing.Size(600, 300);
             this.Name = "Settings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.Settings_Load);

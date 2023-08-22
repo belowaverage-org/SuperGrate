@@ -211,7 +211,7 @@
 			<Cancel>{Shared/Cancel}</Cancel>
 		</ChangeColumns>
 		<ChangeSetting>
-			<Default>Restore Nautical Ways</Default>
+			<Default>Restore Ways</Default>
 			<ChangeSetting>Alter the Bearings:</ChangeSetting>
 			<DefaultValue>Default Bearings:</DefaultValue>
 			<OK>{Shared/OK}</OK>
@@ -259,9 +259,9 @@
 		</RenameStoreUser>
 		<Settings>
 			<Settings>Tales of the Code</Settings>
-			<Reload>Reload the Compass</Reload>
-			<SaveToDisk>Chart the Course</SaveToDisk>
-			<Close>Batten Down the Hatches</Close>
+			<Reload>Reload Compass</Reload>
+			<SaveToDisk>Chart Course</SaveToDisk>
+			<Close>Battn' Down Hatches</Close>
 			<DoubleClickToChangeValue>Double click to Alter the Bearings</DoubleClickToChangeValue>
 			<Loaded>Ahoy, Information Loaded</Loaded>
 			<Saved>Scrolled Away</Saved>
