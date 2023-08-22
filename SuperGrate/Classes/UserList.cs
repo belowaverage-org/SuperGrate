@@ -96,8 +96,8 @@ namespace SuperGrate.UserList
             {
                 Rows.Sort(delegate (UserRow x, UserRow y) {
                     if (!x.ContainsKey(SortColumn) && !y.ContainsKey(SortColumn)) return 0;
-                    if (x[SortColumn] == null) return 1;
-                    if (y[SortColumn] == null) return -1;
+                    if (x[SortColumn] == null) return -1;
+                    if (y[SortColumn] == null) return 1;
                     if (x[SortColumn] == y[SortColumn]) return 0;
                     if (long.TryParse(x[SortColumn], out long intX) && long.TryParse(y[SortColumn], out long intY))
                     {
