@@ -352,7 +352,7 @@
     <EmbeddedResource Include="Localization\es.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Localization\jp.xml" />
+    <EmbeddedResource Include="Localization\ja.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Localization\zh.xml" />
