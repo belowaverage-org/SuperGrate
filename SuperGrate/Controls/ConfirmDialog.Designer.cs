@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCancel = new Controls.Components.SGButton();
-            this.btnAccept = new Controls.Components.SGButton();
+            this.btnCancel = new SuperGrate.Controls.Components.SGButton();
+            this.btnAccept = new SuperGrate.Controls.Components.SGButton();
             this.pnlWhite = new System.Windows.Forms.Panel();
             this.lblDescription = new System.Windows.Forms.Label();
             this.pbIcon = new System.Windows.Forms.PictureBox();
@@ -43,11 +43,12 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCancel.Icon = "";
-            this.btnCancel.Location = new System.Drawing.Point(282, 100);
+            this.btnCancel.Location = new System.Drawing.Point(265, 99);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(103, 28);
+            this.btnCancel.Size = new System.Drawing.Size(120, 28);
             this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = null;
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // btnAccept
@@ -56,11 +57,12 @@
             this.btnAccept.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAccept.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnAccept.Icon = "";
-            this.btnAccept.Location = new System.Drawing.Point(170, 100);
+            this.btnAccept.Location = new System.Drawing.Point(137, 99);
             this.btnAccept.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(103, 28);
+            this.btnAccept.Size = new System.Drawing.Size(120, 28);
             this.btnAccept.TabIndex = 1;
+            this.btnAccept.Text = null;
             this.btnAccept.UseVisualStyleBackColor = true;
             // 
             // pnlWhite

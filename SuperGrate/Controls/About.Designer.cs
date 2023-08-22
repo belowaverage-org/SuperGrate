@@ -163,7 +163,7 @@
             this.llLicense.AutoSize = true;
             this.llLicense.Location = new System.Drawing.Point(47, 10);
             this.llLicense.Name = "llLicense";
-            this.llLicense.Size = new System.Drawing.Size(44, 13);
+            this.llLicense.Size = new System.Drawing.Size(0, 13);
             this.llLicense.TabIndex = 26;
             this.llLicense.TabStop = true;
             this.llLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llLicense_LinkClicked);
@@ -173,7 +173,7 @@
             this.llGitHub.AutoSize = true;
             this.llGitHub.Location = new System.Drawing.Point(-1, 10);
             this.llGitHub.Name = "llGitHub";
-            this.llGitHub.Size = new System.Drawing.Size(44, 13);
+            this.llGitHub.Size = new System.Drawing.Size(0, 13);
             this.llGitHub.TabIndex = 25;
             this.llGitHub.TabStop = true;
             this.llGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llGitHub_LinkClicked);
@@ -212,6 +212,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.Name = "About";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();

@@ -98,10 +98,10 @@ namespace SuperGrate.Controls
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCancel.Icon = "";
-            this.btnCancel.Location = new System.Drawing.Point(391, 11);
+            this.btnCancel.Location = new System.Drawing.Point(371, 10);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 30);
+            this.btnCancel.Size = new System.Drawing.Size(120, 30);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = null;
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -111,10 +111,10 @@ namespace SuperGrate.Controls
             this.btnSave.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSave.Icon = "";
-            this.btnSave.Location = new System.Drawing.Point(279, 11);
+            this.btnSave.Location = new System.Drawing.Point(241, 10);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 30);
+            this.btnSave.Size = new System.Drawing.Size(120, 30);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = null;
             this.btnSave.UseVisualStyleBackColor = true;

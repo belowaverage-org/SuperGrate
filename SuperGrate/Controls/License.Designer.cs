@@ -43,6 +43,7 @@
             this.rtbLicense.ShowSelectionMargin = true;
             this.rtbLicense.Size = new System.Drawing.Size(512, 496);
             this.rtbLicense.TabIndex = 0;
+            this.rtbLicense.Text = "";
             this.rtbLicense.WordWrap = false;
             this.rtbLicense.ZoomFactor = 1.3F;
             this.rtbLicense.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.rtbLicense_LinkClicked);
