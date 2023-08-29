@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SuperGrate
@@ -14,6 +16,7 @@ namespace SuperGrate
         public static List<string> UploadedGUIDs = new List<string>();
         private static bool Failed = false;
         private static bool Running = false;
+        private static int LogStartIndex = 0;
         private static string CurrentTarget = "";
         private static Misc.OSArchitecture DetectedArch = Misc.OSArchitecture.Unknown;
         private static string PayloadPathLocal
@@ -107,7 +110,7 @@ namespace SuperGrate
                     Running = true;
                     StartWatchLog("SuperGrate.log");
                     StartWatchLog("SuperGrate.progress");
-                    Failed = !await WaitForUsmtExit(exec.Replace(".exe", ""));
+                    Failed = !await WaitForUSMTExit(exec.Replace(".exe", ""));
                     if (Canceled || Failed) break;
                     Logger.UpdateProgress(0);
                     if (Mode == USMTMode.LoadState)
@@ -399,20 +402,44 @@ namespace SuperGrate
                 }
             });
         }
+        private static bool TestUSMTPostExitEnvironment()
+        {
+            bool errorFound = false;
+            List<string> USMTLog = Logger.Log.GetRange(LogStartIndex, Logger.Log.Count - LogStartIndex);
+            if (USMTLog.Find((line) => Regex.IsMatch(line, "Successful run")) != null) return true;
+            if (USMTLog.Find((line) => Regex.IsMatch(line, "An error occurred processing the command line\\.")) != null)
+            {
+                errorFound = true;
+                Logger.Error(Language.Get("Class/USMT/Log/Failed/ErrorProcessingCLI"));
+            }
+            if (USMTLog.Find((line) => Regex.IsMatch(line, "Server Operating systems are not supported\\.")) != null)
+            {
+                errorFound = true;
+                Logger.Error(Language.Get("Class/USMT/Log/Failed/WindowsServerIsNotSupported"));
+            }
+            if (USMTLog.Find((line) => Regex.IsMatch(line, "Not enough disk space|free space is required")) != null)
+            {
+                errorFound = true;
+                Logger.Error(Language.Get("Class/USMT/Log/Failed/NotEnoughDiskSpace"));
+            }
+            if (!errorFound && !Canceled)
+            {
+                Logger.Error(Language.Get("Class/USMT/Log/Failed/UnknownError"));
+            }
+            return false;
+        }
         /// <summary>
         /// Waits for USMT to exit.
         /// </summary>
         /// <param name="ImageName">Name of the process to wait on.</param>
         /// <returns>A task with bool, true if USMT exited gracefully.</returns>
-        private static async Task<bool> WaitForUsmtExit(string ImageName)
+        private static async Task<bool> WaitForUSMTExit(string ImageName)
         {
             Running = true;
-            bool result = await Remote.WaitForProcessExit(CurrentTarget, ImageName);
+            await Remote.WaitForProcessExit(CurrentTarget, ImageName);
             Running = false;
-            if (result)
-            {
-                Logger.Success(Language.Get("Class/USMT/Log/USMTFinished"));
-            }
+            bool result = TestUSMTPostExitEnvironment();
+            if (result)  Logger.Success(Language.Get("Class/USMT/Log/USMTFinished"));
             await Task.Delay(3000);
             return result;
         }
@@ -434,6 +461,7 @@ namespace SuperGrate
                 StreamReader logReader = new StreamReader(logStream);
                 long lastPosition = 0;
                 bool firstRead = true;
+                LogStartIndex = Logger.Log.Count;
                 while (Running)
                 {
                     logStream.Position = lastPosition;
@@ -469,6 +497,9 @@ namespace SuperGrate
             }
         }
     }
+    /// <summary>
+    /// The mode this class is currently operating in.
+    /// </summary>
     public enum USMTMode
     {
         ScanState = 1,

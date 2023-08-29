@@ -177,6 +177,10 @@
 					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
 					<WatchRemoteLog>Failed to watch remote log file at {0}.</WatchRemoteLog>
 					<UploadUSMTTo>Failed to upload USMT to {0}.</UploadUSMTTo>
+					<NotEnoughDiskSpace>Failed to finish USMT, not enough disk space is available on the source / destination PC. Try pointing &quot;SuperGratePayloadPath&quot; in settings to an external disk attached to the source / destination PC.</NotEnoughDiskSpace>
+					<ErrorProcessingCLI>Failed to start USMT, invalid values in setting &quot;ScanStateParameters&quot; or &quot;LoadStateParameters&quot;. </ErrorProcessingCLI>
+					<WindowsServerIsNotSupported>Failed to start USMT, Windows Server OS is not supported.</WindowsServerIsNotSupported>
+					<UnknownError>Failed to start / finish USMT, an un-known error has occured.</UnknownError>
 				</Failed>
 			</Log>
 		</USMT>
