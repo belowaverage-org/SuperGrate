@@ -259,7 +259,7 @@ namespace SuperGrate
                     if (srcUser != "" && dstUser != "")
                     {
                         Logger.Information(Language.Get("Class/USMT/Log/UserWillBeAppliedAs", srcUser, dstUser));
-                        return " /mu:" + srcUser + ":" + dstUser;
+                        return " /mu:\"" + srcUser + "\":\"" + dstUser + "\"";
                     }
                 }
                 catch(Exception e)
