@@ -551,10 +551,8 @@ namespace SuperGrate
             if(e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                if (sender == tbSourceComputer)
-                {
-                    btnListSource.PerformClick();
-                }
+                if (sender == tbSourceComputer) btnListSource.PerformClick();
+                if (sender == tbDestinationComputer) btnListStore.PerformClick();
             }
         }
         /// <summary>
