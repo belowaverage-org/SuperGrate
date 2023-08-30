@@ -280,7 +280,7 @@ namespace SuperGrate
             string lGUID = Guid.NewGuid().ToString();
             GUID = lGUID;
             return Task.Run(async () => {
-                Logger.Information(Language.Get("Class/USMT/Log/TransferringUserStateTo", Language.Get("Store")));
+                Logger.Information(Language.Get("Class/USMT/Log/TransferringUserStateTo", Language.Get("Shared/Store")));
                 string Destination = Path.Combine(Config.Settings["MigrationStorePath"], lGUID);
                 try
                 {
@@ -303,7 +303,7 @@ namespace SuperGrate
                     {
                         Directory.Delete(Destination, true);
                     }
-                    Logger.Exception(e, Language.Get("Class/USMT/Log/Failed/TransferUserStateTo", Language.Get("Store")));
+                    Logger.Exception(e, Language.Get("Class/USMT/Log/Failed/TransferUserStateTo", Language.Get("Shared/Store")));
                     return false;
                 }
             });

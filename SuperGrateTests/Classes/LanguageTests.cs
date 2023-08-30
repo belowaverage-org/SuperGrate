@@ -15,7 +15,7 @@ namespace SuperGrate.Classes.Tests
             foreach (string file in files)
             {
                 StreamReader reader = File.OpenText(file);
-                MatchCollection matches = Regex.Matches(reader.ReadToEnd(), "Language\\.Get\\(\"([a-z,A-Z,/]*)\".*\\)");
+                MatchCollection matches = Regex.Matches(reader.ReadToEnd(), "Language\\.Get\\(\"([a-z,A-Z,\\/]*)\"(?=.*\\))");
                 reader.Close();
                 foreach (Match match in matches)
                 {

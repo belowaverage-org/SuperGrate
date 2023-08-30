@@ -5,6 +5,7 @@
 		<Cancel>Cancel</Cancel>
 		<Start>Start</Start>
 		<Delete>Delete</Delete>
+		<Store>Store</Store>
 		<SourceComputer>Source computer</SourceComputer>
 		<DestinationComputer>Destination computer</DestinationComputer>
 		<SourceUserName>Source user name</SourceUserName>
