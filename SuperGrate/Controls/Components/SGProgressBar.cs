@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
 
@@ -38,6 +39,11 @@ namespace SuperGrate.Controls.Components
             {
                 ProgressBar.IsIndeterminate = (value == ProgressBarStyle.Marquee);
             }
+        }
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            Misc.ApplyStyles(ProgressBar);
         }
     }
 }
