@@ -5,6 +5,7 @@
 		<Cancel>Cancelar</Cancel>
 		<Start>Iniciar</Start>
 		<Delete>Eliminar</Delete>
+		<Store>Almacén</Store>
 		<SourceComputer>Computadora de Origen</SourceComputer>
 		<DestinationComputer>Computadora de Destino</DestinationComputer>
 		<SourceUserName>Nombre de Usuario de Origen</SourceUserName>
@@ -177,6 +178,10 @@
 					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
 					<WatchRemoteLog>Fallo al observar el archivo de registro remoto en {0}.</WatchRemoteLog>
 					<UploadUSMTTo>Fallo al cargar USMT a {0}.</UploadUSMTTo>
+					<NotEnoughDiskSpace>No se pudo completar USMT, no hay suficiente espacio en disco disponible en la PC de origen / destino. Intente apuntar "SuperGratePayloadPath" en la configuración a un disco externo conectado a la PC de origen / destino.</NotEnoughDiskSpace>
+					<ErrorProcessingCLI>No se pudo iniciar USMT, valores no válidos en la configuración "ScanStateParameters" o "LoadStateParameters".</ErrorProcessingCLI>
+					<WindowsServerIsNotSupported>No se pudo iniciar USMT, el sistema operativo Windows Server no es compatible.</WindowsServerIsNotSupported>
+					<UnknownError>No se pudo iniciar / finalizar USMT, ocurrió un error desconocido.</UnknownError>
 				</Failed>
 			</Log>
 		</USMT>

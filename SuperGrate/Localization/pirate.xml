@@ -5,6 +5,7 @@
 		<Cancel>Abandon Ship</Cancel>
 		<Start>Weigh Anchor</Start>
 		<Delete>Walk the Plank</Delete>
+		<Store>Treasure Chest</Store>
 		<SourceComputer>Source Ship</SourceComputer>
 		<DestinationComputer>Destination Ship</DestinationComputer>
 		<SourceUserName>Source Scallywag's Name</SourceUserName>
@@ -177,6 +178,10 @@
 					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
 					<WatchRemoteLog>Failed to watch remote log scroll at {0}.</WatchRemoteLog>
 					<UploadUSMTTo>Failed to upload USMT to {0}.</UploadUSMTTo>
+					<NotEnoughDiskSpace>Arrr! Can't finish USMT, there be not enough space in the ship's hold on the source or destination vessel. Give "SuperGratePayloadPath" a tweak in the settings, point it to an external chest o' gold connected to the source or destination vessel, ye scallywag!</NotEnoughDiskSpace>
+					<ErrorProcessingCLI>Walk the plank, USMT can't set sail! The values in the "ScanStateParameters" or "LoadStateParameters" be like a rickety old dinghy, not seaworthy at all.</ErrorProcessingCLI>
+					<WindowsServerIsNotSupported>Hoist the Jolly Roger! USMT can't set sail on Windows Server seas, matey! That ship ain't in these waters!</WindowsServerIsNotSupported>
+					<UnknownError>Blimey! USMT can't set sail or drop anchor, aye, an unknown tempest be brewin'.</UnknownError>
 				</Failed>
 			</Log>
 		</USMT>

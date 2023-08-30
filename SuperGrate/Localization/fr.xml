@@ -5,6 +5,7 @@
 		<Cancel>Annuler</Cancel>
 		<Start>Démarrer</Start>
 		<Delete>Supprimer</Delete>
+		<Store>Magasin</Store>
 		<SourceComputer>Ordinateur source</SourceComputer>
 		<DestinationComputer>Ordinateur de destination</DestinationComputer>
 		<SourceUserName>Nom d'utilisateur source</SourceUserName>
@@ -177,6 +178,10 @@
 					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
 					<WatchRemoteLog>Échec de la surveillance du fichier journal distant à {0}.</WatchRemoteLog>
 					<UploadUSMTTo>Échec du chargement de l'USMT vers {0}.</UploadUSMTTo>
+					<NotEnoughDiskSpace>Impossible de terminer USMT, il n'y a pas suffisamment d'espace disque disponible sur l'ordinateur source / destination. Essayez de pointer "SuperGratePayloadPath" dans les paramètres vers un disque externe connecté à l'ordinateur source / destination.</NotEnoughDiskSpace>
+					<ErrorProcessingCLI>Échec de démarrage d'USMT, valeurs non valides dans les paramètres "ScanStateParameters" ou "LoadStateParameters".</ErrorProcessingCLI>
+					<WindowsServerIsNotSupported>Échec de démarrage d'USMT, le système d'exploitation Windows Server n'est pas pris en charge.</WindowsServerIsNotSupported>
+					<UnknownError>Échec de démarrage / de fin d'USMT, une erreur inconnue s'est produite.</UnknownError>
 				</Failed>
 			</Log>
 		</USMT>

@@ -5,6 +5,7 @@
 		<Cancel>取消</Cancel>
 		<Start>开始</Start>
 		<Delete>删除</Delete>
+		<Store>商店</Store>
 		<SourceComputer>源计算机</SourceComputer>
 		<DestinationComputer>目标计算机</DestinationComputer>
 		<SourceUserName>源用户名</SourceUserName>
@@ -177,6 +178,10 @@
 					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
 					<WatchRemoteLog>无法在 {0} 处监视远程日志文件。</WatchRemoteLog>
 					<UploadUSMTTo>上传 USMT 到 {0} 失败。</UploadUSMTTo>
+					<NotEnoughDiskSpace>无法完成 USMT，源 / 目标计算机上没有足够的磁盘空间。请尝试将 "SuperGratePayloadPath" 在设置中指向连接到源 / 目标计算机的外部磁盘。</NotEnoughDiskSpace>
+					<ErrorProcessingCLI>无法启动 USMT，"ScanStateParameters" 或 "LoadStateParameters" 设置中的值无效。</ErrorProcessingCLI>
+					<WindowsServerIsNotSupported>无法启动 USMT，不支持 Windows Server 操作系统。</WindowsServerIsNotSupported>
+					<UnknownError>无法启动 / 完成 USMT，发生未知错误。</UnknownError>
 				</Failed>
 			</Log>
 		</USMT>
@@ -191,7 +196,6 @@
 		</WMI>
 	</Class>
 	<Control>
-		<!-- ... Previous sections ... -->
 		<About>
 			<About>关于 {0}</About>
 			<Version>版本 {0}</Version>

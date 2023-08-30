@@ -5,6 +5,7 @@
 		<Cancel>キャンセル</Cancel>
 		<Start>開始</Start>
 		<Delete>削除</Delete>
+		<Store>ストア</Store>
 		<SourceComputer>ソースコンピュータ</SourceComputer>
 		<DestinationComputer>宛先コンピュータ</DestinationComputer>
 		<SourceUserName>ソースユーザ名</SourceUserName>
@@ -177,6 +178,10 @@
 					<WriteStoreParameterTo>{Shared/Log/Failed/WriteStoreParameterTo}</WriteStoreParameterTo>
 					<WatchRemoteLog>{0} でリモートログファイルの監視に失敗しました。</WatchRemoteLog>
 					<UploadUSMTTo>{0} への USMT のアップロードに失敗しました。</UploadUSMTTo>
+					<NotEnoughDiskSpace>USMT の完了に失敗しました。ソース / 宛先のコンピュータに十分なディスク容量がありません。"SuperGratePayloadPath" を設定で外部ディスクに指定してみてください。ソース / 宛先のコンピュータに接続されているディスクです。</NotEnoughDiskSpace>
+					<ErrorProcessingCLI>USMT の起動に失敗しました。設定 "ScanStateParameters" または "LoadStateParameters" の値が無効です。</ErrorProcessingCLI>
+					<WindowsServerIsNotSupported>USMT の起動に失敗しました。Windows Server オペレーティングシステムはサポートされていません。</WindowsServerIsNotSupported>
+					<UnknownError>USMT の起動 / 終了に失敗しました。不明なエラーが発生しました。</UnknownError>
 				</Failed>
 			</Log>
 		</USMT>
