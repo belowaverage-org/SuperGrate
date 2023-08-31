@@ -115,7 +115,7 @@ namespace SuperGrate
         /// </summary>
         /// <param name="Exception">The exception to log.</param>
         /// <param name="Text">The text to convey with the exception.</param>
-        public static void Exception(Exception Exception, string Text)
+        public static void Exception(Exception Exception, string Text = "")
         {
             if (Exception.Message.EndsWith("\r\n"))
             {
@@ -128,10 +128,11 @@ namespace SuperGrate
             Verbose(Language.Get("Class/Logger/Prefix/Error") + '\r' + Exception.StackTrace);
             if(Exception.InnerException != null)
             {
-                Error(Exception.InnerException.Message);
-                Verbose(Language.Get("Class/Logger/Prefix/Error") + '\r' + Exception.InnerException.StackTrace);
+                Logger.Exception(Exception.InnerException);
+                //Error(Exception.InnerException.Message);
+                //Verbose(Language.Get("Class/Logger/Prefix/Error") + '\r' + Exception.InnerException.StackTrace);
             }
-            Error(Text);
+            if (Text != "") Error(Text);
         }
         /// <summary>
         /// Updates the UI with the new progress info.
