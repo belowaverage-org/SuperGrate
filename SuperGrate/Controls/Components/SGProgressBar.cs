@@ -7,10 +7,15 @@ namespace SuperGrate.Controls.Components
 {
     public class SGProgressBar : ProgressBar
     {
+        private bool DesignMode = false;
         private System.Windows.Controls.ProgressBar ProgressBar = new System.Windows.Controls.ProgressBar();
         public SGProgressBar()
         {
-            if (LicenseManager.CurrentContext.UsageMode == LicenseUsageMode.Designtime) return;
+            if (LicenseManager.CurrentContext.UsageMode == LicenseUsageMode.Designtime)
+            {
+                DesignMode = true;
+                return;
+            }
             ElementHost host = new ElementHost();
             host.Dock = DockStyle.Fill;
             host.Parent = this;
@@ -43,7 +48,7 @@ namespace SuperGrate.Controls.Components
         protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
-            Misc.ApplyStyles(ProgressBar);
+            if (!DesignMode) Misc.ApplyStyles(ProgressBar);
         }
     }
 }
