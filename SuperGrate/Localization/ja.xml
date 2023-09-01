@@ -191,6 +191,7 @@
 					<QueryWMI>WMI のクエリに失敗しました。{0} は破損した WMI インストールを持っているかもしれません。この問題を解決するには、対象のPCでコマンド "winmgmt.exe /resetrepository" を実行してみてください。https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
 					<ConnectToViaWMI>{0} への WMI 接続に失敗しました。リモートPCがオンラインであることを確認してください。</ConnectToViaWMI>
 					<ConnectToViaWMIAccessDenied>{0} への WMI 接続に失敗しました。アクセスが拒否されました。ユーザアカウントがリモートPCに管理者アクセス権限を持っていることを確認してください。</ConnectToViaWMIAccessDenied>
+					<WMIServiceDisabled>WMIサービスが起動できなかったため、{0} へのWMI接続に失敗しました。</WMIServiceDisabled>
 				</Failed>
 			</Log>
 		</WMI>

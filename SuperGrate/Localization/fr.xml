@@ -191,6 +191,7 @@
 					<QueryWMI>Échec de la requête WMI, {0} pourrait avoir une installation WMI corrompue. Essayez d'exécuter la commande "winmgmt.exe /resetrepository" sur le PC cible pour résoudre ce problème. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
 					<ConnectToViaWMI>Échec de la connexion à {0} via WMI. Assurez-vous que l'ordinateur distant est en ligne.</ConnectToViaWMI>
 					<ConnectToViaWMIAccessDenied>Échec de la connexion à {0} via WMI en raison d'un accès refusé. Assurez-vous que votre compte d'utilisateur dispose d'un accès administratif à l'ordinateur distant.</ConnectToViaWMIAccessDenied>
+					<WMIServiceDisabled>Échec de la connexion à {0} via WMI car le service WMI n'a pas pu démarrer.</WMIServiceDisabled>
 				</Failed>
 			</Log>
 		</WMI>

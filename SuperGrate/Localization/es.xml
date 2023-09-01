@@ -191,6 +191,7 @@
 					<QueryWMI>Fallo al consultar WMI, {0} podría tener una instalación WMI corrupta. Intente ejecutar el comando "winmgmt.exe /resetrepository" en la PC de destino para resolver este problema. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
 					<ConnectToViaWMI>Fallo al conectar con {0} a través de WMI. Asegúrese de que la PC remota esté en línea.</ConnectToViaWMI>
 					<ConnectToViaWMIAccessDenied>Fallo al conectar con {0} a través de WMI debido a que se denegó el acceso. Asegúrese de que su cuenta de usuario tenga acceso administrativo a la PC remota.</ConnectToViaWMIAccessDenied>
+					<WMIServiceDisabled>Fallo al conectar con {0} a través de WMI porque el servicio WMI no pudo iniciarse.</WMIServiceDisabled>
 				</Failed>
 			</Log>
 		</WMI>

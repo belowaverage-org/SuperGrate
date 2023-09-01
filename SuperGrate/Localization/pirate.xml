@@ -191,6 +191,7 @@
 					<QueryWMI>Failed to query WMI, {0} might have a cursed WMI setup. Try to run the command "winmgmt.exe /resetrepository" on the target ship to mend this issue. https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
 					<ConnectToViaWMI>Failed to connect to {0} via WMI. Make sure the distant vessel be online.</ConnectToViaWMI>
 					<ConnectToViaWMIAccessDenied>Failed to connect to {0} via WMI because access be denied. Make sure yer pirate account has the authority to steer the distant vessel.</ConnectToViaWMIAccessDenied>
+					<WMIServiceDisabled>Arrrgh, Matey! Failed to be connectin' to {0} via WMI 'cause the blasted WMI service failed to set sail.</WMIServiceDisabled>
 				</Failed>
 			</Log>
 		</WMI>

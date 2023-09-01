@@ -191,6 +191,7 @@
 					<QueryWMI>查询 WMI 失败，{0} 可能存在损坏的 WMI 安装。请尝试在目标 PC 上运行命令 "winmgmt.exe /resetrepository" 解决此问题。https://docs.microsoft.com/en-us/windows/win32/wmisdk/winmgmt</QueryWMI>
 					<ConnectToViaWMI>通过 WMI 连接到 {0} 失败。确保远程计算机在线。</ConnectToViaWMI>
 					<ConnectToViaWMIAccessDenied>通过 WMI 连接到 {0} 失败，因为访问被拒绝。确保您的用户帐户在远程计算机上具有管理员权限。</ConnectToViaWMIAccessDenied>
+					<WMIServiceDisabled>由于WMI服务无法启动，无法通过WMI连接到{0}。</WMIServiceDisabled>
 				</Failed>
 			</Log>
 		</WMI>
