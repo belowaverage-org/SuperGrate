@@ -3,7 +3,8 @@
     <img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/promo.png">
   </p>
 </a>
-<br><br>
+
+<img src="https://raw.githubusercontent.com/belowaverage-org/Wiki/master/assets/software/supersuite/supergrate/1.4.0.0-capturing.png">
 
 __Super Grate__ is a tool part of the Super Suite that can perform remote execution of Microsoft's USMT (User State Migration Tool) on any domain joined PC, or local execution on any non-joined PC.
 * <a href="https://belowaverage.org/software/supergrate/">Website</a>
@@ -33,14 +34,3 @@ __Super Grate__ is a tool part of the Super Suite that can perform remote execut
 
 * __Free!__
    * Super Grate along with other Super Suite utilities will always be free to download and use!
-<br><br>
-<h2>'Source Computer' users list:</h2>
-<img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-08-25%20233949.png"><br><br>
-<h2>A 'Source Computer' to 'Migration Store' backup in progress:</h2>
-<img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-08-25%20234142.png"><br><br>
-<h2>'Migration Store' users list:</h2>
-<img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-08-25%20234312.png"><br><br>
-<h2>A closer look at a user in the 'Migration Store':</h2>
-<img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-08-25%20234339.png"><br><br>
-<h2>The settings panel:</h2>
-<img src="https://raw.githubusercontent.com/krisdb2009/documentation/master/supergrate/Annotation%202020-08-25%20234443.png"><br><br>
