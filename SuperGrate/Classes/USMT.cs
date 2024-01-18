@@ -154,6 +154,11 @@ namespace SuperGrate
                             return false;
                         }
                     }
+                    if (Directory.Exists(PayloadPathTarget))
+                    {
+                        Logger.Error(Language.Get("Class/USMT/Log/Failed/PayloadPathAlreadyExists"));
+                        return false;
+                    }
                     if (FileOperations.CopyFolder(
                         USMTPath,
                         PayloadPathTarget
