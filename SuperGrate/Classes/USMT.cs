@@ -169,6 +169,7 @@ namespace SuperGrate
                     else
                     {
                         Logger.Warning(Language.Get("Class/USMT/Log/USMTUploadCanceled"));
+                        await CleanupUSMT();
                         return false;
                     }
                 }
