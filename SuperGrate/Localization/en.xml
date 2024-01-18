@@ -182,6 +182,7 @@
 					<ErrorProcessingCLI>Failed to start USMT, invalid values in setting &quot;ScanStateParameters&quot; or &quot;LoadStateParameters&quot;. </ErrorProcessingCLI>
 					<WindowsServerIsNotSupported>Failed to start USMT, Windows Server OS is not supported.</WindowsServerIsNotSupported>
 					<UnknownError>Failed to start / finish USMT, an un-known error has occured.</UnknownError>
+					<PayloadPathAlreadyExists>Could not generate a working directory for USMT at: {0}. The folder already exists.</PayloadPathAlreadyExists>
 				</Failed>
 			</Log>
 		</USMT>
