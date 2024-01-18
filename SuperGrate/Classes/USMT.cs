@@ -156,7 +156,7 @@ namespace SuperGrate
                     }
                     if (Directory.Exists(PayloadPathTarget))
                     {
-                        Logger.Error(Language.Get("Class/USMT/Log/Failed/PayloadPathAlreadyExists"));
+                        Logger.Error(Language.Get("Class/USMT/Log/Failed/PayloadPathAlreadyExists", PayloadPathTarget));
                         return false;
                     }
                     if (FileOperations.CopyFolder(
