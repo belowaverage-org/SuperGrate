@@ -125,7 +125,7 @@ namespace SuperGrate
                     }
                     Logger.UpdateProgress(0);
                 }
-                Failed = !await CleaupUSMT();
+                Failed = !await CleanupUSMT();
                 if(Canceled || Failed)
                 {
                     return false;
@@ -202,7 +202,7 @@ namespace SuperGrate
         /// Cleanup USMT from remote machine.
         /// </summary>
         /// <returns>A task with bool, true if success.</returns>
-        public static Task<bool> CleaupUSMT()
+        public static Task<bool> CleanupUSMT()
         {
             return Task.Run(async () => {
                 int tries = 0;
