@@ -778,14 +778,23 @@ namespace SuperGrate
                 miConUser.Show((Control)sender, e.Location);
             }
         }
+        /// <summary>
+        /// Whenever a context menu is opened, run the "DrawMenuItemBitmaps" method.
+        /// </summary>
         private void Menu_Popup(object sender, EventArgs e)
         {
             ((Menu)sender).DrawMenuItemBitmaps();
         }
+        /// <summary>
+        /// Open the Github releases page when the update button is clicked.
+        /// </summary>
         private void MiUpdateCheck_Click(object sender, EventArgs e)
         {
             Process.Start("OpenWith.exe", "https://github.com/belowaverage-org/SuperGrate/releases");
         }
+        /// <summary>
+        /// When the menu item for renaming a store user is clicked, open the rename store dialog.
+        /// </summary>
         private async void MiConRename_Click(object sender, EventArgs e)
         {
             if (listUsers.SelectedItems.Count == 1)
@@ -811,9 +820,26 @@ namespace SuperGrate
                 }
             }
         }
+        /// <summary>
+        /// Run the "OpenWith.exe" dialog when attempting to open a link in the log box so the user can select a browser.
+        /// </summary>
         private void LogBox_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             Process.Start("OpenWith.exe", e.LinkText);
+        }
+        /// <summary>
+        /// Fill the Source Computer textbox with the current machine's hostname.
+        /// </summary>
+        private void btnThisPCFillSrc_Click(object sender, EventArgs e)
+        {
+            tbSourceComputer.Text = Environment.MachineName;
+        }
+        /// <summary>
+        /// Fill the Destination Computer textbox with the current machine's hostname.
+        /// </summary>
+        private void btnThisPCFillDest_Click(object sender, EventArgs e)
+        {
+            tbDestinationComputer.Text = Environment.MachineName;
         }
     }
     /// <summary>
