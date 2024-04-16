@@ -214,6 +214,8 @@ namespace SuperGrate
                     tbDestinationComputer.Enabled =
                     btnAFillSrc.Enabled =
                     btnAFillDest.Enabled =
+                    btnThisPCFillSrc.Enabled =
+                    btnThisPCFillDest.Enabled =
                     btnListSource.Enabled =
                     btnListStore.Enabled =
                     btnDelete.Enabled =
@@ -236,6 +238,8 @@ namespace SuperGrate
                     tbDestinationComputer.Enabled =
                     btnAFillSrc.Enabled =
                     btnAFillDest.Enabled =
+                    btnThisPCFillSrc.Enabled =
+                    btnThisPCFillDest.Enabled =
                     btnListSource.Enabled =
                     btnListStore.Enabled =
                     btnDelete.Enabled =
@@ -355,12 +359,18 @@ namespace SuperGrate
             }
             if (listUsers.SelectedIndices.Count != 0)
             {
-                tbSourceComputer.Enabled = btnAFillSrc.Enabled = false;
+                tbSourceComputer.Enabled =
+                btnAFillSrc.Enabled =
+                btnThisPCFillSrc.Enabled =
+                false;
                 btnDelete.Enabled = true;
             }
             else
             {
-                tbSourceComputer.Enabled = btnAFillSrc.Enabled = true;
+                tbSourceComputer.Enabled =
+                btnAFillSrc.Enabled =
+                btnThisPCFillSrc.Enabled =
+                true;
                 btnDelete.Enabled = false;
             }
             if(tbSourceComputer.Text == "")
