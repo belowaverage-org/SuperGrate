@@ -412,7 +412,7 @@ namespace SuperGrate
             bool errorFound = false;
             List<string> USMTLog = Logger.Log.GetRange(LogStartIndex, Logger.Log.Count - LogStartIndex);
             if (USMTLog.Find((line) => Regex.IsMatch(line, "Successful run")) != null) return true;
-            if (USMTLog.Find((line) => Regex.IsMatch(line, "migration errors would have been fatal if not for \/c")) != null) return true;
+            if (USMTLog.Find((line) => Regex.IsMatch(line, "migration errors would have been fatal if not for \\/c")) != null) return true;
             if (USMTLog.Find((line) => Regex.IsMatch(line, "An error occurred processing the command line\\.")) != null)
             {
                 errorFound = true;
