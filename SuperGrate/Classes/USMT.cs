@@ -412,7 +412,7 @@ namespace SuperGrate
             bool errorFound = false;
             List<string> USMTLog = Logger.Log.GetRange(LogStartIndex, Logger.Log.Count - LogStartIndex);
             if (USMTLog.Find((line) => Regex.IsMatch(line, "errorCode, (0|3)")) != null) return true;
-            if (USMTLog.Find((line) => Regex.IsMatch(line, "errorCode, 11")) != null)
+            if (USMTLog.Find((line) => Regex.IsMatch(line, "An error occurred processing the command line\\.")) != null)
             {
                 errorFound = true;
                 Logger.Error(Language.Get("Class/USMT/Log/Failed/ErrorProcessingCLI"));
