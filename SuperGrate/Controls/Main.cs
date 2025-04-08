@@ -289,6 +289,8 @@ namespace SuperGrate
                     }
                 }
                 Running = RunningTask.None;
+                if (CurrentListSource == ListSources.SourceComputer) btnListSource.PerformClick();
+                if (CurrentListSource == ListSources.MigrationStore) btnListStore.PerformClick();
                 Logger.Information(Language.Get("Control/Main/Log/Done"));
             }
         }
