@@ -7,7 +7,7 @@
 <img src="https://raw.githubusercontent.com/belowaverage-org/Wiki/master/assets/software/supersuite/supergrate/1.4.0.0-capturing.png">
 
 __Super Grate__ is a tool part of the Super Suite that can perform remote execution of Microsoft's USMT (User State Migration Tool) on any domain joined PC, or local execution on any non-joined PC.
-* <a href="https://belowaverage.org/software/supergrate/">Website</a>
+* <a href="https://belowaverage.org/software/supersuite/supergrate/">Website</a>
 * <a href="https://github.com/belowaverage-org/SuperGrate/wiki">Documentation</a>
 <h2>Features:</h2>
 
